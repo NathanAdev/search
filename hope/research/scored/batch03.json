@@ -1,0 +1,434 @@
+[
+ {
+  "id": "rev-010",
+  "scores": {
+   "replicatability": 70,
+   "wtr": 78,
+   "competition": 30,
+   "marketability": 62,
+   "satellite": 68,
+   "want": 40
+  },
+  "score_notes": {},
+  "flags": [],
+  "drop": false,
+  "drop_reason": ""
+ },
+ {
+  "id": "gh-013",
+  "scores": {
+   "replicatability": 52,
+   "wtr": 30,
+   "competition": 12,
+   "marketability": 30,
+   "satellite": 70,
+   "want": 35
+  },
+  "score_notes": {
+   "competition": "Planta, PictureThis, Greg and Blossom saturate plant care."
+  },
+  "flags": [],
+  "drop": false,
+  "drop_reason": ""
+ },
+ {
+  "id": "rev-008",
+  "scores": {
+   "replicatability": 68,
+   "wtr": 70,
+   "competition": 25,
+   "marketability": 62,
+   "satellite": 85,
+   "want": 52
+  },
+  "score_notes": {},
+  "flags": [],
+  "drop": false,
+  "drop_reason": ""
+ },
+ {
+  "id": "frB-002",
+  "scores": {
+   "replicatability": 75,
+   "wtr": 82,
+   "competition": 25,
+   "marketability": 52,
+   "satellite": 70,
+   "want": 28
+  },
+  "score_notes": {},
+  "flags": [],
+  "drop": false,
+  "drop_reason": ""
+ },
+ {
+  "id": "gh-004",
+  "scores": {
+   "replicatability": 72,
+   "wtr": 80,
+   "competition": 25,
+   "marketability": 55,
+   "satellite": 88,
+   "want": 40
+  },
+  "score_notes": {
+   "satellite": "\"How are we related?\" calculators are widely shared by genealogists."
+  },
+  "flags": [],
+  "drop": false,
+  "drop_reason": ""
+ },
+ {
+  "id": "seA-019",
+  "scores": {
+   "replicatability": 68,
+   "wtr": 88,
+   "competition": 50,
+   "marketability": 55,
+   "satellite": 78,
+   "want": 38
+  },
+  "score_notes": {
+   "wtr": "Genealogy researchers on obscure record types are a niche vibe coders rarely visit."
+  },
+  "flags": [],
+  "drop": false,
+  "drop_reason": ""
+ },
+ {
+  "id": "seA-018",
+  "scores": {
+   "replicatability": 72,
+   "wtr": 75,
+   "competition": 45,
+   "marketability": 62,
+   "satellite": 88,
+   "want": 52
+  },
+  "score_notes": {
+   "satellite": "A \"will this part fit my bike\" checker is highly shareable."
+  },
+  "flags": [],
+  "drop": false,
+  "drop_reason": ""
+ },
+ {
+  "id": "apB-008",
+  "scores": {
+   "replicatability": 78,
+   "wtr": 75,
+   "competition": 25,
+   "marketability": 60,
+   "satellite": 55,
+   "want": 25
+  },
+  "score_notes": {},
+  "flags": [],
+  "drop": false,
+  "drop_reason": ""
+ },
+ {
+  "id": "fb-001",
+  "scores": {
+   "replicatability": 42,
+   "wtr": 62,
+   "competition": 25,
+   "marketability": 58,
+   "satellite": 62,
+   "want": 58
+  },
+  "score_notes": {},
+  "flags": [],
+  "drop": false,
+  "drop_reason": ""
+ },
+ {
+  "id": "x-005",
+  "scores": {
+   "replicatability": 78,
+   "wtr": 70,
+   "competition": 22,
+   "marketability": 58,
+   "satellite": 50,
+   "want": 20
+  },
+  "score_notes": {
+   "competition": "Magic Poser and Posemy.art already offer multi-figure posing.",
+   "want": "Two X posts."
+  },
+  "flags": [
+   "weak_signal"
+  ],
+  "drop": false,
+  "drop_reason": ""
+ },
+ {
+  "id": "gh-001",
+  "scores": {
+   "replicatability": 75,
+   "wtr": 85,
+   "competition": 35,
+   "marketability": 45,
+   "satellite": 40,
+   "want": 58
+  },
+  "score_notes": {},
+  "flags": [],
+  "drop": false,
+  "drop_reason": ""
+ },
+ {
+  "id": "apB-001",
+  "scores": {
+   "replicatability": 55,
+   "wtr": 80,
+   "competition": 25,
+   "marketability": 55,
+   "satellite": 50,
+   "want": 50
+  },
+  "score_notes": {
+   "competition": "Searched: Ravelry, AllFreeCrochet and Easy Crochet filter patterns, but no cross-designer free-pattern engine found."
+  },
+  "flags": [],
+  "drop": false,
+  "drop_reason": ""
+ },
+ {
+  "id": "hnA-009",
+  "scores": {
+   "replicatability": 62,
+   "wtr": 85,
+   "competition": 30,
+   "marketability": 55,
+   "satellite": 82,
+   "want": 28
+  },
+  "score_notes": {},
+  "flags": [],
+  "drop": false,
+  "drop_reason": ""
+ },
+ {
+  "id": "lem-002",
+  "scores": {
+   "replicatability": 70,
+   "wtr": 72,
+   "competition": 40,
+   "marketability": 45,
+   "satellite": 55,
+   "want": 15
+  },
+  "score_notes": {
+   "want": "One Lemmy post with no replies; duplicate of ChartWright in the reverse direction."
+  },
+  "flags": [
+   "weak_signal",
+   "duplicate_of:apB-008"
+  ],
+  "drop": false,
+  "drop_reason": ""
+ },
+ {
+  "id": "rev-003",
+  "scores": {
+   "replicatability": 80,
+   "wtr": 80,
+   "competition": 40,
+   "marketability": 62,
+   "satellite": 50,
+   "want": 52
+  },
+  "score_notes": {},
+  "flags": [],
+  "drop": false,
+  "drop_reason": ""
+ },
+ {
+  "id": "apB-002",
+  "scores": {
+   "replicatability": 40,
+   "wtr": 78,
+   "competition": 25,
+   "marketability": 62,
+   "satellite": 82,
+   "want": 50
+  },
+  "score_notes": {},
+  "flags": [],
+  "drop": false,
+  "drop_reason": ""
+ },
+ {
+  "id": "seA-011",
+  "scores": {
+   "replicatability": 70,
+   "wtr": 70,
+   "competition": 28,
+   "marketability": 82,
+   "satellite": 92,
+   "want": 68
+  },
+  "score_notes": {
+   "satellite": "\"How long will a power station run my fridge\" is a natural shareable calculator.",
+   "replicatability": "Appliance surge tables and wire-gauge lookups are public; the correctness-critical part is the derating logic, which is weeks rather than months."
+  },
+  "flags": [],
+  "drop": false,
+  "drop_reason": ""
+ },
+ {
+  "id": "lem-008",
+  "scores": {
+   "replicatability": 62,
+   "wtr": 50,
+   "competition": 18,
+   "marketability": 30,
+   "satellite": 40,
+   "want": 22
+  },
+  "score_notes": {
+   "competition": "Floorplanner, Sweet Home 3D, RoomSketcher and SketchUp; crowded.",
+   "want": "One Lemmy post, 3 points."
+  },
+  "flags": [],
+  "drop": false,
+  "drop_reason": ""
+ },
+ {
+  "id": "seA-013",
+  "scores": {
+   "replicatability": 52,
+   "wtr": 78,
+   "competition": 72,
+   "marketability": 45,
+   "satellite": 85,
+   "want": 28
+  },
+  "score_notes": {
+   "competition": "Searched: no per-model saw capacity checker found, only manufacturer spec sheets and angle calculators."
+  },
+  "flags": [],
+  "drop": false,
+  "drop_reason": ""
+ },
+ {
+  "id": "seA-012",
+  "scores": {
+   "replicatability": 70,
+   "wtr": 78,
+   "competition": 40,
+   "marketability": 50,
+   "satellite": 65,
+   "want": 25
+  },
+  "score_notes": {},
+  "flags": [],
+  "drop": false,
+  "drop_reason": ""
+ },
+ {
+  "id": "hnB-017",
+  "scores": {
+   "replicatability": 65,
+   "wtr": 40,
+   "competition": 30,
+   "marketability": 75,
+   "satellite": 85,
+   "want": 82
+  },
+  "score_notes": {
+   "competition": "Searched: Bright Saver already runs a US state-by-state plug-in solar legislation tracker with per-state pages and Helios covers UK yield; the wedge is global scope plus address-level yield.",
+   "wtr": "Searched: Bright Saver already runs a US state-by-state plug-in solar legislation tracker with per-state pages and Helios covers UK yield; the wedge is global scope plus address-level yield.",
+   "marketability": "Searched: Bright Saver already runs a US state-by-state plug-in solar legislation tracker with per-state pages and Helios covers UK yield; the wedge is global scope plus address-level yield.",
+   "replicatability": "Searched: Bright Saver already runs a US state-by-state plug-in solar legislation tracker with per-state pages and Helios covers UK yield; the wedge is global scope plus address-level yield."
+  },
+  "flags": [],
+  "drop": false,
+  "drop_reason": ""
+ },
+ {
+  "id": "gh-003",
+  "scores": {
+   "replicatability": 42,
+   "wtr": 40,
+   "competition": 15,
+   "marketability": 50,
+   "satellite": 65,
+   "want": 45
+  },
+  "score_notes": {
+   "competition": "HomeKeep, Hearth and Life Maintenance already ship this."
+  },
+  "flags": [],
+  "drop": false,
+  "drop_reason": ""
+ },
+ {
+  "id": "lem-005",
+  "scores": {
+   "replicatability": 55,
+   "wtr": 90,
+   "competition": 45,
+   "marketability": 18,
+   "satellite": 78,
+   "want": 28
+  },
+  "score_notes": {
+   "wtr": "Ancient-script scholars are a tiny audience vibe coders never visit.",
+   "marketability": "Ancient-script scholars and hobbyists rarely pay and the audience is tiny."
+  },
+  "flags": [],
+  "drop": false,
+  "drop_reason": ""
+ },
+ {
+  "id": "lem-004",
+  "scores": {
+   "replicatability": 68,
+   "wtr": 62,
+   "competition": 42,
+   "marketability": 45,
+   "satellite": 80,
+   "want": 22
+  },
+  "score_notes": {
+   "want": "One Lemmy post, loosely framed."
+  },
+  "flags": [],
+  "drop": false,
+  "drop_reason": ""
+ },
+ {
+  "id": "rev-009",
+  "scores": {
+   "replicatability": 82,
+   "wtr": 50,
+   "competition": 20,
+   "marketability": 62,
+   "satellite": 68,
+   "want": 60
+  },
+  "score_notes": {
+   "competition": "LingQ, Readlang, Lute, LWT, Language Reactor and Migaku already serve this."
+  },
+  "flags": [],
+  "drop": false,
+  "drop_reason": ""
+ },
+ {
+  "id": "hnA-005",
+  "scores": {
+   "replicatability": 55,
+   "wtr": 45,
+   "competition": 35,
+   "marketability": 55,
+   "satellite": 55,
+   "want": 30
+  },
+  "score_notes": {},
+  "flags": [],
+  "drop": false,
+  "drop_reason": ""
+ }
+]

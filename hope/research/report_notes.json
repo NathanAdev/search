@@ -1,0 +1,26 @@
+{
+  "missing_tools": [
+    "startup-validator, validate-idea and Reddit Research Tool Pro were not installed (the brief says not to install them); the built-in fallback of WebSearch plus the pipeline scripts was used.",
+    "Claude in Chrome is not available in a cloud session, so nothing was read from X, review sites or the user's logged-in browser in this run."
+  ],
+  "blocked_sources": [
+    "Reddit is blocked on every tool (Chrome policy, WebSearch domain block, WebFetch block, curl 403); no workaround was attempted.",
+    "X rate-limited the earlier local session after about 12 searches; the 13 X ideas come from that run and could not be re-checked.",
+    "The cloud session that scored these ideas has a limited network policy: hn.algolia.com, news.ycombinator.com, api.stackexchange.com and every Stack Exchange site, lemmy.world, itunes.apple.com, apps.apple.com, x.com, Discourse forums, boardgamegeek.com, trustpilot.com, producthunt.com, indiehackers.com and open.er-api.com were all denied. Only api.github.com and raw.githubusercontent.com connect, and GitHub access is scoped to the session's own repository.",
+    "Bluesky (403) and Mastodon (empty without login) were dropped in the earlier run; the Stack Exchange anonymous quota was spent in the first wave."
+  ],
+  "critic": {
+    "summary": "Not independent and not complete. One agent scored all 126 merged ideas in a single pass (8 flagged as duplicates and dropped, leaving the ledger). It ran web searches for competitors on every idea it expected to score 60 or more on Competition and on the ideas most at risk of a hidden incumbent. A second adversarial pass by the same agent challenged the 11 highest-ranked ideas: 9 were adjusted (for example Plug-In Solar Rulebook, PubOpen, Relic, SafeCanning, Parenting Plan Calendar) and 2 were left unchanged. The other ideas had no second look, and no separate critic agent ran, so the brief's 'critic pass with no unresolved objections' is not met."
+  },
+  "caveats": [
+    "No signal link has been opened. verify.js could not run (its hosts are blocked), so dates and the existence of the source posts come from the researchers' own notes. Treat every signal as unverified until verify.js is run on a machine with open network access.",
+    "Demand for many travel, canning and genealogy ideas is inferred from Q&A questions, not from people asking for a tool. The 14 Travel ideas are really one product family (travel document and airport rules) built on one Q&A site.",
+    "Startup Capital does not discriminate: almost every researcher estimated about $12 (a domain), so all ideas score 92 to 97 on that axis. Real differences in cost are not captured.",
+    "Newability is measured from 2026-10-25, the date set in finalize.js; the run date is 2026-10-28, so every age is three days short.",
+    "USD/RON 4.77 is the rate recorded on 2026-10-25; it could not be refetched from this session.",
+    "AI-model and other paid-API ideas are allowed under the user's reading of the brief and would score far lower on Startup Capital; none of the 118 ideas rely on a paid API.",
+    "No idea is marked as a feature idea for an existing web app, so the 'show feature ideas' switch has nothing to toggle.",
+    "Several ideas touch regulated or safety-sensitive information (plug-in solar rules, food canning times, travel document rules, parenting schedules, digital estate binders) and would need sources, last-verified dates and a clear not-advice notice before launch.",
+    "A bug in merge.js merged unrelated ideas that shared one source link (for example a calendar tool with a genealogy tool). It was fixed by requiring some name overlap as well, which restored four ideas; two genuine duplicate pairs remain merged."
+  ]
+}

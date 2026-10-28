@@ -27,7 +27,7 @@ const out = [];
 out.push('# Gap Ledger: run report', '');
 out.push(`Compiled ${new Date().toISOString().slice(0, 10)}. USD 1 = RON ${RATE}.`, '');
 out.push('## Result', '');
-out.push(`- **${ideas.length} ideas** survived the critic pass (${feat} are feature ideas for existing web apps, ${paid} rely on a paid API).`);
+out.push(`- **${ideas.length} ideas** are in the ledger (${feat} are feature ideas for existing web apps, ${paid} rely on a paid API). See "Critic pass" below for how far they were challenged.`);
 out.push('- Files: `dashboard.html` (open in any browser, no server needed), `ideas.json`, `ideas.csv`, this report.');
 out.push(`- Ideas per niche: ${Object.entries(niches).sort((a, b) => b[1] - a[1]).map(([k, v]) => `${k} ${v}`).join(', ')}.`, '');
 if (notes.missing_tools?.length) out.push('## Tools that were missing', '', ...notes.missing_tools.map((t) => `- ${t}`), '');
@@ -36,7 +36,7 @@ out.push('## Top 10 by Overall (default weights, Satellite at 0.5)', '', head, .
 out.push('## Top 10 cheapest to start (ties broken by Overall)', '', head, ...cheapest.slice(0, 10).map((i, n) => row(i, n + 1)), '');
 out.push(`## Low-confidence ideas (${low.length})`, '', low.length ? low.map((i) => `- ${i.id} ${link(i)}: ${i.notes || 'thin signal'}`).join('\n') : 'None.', '');
 out.push('## How the scores were made', '');
-out.push('- **Judged by a scorer agent, then attacked by a separate critic agent:** Replicatability, WTR, Competition, Marketability, Satellite, Want.');
+out.push('- **Judged (0-99):** Replicatability, WTR, Competition, Marketability, Satellite, Want.');
 out.push('- **Computed by formula, not opinion:** Newability (age of the newest signal, plus a bonus for each other signal under 12 months old) and Startup Capital (from the cash estimate on a fixed curve; ideas that rely on a paid API are halved and capped at 40).');
 out.push('- Overall = weighted average of the eight (Satellite 0.5, others 1.0); the dashboard lets you change weights and switch scores off.');
 const stretched = Object.entries(fin.calibration).filter(([, v]) => v.stretched).map(([k]) => k);

@@ -75,7 +75,7 @@ for (const raw of all) {
   });
 }
 
-// dedupe: shared signal URL, or high token overlap of name+idea
+// dedupe: shared signal URL plus a little name+idea overlap (one issue or app page can back different products), or high token overlap of name+idea
 const STOP = new Set('a an the and or of for to in on with your my app tool web site website that this it is are be by from as at into can who what how per'.split(' '));
 const toks = (i) => new Set((i.name + ' ' + i.idea).toLowerCase().replace(/[^a-z0-9 ]+/g, ' ').split(/\s+/).filter((w) => w.length > 2 && !STOP.has(w)));
 const jac = (a, b) => { let n = 0; for (const x of a) if (b.has(x)) n++; return n / (a.size + b.size - n || 1); };
@@ -83,7 +83,7 @@ const parent = ideas.map((_, n) => n);
 const find = (n) => (parent[n] === n ? n : (parent[n] = find(parent[n])));
 const byUrl = new Map();
 const T = ideas.map(toks);
-ideas.forEach((i, n) => i.signals.forEach((s) => { if (byUrl.has(s.url)) parent[find(n)] = find(byUrl.get(s.url)); else byUrl.set(s.url, n); }));
+ideas.forEach((i, n) => i.signals.forEach((s) => { if (!byUrl.has(s.url)) byUrl.set(s.url, n); else if (jac(T[n], T[byUrl.get(s.url)]) >= 0.08) parent[find(n)] = find(byUrl.get(s.url)); }));
 for (let a = 0; a < ideas.length; a++) for (let b = a + 1; b < ideas.length; b++) if (find(a) !== find(b) && jac(T[a], T[b]) >= 0.5) parent[find(a)] = find(b);
 
 const groups = new Map();

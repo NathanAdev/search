@@ -1601,52 +1601,17 @@
   "source_agent": "gh"
  },
  {
-  "id": "gh-009",
-  "name": "FreeBusy Hub",
-  "idea": "Combine all your calendars into one subscribable feed that shows only busy blocks, with a per-calendar choice of what details to reveal.",
-  "description": "Paste the private ICS links of your work, personal and family calendars; the service expands recurring events correctly and publishes a single secret feed URL (and a small availability page) that shows 'busy' or selected details only. Aimed at people who juggle work and private calendars, freelancers, and families that share one availability view. The moat is correct recurrence and timezone handling across messy real-world feeds.",
-  "niche": "Productivity & Planning",
-  "niche2": "Parenting & Family",
+  "id": "gh-004",
+  "name": "Kinship Explorer",
+  "idea": "Upload a GEDCOM file and see exactly how any two people in the tree are related, including in-laws and step relatives, with culture-aware names and kinship terms.",
+  "description": "Everything runs in the browser: parse the family tree file, pick two people, and get the path, the relationship name in the user's language, and a diagram. Name display can follow local conventions such as patronymics or surname-first order. Anniversary and birthday lists can be exported as a calendar file. Hard to copy because kinship terms and name conventions differ by culture and in-law logic is fiddly.",
+  "niche": "Genealogy & History",
+  "niche2": null,
   "is_feature": false,
   "feature_for": null,
-  "web_delivery": "Vercel serverless route fetches the user's source ICS URLs on request with short caching, expands events (RRULE, EXDATE, timezones) and returns a filtered ICS; Supabase stores account and feed settings; configuration UI is a normal web app.",
-  "why_hard_to_copy": "Correctness-critical iCalendar handling: recurrence expansion, timezone definitions, all-day and multi-day edge cases, and CLASS/transparency fields that vary between providers.",
+  "web_delivery": "Static web app on Vercel; GEDCOM parsed and queried entirely in the browser (no upload, no storage); Supabase only for optional saved views and share links.",
+  "why_hard_to_copy": "Correctness-critical kinship logic (half, step, in-law, multiple spouses) plus per-language relationship terms and name-order formats; client-side parsing of messy GEDCOM variants.",
   "signals": [
-   {
-    "platform": "github",
-    "url": "https://github.com/nextcloud/calendar/issues/6247",
-    "date": "2024-08-08",
-    "summary": "Wants to share a whole calendar as free/busy only without marking every event. Comments through 2026-10-20 call it a standard for calendar sharing and point out how Google's default visibility works.",
-    "engagement": "41 reactions, 21 comments"
-   },
-   {
-    "platform": "github",
-    "url": "https://github.com/nextcloud/calendar/issues/7641",
-    "date": "2025-10-29",
-    "summary": "An Outlook-using organisation member wants one 'global' feed that mixes several calendars and hides details of the personal ones.",
-    "engagement": "7 reactions, 3 comments"
-   },
-   {
-    "platform": "github",
-    "url": "https://github.com/nextcloud/calendar/issues/3044",
-    "date": "2021-04-27",
-    "summary": "Asks for a team-owned calendar tied to a group rather than a user; thread updated 2026-10-16.",
-    "engagement": "43 reactions, 7 comments"
-   },
-   {
-    "platform": "github",
-    "url": "https://github.com/seanmorley15/AdventureLog/issues/459",
-    "date": "2025-01-19",
-    "summary": "Asks for a calendar ICS URL so trip data can be used in external calendars; updated 2026-03-16.",
-    "engagement": "15 reactions, 0 comments"
-   },
-   {
-    "platform": "github",
-    "url": "https://github.com/gramps-project/gramps-web/issues/683",
-    "date": "2025-06-29",
-    "summary": "Wants calendar subscription of family anniversaries; updated 2026-09-08.",
-    "engagement": "5 reactions, 12 comments"
-   },
    {
     "platform": "github",
     "url": "https://github.com/gramps-project/gramps-web/issues/578",
@@ -1677,54 +1642,13 @@
    },
    {
     "platform": "github",
-    "url": "https://github.com/seanmorley15/AdventureLog/issues/916",
-    "date": "2025-11-12",
-    "summary": "Wants automatic import of saved-place collections from Google Maps because hundreds of saved places are part of the travel workflow.",
-    "engagement": "6 reactions, 0 comments"
-   },
-   {
-    "platform": "github",
-    "url": "https://github.com/seanmorley15/AdventureLog/issues/801",
-    "date": "2025-08-20",
-    "summary": "Trip planning should handle time zones; updated 2026-09-29.",
-    "engagement": "6 reactions, 4 comments"
-   },
-   {
-    "platform": "github",
-    "url": "https://github.com/seanmorley15/AdventureLog/issues/1166",
-    "date": "2026-05-27",
-    "summary": "Wants photos attached per visit rather than per location, so repeat visits are separated.",
-    "engagement": "6 reactions, 0 comments"
-   },
-   {
-    "platform": "github",
-    "url": "https://github.com/seanmorley15/AdventureLog/issues/1074",
-    "date": "2026-03-21",
-    "summary": "Wants GPX activities attached directly to a trip collection for multi-day hikes.",
-    "engagement": "3 reactions, 1 comment"
+    "url": "https://github.com/gramps-project/gramps-web/issues/683",
+    "date": "2025-06-29",
+    "summary": "Wants anniversary notifications or a calendar subscription of anniversaries; updated 2026-09-08.",
+    "engagement": "5 reactions, 12 comments"
    }
   ],
   "competitors_seen": [
-   {
-    "name": "SYNCDATE",
-    "url": "https://workspace.google.com/marketplace/app/syncdate/761398899444?hl=hi",
-    "note": "Syncs calendars with busy-only copies; works by copying events between calendars, not a single feed."
-   },
-   {
-    "name": "Sync Them Calendars",
-    "url": "https://workspace.google.com/marketplace/app/sync_them_calendars/1052199174637",
-    "note": "Google Workspace add-on to combine availability without sharing details."
-   },
-   {
-    "name": "OneCal",
-    "url": "https://www.onecal.io/blog/how-to-merge-outlook-calendars",
-    "note": "Paid sync service; its own guide notes manual ICS merges cannot hide private details."
-   },
-   {
-    "name": "SavvyCal merge guide",
-    "url": "https://savvycal.com/articles/merge-google-calendars",
-    "note": "Manual ICS import copies full details; offers automated alternative."
-   },
    {
     "name": "GEDminer Kinship Explorer",
     "url": "https://gedminer.com/gedcom-viewer-online",
@@ -1739,108 +1663,56 @@
     "name": "Family Viewer",
     "url": "https://github.com/jepst/familyviewer",
     "note": "Client-side JS viewer with search; no relationship calculator found."
-   },
-   {
-    "name": "AdventureLog",
-    "url": "https://selfhostyourself.com/alternative-to/wanderlog",
-    "note": "Self-hosted Wanderlog alternative with maps and itineraries."
-   },
-   {
-    "name": "Wanderer",
-    "url": "https://selfhostyourself.com/alternative-to/alltrails",
-    "note": "Self-hosted trail/trip log with GPX import and multiple users."
-   },
-   {
-    "name": "TREK",
-    "url": "https://selfhostyourself.com/alternative-to/wanderlog",
-    "note": "Self-hosted planner with real-time collaboration and journaling."
-   },
-   {
-    "name": "Wanderlog",
-    "url": "https://alternativeto.net/software/travelchime",
-    "note": "Popular hosted planner; pro tier exports places to Google Maps."
    }
   ],
   "satellite": {
-   "name": "ICS Privacy Scrubber",
-   "what": "Paste an ICS link or file and download a busy-only version, processed in the browser.",
-   "why_shared": "One-off need that people search for.",
-   "handoff": "Turn the scrubbed file into a live merged feed."
+   "name": "How Are We Related?",
+   "what": "Tiny free page: paste two lineage descriptions or upload a small file and get the plain-language relationship.",
+   "why_shared": "Family group chats share answers like 'second cousin once removed'.",
+   "handoff": "Link to the full explorer for the whole tree."
   },
   "marketing": {
    "where": [
-    "Hacker News Show HN",
-    "Product Hunt",
-    "AlternativeTo",
-    "productivity and freelancer communities",
-    "Mastodon calendar and privacy hashtags"
+    "WikiTree G2G forum",
+    "Genealogy Stack Exchange",
+    "Gramps community forum",
+    "Facebook genealogy groups",
+    "AlternativeTo"
    ],
-   "target": "Remote workers with work and private calendars, small teams, families",
-   "funnel": "Scrubber tool -> sign up to keep a live feed -> share availability link",
-   "cold_outreach": "Reply to calendar-sharing threads on forums with the live-feed alternative.",
+   "target": "Family historians and the relatives who ask them 'how are we related'",
+   "funnel": "Relationship question -> explorer -> saved tree view",
+   "cold_outreach": "Answer relationship questions on genealogy Q&A sites with a link showing the path.",
    "post_ideas": [
-    "Share your availability without sharing your dentist appointment",
-    "One link that merges Google, Outlook and iCloud as busy-only",
-    "Why copying events between calendars keeps breaking"
+    "Why your spouse's cousin is not 'not related' in your tree",
+    "Explain any two people's relationship in one click",
+    "Patronymic and surname-first names without breaking your GEDCOM"
    ]
   },
   "capital_usd": 12,
-  "capital_note": "Domain only; fetch-on-demand feeds fit free quotas at small scale.",
+  "capital_note": "Domain only.",
   "uses_paid_api": false,
   "paid_api_note": null,
   "confidence": "medium",
-  "notes": "Users must hand over secret ICS URLs, so trust and security design matter. Several sync tools address the same pain with different mechanisms. Strongest evidence is the single Nextcloud thread, not independent projects.",
-  "source_agent": "gh",
-  "merged_from": [
-   "gh-004 (Kinship Explorer)",
-   "gh-016 (Trip Log)"
-  ]
+  "notes": "All five signals come from one project's tracker, though several are recently active. Existing client-side viewers (GEDminer) overlap; the differentiator would be in-law/step logic, multi-language terms, and name formats.",
+  "source_agent": "gh"
  },
  {
-  "id": "gh-015",
-  "name": "Volunteer Rota",
-  "idea": "A volunteer and club rota builder that fills shifts automatically from people's availability and handles swaps and find-a-sub requests.",
-  "description": "Organisers list roles and dates, volunteers mark when they cannot serve, and the tool proposes a fair rota; volunteers accept, decline or ask for a substitute from a simple link, no app install. Aimed at small churches, clubs, food banks and school groups that outgrew spreadsheets. The moat is the fairness-aware auto-fill logic with constraints, which is real scheduling logic rather than CRUD.",
-  "niche": "Community & Nonprofit",
-  "niche2": "Event Planning",
+  "id": "gh-005",
+  "name": "Band Stage Sync",
+  "idea": "A songbook and setlist web app where band members open the live setlist on their own phones, transposed for their instrument, with guests allowed temporary view access.",
+  "description": "Store songs in ChordPro, transpose or apply a capo per player, reorder setlists live, and push the current song to everyone's screen. Works offline as a PWA for venues with bad signal. Aimed at bands, worship teams and open-mic hosts. Real-time sync and correct chord transposition (flats/sharps, slash chords) are the moat.",
+  "niche": "Music & Audio",
+  "niche2": "Community & Nonprofit",
   "is_feature": false,
   "feature_for": null,
-  "web_delivery": "Web app on Vercel with Supabase; constraint-based auto-fill runs in the browser or a serverless function; magic-link responses and calendar feed per volunteer.",
-  "why_hard_to_copy": "Constraint scheduling (availability, blackout dates, fairness, team balance) and swap workflows are correctness-critical, unlike a simple signup sheet.",
+  "web_delivery": "PWA on Vercel; Supabase Realtime channels for the live setlist; songs stored as text; service worker caches the setlist for offline use.",
+  "why_hard_to_copy": "Correct transposition logic across chord notations, real-time multi-device sync, and offline-first behaviour on stage.",
   "signals": [
-   {
-    "platform": "github",
-    "url": "https://github.com/ChurchCRM/CRM/issues/9701",
-    "date": "2026-09-10",
-    "summary": "The ChurchCRM maintainers opened an epic to redesign volunteer management around self-service scheduling, showing the existing volunteer tools were not enough.",
-    "engagement": "0 reactions, 2 comments"
-   },
-   {
-    "platform": "github",
-    "url": "https://github.com/ChurchCRM/CRM/issues/10742",
-    "date": "2026-10-18",
-    "summary": "Planning documentation of the workflow where a volunteer accepts, declines or finds a substitute from a member portal.",
-    "engagement": "0 reactions, 0 comments"
-   },
-   {
-    "platform": "github",
-    "url": "https://github.com/ChurchCRM/CRM/issues/8631",
-    "date": "2026-04-12",
-    "summary": "Asks for a ready-to-run Docker image to help testers and less-technical installer teams, signalling that small churches struggle to self-host.",
-    "engagement": "1 reaction, 14 comments"
-   },
-   {
-    "platform": "github",
-    "url": "https://github.com/ChurchCRM/CRM/issues/8694",
-    "date": "2026-04-16",
-    "summary": "Requests multi-campus support in the church management system.",
-    "engagement": "3 reactions, 5 comments"
-   },
    {
     "platform": "github",
     "url": "https://github.com/devmount/SongDrive/issues/296",
     "date": "2026-10-01",
-    "summary": "A music group asks for temporary read-only access so guests can see the setlist without an account.",
+    "summary": "A group making music together asks for ad-hoc participants to get temporary read-only access to the setlist without a full account.",
     "engagement": "1 reaction, 0 comments"
    },
    {
@@ -1859,26 +1731,6 @@
    }
   ],
   "competitors_seen": [
-   {
-    "name": "RosterThat",
-    "url": "https://alternativeto.net/software/rosterthat/about/",
-    "note": "Free for up to 20 people and two rosters; swaps supported."
-   },
-   {
-    "name": "WhenToHelp",
-    "url": "https://unison.io/blog/the-complete-guide-to-volunteer-scheduling-software-in-2026/",
-    "note": "Swap and auto-assignment features for churches and schools."
-   },
-   {
-    "name": "Shifts by Everhour",
-    "url": "https://everhour.com/shifts/volunteer-scheduling-software",
-    "note": "Free and paid plans, open shifts and swaps."
-   },
-   {
-    "name": "SignUpGenius",
-    "url": "https://everhour.com/blog/nonprofit-volunteer-scheduling-software/",
-    "note": "Free ad-supported; clunky for recurring events per one guide."
-   },
    {
     "name": "MySongbook.app",
     "url": "https://alternativeto.net/software/mysongbook-app/about/",
@@ -1901,38 +1753,35 @@
    }
   ],
   "satellite": {
-   "name": "Rota Fairness Checker",
-   "what": "Paste a rota spreadsheet and see who is overloaded and who is never scheduled.",
-   "why_shared": "Organisers share it with their team leads.",
-   "handoff": "Rebuild the rota automatically with constraints."
+   "name": "Free Chord Transposer",
+   "what": "Paste a chord sheet, pick a key or capo, copy a clean transposed version.",
+   "why_shared": "Musicians search for transposers constantly.",
+   "handoff": "Save to a band space and share the live setlist."
   },
   "marketing": {
    "where": [
-    "church and ministry leader communities",
-    "school PTA groups",
-    "food bank coordinator networks",
     "Product Hunt",
-    "AlternativeTo"
+    "worship-team and church music forums",
+    "guitar and ukulele forums",
+    "AlternativeTo",
+    "open-mic host groups"
    ],
-   "target": "Volunteer coordinators at small churches, clubs and food banks",
-   "funnel": "Fairness checker -> import volunteers -> auto-fill rota",
-   "cold_outreach": "Email coordinators of local organisations with a free first rota.",
+   "target": "Amateur bands, worship teams, open-mic hosts",
+   "funnel": "Transposer page -> create band space -> invite members by link",
+   "cold_outreach": "Offer free setup to church music directors.",
    "post_ideas": [
-    "Stop being the person who texts everyone to find a sub",
-    "Is your volunteer rota fair? Check it in 30 seconds",
-    "Auto-fill a month of shifts around people's blackout dates"
+    "Stop texting PDFs of setlists to your band",
+    "Capo math so the singer and the guitarist both stay happy",
+    "A songbook that still works when the venue wifi dies"
    ]
   },
   "capital_usd": 12,
-  "capital_note": "Domain only; no donation handling.",
+  "capital_note": "Domain only.",
   "uses_paid_api": false,
   "paid_api_note": null,
   "confidence": "low",
-  "notes": "Crowded niche with free tiers. GitHub evidence is weak (a single project roadmap). Included for niche coverage; any donation/contribution handling is deliberately out of scope.",
-  "source_agent": "gh",
-  "merged_from": [
-   "gh-005 (Band Stage Sync)"
-  ]
+  "notes": "GitHub evidence is thin (tiny projects); the real demand signal for paid band-sharing is visible only in competitor pricing. Needs corroboration from other sources.",
+  "source_agent": "gh"
  },
  {
   "id": "gh-006",
@@ -2230,6 +2079,107 @@
   "paid_api_note": null,
   "confidence": "low",
   "notes": "Strong self-hosted alternatives (Binner, InvenTree, Part-DB) mean the gap is 'no hosting needed'. Distributor API terms and rate limits need checking.",
+  "source_agent": "gh"
+ },
+ {
+  "id": "gh-009",
+  "name": "FreeBusy Hub",
+  "idea": "Combine all your calendars into one subscribable feed that shows only busy blocks, with a per-calendar choice of what details to reveal.",
+  "description": "Paste the private ICS links of your work, personal and family calendars; the service expands recurring events correctly and publishes a single secret feed URL (and a small availability page) that shows 'busy' or selected details only. Aimed at people who juggle work and private calendars, freelancers, and families that share one availability view. The moat is correct recurrence and timezone handling across messy real-world feeds.",
+  "niche": "Productivity & Planning",
+  "niche2": "Parenting & Family",
+  "is_feature": false,
+  "feature_for": null,
+  "web_delivery": "Vercel serverless route fetches the user's source ICS URLs on request with short caching, expands events (RRULE, EXDATE, timezones) and returns a filtered ICS; Supabase stores account and feed settings; configuration UI is a normal web app.",
+  "why_hard_to_copy": "Correctness-critical iCalendar handling: recurrence expansion, timezone definitions, all-day and multi-day edge cases, and CLASS/transparency fields that vary between providers.",
+  "signals": [
+   {
+    "platform": "github",
+    "url": "https://github.com/nextcloud/calendar/issues/6247",
+    "date": "2024-08-08",
+    "summary": "Wants to share a whole calendar as free/busy only without marking every event. Comments through 2026-10-20 call it a standard for calendar sharing and point out how Google's default visibility works.",
+    "engagement": "41 reactions, 21 comments"
+   },
+   {
+    "platform": "github",
+    "url": "https://github.com/nextcloud/calendar/issues/7641",
+    "date": "2025-10-29",
+    "summary": "An Outlook-using organisation member wants one 'global' feed that mixes several calendars and hides details of the personal ones.",
+    "engagement": "7 reactions, 3 comments"
+   },
+   {
+    "platform": "github",
+    "url": "https://github.com/nextcloud/calendar/issues/3044",
+    "date": "2021-04-27",
+    "summary": "Asks for a team-owned calendar tied to a group rather than a user; thread updated 2026-10-16.",
+    "engagement": "43 reactions, 7 comments"
+   },
+   {
+    "platform": "github",
+    "url": "https://github.com/seanmorley15/AdventureLog/issues/459",
+    "date": "2025-01-19",
+    "summary": "Asks for a calendar ICS URL so trip data can be used in external calendars; updated 2026-03-16.",
+    "engagement": "15 reactions, 0 comments"
+   },
+   {
+    "platform": "github",
+    "url": "https://github.com/gramps-project/gramps-web/issues/683",
+    "date": "2025-06-29",
+    "summary": "Wants calendar subscription of family anniversaries; updated 2026-09-08.",
+    "engagement": "5 reactions, 12 comments"
+   }
+  ],
+  "competitors_seen": [
+   {
+    "name": "SYNCDATE",
+    "url": "https://workspace.google.com/marketplace/app/syncdate/761398899444?hl=hi",
+    "note": "Syncs calendars with busy-only copies; works by copying events between calendars, not a single feed."
+   },
+   {
+    "name": "Sync Them Calendars",
+    "url": "https://workspace.google.com/marketplace/app/sync_them_calendars/1052199174637",
+    "note": "Google Workspace add-on to combine availability without sharing details."
+   },
+   {
+    "name": "OneCal",
+    "url": "https://www.onecal.io/blog/how-to-merge-outlook-calendars",
+    "note": "Paid sync service; its own guide notes manual ICS merges cannot hide private details."
+   },
+   {
+    "name": "SavvyCal merge guide",
+    "url": "https://savvycal.com/articles/merge-google-calendars",
+    "note": "Manual ICS import copies full details; offers automated alternative."
+   }
+  ],
+  "satellite": {
+   "name": "ICS Privacy Scrubber",
+   "what": "Paste an ICS link or file and download a busy-only version, processed in the browser.",
+   "why_shared": "One-off need that people search for.",
+   "handoff": "Turn the scrubbed file into a live merged feed."
+  },
+  "marketing": {
+   "where": [
+    "Hacker News Show HN",
+    "Product Hunt",
+    "AlternativeTo",
+    "productivity and freelancer communities",
+    "Mastodon calendar and privacy hashtags"
+   ],
+   "target": "Remote workers with work and private calendars, small teams, families",
+   "funnel": "Scrubber tool -> sign up to keep a live feed -> share availability link",
+   "cold_outreach": "Reply to calendar-sharing threads on forums with the live-feed alternative.",
+   "post_ideas": [
+    "Share your availability without sharing your dentist appointment",
+    "One link that merges Google, Outlook and iCloud as busy-only",
+    "Why copying events between calendars keeps breaking"
+   ]
+  },
+  "capital_usd": 12,
+  "capital_note": "Domain only; fetch-on-demand feeds fit free quotas at small scale.",
+  "uses_paid_api": false,
+  "paid_api_note": null,
+  "confidence": "medium",
+  "notes": "Users must hand over secret ICS URLs, so trust and security design matter. Several sync tools address the same pain with different mechanisms. Strongest evidence is the single Nextcloud thread, not independent projects.",
   "source_agent": "gh"
  },
  {
@@ -2742,6 +2692,208 @@
   "paid_api_note": null,
   "confidence": "low",
   "notes": "Security claims must be audited before launch; reputational risk if keys are mishandled. Demand evidence is from two small self-hosted journaling projects plus competitors' premium gating.",
+  "source_agent": "gh"
+ },
+ {
+  "id": "gh-015",
+  "name": "Volunteer Rota",
+  "idea": "A volunteer and club rota builder that fills shifts automatically from people's availability and handles swaps and find-a-sub requests.",
+  "description": "Organisers list roles and dates, volunteers mark when they cannot serve, and the tool proposes a fair rota; volunteers accept, decline or ask for a substitute from a simple link, no app install. Aimed at small churches, clubs, food banks and school groups that outgrew spreadsheets. The moat is the fairness-aware auto-fill logic with constraints, which is real scheduling logic rather than CRUD.",
+  "niche": "Community & Nonprofit",
+  "niche2": "Event Planning",
+  "is_feature": false,
+  "feature_for": null,
+  "web_delivery": "Web app on Vercel with Supabase; constraint-based auto-fill runs in the browser or a serverless function; magic-link responses and calendar feed per volunteer.",
+  "why_hard_to_copy": "Constraint scheduling (availability, blackout dates, fairness, team balance) and swap workflows are correctness-critical, unlike a simple signup sheet.",
+  "signals": [
+   {
+    "platform": "github",
+    "url": "https://github.com/ChurchCRM/CRM/issues/9701",
+    "date": "2026-09-10",
+    "summary": "The ChurchCRM maintainers opened an epic to redesign volunteer management around self-service scheduling, showing the existing volunteer tools were not enough.",
+    "engagement": "0 reactions, 2 comments"
+   },
+   {
+    "platform": "github",
+    "url": "https://github.com/ChurchCRM/CRM/issues/10742",
+    "date": "2026-10-18",
+    "summary": "Planning documentation of the workflow where a volunteer accepts, declines or finds a substitute from a member portal.",
+    "engagement": "0 reactions, 0 comments"
+   },
+   {
+    "platform": "github",
+    "url": "https://github.com/ChurchCRM/CRM/issues/8631",
+    "date": "2026-04-12",
+    "summary": "Asks for a ready-to-run Docker image to help testers and less-technical installer teams, signalling that small churches struggle to self-host.",
+    "engagement": "1 reaction, 14 comments"
+   },
+   {
+    "platform": "github",
+    "url": "https://github.com/ChurchCRM/CRM/issues/8694",
+    "date": "2026-04-16",
+    "summary": "Requests multi-campus support in the church management system.",
+    "engagement": "3 reactions, 5 comments"
+   },
+   {
+    "platform": "github",
+    "url": "https://github.com/devmount/SongDrive/issues/296",
+    "date": "2026-10-01",
+    "summary": "A music group asks for temporary read-only access so guests can see the setlist without an account.",
+    "engagement": "1 reaction, 0 comments"
+   }
+  ],
+  "competitors_seen": [
+   {
+    "name": "RosterThat",
+    "url": "https://alternativeto.net/software/rosterthat/about/",
+    "note": "Free for up to 20 people and two rosters; swaps supported."
+   },
+   {
+    "name": "WhenToHelp",
+    "url": "https://unison.io/blog/the-complete-guide-to-volunteer-scheduling-software-in-2026/",
+    "note": "Swap and auto-assignment features for churches and schools."
+   },
+   {
+    "name": "Shifts by Everhour",
+    "url": "https://everhour.com/shifts/volunteer-scheduling-software",
+    "note": "Free and paid plans, open shifts and swaps."
+   },
+   {
+    "name": "SignUpGenius",
+    "url": "https://everhour.com/blog/nonprofit-volunteer-scheduling-software/",
+    "note": "Free ad-supported; clunky for recurring events per one guide."
+   }
+  ],
+  "satellite": {
+   "name": "Rota Fairness Checker",
+   "what": "Paste a rota spreadsheet and see who is overloaded and who is never scheduled.",
+   "why_shared": "Organisers share it with their team leads.",
+   "handoff": "Rebuild the rota automatically with constraints."
+  },
+  "marketing": {
+   "where": [
+    "church and ministry leader communities",
+    "school PTA groups",
+    "food bank coordinator networks",
+    "Product Hunt",
+    "AlternativeTo"
+   ],
+   "target": "Volunteer coordinators at small churches, clubs and food banks",
+   "funnel": "Fairness checker -> import volunteers -> auto-fill rota",
+   "cold_outreach": "Email coordinators of local organisations with a free first rota.",
+   "post_ideas": [
+    "Stop being the person who texts everyone to find a sub",
+    "Is your volunteer rota fair? Check it in 30 seconds",
+    "Auto-fill a month of shifts around people's blackout dates"
+   ]
+  },
+  "capital_usd": 12,
+  "capital_note": "Domain only; no donation handling.",
+  "uses_paid_api": false,
+  "paid_api_note": null,
+  "confidence": "low",
+  "notes": "Crowded niche with free tiers. GitHub evidence is weak (a single project roadmap). Included for niche coverage; any donation/contribution handling is deliberately out of scope.",
+  "source_agent": "gh"
+ },
+ {
+  "id": "gh-016",
+  "name": "Trip Log",
+  "idea": "A travel log that imports saved places from Google Maps exports and GPX files, with per-visit notes, time-zone-correct itineraries and a calendar feed.",
+  "description": "Drop a Google Takeout saved-places file or GPX tracks and see them as visits on a map, attach notes to each visit rather than the place, and build multi-day itineraries where every leg shows the correct local time. Export the plan as a calendar file. Aimed at travellers who keep lists in Google Maps and want a structured record. The moat is the import parsers and time-zone-correct itinerary logic.",
+  "niche": "Travel",
+  "niche2": "Gardening & Outdoors",
+  "is_feature": false,
+  "feature_for": null,
+  "web_delivery": "Web app on Vercel; Takeout and GPX parsed client-side; maps via free open tile sources; Supabase stores trips as text/JSON with no heavy media hosting.",
+  "why_hard_to_copy": "Obscure export format parsing done entirely in the browser plus timezone-aware multi-leg itinerary logic.",
+  "signals": [
+   {
+    "platform": "github",
+    "url": "https://github.com/seanmorley15/AdventureLog/issues/916",
+    "date": "2025-11-12",
+    "summary": "Wants automatic import of saved-place collections from Google Maps because hundreds of saved places are part of the travel workflow.",
+    "engagement": "6 reactions, 0 comments"
+   },
+   {
+    "platform": "github",
+    "url": "https://github.com/seanmorley15/AdventureLog/issues/801",
+    "date": "2025-08-20",
+    "summary": "Trip planning should handle time zones; updated 2026-09-29.",
+    "engagement": "6 reactions, 4 comments"
+   },
+   {
+    "platform": "github",
+    "url": "https://github.com/seanmorley15/AdventureLog/issues/1166",
+    "date": "2026-05-27",
+    "summary": "Wants photos attached per visit rather than per location, so repeat visits are separated.",
+    "engagement": "6 reactions, 0 comments"
+   },
+   {
+    "platform": "github",
+    "url": "https://github.com/seanmorley15/AdventureLog/issues/1074",
+    "date": "2026-03-21",
+    "summary": "Wants GPX activities attached directly to a trip collection for multi-day hikes.",
+    "engagement": "3 reactions, 1 comment"
+   },
+   {
+    "platform": "github",
+    "url": "https://github.com/seanmorley15/AdventureLog/issues/459",
+    "date": "2025-01-19",
+    "summary": "Wants an ICS calendar URL for external use; updated 2026-03-16.",
+    "engagement": "15 reactions, 0 comments"
+   }
+  ],
+  "competitors_seen": [
+   {
+    "name": "AdventureLog",
+    "url": "https://selfhostyourself.com/alternative-to/wanderlog",
+    "note": "Self-hosted Wanderlog alternative with maps and itineraries."
+   },
+   {
+    "name": "Wanderer",
+    "url": "https://selfhostyourself.com/alternative-to/alltrails",
+    "note": "Self-hosted trail/trip log with GPX import and multiple users."
+   },
+   {
+    "name": "TREK",
+    "url": "https://selfhostyourself.com/alternative-to/wanderlog",
+    "note": "Self-hosted planner with real-time collaboration and journaling."
+   },
+   {
+    "name": "Wanderlog",
+    "url": "https://alternativeto.net/software/travelchime",
+    "note": "Popular hosted planner; pro tier exports places to Google Maps."
+   }
+  ],
+  "satellite": {
+   "name": "Google Maps List Viewer",
+   "what": "Drop your Takeout saved-places file and see all places on one map, filter by list.",
+   "why_shared": "People who want to move off Google Maps lists share the trick.",
+   "handoff": "Turn the places into a trip."
+  },
+  "marketing": {
+   "where": [
+    "travel blogs and forums",
+    "Mastodon travel hashtags",
+    "hiking and trail communities",
+    "Product Hunt",
+    "AlternativeTo"
+   ],
+   "target": "Self-planning travellers and hikers who keep lists in Google Maps",
+   "funnel": "List viewer -> save as trip -> itinerary and calendar feed",
+   "cold_outreach": "Pitch travel bloggers a free way to publish their saved places.",
+   "post_ideas": [
+    "See all your Google Maps saved places on one page",
+    "Plan a multi-timezone trip without losing track of local times",
+    "Per-visit notes: remember what you ate each time"
+   ]
+  },
+  "capital_usd": 12,
+  "capital_note": "Domain only.",
+  "uses_paid_api": false,
+  "paid_api_note": null,
+  "confidence": "low",
+  "notes": "Crowded category. Demand evidence comes from one self-hosted project. I did not verify exactly what Google's current export format contains.",
   "source_agent": "gh"
  },
  {
@@ -6020,45 +6172,17 @@
   "source_agent": "rev"
  },
  {
-  "id": "rev-006",
-  "name": "BracketForge",
-  "idea": "Free, no-paywall tournament engine with Swiss, double-elimination and group-to-playoff formats and live spectator pages.",
-  "description": "Organisers of community game nights, school clubs and local esports events create a bracket without hitting a paywall, using correct Swiss pairing with tiebreaks, double elimination with grand-final reset, seeding byes and multi-stage formats. Players join by link with no account and results update live on a spectator screen. Hard to copy because pairing and tiebreak rules are correctness-critical and the live-sync layer must be reliable at venue Wi-Fi quality.",
-  "niche": "Gaming Communities",
-  "niche2": "Sports & Teams",
+  "id": "rev-004",
+  "name": "LeagueSlate",
+  "idea": "Ad-free team and league schedule hub with a constraint-based schedule generator and per-team calendar feeds.",
+  "description": "League coordinators enter teams, fields, time slots, blackout dates and rest rules; the generator builds a balanced round-robin or pool-play schedule, and parents subscribe to their team's ICS feed with live field changes. No ads, no mandatory app, just a link and email/ICS updates. Hard to copy because the constraint scheduler (home/away balance, field limits, coach conflicts) and low-disruption rescheduling after rainouts are real algorithmic work.",
+  "niche": "Sports & Teams",
+  "niche2": null,
   "is_feature": false,
   "feature_for": null,
-  "web_delivery": "Next.js on Vercel; pairing engine in TypeScript; results and live standings through Supabase Realtime; public read-only spectator URL.",
-  "why_hard_to_copy": "Swiss pairing with Buchholz-style tiebreaks, bye handling, double-elimination reset logic and re-seeding after dropouts are rules-engine problems with many edge cases, and live results need dependable realtime sync.",
+  "web_delivery": "Next.js on Vercel; scheduler runs in the browser; league data in Supabase; ICS per team via a route handler; Supabase Realtime for live field changes.",
+  "why_hard_to_copy": "Constraint scheduling with fields, slots, blackouts and rest rules, and minimal-change rescheduling, is an optimization problem rather than CRUD; several free generators exist but none is combined with an ad-free team hub.",
   "signals": [
-   {
-    "platform": "appstore",
-    "url": "https://apps.apple.com/us/app/bracket-builder/id1669378849",
-    "date": "2026-08-03",
-    "summary": "A reviewer says everything in Bracket Builder is locked behind a paywall.",
-    "engagement": "3 of 3 recent low-star reviews read mention paywall or forced payment; 2,745 ratings"
-   },
-   {
-    "platform": "appstore",
-    "url": "https://apps.apple.com/us/app/bracket-app/id1604693963",
-    "date": "2026-08-15",
-    "summary": "Another bracket app lets you type in all players and only then shows a paywall; an earlier review also reports a pairing bug where a rematch repeats the same placement.",
-    "engagement": "2 of 2 recent low-star reviews read; 166 ratings"
-   },
-   {
-    "platform": "appstore",
-    "url": "https://apps.apple.com/us/app/copa-f%C3%A1cil-tournament-maker/id1444543396",
-    "date": "2026-05-27",
-    "summary": "A tournament maker app is described as constantly erroring out when recording results.",
-    "engagement": "2 of 2 recent low-star reviews read; 4,946 ratings"
-   },
-   {
-    "platform": "web",
-    "url": "https://alternativeto.net/news/2025/11/guilded-to-shut-down-on-december-19-2025-as-focus-shifts-to-roblox-communities/",
-    "date": "2025-11-07",
-    "summary": "Guilded, which many gaming clans used for events and tournaments, was announced to close on 19 December 2025, with the vendor pointing users to Discord or TeamSpeak.",
-    "engagement": "1 comment on the news post"
-   },
    {
     "platform": "appstore",
     "url": "https://apps.apple.com/us/app/teamsnap/id393048976",
@@ -6072,29 +6196,16 @@
     "date": "2026-10-04",
     "summary": "Reviewer dislikes being forced onto a smartphone 24/7 to follow a team and says people without a smartphone are left in the dark.",
     "engagement": "1 of 3 recent low-star reviews read"
+   },
+   {
+    "platform": "appstore",
+    "url": "https://apps.apple.com/us/app/copa-f%C3%A1cil-tournament-maker/id1444543396",
+    "date": "2026-07-28",
+    "summary": "A tournament organiser says a new update stops scores from being recorded and is delaying their events.",
+    "engagement": "2 of 2 recent low-star reviews read report breakage; 4,946 ratings"
    }
   ],
   "competitors_seen": [
-   {
-    "name": "Challonge",
-    "url": "https://alternativeto.net/software/challonge/?p=2",
-    "note": "listed as freemium on AlternativeTo; free tier limits not verified"
-   },
-   {
-    "name": "VERXUS",
-    "url": "https://alternativeto.net/software/verxus--fixture-studio",
-    "note": "free; supports league, groups, Swiss, playoffs, single and double elimination"
-   },
-   {
-    "name": "Score7",
-    "url": "https://alternativeto.net/software/verxus--fixture-studio",
-    "note": "no-signup sharing option listed on the same AlternativeTo page"
-   },
-   {
-    "name": "DART-TV",
-    "url": "https://alternativeto.net/software/dart-tv",
-    "note": "built by a developer reacting to paid-only bracket tools"
-   },
    {
     "name": "Jersey Watch schedule generator",
     "url": "https://www.jerseywatch.com/tools/sports-schedule-generator",
@@ -6117,37 +6228,34 @@
    }
   ],
   "satellite": {
-   "name": "Swiss Pairings Calculator",
-   "what": "Free page: enter players and results, get next-round Swiss pairings and standings with tiebreaks.",
-   "why_shared": "Board game, card game and chess clubs share the link for weekly events.",
-   "handoff": "Convert the event into a full BracketForge tournament with spectator page."
+   "name": "Round-Robin Schedule Maker",
+   "what": "Free no-signup page that builds a printable round-robin with byes for any number of teams.",
+   "why_shared": "Coaches and rec-league volunteers pass it around by link and it ranks for generic searches.",
+   "handoff": "Export button to continue in LeagueSlate with fields, slots and ICS feeds."
   },
   "marketing": {
    "where": [
-    "board-game and trading-card-game store Discords",
-    "local esports and school club organiser groups",
-    "BoardGameGeek forums",
-    "itch.io and game-jam communities"
+    "Youth league and rec-league organiser Facebook groups",
+    "local parks-and-recreation department newsletters",
+    "pickleball, adult kickball and softball league forums",
+    "Show HN and Product Hunt"
    ],
-   "target": "Volunteer organisers of weekly game nights and small local tournaments",
-   "funnel": "Free pairings page to free tournament creation to paid for branded venue displays",
-   "cold_outreach": "Message local game-store owners with a free tournament page for their next event.",
+   "target": "Volunteer coordinators of youth and adult rec leagues with 6 to 40 teams",
+   "funnel": "Free schedule maker, then free league hub up to a team limit, then paid for multiple divisions and sponsors-free branding",
+   "cold_outreach": "Email small-town parks departments with a free pre-built season schedule for their league.",
    "post_ideas": [
-    "Swiss pairing explained with a worked example and the rematch bug most apps have",
-    "Run a 32-player double-elimination from your phone with no account",
-    "Why free bracket apps hit a paywall after you type in all the names"
+    "Build a fair 10-team schedule with 3 fields and 2 blackout weekends in 30 seconds",
+    "Rainout rescheduling that moves the fewest games",
+    "Why your league app should not need a smartphone"
    ]
   },
   "capital_usd": 12,
   "capital_note": "Domain name only.",
   "uses_paid_api": false,
   "paid_api_note": null,
-  "confidence": "low",
-  "notes": "Paywall pattern is clear but free competitors (VERXUS, Challonge free tier) exist, so differentiation is correctness plus a no-account spectator mode. Guilded signal is context only (shutdown, not a tournament complaint); the AlternativeTo news page does not itself name tournaments. No payments or prize pools to stay outside banned niches.",
-  "source_agent": "rev",
-  "merged_from": [
-   "rev-004 (LeagueSlate)"
-  ]
+  "confidence": "medium",
+  "notes": "Ad complaints are the strongest, freshest signal (eight low-star reviews in ten days) but are a monetisation gripe, so the moat is the scheduler, and free generators already exist; a differentiated version needs real constraint handling and rescheduling. TeamSnap also handles payments; this idea deliberately skips fees and payments (banned niche).",
+  "source_agent": "rev"
  },
  {
   "id": "rev-005",
@@ -6216,6 +6324,99 @@
   "paid_api_note": null,
   "confidence": "low",
   "notes": "Demand evidence is institutional notices, not end users complaining; I did not find a user thread. Build risk is high: porting libmspub to WASM and getting acceptable fidelity may take weeks, and LibreOffice already opens .pub on desktop. Date on the second source is the page's own 'last updated' stamp.",
+  "source_agent": "rev"
+ },
+ {
+  "id": "rev-006",
+  "name": "BracketForge",
+  "idea": "Free, no-paywall tournament engine with Swiss, double-elimination and group-to-playoff formats and live spectator pages.",
+  "description": "Organisers of community game nights, school clubs and local esports events create a bracket without hitting a paywall, using correct Swiss pairing with tiebreaks, double elimination with grand-final reset, seeding byes and multi-stage formats. Players join by link with no account and results update live on a spectator screen. Hard to copy because pairing and tiebreak rules are correctness-critical and the live-sync layer must be reliable at venue Wi-Fi quality.",
+  "niche": "Gaming Communities",
+  "niche2": "Sports & Teams",
+  "is_feature": false,
+  "feature_for": null,
+  "web_delivery": "Next.js on Vercel; pairing engine in TypeScript; results and live standings through Supabase Realtime; public read-only spectator URL.",
+  "why_hard_to_copy": "Swiss pairing with Buchholz-style tiebreaks, bye handling, double-elimination reset logic and re-seeding after dropouts are rules-engine problems with many edge cases, and live results need dependable realtime sync.",
+  "signals": [
+   {
+    "platform": "appstore",
+    "url": "https://apps.apple.com/us/app/bracket-builder/id1669378849",
+    "date": "2026-08-03",
+    "summary": "A reviewer says everything in Bracket Builder is locked behind a paywall.",
+    "engagement": "3 of 3 recent low-star reviews read mention paywall or forced payment; 2,745 ratings"
+   },
+   {
+    "platform": "appstore",
+    "url": "https://apps.apple.com/us/app/bracket-app/id1604693963",
+    "date": "2026-08-15",
+    "summary": "Another bracket app lets you type in all players and only then shows a paywall; an earlier review also reports a pairing bug where a rematch repeats the same placement.",
+    "engagement": "2 of 2 recent low-star reviews read; 166 ratings"
+   },
+   {
+    "platform": "appstore",
+    "url": "https://apps.apple.com/us/app/copa-f%C3%A1cil-tournament-maker/id1444543396",
+    "date": "2026-05-27",
+    "summary": "A tournament maker app is described as constantly erroring out when recording results.",
+    "engagement": "2 of 2 recent low-star reviews read; 4,946 ratings"
+   },
+   {
+    "platform": "web",
+    "url": "https://alternativeto.net/news/2025/11/guilded-to-shut-down-on-december-19-2025-as-focus-shifts-to-roblox-communities/",
+    "date": "2025-11-07",
+    "summary": "Guilded, which many gaming clans used for events and tournaments, was announced to close on 19 December 2025, with the vendor pointing users to Discord or TeamSpeak.",
+    "engagement": "1 comment on the news post"
+   }
+  ],
+  "competitors_seen": [
+   {
+    "name": "Challonge",
+    "url": "https://alternativeto.net/software/challonge/?p=2",
+    "note": "listed as freemium on AlternativeTo; free tier limits not verified"
+   },
+   {
+    "name": "VERXUS",
+    "url": "https://alternativeto.net/software/verxus--fixture-studio",
+    "note": "free; supports league, groups, Swiss, playoffs, single and double elimination"
+   },
+   {
+    "name": "Score7",
+    "url": "https://alternativeto.net/software/verxus--fixture-studio",
+    "note": "no-signup sharing option listed on the same AlternativeTo page"
+   },
+   {
+    "name": "DART-TV",
+    "url": "https://alternativeto.net/software/dart-tv",
+    "note": "built by a developer reacting to paid-only bracket tools"
+   }
+  ],
+  "satellite": {
+   "name": "Swiss Pairings Calculator",
+   "what": "Free page: enter players and results, get next-round Swiss pairings and standings with tiebreaks.",
+   "why_shared": "Board game, card game and chess clubs share the link for weekly events.",
+   "handoff": "Convert the event into a full BracketForge tournament with spectator page."
+  },
+  "marketing": {
+   "where": [
+    "board-game and trading-card-game store Discords",
+    "local esports and school club organiser groups",
+    "BoardGameGeek forums",
+    "itch.io and game-jam communities"
+   ],
+   "target": "Volunteer organisers of weekly game nights and small local tournaments",
+   "funnel": "Free pairings page to free tournament creation to paid for branded venue displays",
+   "cold_outreach": "Message local game-store owners with a free tournament page for their next event.",
+   "post_ideas": [
+    "Swiss pairing explained with a worked example and the rematch bug most apps have",
+    "Run a 32-player double-elimination from your phone with no account",
+    "Why free bracket apps hit a paywall after you type in all the names"
+   ]
+  },
+  "capital_usd": 12,
+  "capital_note": "Domain name only.",
+  "uses_paid_api": false,
+  "paid_api_note": null,
+  "confidence": "low",
+  "notes": "Paywall pattern is clear but free competitors (VERXUS, Challonge free tier) exist, so differentiation is correctness plus a no-account spectator mode. Guilded signal is context only (shutdown, not a tournament complaint); the AlternativeTo news page does not itself name tournaments. No payments or prize pools to stay outside banned niches.",
   "source_agent": "rev"
  },
  {

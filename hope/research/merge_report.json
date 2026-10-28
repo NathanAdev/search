@@ -1,6 +1,6 @@
 {
  "in": 128,
- "kept": 122,
+ "kept": 126,
  "dropped": [],
  "flags": [
   {
@@ -48,5 +48,5 @@
    "flag": "banned-term match: legal"
   }
  ],
- "duplicates_merged": 6
+ "duplicates_merged": 2
 }

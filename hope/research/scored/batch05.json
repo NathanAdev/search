@@ -1,0 +1,376 @@
+[
+ {
+  "id": "x-008",
+  "scores": {
+   "replicatability": 62,
+   "wtr": 62,
+   "competition": 30,
+   "marketability": 50,
+   "satellite": 55,
+   "want": 15
+  },
+  "score_notes": {
+   "want": "One X post; duplicate of Open When."
+  },
+  "flags": [
+   "weak_signal",
+   "duplicate_of:hnB-015"
+  ],
+  "drop": false,
+  "drop_reason": ""
+ },
+ {
+  "id": "hnB-015",
+  "scores": {
+   "replicatability": 72,
+   "wtr": 62,
+   "competition": 28,
+   "marketability": 58,
+   "satellite": 80,
+   "want": 38
+  },
+  "score_notes": {},
+  "flags": [],
+  "drop": false,
+  "drop_reason": ""
+ },
+ {
+  "id": "hnB-004",
+  "scores": {
+   "replicatability": 70,
+   "wtr": 80,
+   "competition": 48,
+   "marketability": 62,
+   "satellite": 82,
+   "want": 38
+  },
+  "score_notes": {},
+  "flags": [],
+  "drop": false,
+  "drop_reason": ""
+ },
+ {
+  "id": "rev-004",
+  "scores": {
+   "replicatability": 72,
+   "wtr": 80,
+   "competition": 22,
+   "marketability": 62,
+   "satellite": 80,
+   "want": 52
+  },
+  "score_notes": {
+   "competition": "Duplicate of Pitch Plan; LeagueLobster, TeamSnap, SportsEngine and Jersey Watch."
+  },
+  "flags": [
+   "duplicate_of:fb-002"
+  ],
+  "drop": false,
+  "drop_reason": ""
+ },
+ {
+  "id": "fb-002",
+  "scores": {
+   "replicatability": 78,
+   "wtr": 82,
+   "competition": 25,
+   "marketability": 76,
+   "satellite": 85,
+   "want": 55
+  },
+  "score_notes": {},
+  "flags": [],
+  "drop": false,
+  "drop_reason": ""
+ },
+ {
+  "id": "seB-002",
+  "scores": {
+   "replicatability": 70,
+   "wtr": 72,
+   "competition": 20,
+   "marketability": 50,
+   "satellite": 55,
+   "want": 20
+  },
+  "score_notes": {
+   "competition": "Duplicate of BracketForge; Challonge, Swiss-Manager, LibreTT and bbpPairings exist.",
+   "want": "Thin: one builder-researcher post and one competitor launch."
+  },
+  "flags": [
+   "weak_signal",
+   "duplicate_of:rev-006"
+  ],
+  "drop": false,
+  "drop_reason": ""
+ },
+ {
+  "id": "hnB-003",
+  "scores": {
+   "replicatability": 78,
+   "wtr": 75,
+   "competition": 20,
+   "marketability": 60,
+   "satellite": 60,
+   "want": 50
+  },
+  "score_notes": {
+   "competition": "Chess Host, SwissSys, Swiss-Manager, SWIPS and Chess-Results already run club tournaments."
+  },
+  "flags": [],
+  "drop": false,
+  "drop_reason": ""
+ },
+ {
+  "id": "seA-004",
+  "scores": {
+   "replicatability": 65,
+   "wtr": 62,
+   "competition": 60,
+   "marketability": 68,
+   "satellite": 70,
+   "want": 66
+  },
+  "score_notes": {},
+  "flags": [],
+  "drop": false,
+  "drop_reason": ""
+ },
+ {
+  "id": "lem-007",
+  "scores": {
+   "replicatability": 38,
+   "wtr": 35,
+   "competition": 20,
+   "marketability": 30,
+   "satellite": 62,
+   "want": 40
+  },
+  "score_notes": {
+   "competition": "Drive Weather, Weather on the Route and map weather layers exist."
+  },
+  "flags": [],
+  "drop": false,
+  "drop_reason": ""
+ },
+ {
+  "id": "seA-007",
+  "scores": {
+   "replicatability": 66,
+   "wtr": 62,
+   "competition": 60,
+   "marketability": 62,
+   "satellite": 82,
+   "want": 70
+  },
+  "score_notes": {
+   "wtr": "Travel-document tools are a favourite of indie builders and a full nationality-by-destination matrix is unrealistic; a handful of passport pairs is the real scope.",
+   "replicatability": "Travel-document tools are a favourite of indie builders and a full nationality-by-destination matrix is unrealistic; a handful of passport pairs is the real scope."
+  },
+  "flags": [],
+  "drop": false,
+  "drop_reason": ""
+ },
+ {
+  "id": "seA-003",
+  "scores": {
+   "replicatability": 70,
+   "wtr": 55,
+   "competition": 30,
+   "marketability": 62,
+   "satellite": 82,
+   "want": 66
+  },
+  "score_notes": {},
+  "flags": [],
+  "drop": false,
+  "drop_reason": ""
+ },
+ {
+  "id": "seA-020",
+  "scores": {
+   "replicatability": 62,
+   "wtr": 55,
+   "competition": 45,
+   "marketability": 52,
+   "satellite": 50,
+   "want": 48
+  },
+  "score_notes": {},
+  "flags": [],
+  "drop": false,
+  "drop_reason": ""
+ },
+ {
+  "id": "seA-001",
+  "scores": {
+   "replicatability": 55,
+   "wtr": 62,
+   "competition": 58,
+   "marketability": 62,
+   "satellite": 88,
+   "want": 62
+  },
+  "score_notes": {
+   "satellite": "\"Is this the official eVisa portal?\" is a natural shareable checker.",
+   "replicatability": "The code is a directory plus a URL check; the moat is verification labour an LLM-assisted builder can draft quickly, and lookalike scam sites hold the search rankings.",
+   "marketability": "The code is a directory plus a URL check; the moat is verification labour an LLM-assisted builder can draft quickly, and lookalike scam sites hold the search rankings."
+  },
+  "flags": [],
+  "drop": false,
+  "drop_reason": ""
+ },
+ {
+  "id": "seA-006",
+  "scores": {
+   "replicatability": 52,
+   "wtr": 60,
+   "competition": 22,
+   "marketability": 55,
+   "satellite": 88,
+   "want": 45
+  },
+  "score_notes": {
+   "competition": "Sherpa, IATA Travel Centre and many validity calculators exist.",
+   "satellite": "A passport validity check is itself a shareable calculator."
+  },
+  "flags": [],
+  "drop": false,
+  "drop_reason": ""
+ },
+ {
+  "id": "seA-008",
+  "scores": {
+   "replicatability": 55,
+   "wtr": 40,
+   "competition": 18,
+   "marketability": 62,
+   "satellite": 78,
+   "want": 52
+  },
+  "score_notes": {
+   "competition": "JRailPass calculators, Navitime, Jorudan and Japan-guide comparisons are plentiful."
+  },
+  "flags": [],
+  "drop": false,
+  "drop_reason": ""
+ },
+ {
+  "id": "seA-010",
+  "scores": {
+   "replicatability": 55,
+   "wtr": 68,
+   "competition": 35,
+   "marketability": 32,
+   "satellite": 80,
+   "want": 48
+  },
+  "score_notes": {},
+  "flags": [],
+  "drop": false,
+  "drop_reason": ""
+ },
+ {
+  "id": "seA-009",
+  "scores": {
+   "replicatability": 58,
+   "wtr": 70,
+   "competition": 75,
+   "marketability": 50,
+   "satellite": 55,
+   "want": 38
+  },
+  "score_notes": {
+   "competition": "Researcher searched and found none for this specific problem."
+  },
+  "flags": [],
+  "drop": false,
+  "drop_reason": ""
+ },
+ {
+  "id": "seA-005",
+  "scores": {
+   "replicatability": 60,
+   "wtr": 62,
+   "competition": 65,
+   "marketability": 55,
+   "satellite": 88,
+   "want": 60
+  },
+  "score_notes": {
+   "competition": "Searched: only airline policy pages and blog guides, no name-entry checker.",
+   "satellite": "A passport-to-booking name field generator is a natural shareable tool."
+  },
+  "flags": [],
+  "drop": false,
+  "drop_reason": ""
+ },
+ {
+  "id": "seA-002",
+  "scores": {
+   "replicatability": 72,
+   "wtr": 58,
+   "competition": 22,
+   "marketability": 60,
+   "satellite": 82,
+   "want": 68
+  },
+  "score_notes": {
+   "competition": "MyTravelReady, Timatic, Sherpa, VisaHQ and iVisa already offer transit visa checks."
+  },
+  "flags": [],
+  "drop": false,
+  "drop_reason": ""
+ },
+ {
+  "id": "gh-016",
+  "scores": {
+   "replicatability": 60,
+   "wtr": 45,
+   "competition": 15,
+   "marketability": 35,
+   "satellite": 40,
+   "want": 35
+  },
+  "score_notes": {
+   "competition": "Wanderlog, TripIt, Polarsteps, AdventureLog and Wanderer cover this."
+  },
+  "flags": [],
+  "drop": false,
+  "drop_reason": ""
+ },
+ {
+  "id": "rev-007",
+  "scores": {
+   "replicatability": 70,
+   "wtr": 38,
+   "competition": 15,
+   "marketability": 52,
+   "satellite": 70,
+   "want": 45
+  },
+  "score_notes": {
+   "competition": "TripIt, Wanderlog, Tripsy and Flighty are entrenched."
+  },
+  "flags": [],
+  "drop": false,
+  "drop_reason": ""
+ },
+ {
+  "id": "seB-008",
+  "scores": {
+   "replicatability": 82,
+   "wtr": 72,
+   "competition": 48,
+   "marketability": 32,
+   "satellite": 62,
+   "want": 22
+  },
+  "score_notes": {
+   "want": "Two requests; one has 43 views."
+  },
+  "flags": [],
+  "drop": false,
+  "drop_reason": ""
+ }
+]

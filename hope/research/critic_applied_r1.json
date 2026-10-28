@@ -1,0 +1,149 @@
+[
+ {
+  "id": "hnB-017",
+  "axis": "competition",
+  "from": 52,
+  "to": 30,
+  "reason": "Searched: Bright Saver already runs a US state-by-state plug-in solar legislation tracker with per-state pages and Helios covers UK yield; the wedge is global scope plus address-level yield."
+ },
+ {
+  "id": "hnB-017",
+  "axis": "wtr",
+  "from": 50,
+  "to": 40,
+  "reason": "Searched: Bright Saver already runs a US state-by-state plug-in solar legislation tracker with per-state pages and Helios covers UK yield; the wedge is global scope plus address-level yield."
+ },
+ {
+  "id": "hnB-017",
+  "axis": "marketability",
+  "from": 82,
+  "to": 75,
+  "reason": "Searched: Bright Saver already runs a US state-by-state plug-in solar legislation tracker with per-state pages and Helios covers UK yield; the wedge is global scope plus address-level yield."
+ },
+ {
+  "id": "hnB-017",
+  "axis": "replicatability",
+  "from": 75,
+  "to": 65,
+  "reason": "Searched: Bright Saver already runs a US state-by-state plug-in solar legislation tracker with per-state pages and Helios covers UK yield; the wedge is global scope plus address-level yield."
+ },
+ {
+  "id": "hnB-002",
+  "axis": "competition",
+  "from": 42,
+  "to": 28,
+  "reason": "Searched: DevToolLab (browser, memo fields, CSV/JSON), DBF Viewer 2000, xBaseView and 4n6 converters already read dBase, FoxPro and Clipper. The HN threads are about DOS systems, not requests for a viewer."
+ },
+ {
+  "id": "hnB-002",
+  "axis": "replicatability",
+  "from": 88,
+  "to": 80,
+  "reason": "Searched: DevToolLab (browser, memo fields, CSV/JSON), DBF Viewer 2000, xBaseView and 4n6 converters already read dBase, FoxPro and Clipper. The HN threads are about DOS systems, not requests for a viewer."
+ },
+ {
+  "id": "hnB-002",
+  "axis": "want",
+  "from": 70,
+  "to": 62,
+  "reason": "Searched: DevToolLab (browser, memo fields, CSV/JSON), DBF Viewer 2000, xBaseView and 4n6 converters already read dBase, FoxPro and Clipper. The HN threads are about DOS systems, not requests for a viewer."
+ },
+ {
+  "id": "rev-005",
+  "axis": "competition",
+  "from": 30,
+  "to": 15,
+  "reason": "Searched: BentoPDF already converts .pub to PDF in the browser with a LibreOffice-based engine, plus many upload converters. Evidence is institutional notices only."
+ },
+ {
+  "id": "rev-005",
+  "axis": "replicatability",
+  "from": 90,
+  "to": 62,
+  "reason": "Searched: BentoPDF already converts .pub to PDF in the browser with a LibreOffice-based engine, plus many upload converters. Evidence is institutional notices only."
+ },
+ {
+  "id": "rev-005",
+  "axis": "marketability",
+  "from": 75,
+  "to": 65,
+  "reason": "Searched: BentoPDF already converts .pub to PDF in the browser with a LibreOffice-based engine, plus many upload converters. Evidence is institutional notices only."
+ },
+ {
+  "id": "rev-005",
+  "axis": "want",
+  "from": 55,
+  "to": 45,
+  "reason": "Searched: BentoPDF already converts .pub to PDF in the browser with a LibreOffice-based engine, plus many upload converters. Evidence is institutional notices only."
+ },
+ {
+  "id": "rev-002",
+  "axis": "want",
+  "from": 58,
+  "to": 38,
+  "reason": "Signals are adjacent: a court-mandated messaging app complaint and a Cozi biweekly-repeat request; nobody asked for a custody calendar. Custody X Change and a CLI generator already exist."
+ },
+ {
+  "id": "rev-002",
+  "axis": "marketability",
+  "from": 80,
+  "to": 72,
+  "reason": "Signals are adjacent: a court-mandated messaging app complaint and a Cozi biweekly-repeat request; nobody asked for a custody calendar. Custody X Change and a CLI generator already exist."
+ },
+ {
+  "id": "seA-014",
+  "axis": "replicatability",
+  "from": 82,
+  "to": 60,
+  "reason": "Altitude and processing tables are published by USDA and NCHFP, so the lookup is a weekend build and 'is this change safe?' cannot be automated. The questions ask if something is safe, not for a tool."
+ },
+ {
+  "id": "seA-014",
+  "axis": "want",
+  "from": 50,
+  "to": 40,
+  "reason": "Altitude and processing tables are published by USDA and NCHFP, so the lookup is a weekend build and 'is this change safe?' cannot be automated. The questions ask if something is safe, not for a tool."
+ },
+ {
+  "id": "seA-007",
+  "axis": "wtr",
+  "from": 78,
+  "to": 62,
+  "reason": "Travel-document tools are a favourite of indie builders and a full nationality-by-destination matrix is unrealistic; a handful of passport pairs is the real scope."
+ },
+ {
+  "id": "seA-007",
+  "axis": "replicatability",
+  "from": 72,
+  "to": 66,
+  "reason": "Travel-document tools are a favourite of indie builders and a full nationality-by-destination matrix is unrealistic; a handful of passport pairs is the real scope."
+ },
+ {
+  "id": "seA-001",
+  "axis": "replicatability",
+  "from": 68,
+  "to": 55,
+  "reason": "The code is a directory plus a URL check; the moat is verification labour an LLM-assisted builder can draft quickly, and lookalike scam sites hold the search rankings."
+ },
+ {
+  "id": "seA-001",
+  "axis": "marketability",
+  "from": 74,
+  "to": 62,
+  "reason": "The code is a directory plus a URL check; the moat is verification labour an LLM-assisted builder can draft quickly, and lookalike scam sites hold the search rankings."
+ },
+ {
+  "id": "seA-011",
+  "axis": "replicatability",
+  "from": 75,
+  "to": 70,
+  "reason": "Appliance surge tables and wire-gauge lookups are public; the correctness-critical part is the derating logic, which is weeks rather than months."
+ },
+ {
+  "id": "hnA-001",
+  "axis": "replicatability",
+  "from": 85,
+  "to": 80,
+  "reason": "Browser handling of multi-GB multi-part zips is Chromium-only and memory-bound; GPTH Neo, Metadata Fixer and immich-go already cover sidecar matching."
+ }
+]

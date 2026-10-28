@@ -1,0 +1,445 @@
+[
+ {
+  "id": "gh-006",
+  "scores": {
+   "replicatability": 70,
+   "wtr": 50,
+   "competition": 25,
+   "marketability": 50,
+   "satellite": 40,
+   "want": 22
+  },
+  "score_notes": {
+   "want": "Duplicate of Lingua Reader; very low engagement across the cited issues."
+  },
+  "flags": [
+   "duplicate_of:rev-009"
+  ],
+  "drop": false,
+  "drop_reason": ""
+ },
+ {
+  "id": "lem-003",
+  "scores": {
+   "replicatability": 78,
+   "wtr": 55,
+   "competition": 50,
+   "marketability": 58,
+   "satellite": 80,
+   "want": 42
+  },
+  "score_notes": {},
+  "flags": [],
+  "drop": false,
+  "drop_reason": ""
+ },
+ {
+  "id": "hnA-013",
+  "scores": {
+   "replicatability": 62,
+   "wtr": 62,
+   "competition": 25,
+   "marketability": 62,
+   "satellite": 70,
+   "want": 38
+  },
+  "score_notes": {},
+  "flags": [],
+  "drop": false,
+  "drop_reason": ""
+ },
+ {
+  "id": "apB-007",
+  "scores": {
+   "replicatability": 60,
+   "wtr": 35,
+   "competition": 20,
+   "marketability": 42,
+   "satellite": 40,
+   "want": 50
+  },
+  "score_notes": {
+   "competition": "Tandem, HelloTalk, Speaky, italki and ConversationExchange.com are established."
+  },
+  "flags": [],
+  "drop": false,
+  "drop_reason": ""
+ },
+ {
+  "id": "hnB-001",
+  "scores": {
+   "replicatability": 70,
+   "wtr": 78,
+   "competition": 32,
+   "marketability": 78,
+   "satellite": 88,
+   "want": 66
+  },
+  "score_notes": {
+   "satellite": "Baker's-percentage and allergen-label generators are shareable bakery tools."
+  },
+  "flags": [],
+  "drop": false,
+  "drop_reason": ""
+ },
+ {
+  "id": "frB-001",
+  "scores": {
+   "replicatability": 65,
+   "wtr": 92,
+   "competition": 35,
+   "marketability": 58,
+   "satellite": 30,
+   "want": 22
+  },
+  "score_notes": {
+   "wtr": "Food hubs and CSAs are an offline-world niche almost no vibe coder serves.",
+   "want": "Two forum posts from one community, 63-70 views."
+  },
+  "flags": [
+   "weak_signal"
+  ],
+  "drop": false,
+  "drop_reason": ""
+ },
+ {
+  "id": "gh-014",
+  "scores": {
+   "replicatability": 80,
+   "wtr": 40,
+   "competition": 22,
+   "marketability": 38,
+   "satellite": 30,
+   "want": 40
+  },
+  "score_notes": {
+   "competition": "Day One shared journals, Journey and others already cover encrypted sharing."
+  },
+  "flags": [],
+  "drop": false,
+  "drop_reason": ""
+ },
+ {
+  "id": "gh-005",
+  "scores": {
+   "replicatability": 70,
+   "wtr": 62,
+   "competition": 20,
+   "marketability": 55,
+   "satellite": 50,
+   "want": 22
+  },
+  "score_notes": {
+   "competition": "Duplicate of Gigbinder; MySongbook.app, GigNotes, aChordion and OnSong exist.",
+   "want": "Thin: three small ChordPro-project issues."
+  },
+  "flags": [
+   "weak_signal",
+   "duplicate_of:rev-001"
+  ],
+  "drop": false,
+  "drop_reason": ""
+ },
+ {
+  "id": "rev-001",
+  "scores": {
+   "replicatability": 82,
+   "wtr": 62,
+   "competition": 22,
+   "marketability": 78,
+   "satellite": 65,
+   "want": 78
+  },
+  "score_notes": {
+   "competition": "OnSong, forScore, BandHelper, SongbookPro, Setlyst, MySongbook.app and Planning Center; crowded but reviewers are unhappy."
+  },
+  "flags": [],
+  "drop": false,
+  "drop_reason": ""
+ },
+ {
+  "id": "apB-006",
+  "scores": {
+   "replicatability": 48,
+   "wtr": 60,
+   "competition": 25,
+   "marketability": 55,
+   "satellite": 78,
+   "want": 38
+  },
+  "score_notes": {},
+  "flags": [],
+  "drop": false,
+  "drop_reason": ""
+ },
+ {
+  "id": "x-006",
+  "scores": {
+   "replicatability": 25,
+   "wtr": 60,
+   "competition": 22,
+   "marketability": 32,
+   "satellite": 62,
+   "want": 18
+  },
+  "score_notes": {
+   "competition": "Tunefind, WhatSong and Songfacts already cover film and TV soundtracks.",
+   "want": "Two X posts about different media."
+  },
+  "flags": [
+   "weak_signal"
+  ],
+  "drop": false,
+  "drop_reason": ""
+ },
+ {
+  "id": "hnB-012",
+  "scores": {
+   "replicatability": 62,
+   "wtr": 90,
+   "competition": 72,
+   "marketability": 80,
+   "satellite": 70,
+   "want": 30
+  },
+  "score_notes": {
+   "wtr": "Parents hunting local camp dates are far from the vibe-coder world; the work is city-by-city data.",
+   "competition": "Searched: no cross-city camp registration calendar found, only individual parks and recreation pages."
+  },
+  "flags": [],
+  "drop": false,
+  "drop_reason": ""
+ },
+ {
+  "id": "gh-012",
+  "scores": {
+   "replicatability": 55,
+   "wtr": 45,
+   "competition": 12,
+   "marketability": 50,
+   "satellite": 40,
+   "want": 35
+  },
+  "score_notes": {
+   "competition": "Huckleberry, Glow, Baby Tracker, Sprout and Baby Buddy, among many more."
+  },
+  "flags": [],
+  "drop": false,
+  "drop_reason": ""
+ },
+ {
+  "id": "rev-002",
+  "scores": {
+   "replicatability": 78,
+   "wtr": 80,
+   "competition": 28,
+   "marketability": 72,
+   "satellite": 85,
+   "want": 38
+  },
+  "score_notes": {
+   "want": "Signals are adjacent: a court-mandated messaging app complaint and a Cozi biweekly-repeat request; nobody asked for a custody calendar. Custody X Change and a CLI generator already exist.",
+   "marketability": "Signals are adjacent: a court-mandated messaging app complaint and a Cozi biweekly-repeat request; nobody asked for a custody calendar. Custody X Change and a CLI generator already exist."
+  },
+  "flags": [],
+  "drop": false,
+  "drop_reason": ""
+ },
+ {
+  "id": "lem-006",
+  "scores": {
+   "replicatability": 35,
+   "wtr": 70,
+   "competition": 25,
+   "marketability": 50,
+   "satellite": 62,
+   "want": 25
+  },
+  "score_notes": {},
+  "flags": [],
+  "drop": false,
+  "drop_reason": ""
+ },
+ {
+  "id": "seB-003",
+  "scores": {
+   "replicatability": 78,
+   "wtr": 78,
+   "competition": 30,
+   "marketability": 62,
+   "satellite": 55,
+   "want": 25
+  },
+  "score_notes": {},
+  "flags": [],
+  "drop": false,
+  "drop_reason": ""
+ },
+ {
+  "id": "hnA-010",
+  "scores": {
+   "replicatability": 80,
+   "wtr": 62,
+   "competition": 22,
+   "marketability": 60,
+   "satellite": 40,
+   "want": 30
+  },
+  "score_notes": {
+   "competition": "Photo Mechanic, FastRawViewer, Narrative Select, Aftershoot, Imagin Raw and QuickRawPicker."
+  },
+  "flags": [],
+  "drop": false,
+  "drop_reason": ""
+ },
+ {
+  "id": "seB-006",
+  "scores": {
+   "replicatability": 55,
+   "wtr": 75,
+   "competition": 30,
+   "marketability": 55,
+   "satellite": 85,
+   "want": 28
+  },
+  "score_notes": {},
+  "flags": [],
+  "drop": false,
+  "drop_reason": ""
+ },
+ {
+  "id": "hnA-001",
+  "scores": {
+   "replicatability": 80,
+   "wtr": 70,
+   "competition": 25,
+   "marketability": 80,
+   "satellite": 72,
+   "want": 78
+  },
+  "score_notes": {
+   "replicatability": "Browser handling of multi-GB multi-part zips is Chromium-only and memory-bound; GPTH Neo, Metadata Fixer and immich-go already cover sidecar matching."
+  },
+  "flags": [],
+  "drop": false,
+  "drop_reason": ""
+ },
+ {
+  "id": "gh-009",
+  "scores": {
+   "replicatability": 72,
+   "wtr": 35,
+   "competition": 22,
+   "marketability": 52,
+   "satellite": 60,
+   "want": 52
+  },
+  "score_notes": {
+   "competition": "Google and Outlook free-busy sharing, SYNCDATE and OneCal already exist."
+  },
+  "flags": [],
+  "drop": false,
+  "drop_reason": ""
+ },
+ {
+  "id": "hnA-006",
+  "scores": {
+   "replicatability": 45,
+   "wtr": 45,
+   "competition": 18,
+   "marketability": 58,
+   "satellite": 78,
+   "want": 55
+  },
+  "score_notes": {
+   "competition": "Neatnik, Vertex42, Canva and many calendar generators with holidays."
+  },
+  "flags": [],
+  "drop": false,
+  "drop_reason": ""
+ },
+ {
+  "id": "hnA-004",
+  "scores": {
+   "replicatability": 85,
+   "wtr": 72,
+   "competition": 22,
+   "marketability": 50,
+   "satellite": 55,
+   "want": 35
+  },
+  "score_notes": {
+   "competition": "MakerWorld gear generator, geargen, OpenSCAD customizers and Fusion/Onshape gear tools."
+  },
+  "flags": [],
+  "drop": false,
+  "drop_reason": ""
+ },
+ {
+  "id": "gh-008",
+  "scores": {
+   "replicatability": 60,
+   "wtr": 72,
+   "competition": 22,
+   "marketability": 52,
+   "satellite": 70,
+   "want": 40
+  },
+  "score_notes": {
+   "competition": "Binner, InvenTree, Part-DB and PartsBox; strong incumbents."
+  },
+  "flags": [],
+  "drop": false,
+  "drop_reason": ""
+ },
+ {
+  "id": "seB-007",
+  "scores": {
+   "replicatability": 78,
+   "wtr": 82,
+   "competition": 40,
+   "marketability": 22,
+   "satellite": 62,
+   "want": 15
+  },
+  "score_notes": {
+   "marketability": "Amateur astronomers rarely pay; no obvious buyer.",
+   "want": "Two low-engagement requests (176 and 26 views)."
+  },
+  "flags": [
+   "weak_signal"
+  ],
+  "drop": false,
+  "drop_reason": ""
+ },
+ {
+  "id": "gh-007",
+  "scores": {
+   "replicatability": 62,
+   "wtr": 60,
+   "competition": 28,
+   "marketability": 62,
+   "satellite": 62,
+   "want": 55
+  },
+  "score_notes": {},
+  "flags": [],
+  "drop": false,
+  "drop_reason": ""
+ },
+ {
+  "id": "hnB-014",
+  "scores": {
+   "replicatability": 25,
+   "wtr": 68,
+   "competition": 30,
+   "marketability": 55,
+   "satellite": 40,
+   "want": 58
+  },
+  "score_notes": {},
+  "flags": [],
+  "drop": false,
+  "drop_reason": ""
+ }
+]

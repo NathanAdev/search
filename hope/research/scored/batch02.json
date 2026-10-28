@@ -1,0 +1,452 @@
+[
+ {
+  "id": "hnA-011",
+  "scores": {
+   "replicatability": 62,
+   "wtr": 35,
+   "competition": 22,
+   "marketability": 45,
+   "satellite": 40,
+   "want": 50
+  },
+  "score_notes": {
+   "competition": "PyTogether (free, open source), CSUK Coder+ and Replit class tools cover most of it."
+  },
+  "flags": [],
+  "drop": false,
+  "drop_reason": ""
+ },
+ {
+  "id": "hnA-007",
+  "scores": {
+   "replicatability": 22,
+   "wtr": 72,
+   "competition": 45,
+   "marketability": 55,
+   "satellite": 70,
+   "want": 25
+  },
+  "score_notes": {
+   "replicatability": "Static HTML templates; the researcher says likely easy to copy once public."
+  },
+  "flags": [
+   "too_easy_to_copy"
+  ],
+  "drop": false,
+  "drop_reason": ""
+ },
+ {
+  "id": "rev-012",
+  "scores": {
+   "replicatability": 82,
+   "wtr": 55,
+   "competition": 28,
+   "marketability": 45,
+   "satellite": 55,
+   "want": 35
+  },
+  "score_notes": {},
+  "flags": [],
+  "drop": false,
+  "drop_reason": ""
+ },
+ {
+  "id": "hnA-012",
+  "scores": {
+   "replicatability": 82,
+   "wtr": 45,
+   "competition": 32,
+   "marketability": 55,
+   "satellite": 55,
+   "want": 52
+  },
+  "score_notes": {},
+  "flags": [],
+  "drop": false,
+  "drop_reason": ""
+ },
+ {
+  "id": "seB-004",
+  "scores": {
+   "replicatability": 80,
+   "wtr": 70,
+   "competition": 28,
+   "marketability": 62,
+   "satellite": 70,
+   "want": 28
+  },
+  "score_notes": {},
+  "flags": [],
+  "drop": false,
+  "drop_reason": ""
+ },
+ {
+  "id": "fb-003",
+  "scores": {
+   "replicatability": 75,
+   "wtr": 75,
+   "competition": 30,
+   "marketability": 62,
+   "satellite": 55,
+   "want": 60
+  },
+  "score_notes": {},
+  "flags": [],
+  "drop": false,
+  "drop_reason": ""
+ },
+ {
+  "id": "seB-009",
+  "scores": {
+   "replicatability": 62,
+   "wtr": 78,
+   "competition": 42,
+   "marketability": 50,
+   "satellite": 82,
+   "want": 42
+  },
+  "score_notes": {},
+  "flags": [],
+  "drop": false,
+  "drop_reason": ""
+ },
+ {
+  "id": "apB-004",
+  "scores": {
+   "replicatability": 22,
+   "wtr": 40,
+   "competition": 15,
+   "marketability": 50,
+   "satellite": 40,
+   "want": 52
+  },
+  "score_notes": {
+   "replicatability": "Researcher: honestly weak; Partiful already offers no-app RSVP.",
+   "competition": "Partiful, Evite and Paperless Post are free or funded incumbents."
+  },
+  "flags": [
+   "too_easy_to_copy"
+  ],
+  "drop": false,
+  "drop_reason": ""
+ },
+ {
+  "id": "hnB-011",
+  "scores": {
+   "replicatability": 62,
+   "wtr": 60,
+   "competition": 25,
+   "marketability": 76,
+   "satellite": 82,
+   "want": 35
+  },
+  "score_notes": {},
+  "flags": [],
+  "drop": false,
+  "drop_reason": ""
+ },
+ {
+  "id": "hnB-010",
+  "scores": {
+   "replicatability": 40,
+   "wtr": 55,
+   "competition": 30,
+   "marketability": 45,
+   "satellite": 72,
+   "want": 45
+  },
+  "score_notes": {},
+  "flags": [],
+  "drop": false,
+  "drop_reason": ""
+ },
+ {
+  "id": "x-003",
+  "scores": {
+   "replicatability": 62,
+   "wtr": 82,
+   "competition": 18,
+   "marketability": 50,
+   "satellite": 40,
+   "want": 12
+  },
+  "score_notes": {
+   "competition": "Universalis, iBreviary and DivineOffice.org already serve the Liturgy of the Hours.",
+   "want": "One X post; English breviary text is also copyrighted."
+  },
+  "flags": [
+   "weak_signal"
+  ],
+  "drop": false,
+  "drop_reason": ""
+ },
+ {
+  "id": "seA-017",
+  "scores": {
+   "replicatability": 60,
+   "wtr": 70,
+   "competition": 55,
+   "marketability": 52,
+   "satellite": 85,
+   "want": 18
+  },
+  "score_notes": {
+   "want": "One Q&A post, 266 views."
+  },
+  "flags": [],
+  "drop": false,
+  "drop_reason": ""
+ },
+ {
+  "id": "gh-011",
+  "scores": {
+   "replicatability": 35,
+   "wtr": 55,
+   "competition": 15,
+   "marketability": 45,
+   "satellite": 55,
+   "want": 40
+  },
+  "score_notes": {
+   "competition": "Duplicate of Recipe Box Anywhere; myfoodbook, Canva and Mealie also export cookbooks."
+  },
+  "flags": [
+   "duplicate_of:apA-001"
+  ],
+  "drop": false,
+  "drop_reason": ""
+ },
+ {
+  "id": "seA-016",
+  "scores": {
+   "replicatability": 15,
+   "wtr": 60,
+   "competition": 55,
+   "marketability": 28,
+   "satellite": 40,
+   "want": 15
+  },
+  "score_notes": {
+   "replicatability": "Tagged link index; a vibe coder builds the shell in hours.",
+   "want": "One Q&A post, 371 views."
+  },
+  "flags": [
+   "weak_signal",
+   "too_easy_to_copy"
+  ],
+  "drop": false,
+  "drop_reason": ""
+ },
+ {
+  "id": "gh-010",
+  "scores": {
+   "replicatability": 60,
+   "wtr": 45,
+   "competition": 22,
+   "marketability": 50,
+   "satellite": 62,
+   "want": 58
+  },
+  "score_notes": {
+   "competition": "Mealime, Paprika, Plan to Eat and MealBoard already merge shopping lists."
+  },
+  "flags": [],
+  "drop": false,
+  "drop_reason": ""
+ },
+ {
+  "id": "apA-001",
+  "scores": {
+   "replicatability": 58,
+   "wtr": 45,
+   "competition": 18,
+   "marketability": 55,
+   "satellite": 60,
+   "want": 70
+  },
+  "score_notes": {
+   "competition": "Paprika, Mela, Crouton, Pestle, Recipe Keeper, Mealie, Tandoor and Samsung Food; very crowded."
+  },
+  "flags": [],
+  "drop": false,
+  "drop_reason": ""
+ },
+ {
+  "id": "seA-015",
+  "scores": {
+   "replicatability": 50,
+   "wtr": 50,
+   "competition": 32,
+   "marketability": 55,
+   "satellite": 88,
+   "want": 48
+  },
+  "score_notes": {
+   "satellite": "A recipe scaler or pan converter is a natural shareable calculator."
+  },
+  "flags": [],
+  "drop": false,
+  "drop_reason": ""
+ },
+ {
+  "id": "seA-014",
+  "scores": {
+   "replicatability": 60,
+   "wtr": 82,
+   "competition": 50,
+   "marketability": 62,
+   "satellite": 85,
+   "want": 40
+  },
+  "score_notes": {
+   "replicatability": "Altitude and processing tables are published by USDA and NCHFP, so the lookup is a weekend build and 'is this change safe?' cannot be automated. The questions ask if something is safe, not for a tool.",
+   "want": "Altitude and processing tables are published by USDA and NCHFP, so the lookup is a weekend build and 'is this change safe?' cannot be automated. The questions ask if something is safe, not for a tool."
+  },
+  "flags": [],
+  "drop": false,
+  "drop_reason": ""
+ },
+ {
+  "id": "rev-006",
+  "scores": {
+   "replicatability": 70,
+   "wtr": 45,
+   "competition": 18,
+   "marketability": 55,
+   "satellite": 50,
+   "want": 62
+  },
+  "score_notes": {
+   "competition": "Challonge, VERXUS, Toornament, Battlefy and start.gg; free tiers exist."
+  },
+  "flags": [],
+  "drop": false,
+  "drop_reason": ""
+ },
+ {
+  "id": "seB-001",
+  "scores": {
+   "replicatability": 80,
+   "wtr": 82,
+   "competition": 48,
+   "marketability": 55,
+   "satellite": 88,
+   "want": 72
+  },
+  "score_notes": {
+   "competition": "Searched: AnyDice, Icepool and Pearson's simulator exist; none found handling push rolls.",
+   "satellite": "Dice odds results are shared among RPG designers; link-shareable by design."
+  },
+  "flags": [],
+  "drop": false,
+  "drop_reason": ""
+ },
+ {
+  "id": "seB-011",
+  "scores": {
+   "replicatability": 94,
+   "wtr": 95,
+   "competition": 50,
+   "marketability": 12,
+   "satellite": 30,
+   "want": 10
+  },
+  "score_notes": {
+   "replicatability": "Popeye-class WASM port with user-defined fairy pieces; almost nobody could clone it quickly.",
+   "wtr": "Fairy chess composers are a tiny community.",
+   "marketability": "Tiny audience and free hobby use; nothing to sell.",
+   "want": "One request, 138 views."
+  },
+  "flags": [
+   "weak_signal"
+  ],
+  "drop": false,
+  "drop_reason": ""
+ },
+ {
+  "id": "seB-010",
+  "scores": {
+   "replicatability": 62,
+   "wtr": 70,
+   "competition": 45,
+   "marketability": 30,
+   "satellite": 78,
+   "want": 22
+  },
+  "score_notes": {
+   "competition": "Searched: gacha pity calculators and a dev-side loot simulator exist; no PRD and shuffle-bag comparison tool.",
+   "want": "Two modest questions, one only adjacent."
+  },
+  "flags": [],
+  "drop": false,
+  "drop_reason": ""
+ },
+ {
+  "id": "frA-001",
+  "scores": {
+   "replicatability": 68,
+   "wtr": 78,
+   "competition": 38,
+   "marketability": 50,
+   "satellite": 35,
+   "want": 28
+  },
+  "score_notes": {},
+  "flags": [],
+  "drop": false,
+  "drop_reason": ""
+ },
+ {
+  "id": "x-002",
+  "scores": {
+   "replicatability": 35,
+   "wtr": 62,
+   "competition": 48,
+   "marketability": 62,
+   "satellite": 55,
+   "want": 15
+  },
+  "score_notes": {
+   "want": "One X post."
+  },
+  "flags": [
+   "weak_signal"
+  ],
+  "drop": false,
+  "drop_reason": ""
+ },
+ {
+  "id": "x-007",
+  "scores": {
+   "replicatability": 28,
+   "wtr": 65,
+   "competition": 40,
+   "marketability": 40,
+   "satellite": 55,
+   "want": 15
+  },
+  "score_notes": {
+   "want": "One X post, made the day of the researcher's search."
+  },
+  "flags": [
+   "weak_signal"
+  ],
+  "drop": false,
+  "drop_reason": ""
+ },
+ {
+  "id": "lem-001",
+  "scores": {
+   "replicatability": 52,
+   "wtr": 78,
+   "competition": 30,
+   "marketability": 48,
+   "satellite": 50,
+   "want": 50
+  },
+  "score_notes": {},
+  "flags": [],
+  "drop": false,
+  "drop_reason": ""
+ }
+]

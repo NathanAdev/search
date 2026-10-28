@@ -1,0 +1,454 @@
+[
+ {
+  "id": "rev-011",
+  "scores": {
+   "replicatability": 70,
+   "wtr": 78,
+   "competition": 28,
+   "marketability": 62,
+   "satellite": 55,
+   "want": 45
+  },
+  "score_notes": {},
+  "flags": [],
+  "drop": false,
+  "drop_reason": ""
+ },
+ {
+  "id": "seB-012",
+  "scores": {
+   "replicatability": 35,
+   "wtr": 72,
+   "competition": 40,
+   "marketability": 25,
+   "satellite": 60,
+   "want": 12
+  },
+  "score_notes": {
+   "want": "Single asker, 49 views, no answers; free browser fingerspelling games already exist per the post."
+  },
+  "flags": [
+   "weak_signal"
+  ],
+  "drop": false,
+  "drop_reason": ""
+ },
+ {
+  "id": "hnB-013",
+  "scores": {
+   "replicatability": 30,
+   "wtr": 62,
+   "competition": 25,
+   "marketability": 60,
+   "satellite": 70,
+   "want": 35
+  },
+  "score_notes": {},
+  "flags": [],
+  "drop": false,
+  "drop_reason": ""
+ },
+ {
+  "id": "hnB-016",
+  "scores": {
+   "replicatability": 15,
+   "wtr": 35,
+   "competition": 22,
+   "marketability": 30,
+   "satellite": 30,
+   "want": 30
+  },
+  "score_notes": {
+   "replicatability": "Browser speech API plus a join code is a weekend build; the researcher also calls the moat weak.",
+   "competition": "Native live-caption tools (Live Transcribe, Windows Live Captions, Ava) already cover this."
+  },
+  "flags": [
+   "too_easy_to_copy"
+  ],
+  "drop": false,
+  "drop_reason": ""
+ },
+ {
+  "id": "x-011",
+  "scores": {
+   "replicatability": 38,
+   "wtr": 72,
+   "competition": 55,
+   "marketability": 45,
+   "satellite": 58,
+   "want": 15
+  },
+  "score_notes": {
+   "want": "One X post, no engagement data."
+  },
+  "flags": [
+   "weak_signal"
+  ],
+  "drop": false,
+  "drop_reason": ""
+ },
+ {
+  "id": "x-004",
+  "scores": {
+   "replicatability": 70,
+   "wtr": 65,
+   "competition": 15,
+   "marketability": 60,
+   "satellite": 55,
+   "want": 15
+  },
+  "score_notes": {
+   "competition": "Searched: Blu-ray.com, CLZ Movies and Movie Collector Shelf (community edition catalog) already do this.",
+   "want": "One X post."
+  },
+  "flags": [
+   "weak_signal"
+  ],
+  "drop": false,
+  "drop_reason": ""
+ },
+ {
+  "id": "gh-002",
+  "scores": {
+   "replicatability": 72,
+   "wtr": 45,
+   "competition": 22,
+   "marketability": 55,
+   "satellite": 70,
+   "want": 55
+  },
+  "score_notes": {
+   "competition": "Sofa, Curate, Simkl, Trakt and Ryot all offer importers; crowded."
+  },
+  "flags": [],
+  "drop": false,
+  "drop_reason": ""
+ },
+ {
+  "id": "x-012",
+  "scores": {
+   "replicatability": 30,
+   "wtr": 50,
+   "competition": 35,
+   "marketability": 55,
+   "satellite": 78,
+   "want": 25
+  },
+  "score_notes": {},
+  "flags": [
+   "weak_signal"
+  ],
+  "drop": false,
+  "drop_reason": ""
+ },
+ {
+  "id": "frA-002",
+  "scores": {
+   "replicatability": 75,
+   "wtr": 80,
+   "competition": 45,
+   "marketability": 60,
+   "satellite": 45,
+   "want": 50
+  },
+  "score_notes": {},
+  "flags": [],
+  "drop": false,
+  "drop_reason": ""
+ },
+ {
+  "id": "x-009",
+  "scores": {
+   "replicatability": 40,
+   "wtr": 60,
+   "competition": 62,
+   "marketability": 28,
+   "satellite": 45,
+   "want": 28
+  },
+  "score_notes": {},
+  "flags": [],
+  "drop": false,
+  "drop_reason": ""
+ },
+ {
+  "id": "hnB-007",
+  "scores": {
+   "replicatability": 62,
+   "wtr": 85,
+   "competition": 60,
+   "marketability": 52,
+   "satellite": 70,
+   "want": 45
+  },
+  "score_notes": {},
+  "flags": [],
+  "drop": false,
+  "drop_reason": ""
+ },
+ {
+  "id": "hnB-009",
+  "scores": {
+   "replicatability": 18,
+   "wtr": 60,
+   "competition": 15,
+   "marketability": 28,
+   "satellite": 25,
+   "want": 45
+  },
+  "score_notes": {
+   "replicatability": "Researcher: any developer can build a forum or email digest.",
+   "competition": "Facebook Groups, Nextdoor, Groups.io and Discourse already serve this."
+  },
+  "flags": [
+   "too_easy_to_copy"
+  ],
+  "drop": false,
+  "drop_reason": ""
+ },
+ {
+  "id": "hnB-008",
+  "scores": {
+   "replicatability": 78,
+   "wtr": 85,
+   "competition": 22,
+   "marketability": 80,
+   "satellite": 60,
+   "want": 30
+  },
+  "score_notes": {
+   "competition": "Simply Voting, VotingPRO, Quick Vote Online and vote.direct all sell HOA and church voting."
+  },
+  "flags": [],
+  "drop": false,
+  "drop_reason": ""
+ },
+ {
+  "id": "hnB-006",
+  "scores": {
+   "replicatability": 12,
+   "wtr": 70,
+   "competition": 10,
+   "marketability": 45,
+   "satellite": 35,
+   "want": 50
+  },
+  "score_notes": {
+   "replicatability": "Duplicate of Volunteer Rota; a sign-up sheet is the most copyable idea in the file.",
+   "competition": "SignUpGenius, SignUp.com, Coordara and voluntold.fyi all exist."
+  },
+  "flags": [
+   "too_easy_to_copy",
+   "duplicate_of:gh-015"
+  ],
+  "drop": false,
+  "drop_reason": ""
+ },
+ {
+  "id": "gh-015",
+  "scores": {
+   "replicatability": 68,
+   "wtr": 85,
+   "competition": 25,
+   "marketability": 55,
+   "satellite": 72,
+   "want": 28
+  },
+  "score_notes": {},
+  "flags": [],
+  "drop": false,
+  "drop_reason": ""
+ },
+ {
+  "id": "x-013",
+  "scores": {
+   "replicatability": 12,
+   "wtr": 55,
+   "competition": 55,
+   "marketability": 22,
+   "satellite": 35,
+   "want": 20
+  },
+  "score_notes": {
+   "replicatability": "Link gallery with credits; the researcher says it is easily copied.",
+   "marketability": "Fan-art credit hub for a small, low-spend fandom audience with no clear buyer.",
+   "want": "Two thin X posts."
+  },
+  "flags": [
+   "weak_signal",
+   "too_easy_to_copy"
+  ],
+  "drop": false,
+  "drop_reason": ""
+ },
+ {
+  "id": "x-001",
+  "scores": {
+   "replicatability": 30,
+   "wtr": 75,
+   "competition": 65,
+   "marketability": 62,
+   "satellite": 60,
+   "want": 62
+  },
+  "score_notes": {
+   "competition": "Searched: no open-slots directory with price and style filters found; only Art2arts UK, thin."
+  },
+  "flags": [],
+  "drop": false,
+  "drop_reason": ""
+ },
+ {
+  "id": "hnB-005",
+  "scores": {
+   "replicatability": 60,
+   "wtr": 85,
+   "competition": 38,
+   "marketability": 45,
+   "satellite": 40,
+   "want": 25
+  },
+  "score_notes": {},
+  "flags": [],
+  "drop": false,
+  "drop_reason": ""
+ },
+ {
+  "id": "hnA-003",
+  "scores": {
+   "replicatability": 40,
+   "wtr": 25,
+   "competition": 18,
+   "marketability": 28,
+   "satellite": 70,
+   "want": 45
+  },
+  "score_notes": {
+   "competition": "Grist and Baserow ship importers and other Airtable migration tools exist."
+  },
+  "flags": [],
+  "drop": false,
+  "drop_reason": ""
+ },
+ {
+  "id": "x-010",
+  "scores": {
+   "replicatability": 45,
+   "wtr": 80,
+   "competition": 45,
+   "marketability": 22,
+   "satellite": 40,
+   "want": 12
+  },
+  "score_notes": {
+   "marketability": "One-off research data with no obvious buyer or recurring use.",
+   "want": "One X post."
+  },
+  "flags": [
+   "weak_signal"
+  ],
+  "drop": false,
+  "drop_reason": ""
+ },
+ {
+  "id": "hnA-002",
+  "scores": {
+   "replicatability": 62,
+   "wtr": 38,
+   "competition": 20,
+   "marketability": 50,
+   "satellite": 70,
+   "want": 55
+  },
+  "score_notes": {
+   "competition": "Free CLIs plus the official Obsidian and Joplin Evernote importers already convert ENEX."
+  },
+  "flags": [],
+  "drop": false,
+  "drop_reason": ""
+ },
+ {
+  "id": "hnA-008",
+  "scores": {
+   "replicatability": 82,
+   "wtr": 62,
+   "competition": 40,
+   "marketability": 50,
+   "satellite": 40,
+   "want": 45
+  },
+  "score_notes": {},
+  "flags": [],
+  "drop": false,
+  "drop_reason": ""
+ },
+ {
+  "id": "rev-005",
+  "scores": {
+   "replicatability": 62,
+   "wtr": 75,
+   "competition": 15,
+   "marketability": 65,
+   "satellite": 70,
+   "want": 45
+  },
+  "score_notes": {
+   "replicatability": "Searched: BentoPDF already converts .pub to PDF in the browser with a LibreOffice-based engine, plus many upload converters. Evidence is institutional notices only.",
+   "competition": "Searched: BentoPDF already converts .pub to PDF in the browser with a LibreOffice-based engine, plus many upload converters. Evidence is institutional notices only.",
+   "marketability": "Searched: BentoPDF already converts .pub to PDF in the browser with a LibreOffice-based engine, plus many upload converters. Evidence is institutional notices only.",
+   "want": "Searched: BentoPDF already converts .pub to PDF in the browser with a LibreOffice-based engine, plus many upload converters. Evidence is institutional notices only."
+  },
+  "flags": [],
+  "drop": false,
+  "drop_reason": ""
+ },
+ {
+  "id": "hnB-002",
+  "scores": {
+   "replicatability": 80,
+   "wtr": 80,
+   "competition": 28,
+   "marketability": 55,
+   "satellite": 75,
+   "want": 62
+  },
+  "score_notes": {
+   "replicatability": "Searched: DevToolLab (browser, memo fields, CSV/JSON), DBF Viewer 2000, xBaseView and 4n6 converters already read dBase, FoxPro and Clipper. The HN threads are about DOS systems, not requests for a viewer.",
+   "competition": "Searched: DevToolLab (browser, memo fields, CSV/JSON), DBF Viewer 2000, xBaseView and 4n6 converters already read dBase, FoxPro and Clipper. The HN threads are about DOS systems, not requests for a viewer.",
+   "want": "Searched: DevToolLab (browser, memo fields, CSV/JSON), DBF Viewer 2000, xBaseView and 4n6 converters already read dBase, FoxPro and Clipper. The HN threads are about DOS systems, not requests for a viewer."
+  },
+  "flags": [],
+  "drop": false,
+  "drop_reason": ""
+ },
+ {
+  "id": "seB-005",
+  "scores": {
+   "replicatability": 70,
+   "wtr": 55,
+   "competition": 28,
+   "marketability": 74,
+   "satellite": 80,
+   "want": 40
+  },
+  "score_notes": {},
+  "flags": [],
+  "drop": false,
+  "drop_reason": ""
+ },
+ {
+  "id": "hnA-014",
+  "scores": {
+   "replicatability": 75,
+   "wtr": 62,
+   "competition": 50,
+   "marketability": 35,
+   "satellite": 70,
+   "want": 30
+  },
+  "score_notes": {},
+  "flags": [],
+  "drop": false,
+  "drop_reason": ""
+ }
+]

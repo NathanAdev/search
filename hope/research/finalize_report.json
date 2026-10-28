@@ -1,0 +1,103 @@
+{
+ "ideas": 118,
+ "missing_scores": [],
+ "scorer_dropped": [
+  {
+   "id": "gh-005",
+   "name": "Band Stage Sync",
+   "reason": "weak_signal,duplicate_of:rev-001"
+  },
+  {
+   "id": "gh-006",
+   "name": "Open Language Reader",
+   "reason": "duplicate_of:rev-009"
+  },
+  {
+   "id": "gh-011",
+   "name": "Family Recipe Box",
+   "reason": "duplicate_of:apA-001"
+  },
+  {
+   "id": "hnB-006",
+   "name": "Slotbook",
+   "reason": "too_easy_to_copy,duplicate_of:gh-015"
+  },
+  {
+   "id": "lem-002",
+   "name": "StitchScript",
+   "reason": "weak_signal,duplicate_of:apB-008"
+  },
+  {
+   "id": "rev-004",
+   "name": "LeagueSlate",
+   "reason": "duplicate_of:fb-002"
+  },
+  {
+   "id": "seB-002",
+   "name": "Round Night",
+   "reason": "weak_signal,duplicate_of:rev-006"
+  },
+  {
+   "id": "x-008",
+   "name": "If Something Happens Binder",
+   "reason": "weak_signal,duplicate_of:hnB-015"
+  }
+ ],
+ "critic_dropped": [],
+ "calibration": {
+  "replicatability": {
+   "before": {
+    "mean": 60.2,
+    "sd": 17.8,
+    "p5": 25,
+    "p95": 82
+   },
+   "stretched": false
+  },
+  "wtr": {
+   "before": {
+    "mean": 64.7,
+    "sd": 15.9,
+    "p5": 35,
+    "p95": 85
+   },
+   "stretched": false
+  },
+  "competition": {
+   "before": {
+    "mean": 33.1,
+    "sd": 14.6,
+    "p5": 15,
+    "p95": 60
+   },
+   "stretched": false
+  },
+  "marketability": {
+   "before": {
+    "mean": 52.4,
+    "sd": 14.3,
+    "p5": 28,
+    "p95": 76
+   },
+   "stretched": false
+  },
+  "satellite": {
+   "before": {
+    "mean": 64.1,
+    "sd": 17,
+    "p5": 35,
+    "p95": 88
+   },
+   "stretched": false
+  },
+  "want": {
+   "before": {
+    "mean": 40.9,
+    "sd": 16.7,
+    "p5": 15,
+    "p95": 68
+   },
+   "stretched": false
+  }
+ }
+}
