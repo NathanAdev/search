@@ -1,0 +1,52 @@
+{
+ "in": 128,
+ "kept": 122,
+ "dropped": [],
+ "flags": [
+  {
+   "id": "frB-001",
+   "name": "PackStation",
+   "flag": "banned-term match: payments"
+  },
+  {
+   "id": "gh-008",
+   "name": "Parts Bin Online",
+   "flag": "banned-term match: stock"
+  },
+  {
+   "id": "hnB-001",
+   "name": "Batchbook",
+   "flag": "banned-term match: stock"
+  },
+  {
+   "id": "hnB-014",
+   "name": "Gran Screen",
+   "flag": "banned-term match: Adult"
+  },
+  {
+   "id": "hnB-017",
+   "name": "Plug-In Solar Rulebook",
+   "flag": "banned-term match: legal"
+  },
+  {
+   "id": "seA-009",
+   "name": "TicketAccess",
+   "flag": "banned-term match: payment"
+  },
+  {
+   "id": "x-001",
+   "name": "Open Slots Finder",
+   "flag": "banned-term match: payment"
+  },
+  {
+   "id": "x-003",
+   "flag": "non-canonical niche: Faith & Religion"
+  },
+  {
+   "id": "x-008",
+   "name": "If Something Happens Binder",
+   "flag": "banned-term match: legal"
+  }
+ ],
+ "duplicates_merged": 6
+}

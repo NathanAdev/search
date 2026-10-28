@@ -135,3 +135,24 @@ Not done and optional: an export-filtered-results button (not required by the br
 1. Read `app-idea-finder-prompt.md`, then this file, then `research/spec.md` and `research/score_spec.md`.
 2. Count candidates (command in section 5) and run `merge.js` to see the real number.
 3. Decide with the user, in one short message, whether to spend the next rate-limit window on more research (suggested: App Store reviews, Discourse, feedback boards) or to score what exists and ship with the gap flagged.
+
+## 11. Update 2026-10-28, first cloud session (Linux container, repo at `/home/user/search`)
+
+**Research could not continue here: the container's network policy is "limited".** Probed with curl (CONNECT returns 403) and WebFetch (host does not resolve). Denied: `hn.algolia.com`, `news.ycombinator.com`, `api.stackexchange.com` and every `*.stackexchange.com` site, `lemmy.world`, `lemmy.ml`, `itunes.apple.com`, `apps.apple.com`, `play.google.com`, `x.com`, `forum.obsidian.md`, `community.home-assistant.io`, `forums.ankiweb.net`, `boardgamegeek.com`, `www.trustpilot.com`, `www.producthunt.com`, `www.indiehackers.com`, `chromewebstore.google.com`, `open.er-api.com`, `web.archive.org`, `bsky.social`, `mastodon.social`, `lobste.rs`, `dev.to`. Only `api.github.com` and `raw.githubusercontent.com` connect, and that access uses the session's own GitHub credentials (15,000 requests/hour), which are scoped to `nathanadev/search`; so GitHub issue sweeps of other repos were not run.
+
+Other limits found:
+- **Claude in Chrome is not available in the cloud session**, so X, review sites and the X spot-check (step 6) need the local session or pasted threads.
+- **WebSearch works but cannot replace the APIs.** Tested twice (standard and extended): it returns undated vendor pages and old threads (the pet-rescue hits were 2022-2023) and I cannot open them to see a date, so it can check competition but cannot produce a signal that meets hard rule 1.
+- To resume research the user must change the environment's Network access (cloud environment menu in the session title bar, Edit; steps at https://code.claude.com/docs/en/cloud-environments#network-access) to allow at least the hosts above. Wave-2 priorities and the hosts they need: apA/apB `itunes.apple.com`; dsc the Discourse hosts named in `research/spec.md`; hnA `hn.algolia.com`; lem `lemmy.world`; fb and frA/frB the forum or board hosts found by search; USD/RON `open.er-api.com`.
+
+What was done:
+- Ran `merge.js` on the real data for the first time: **128 raw candidates in, 122 kept, 6 merged as duplicates, 0 dropped**. Output: `research/merged.json`, `research/merge_report.json`. Kept per tag: apA 1, apB 6, rev 11, fb 3, frA 2, frB 2, gh 13, hnA 14, hnB 17, lem 8, seA 20, seB 12, x 13.
+- Ran `split.js` on a scratch copy: it works (5 batches of about 25 plus the 122-entry `index.json`). Output not committed because it is regenerable and would go stale if more candidates arrive.
+- Not run: `verify.js` (its hosts are blocked), `apply_critic.js`, `finalize.js`, `report.js` and any scorer or critic agents. No agents were spawned.
+
+Numbers in `merged.json`: 82 low, 39 medium, 1 high confidence; all 122 have `is_feature: false` (the feature-idea toggle will have nothing to show unless new research adds some) and `uses_paid_api: false`. Signals by platform: stackexchange 119, hn 93, github 82, appstore 44, x 22, lemmy 12, web 13, forum 4, trustpilot 3. Only 2 ideas have a newest signal older than 2025-10-25. Niche counts: Travel 13, Hobbies & Crafts 10, Languages 8, Gaming Communities 8, Food & Cooking 7, Education & Study 7, Data & Documents 7, Home & DIY 6, Community & Nonprofit 6; Pets, Health & Fitness and Writing & Publishing have 0-1.
+
+Triage of the 9 `merge_report.json` flags (decisions for the scorer and critic, nothing was edited in the candidates):
+- Keyword false positives, keep: `frB-001` PackStation (says no payments handled), `gh-008` Parts Bin Online and `hnB-001` Batchbook ("stock" means inventory), `hnB-014` Gran Screen ("adult" means adult children), `seA-009` TicketAccess (a directory of ticketing options, no money handled), `x-001` Open Slots Finder (links out to makers' own payment pages).
+- Judgment calls to put to the user or critic: `hnB-017` Plug-In Solar Rulebook (a regulations lookup, not legal services, but it must carry sources, last-verified dates and a not-advice notice); `x-008` If Something Happens Binder (a document organiser, one post, high liability, keep only if it stays clearly non-legal).
+- `x-003` Hours Any Day: one post, new niche "Faith & Religion" (only idea in it), and the English breviary text is copyrighted; likely a drop unless an openly licensed text exists.
