@@ -1,0 +1,1339 @@
+[
+  {
+    "id": "hnB-001",
+    "name": "Batchbook",
+    "idea": "Free web production planner for micro-bakeries and cottage food makers: scale formulas, check stock, plan the bake day, print allergen labels.",
+    "description": "Recipes live as versioned formulas (baker's percentages, yield loss, ingredient densities) so one order list turns into a batch plan, a shopping list and a 'can I make X with what I have?' answer. It also builds the allergen matrix and a printable ingredient/allergen label for the maker's jurisdiction. Aimed at people launching a home or micro bakery who currently run it from spreadsheets; the moat is a curated ingredient-density, unit-conversion and label-rule dataset plus correct scaling math.",
+    "niche": "Local Business & Small Shops",
+    "niche2": "Food & Cooking",
+    "is_feature": false,
+    "feature_for": null,
+    "web_delivery": "Next.js on Vercel hobby, Supabase Postgres + RLS for recipes/orders; labels rendered to PDF client-side; installable PWA for use in the kitchen.",
+    "why_hard_to_copy": "Correct recipe scaling (baker's percentages, yield loss, volume-to-weight with ingredient densities) and jurisdiction-specific allergen/label rules are hand-curated data plus edge-case math, not CRUD. The open-source competitor is an Elixir app that non-developers cannot host.",
+    "signals": [
+      {
+        "platform": "hn",
+        "url": "https://news.ycombinator.com/item?id=46847690",
+        "date": "2026-02-01",
+        "summary": "A developer built a production-management tool for his wife's planned micro-bakery because the software he found was either expensive or too generic, then open-sourced it (versioned recipes, lot tracking, allergens, batch planning).",
+        "engagement": "577 points"
+      },
+      {
+        "platform": "hn",
+        "url": "https://news.ycombinator.com/item?id=47721603",
+        "date": "2026-04-10",
+        "summary": "Another developer built local inventory and production software for his dad's small manufacturing business, centred on reorder levels and the question 'can I make X from current stock?', explicitly aiming to beat spreadsheets.",
+        "engagement": "3 points"
+      },
+      {
+        "platform": "hn",
+        "url": "https://news.ycombinator.com/item?id=46897534",
+        "date": "2026-02-05",
+        "summary": "A commenter on the bakery-tool thread says he and his wife looked at buying a small bagel shop in Berlin where the previous owner ran everything in Excel files, and that such software would have helped.",
+        "engagement": "comment, 0 replies seen"
+      }
+    ],
+    "competitors_seen": [
+      {
+        "name": "Craftplan",
+        "url": "https://github.com/puemos/craftplan",
+        "note": "Open source Elixir micro-ERP, self-host only; the HN thread shows demand but also that non-developers cannot run it."
+      },
+      {
+        "name": "Craftybase",
+        "url": "https://www.craftybase.com/bakery-inventory-software",
+        "note": "Paid web app for cottage producers with recipe costing and lot tracking."
+      },
+      {
+        "name": "Kitted",
+        "url": "https://kitted.site",
+        "note": "Desktop (Electron) inventory/production app with 30-day trial; not web."
+      },
+      {
+        "name": "CrumbCounts",
+        "url": "https://news.ycombinator.com/item?id=46816461",
+        "note": "Recipe costing and nutrition app for home bakers (HN, 2026-01-29); costing only, no production planning."
+      }
+    ],
+    "satellite": {
+      "name": "Bakers Percentage Scaler",
+      "what": "Single-page free calculator: paste a formula, scale to any dough weight or loaf count, convert cups/grams with ingredient densities.",
+      "why_shared": "Home bakers share scaling calculators in baking forums and groups and link them in recipes.",
+      "handoff": "'Save this formula to Batchbook' button creates an account-free draft that becomes a recipe in the planner."
+    },
+    "marketing": {
+      "where": [
+        "The Fresh Loaf forum",
+        "Cottage food operator Facebook groups",
+        "Farmers market association newsletters",
+        "Product Hunt",
+        "Hacker News Show HN",
+        "Indie Hackers"
+      ],
+      "target": "Home and micro bakers selling at markets, online or from a small unit.",
+      "funnel": "Free scaler/allergen label tool -> save recipes -> production planner and order list.",
+      "cold_outreach": "Offer market-stall bakers a free allergen label sheet for their five best sellers in exchange for feedback.",
+      "post_ideas": [
+        "I turned a bakery's Excel chaos into a bake-day plan: what I learned",
+        "Allergen labels for market stalls without paying for an ERP",
+        "Why scaling a sourdough formula by weight beats scaling by cups"
+      ]
+    },
+    "capital_usd": 12,
+    "capital_note": "Domain name only; Vercel hobby and Supabase free cover hosting.",
+    "uses_paid_api": false,
+    "paid_api_note": null,
+    "confidence": "medium",
+    "notes": "Real demand (577-point Show HN) but an open-source competitor and several paid tools exist, so the wedge must be hosted simplicity plus the label/allergen dataset. Label rules differ by country; start with UK and EU allergens or one US state and state that it is not legal advice."
+  },
+  {
+    "id": "hnB-002",
+    "name": "Relic",
+    "idea": "Drag a dBase/FoxPro/Clipper/Paradox data file into the browser, browse it and export CSV/XLSX/SQLite without uploading anything.",
+    "description": "Small firms still run DOS-era database apps whose data files nobody can open any more, and the people rescuing them hand-write parsers against format specs. Relic reads the common xBase variants (dBase III/IV, FoxPro/VFP, Clipper, memo files, DOS code pages, deleted-record flags) plus fixed-width text exports with a layout wizard, entirely client-side so business data never leaves the machine. Built for the consultant, relative or office manager who inherited the old system; the moat is breadth of format edge cases and a test corpus.",
+    "niche": "Data & Documents",
+    "niche2": "Local Business & Small Shops",
+    "is_feature": false,
+    "feature_for": null,
+    "web_delivery": "Static Next.js app on Vercel; parsing in a Web Worker with File API, export via client-side CSV/XLSX/SQLite-WASM; Supabase only for optional saved layouts and sample-file feedback.",
+    "why_hard_to_copy": "Parsing obscure legacy file formats correctly (memo blocks, code pages, packed numerics, variant headers) entirely client-side is exactly the long-tail work generic converters skip; the value compounds with every odd file added to the test corpus.",
+    "signals": [
+      {
+        "platform": "hn",
+        "url": "https://news.ycombinator.com/item?id=49848955",
+        "date": "2026-09-25",
+        "summary": "An Ask HN asking who still keeps a DOS machine running because the business depends on it drew many replies about dBase/Clipper/Paradox/Btrieve systems and ideas for hooking or migrating their .DBF data to modern formats.",
+        "engagement": "298 points, ~300 comments"
+      },
+      {
+        "platform": "hn",
+        "url": "https://news.ycombinator.com/item?id=45823234",
+        "date": "2025-11-05",
+        "summary": "A developer's family wholesale business has run on the same 1993 text-UI system for decades; replies list FoxPro, Pick and dBase shops kept alive by one aging maintainer.",
+        "engagement": "320 points, 96 comments"
+      },
+      {
+        "platform": "hn",
+        "url": "https://news.ycombinator.com/item?id=45825723",
+        "date": "2025-11-05",
+        "summary": "A commenter says a .dbf-to-csv converter would have saved him the trouble of writing his own Go parser from the dBase IV spec by trial and error.",
+        "engagement": "comment"
+      },
+      {
+        "platform": "hn",
+        "url": "https://news.ycombinator.com/item?id=45824909",
+        "date": "2025-11-05",
+        "summary": "A commenter helping a friend's family business had to patch a FoxPro app with hex editors because the original programmer had died.",
+        "engagement": "comment"
+      }
+    ],
+    "competitors_seen": [
+      {
+        "name": "DevToolLab DBF viewer",
+        "url": "https://devtoollab.com/tools/dbf-viewer",
+        "note": "Free browser DBF viewer with CSV/JSON export; covers dBase/FoxPro, nothing on Paradox, Clipper quirks or text layouts."
+      },
+      {
+        "name": "dbf2csv",
+        "url": "https://www.burtonsys.com/download/dbf2csv.php",
+        "note": "Free Windows/DOS command-line converter linked from the HN thread; no browsing UI."
+      },
+      {
+        "name": "LibreOffice Calc",
+        "url": "https://news.ycombinator.com/item?id=45826570",
+        "note": "Opens dBase files per an HN commenter; needs install and mangles memo/encoding cases."
+      }
+    ],
+    "satellite": {
+      "name": "DOS Code Page Fixer",
+      "what": "Paste garbled accented text from an old file, detect CP437/850/852/1250/1252 mojibake and see the correct text.",
+      "why_shared": "Anyone who ever pasted from an old database has hit garbled characters; it is easy to link from forum answers.",
+      "handoff": "'Convert the whole file with the right code page' sends the user into Relic."
+    },
+    "marketing": {
+      "where": [
+        "Hacker News Show HN",
+        "Stack Overflow answers on .dbf questions",
+        "FoxPro/Clipper user forums such as Foxite",
+        "Small-business IT/MSP Facebook groups",
+        "Product Hunt"
+      ],
+      "target": "IT consultants, MSPs and relatives maintaining old business databases.",
+      "funnel": "Free preview of the first rows (no upload) -> full export unlocked in browser; later saved layouts and batch conversion.",
+      "cold_outreach": "Answer open 'how do I open this .dbf/.dat file' threads with a link and a sample conversion.",
+      "post_ideas": [
+        "Show HN: I parse your 1989 dBase files in the browser, nothing uploaded",
+        "A field guide to the dBase/FoxPro/Clipper memo file mess",
+        "Rescuing a family business's data from a DOS box"
+      ]
+    },
+    "capital_usd": 12,
+    "capital_note": "Domain only.",
+    "uses_paid_api": false,
+    "paid_api_note": null,
+    "confidence": "medium",
+    "notes": "Strong repeated signal but willingness to pay is untested; commenters also say AI tools can now write one-off migrations, so the pitch is deterministic, private, no-upload parsing. A free tool with a donation or per-batch price fits the hobby tier."
+  },
+  {
+    "id": "hnB-003",
+    "name": "Swiss Desk",
+    "idea": "Run chess club nights and scholastic tournaments in the browser: Swiss pairings, standings, club ratings, results export, plus a scoresheet-repair tool.",
+    "description": "Organisers currently juggle Google Forms for sign-up, desktop pairing software and text threads. Swiss Desk handles the roster, QR check-in, Swiss pairing with colour balance, byes and tiebreaks, a local club rating, a public standings link and a results export in the formats rating bodies expect. The builders on HN say matching real-world Swiss pairing rules is harder than it looks, which is the moat.",
+    "niche": "Sports & Teams",
+    "niche2": "Hobbies & Crafts",
+    "is_feature": false,
+    "feature_for": null,
+    "web_delivery": "Next.js on Vercel, Supabase Postgres with Realtime for live standings; pairing engine in TypeScript runs client-side and is unit-tested against known tournaments.",
+    "why_hard_to_copy": "Swiss pairing rules (transpositions, colour alternation, floaters, forfeits, tiebreaks) and rating-report file formats are correctness-critical domain logic that a generic bracket builder gets wrong; one HN builder calls Swiss pairings 'more nuanced than they look'.",
+    "signals": [
+      {
+        "platform": "hn",
+        "url": "https://news.ycombinator.com/item?id=45877320",
+        "date": "2025-11-10",
+        "summary": "A new local chess club founder searched for software to manage members, games and a local club rating, found only paid options, and built an open-source club manager himself.",
+        "engagement": "comment"
+      },
+      {
+        "platform": "hn",
+        "url": "https://news.ycombinator.com/item?id=47747125",
+        "date": "2026-04-13",
+        "summary": "A parent who volunteers at his kid's tournaments saw the workflow split across Google Forms, payment apps, SwissSys/WinTD pairings and email/text, and is building a unified tool; says matching existing Swiss pairing workflows is the hard part.",
+        "engagement": "comment"
+      },
+      {
+        "platform": "hn",
+        "url": "https://news.ycombinator.com/item?id=49693353",
+        "date": "2026-09-14",
+        "summary": "A parent and his son keep mistyping moves when copying score sheets, and PGN parsers discard everything after the first error, so he built a viewer that highlights the error and keeps the remaining moves.",
+        "engagement": "comment"
+      }
+    ],
+    "competitors_seen": [
+      {
+        "name": "SwissSys",
+        "url": "https://chesshouse.com/products/swisssys-tournament-and-club-event-management-software-version-10-cd",
+        "note": "Paid desktop standard for US events (about $119); Windows only."
+      },
+      {
+        "name": "Chess Host",
+        "url": "https://www.capterra.com/p/10049311/Chess-Host/",
+        "note": "Browser-based, free tier with Swiss pairings and QR registration, paid tournament credits."
+      },
+      {
+        "name": "SWIPS",
+        "url": "https://chrome.google.com/webstore/detail/swips-swiss-pairing-syste/ldbinjnkkplhpnlbdeokcoggahohidef?hl=en",
+        "note": "Free Swiss pairing engine with browser front end; 4.2 stars from 54 ratings, dated UX."
+      },
+      {
+        "name": "OpenChessClub",
+        "url": "https://openchessclub.org",
+        "note": "Open-source club manager built by the HN commenter above; early stage."
+      }
+    ],
+    "satellite": {
+      "name": "Scoresheet Fixer",
+      "what": "Paste handwritten-score-sheet moves; the tool finds the first illegal or ambiguous move, suggests fixes and keeps the rest of the game.",
+      "why_shared": "Parents and coaches pass around a fixer after tournaments, and it needs no account.",
+      "handoff": "'Add games to your club or tournament' links into Swiss Desk."
+    },
+    "marketing": {
+      "where": [
+        "TalkChess and Lichess forums",
+        "Scholastic chess coach Facebook groups",
+        "US Chess and national federation organiser forums",
+        "Hacker News Show HN",
+        "Chess club newsletters"
+      ],
+      "target": "Chess club organisers and scholastic tournament directors.",
+      "funnel": "Free scoresheet fixer -> club roster -> run a club night -> run a rated tournament.",
+      "cold_outreach": "Offer to run one club's next event free in exchange for a pairing audit against their current software.",
+      "post_ideas": [
+        "Why Swiss pairing is harder than it looks (with test cases)",
+        "Run your school chess tournament from a phone",
+        "Fixing the moves your kid mis-wrote on the scoresheet"
+      ]
+    },
+    "capital_usd": 12,
+    "capital_note": "Domain only.",
+    "uses_paid_api": false,
+    "paid_api_note": null,
+    "confidence": "medium",
+    "notes": "Crowded: free browser tools already exist, so this only works if pairing correctness and rating-report exports clearly beat them. Do not take entry fees or payments (banned money area)."
+  },
+  {
+    "id": "hnB-004",
+    "name": "Fixture Glue",
+    "idea": "Paste or upload a league's fixture list and get a subscribable calendar feed plus a weekly 'who can play?' poll for the team.",
+    "description": "Amateur players and sports parents deal with leagues that each publish fixtures differently (web tables, PDFs, CSVs, printed sheets) and team chats that live elsewhere. Fixture Glue parses the common layouts client-side, normalises dates, times, venues and time zones, outputs a webcal feed that updates when a game moves, and gives the captain a one-click availability poll. The moat is a growing library of league-format parsers plus change detection.",
+    "niche": "Sports & Teams",
+    "niche2": "Parenting & Family",
+    "is_feature": false,
+    "feature_for": null,
+    "web_delivery": "Next.js on Vercel; PDF text extraction with pdf.js and table heuristics run in the browser; ICS feed served from a Vercel route backed by Supabase; poll links need no login.",
+    "why_hard_to_copy": "The hard part is a messy-schedule parser library (odd date formats, multi-column PDFs, bye weeks, rescheduled games) and diffing updates, which accumulates league by league and is not a weekend job.",
+    "signals": [
+      {
+        "platform": "hn",
+        "url": "https://news.ycombinator.com/item?id=46443414",
+        "date": "2025-12-31",
+        "summary": "A commenter who plays on several teams and leagues says every league delivers fixtures its own way and every team chats elsewhere; he wants software that glues fixtures to a weekly 'who is playing' poll, but the market is too fragmented for conventional products.",
+        "engagement": "comment"
+      },
+      {
+        "platform": "hn",
+        "url": "https://news.ycombinator.com/item?id=49616884",
+        "date": "2026-09-08",
+        "summary": "A parent could not get Siri or an AI assistant to turn a photo of his son's printed basketball schedule into entries on the shared family calendar; his wife ended up typing each event by hand.",
+        "engagement": "comment"
+      }
+    ],
+    "competitors_seen": [
+      {
+        "name": "smartcalendars.ai PDF to Calendar",
+        "url": "https://smartcalendars.ai/en/pdf-to-calendar",
+        "note": "Turns PDFs/agenda pages into a subscribable link; general purpose, account/pricing unclear."
+      },
+      {
+        "name": "PDF to Calendar Converter (iOS)",
+        "url": "https://apps.apple.com/app/id6746355733",
+        "note": "Phone app; needs a subscription to download the ICS and does one-off imports only."
+      },
+      {
+        "name": "Spond",
+        "url": "https://www.spond.com/",
+        "note": "Team communication app that an HN commenter says most of his sports use; it does not ingest other leagues' fixtures."
+      }
+    ],
+    "satellite": {
+      "name": "Schedule to ICS",
+      "what": "One-shot free converter: paste a fixture table or upload a PDF and download an ICS file.",
+      "why_shared": "Parents forward the link in team group chats the moment a season schedule is published.",
+      "handoff": "'Keep this updated and add a team poll' upgrades the same schedule into a live feed."
+    },
+    "marketing": {
+      "where": [
+        "Youth and amateur league Facebook groups",
+        "Local club WhatsApp groups via captains",
+        "Hacker News Show HN",
+        "Product Hunt",
+        "Parent-teacher and school sports newsletters"
+      ],
+      "target": "Team captains, coaches and sports parents in amateur leagues.",
+      "funnel": "Free converter -> live feed -> availability poll for the whole team.",
+      "cold_outreach": "Email league secretaries offering a free feed for their published schedule.",
+      "post_ideas": [
+        "Turn any league PDF schedule into a calendar your whole family can subscribe to",
+        "Why league fixtures break your calendar import",
+        "The captain's Sunday-night availability poll, automated"
+      ]
+    },
+    "capital_usd": 12,
+    "capital_note": "Domain only.",
+    "uses_paid_api": false,
+    "paid_api_note": null,
+    "confidence": "low",
+    "notes": "Two independent signals, one of them a developer musing about market size. Photo input would need OCR/vision (paid) and is left out of the core; text PDFs and web tables only."
+  },
+  {
+    "id": "hnB-005",
+    "name": "Sideline Story",
+    "idea": "Volunteer-friendly web scoreboard for school sports broadcasts that turns the game log into runs, streaks and talking points for student commentators.",
+    "description": "Community groups that livestream local high school games struggle with clunky scoreboard software that is hard to learn. This tool lets any teenager with a tablet keep the score and automatically surfaces scoring runs, lead changes and streak facts on a stream overlay for commentators to read. The moat is sport-specific event models and storyline detection rather than the scoreboard itself.",
+    "niche": "Creators & Streamers",
+    "niche2": "Sports & Teams",
+    "is_feature": false,
+    "feature_for": null,
+    "web_delivery": "Next.js on Vercel; the scorer's tablet writes events to Supabase Realtime; an OBS browser-source URL renders the overlay and live charts.",
+    "why_hard_to_copy": "Realtime sync plus sport-specific play-log models (runs, streaks, momentum, lead changes per sport) is real domain logic; the scoreboard UI alone is easy.",
+    "signals": [
+      {
+        "platform": "hn",
+        "url": "https://news.ycombinator.com/item?id=47694868",
+        "date": "2026-04-08",
+        "summary": "A volunteer who streams local high school sports found the original scoreboard software clunky and hard to learn, built a web scoreboard a 12-year-old can run, and turns the logged data into real-time charts and talking points so students can commentate confidently.",
+        "engagement": "comment in a 483-point thread"
+      }
+    ],
+    "competitors_seen": [
+      {
+        "name": "KeepTheScore",
+        "url": "https://keepthescore.com/scoreboard-overlay/",
+        "note": "Free scoreboards usable as an OBS browser source, shared admin link; no storyline or stats layer; ads on free tier."
+      },
+      {
+        "name": "ScoreLeader",
+        "url": "https://obsproject.com/forum/resources/scoreleader-scoreboard-stream-overlay-and-scorebug.2184/",
+        "note": "Free browser scoreboard/scorebug per overlay URL."
+      }
+    ],
+    "satellite": {
+      "name": "Scorebug Maker",
+      "what": "Pick a sport and colours and get an OBS browser-source scorebug URL in a minute.",
+      "why_shared": "Streamers post overlay links in OBS and school-AV communities.",
+      "handoff": "'Add automatic game storylines' unlocks the log-driven talking points."
+    },
+    "marketing": {
+      "where": [
+        "OBS forum and Discord communities",
+        "High school AV/broadcast club forums",
+        "NFHS-style school streaming Facebook groups",
+        "Hacker News Show HN"
+      ],
+      "target": "Volunteer broadcasters, school AV clubs and parent streamers.",
+      "funnel": "Free scorebug -> scorekeeping tablet UI -> storyline panel.",
+      "cold_outreach": "Message school broadcast clubs with a ready overlay in their colours.",
+      "post_ideas": [
+        "Let a 12-year-old run the scoreboard: lessons from streaming school games",
+        "From play log to talking points: runs and streaks detection",
+        "A free OBS scorebug in your team colours"
+      ]
+    },
+    "capital_usd": 12,
+    "capital_note": "Domain only.",
+    "uses_paid_api": false,
+    "paid_api_note": null,
+    "confidence": "low",
+    "notes": "Single signal and free competitors exist; the differentiator is the storyline layer. Start with one sport (basketball) to keep the log model small."
+  },
+  {
+    "id": "hnB-006",
+    "name": "Slotbook",
+    "idea": "Free, ad-free volunteer slot sign-ups for PTAs, clubs and congregations with recurring shifts, reminders and service-hour totals.",
+    "description": "School and club coordinators fight sign-up tools that charge to remove ads and lose track of past events, or fall back to chat threads. Slotbook handles roles, slot caps, recurring shifts, swap requests, email reminders and per-volunteer hour totals, with one link and no volunteer accounts. Honest moat: the feature set is easy to copy, so the edge is distribution through coordinator networks and the recurring-shift and hours logic.",
+    "niche": "Community & Nonprofit",
+    "niche2": "Parenting & Family",
+    "is_feature": false,
+    "feature_for": null,
+    "web_delivery": "Next.js on Vercel and Supabase with RLS; email reminders through a free-tier email API; installable PWA, no volunteer login.",
+    "why_hard_to_copy": "Weak: a motivated vibe coder can rebuild the basic sheet in a weekend (the HN author did). Only recurring-shift rules, swap handling, hour totals and coordinator-network distribution are defensible.",
+    "signals": [
+      {
+        "platform": "hn",
+        "url": "https://news.ycombinator.com/item?id=48457439",
+        "date": "2026-06-09",
+        "summary": "A school PTA volunteer coordinator spent a year fighting a paid sign-up tool (a $100/year ad-free plan that had to be moved to each new event by hand), gave up and rebuilt a replacement.",
+        "engagement": "comment in a 445-point thread"
+      },
+      {
+        "platform": "hn",
+        "url": "https://news.ycombinator.com/item?id=46946203",
+        "date": "2026-02-09",
+        "summary": "A pro bono builder for local nonprofits made a small PWA to take volunteer scheduling, which the groups were doing through WhatsApp and Messenger, off their admins.",
+        "engagement": "comment"
+      }
+    ],
+    "competitors_seen": [
+      {
+        "name": "SignUpGenius",
+        "url": "https://www.capterra.com/p/135392/SignUpGenius/",
+        "note": "Market leader; free tier shows ads, paid plans remove them (Capterra reviewers note intrusive ads)."
+      },
+      {
+        "name": "SignUp.com",
+        "url": "https://alternativeto.net/software/signupgenius",
+        "note": "Listed as the closest alternative, freemium."
+      },
+      {
+        "name": "Coordara",
+        "url": "https://alternativeto.net/software/signupgenius",
+        "note": "Freemium volunteer/shift/event tool for schools and clubs."
+      },
+      {
+        "name": "voluntold.fyi",
+        "url": "https://voluntold.fyi",
+        "note": "The PTA coordinator's own replacement, linked in the HN comment."
+      }
+    ],
+    "satellite": {
+      "name": "Snack Schedule Maker",
+      "what": "Generate a fair rota for team snack/refreshment duty or classroom helper days from a family list.",
+      "why_shared": "Class parents share the generated rota link in class chats.",
+      "handoff": "'Let families pick their own slots' converts the rota into a Slotbook sign-up."
+    },
+    "marketing": {
+      "where": [
+        "PTA/PTO Facebook groups",
+        "Scout and youth-club leader groups",
+        "Church admin communities",
+        "Hacker News",
+        "Local parent newsletters"
+      ],
+      "target": "PTA volunteer coordinators and club secretaries.",
+      "funnel": "Free rota maker -> sign-up page for the next event -> recurring seasons.",
+      "cold_outreach": "Offer to import a coordinator's existing sheet for free.",
+      "post_ideas": [
+        "I rebuilt our PTA sign-ups after a year of fighting ads",
+        "Volunteer slots that remember last year's helpers",
+        "A fair snack rota in 30 seconds"
+      ]
+    },
+    "capital_usd": 12,
+    "capital_note": "Domain only.",
+    "uses_paid_api": false,
+    "paid_api_note": null,
+    "confidence": "low",
+    "notes": "Demand is real but this is the most copyable idea in the file; listed because the complaint is current and specific. Keep only if the coordinator values niche distribution over defensibility."
+  },
+  {
+    "id": "hnB-007",
+    "name": "Org Memory",
+    "idea": "A handover binder for small volunteer-run organisations: policy review dates, officer terms, building maintenance records and renewals, with reminders and an audit log.",
+    "description": "Small charities, churches and clubs lose records when the volunteer treasurer or retired admin leaves, and governance tools are priced for large boards. Org Memory keeps officer terms, policy review cycles, insurance and licence renewals, building inspections and invoices in one place, nudges the chair when a term or review is due, auto-fills meeting agendas and exports a handover pack. The moat is a curated, jurisdiction-specific governance and maintenance calendar (UK charity cycles first), not the file store.",
+    "niche": "Community & Nonprofit",
+    "niche2": "Home & DIY",
+    "is_feature": false,
+    "feature_for": null,
+    "web_delivery": "Next.js on Vercel; Supabase Postgres with RLS and Storage for photos/PDFs (small files), email reminders via a free-tier email API on a scheduled function.",
+    "why_hard_to_copy": "The value is hand-curated governance calendars, policy templates and building-maintenance schedules by jurisdiction and building type, kept current by someone who knows the sector; a generic CRUD tracker lacks that.",
+    "signals": [
+      {
+        "platform": "hn",
+        "url": "https://news.ycombinator.com/item?id=49244678",
+        "date": "2026-08-10",
+        "summary": "A trustee of a small UK charity says governance tools are expensive and aimed at large boards; he is building a small system for policies, officer terms, risk registers, an audit log and reminder calendar.",
+        "engagement": "comment"
+      },
+      {
+        "platform": "hn",
+        "url": "https://news.ycombinator.com/item?id=48541150",
+        "date": "2026-06-15",
+        "summary": "A builder is making a tool for small volunteer organisations (his church building and his house) to replace filing cabinets, text threads and inboxes lost when the volunteer treasurer or retired admin leaves; says most maintenance systems are too heavy.",
+        "engagement": "comment"
+      },
+      {
+        "platform": "hn",
+        "url": "https://news.ycombinator.com/item?id=47694168",
+        "date": "2026-04-08",
+        "summary": "A commenter says writing custom software for nonprofits is rewarding because they cannot afford anything and have workflow needs that are completely unmet.",
+        "engagement": "comment in a 483-point thread"
+      }
+    ],
+    "competitors_seen": [
+      {
+        "name": "BoardPro",
+        "url": "https://www.onboardmeetings.com/blog/charity-governance-software/",
+        "note": "Board portal listed for smaller charities with a free trial; paid."
+      },
+      {
+        "name": "The Governance App (DSC)",
+        "url": "https://www.dsc.org.uk/event/thegovernanceapp-52",
+        "note": "Free board self-review tool promoted by the Directory of Social Change; review only, no calendar or records."
+      },
+      {
+        "name": "MyPlaceKeeper",
+        "url": "https://www.myplacekeeper.com/",
+        "note": "The HN builder's own home/facility record keeper; early stage."
+      }
+    ],
+    "satellite": {
+      "name": "Policy Review Calendar",
+      "what": "Free generator that lists the standard policies for a small charity or club with suggested review dates and downloads an ICS.",
+      "why_shared": "Trustees forward it to fellow trustees at the start of the governance year.",
+      "handoff": "'Track approvals, versions and owners' continues in Org Memory."
+    },
+    "marketing": {
+      "where": [
+        "UK trustee and charity-admin communities",
+        "Church administrator forums",
+        "Small charity Facebook and LinkedIn groups",
+        "Hacker News"
+      ],
+      "target": "Chairs, secretaries and treasurers of small volunteer-run bodies.",
+      "funnel": "Free policy calendar -> record store -> reminders and handover pack.",
+      "cold_outreach": "Offer to pre-build a first-year governance calendar for a local charity as a pilot.",
+      "post_ideas": [
+        "What happens when the volunteer treasurer leaves: a handover checklist",
+        "A one-page governance calendar for small charities",
+        "Why your church building needs a maintenance log"
+      ]
+    },
+    "capital_usd": 12,
+    "capital_note": "Domain only.",
+    "uses_paid_api": false,
+    "paid_api_note": null,
+    "confidence": "medium",
+    "notes": "Deliberately excludes accounts, tax filings and donations (banned areas); it tracks dates and documents only. Present as organisational reminders, not legal or regulatory advice."
+  },
+  {
+    "id": "hnB-008",
+    "name": "Quorum",
+    "idea": "Free-to-start voting and quorum tracking for HOAs, clubs and congregations, with ranked-choice tallying, proxies and a paper-ballot fallback.",
+    "description": "Volunteer board members run an election once a year, worry that results can be challenged, and fear that members who do not use email get left out. Quorum handles member lists, one-person-one-ballot links, proxy and paper-ballot entry, live quorum tracking, several tally methods and a tamper-evident audit log. The moat is correct tally and quorum rules (single transferable vote, cumulative voting, proxy limits) and trust-building audit trails.",
+    "niche": "Community & Nonprofit",
+    "niche2": "Event Planning",
+    "is_feature": false,
+    "feature_for": null,
+    "web_delivery": "Next.js on Vercel; Supabase with RLS for ballots and a hash-chained audit table; ballot links by email through a free-tier email API (volume-limited).",
+    "why_hard_to_copy": "Tally algorithms (STV, cumulative, weighted votes), proxy/quorum rule engines, paper-ballot reconciliation and verifiable audit trails are correctness-critical and trust-critical, unlike a poll widget.",
+    "signals": [
+      {
+        "platform": "hn",
+        "url": "https://news.ycombinator.com/item?id=50161537",
+        "date": "2026-10-20",
+        "summary": "The founder of a voting platform for HOAs, churches, nonprofits and unions reports a first five-figure month, saying customers are anxious volunteer board members who ask whether half their owners who do not use email will be excluded and whether it is valid in their state.",
+        "engagement": "2 points"
+      }
+    ],
+    "competitors_seen": [
+      {
+        "name": "Simply Voting",
+        "url": "https://simplyvoting.com/?p=35",
+        "note": "Hosted election service for condos/HOAs with quorum features; paid."
+      },
+      {
+        "name": "VotingPRO",
+        "url": "https://www.goodfirms.co/software/votingpro",
+        "note": "HOA voting with proxies and live quorum; single elections from $399."
+      },
+      {
+        "name": "Quick Vote Online",
+        "url": "https://www.capterra.ca/software/1101278/Quick-Vote-Online",
+        "note": "Aimed at small HOAs and nonprofit boards, advertises a free version."
+      },
+      {
+        "name": "vote.direct",
+        "url": "https://news.ycombinator.com/item?id=50161537",
+        "note": "Solo-founder competitor from the HN post, growing fast."
+      }
+    ],
+    "satellite": {
+      "name": "Ranked-Choice Tally Calculator",
+      "what": "Paste ballots and get STV/ranked-choice results with round-by-round counts.",
+      "why_shared": "Club secretaries share tallies with members and cite the rounds.",
+      "handoff": "'Collect the ballots online with quorum tracking' opens Quorum."
+    },
+    "marketing": {
+      "where": [
+        "HOA board member Facebook groups",
+        "Community association manager forums",
+        "Church and union admin communities",
+        "Hacker News"
+      ],
+      "target": "Volunteer board members who run annual elections.",
+      "funnel": "Free tally calculator -> one-off election -> yearly subscription-free usage.",
+      "cold_outreach": "Offer to run a small club's next officer election free as a case study.",
+      "post_ideas": [
+        "How to run a defensible HOA election with volunteers",
+        "What quorum actually means in your bylaws, in plain language",
+        "Paper ballots plus online: reconciling both"
+      ]
+    },
+    "capital_usd": 12,
+    "capital_note": "Domain only; ballot emails stay inside a free email tier at small scale.",
+    "uses_paid_api": false,
+    "paid_api_note": null,
+    "confidence": "low",
+    "notes": "One signal, crowded paid market, and elections carry reputational risk (must be clearly framed as a tool, not legal advice, and never handle dues or payments). Only worth it with strong audit-log design."
+  },
+  {
+    "id": "hnB-009",
+    "name": "Porch Board",
+    "idea": "Email-first community board for neighbourhood associations and small clubs: members get a digest and can post by email or web, admins moderate in one queue.",
+    "description": "Groups leaving Facebook say older members will not learn Slack or forums, CC-list emails are a mess, and forum software with email notifications 'dies fast'. Porch Board keeps email as the main interface (weekly digest, reply-to-post where possible) with a simple web page for admins to approve posts, pin notices and publish a public info page. The honest moat is thin: it depends on admin-led adoption inside small groups rather than technology.",
+    "niche": "Community & Nonprofit",
+    "niche2": "Seniors & Caregiving",
+    "is_feature": false,
+    "feature_for": null,
+    "web_delivery": "Next.js on Vercel; Supabase Auth with magic links and RLS per group; digest emails via a free-tier email API on a scheduled function; public group page is a static route.",
+    "why_hard_to_copy": "Weak: any developer can build a forum. Defensibility would come only from email-first threading/digest design that works for 70+ members and group-by-group adoption, i.e. small-niche network effects.",
+    "signals": [
+      {
+        "platform": "hn",
+        "url": "https://news.ycombinator.com/item?id=46853873",
+        "date": "2026-02-02",
+        "summary": "An Ask HN on moving a local community off Facebook groups: replies say alternatives never quite replace Groups, many groups drifted to WhatsApp or Discord, and nobody is happy with the options.",
+        "engagement": "23 points, 12 comments"
+      },
+      {
+        "platform": "hn",
+        "url": "https://news.ycombinator.com/item?id=46864974",
+        "date": "2026-02-03",
+        "summary": "A group admin says members' posts keep getting stuck in the spam queue so he checks it daily, but Facebook is the only thing non-technical people over 70 will use.",
+        "engagement": "comment"
+      },
+      {
+        "platform": "hn",
+        "url": "https://news.ycombinator.com/item?id=46921509",
+        "date": "2026-02-07",
+        "summary": "A commenter says his neighbourhood association runs on a massive CC list that is hard to unsubscribe from, wishes it were a proper group list, and notes a community that switched to a forum with email notifications died quickly.",
+        "engagement": "comment"
+      }
+    ],
+    "competitors_seen": [
+      {
+        "name": "Facebook Groups / Nextdoor",
+        "url": "https://news.ycombinator.com/item?id=46856618",
+        "note": "Default choice; noisy notifications per an HN commenter."
+      },
+      {
+        "name": "Spond",
+        "url": "https://www.spond.com/",
+        "note": "Free app that an HN commenter says most of his sports groups use; sports-oriented."
+      },
+      {
+        "name": "Jonline",
+        "url": "https://github.com/JonLatane/jonline",
+        "note": "Open-source community platform offered by its author in the thread; self-host."
+      },
+      {
+        "name": "Discourse",
+        "url": "https://www.discourse.org/contact",
+        "note": "Forum software suggested by a commenter; heavier than small groups want."
+      }
+    ],
+    "satellite": null,
+    "marketing": {
+      "where": [
+        "Neighbourhood association and HOA admin groups",
+        "Local club secretaries",
+        "Hacker News Ask/Show threads about leaving Facebook",
+        "Library and community-centre bulletin boards"
+      ],
+      "target": "Volunteer admins of neighbourhood, hobby and parish groups.",
+      "funnel": "Admin creates a group from a pasted email list -> members receive the first digest -> posting by email.",
+      "cold_outreach": "Offer to migrate one neighbourhood's CC list into a moderated list in an evening.",
+      "post_ideas": [
+        "We left Facebook for our street group: what worked for the over-70s",
+        "Why forum software dies in small communities",
+        "Fixing the CC-list newsletter"
+      ]
+    },
+    "capital_usd": 12,
+    "capital_note": "Domain only; inbound email processing would need a free tier of an email provider.",
+    "uses_paid_api": false,
+    "paid_api_note": null,
+    "confidence": "low",
+    "notes": "Real, repeated pain but the weakest moat in the file; included for the 'older members will only use email' insight. Reply-by-email (inbound parsing) is not guaranteed on free tiers; fall back to one-click reply links."
+  },
+  {
+    "id": "hnB-010",
+    "name": "Table Fill",
+    "idea": "Small-group host kit for recurring game nights and meetups: RSVP no-show forecasting, a waitlist that promotes people automatically, and an activity picker that fits whoever shows up.",
+    "description": "Hosts of recurring meetups say they cannot predict attendance and many games break at the wrong player count, and the leading platform has become expensive for organisers. Table Fill shows an expected-turnout range from each group's RSVP history, auto-promotes waitlisted people and suggests games from a shared library that work for the confirmed head-count, with a fallback pick if the count drops. Aimed at hosts of board-game, run and hobby groups; the moat is the attendance model and player-count game data, not the event page.",
+    "niche": "Event Planning",
+    "niche2": "Hobbies & Crafts",
+    "is_feature": false,
+    "feature_for": null,
+    "web_delivery": "Next.js on Vercel, Supabase for groups, RSVPs and history; responsive PWA with email reminders from a free-tier email API.",
+    "why_hard_to_copy": "Per-group attendance forecasting from RSVP history and a player-count-aware game/activity matcher need curated game data and modelling; not just an events CRUD. A network of small hosts adds a data moat over time.",
+    "signals": [
+      {
+        "platform": "hn",
+        "url": "https://news.ycombinator.com/item?id=46640438",
+        "date": "2026-01-15",
+        "summary": "In the loneliness thread a would-be host says organising board games is hard because you cannot predict turnout and many games are very sensitive to player count, so it is easier to throw an over-invited party.",
+        "engagement": "comment in a 799-point thread"
+      },
+      {
+        "platform": "hn",
+        "url": "https://news.ycombinator.com/item?id=48447184",
+        "date": "2026-06-08",
+        "summary": "A commenter often thinks about building a better Meetup because it is expensive for organisers, but gives up because of network effects.",
+        "engagement": "comment"
+      },
+      {
+        "platform": "hn",
+        "url": "https://news.ycombinator.com/item?id=49166811",
+        "date": "2026-08-04",
+        "summary": "A commenter annoyed by Meetup.com's decline asks which platforms besides Luma people know, noting groups drift to WhatsApp, Facebook or LinkedIn events that fit badly.",
+        "engagement": "comment"
+      },
+      {
+        "platform": "hn",
+        "url": "https://news.ycombinator.com/item?id=49777539",
+        "date": "2026-09-20",
+        "summary": "A developer relaunched a Meetup.com alternative with fairer organiser pricing for smaller groups, evidence of continued demand.",
+        "engagement": "169 points, 32 comments"
+      }
+    ],
+    "competitors_seen": [
+      {
+        "name": "Radius",
+        "url": "https://radius.to/",
+        "note": "Meetup alternative with fairer pricing for small groups; no attendance forecasting."
+      },
+      {
+        "name": "Meetup",
+        "url": "https://news.ycombinator.com/item?id=46919454",
+        "note": "Incumbent; HN commenters describe fees and ads for members."
+      },
+      {
+        "name": "Luma",
+        "url": "https://news.ycombinator.com/item?id=49166811",
+        "note": "Named as the main alternative by an HN commenter; general events."
+      }
+    ],
+    "satellite": {
+      "name": "Game Night Picker",
+      "what": "Enter player count and time available; get board games that suit, with a backup if one person drops out.",
+      "why_shared": "Hosts and groups share picks in chats without needing an account.",
+      "handoff": "'Track RSVPs and auto-fill the table' connects the picker to a group."
+    },
+    "marketing": {
+      "where": [
+        "Board-game cafe and club organiser groups",
+        "Local run-club and hobby group chats",
+        "BoardGameGeek forums",
+        "Hacker News"
+      ],
+      "target": "Volunteer hosts of weekly or monthly hobby meetups.",
+      "funnel": "Free picker -> create a recurring group -> forecast and waitlist features.",
+      "cold_outreach": "Message group hosts who post 'we have two spots open' with a free waitlist link.",
+      "post_ideas": [
+        "How many people will actually show up? A host's cheat sheet",
+        "Games that work at 3, 4 and 5 players",
+        "Running a meetup without paying per member"
+      ]
+    },
+    "capital_usd": 12,
+    "capital_note": "Domain only.",
+    "uses_paid_api": false,
+    "paid_api_note": null,
+    "confidence": "low",
+    "notes": "Meetup-alternative space is contested (Radius, Luma); the player-count and forecast angle is the only differentiator. Game data from BoardGameGeek may need an API token or a hand-curated starter list (check their current terms before depending on it)."
+  },
+  {
+    "id": "hnB-011",
+    "name": "Seat Solver",
+    "idea": "Paste a messy guest list and get it cleaned, grouped into households and seated automatically with keep-together and keep-apart rules.",
+    "description": "People planning a wedding or party hand-assemble guest lists from texts, photos of address books and spreadsheets, then try to seat guests by trial and error. Seat Solver imports pasted lists and CSVs, merges duplicates, groups households, takes simple rules (sit with, keep apart, table sizes) and solves a seating plan you can drag to adjust and print. The moat is the optimisation (an NP-complete seating problem needing a good heuristic) plus robust list cleaning.",
+    "niche": "Event Planning",
+    "niche2": null,
+    "is_feature": false,
+    "feature_for": null,
+    "web_delivery": "Next.js on Vercel; solver runs client-side in a Web Worker; Supabase only for saved plans; print-to-PDF layout.",
+    "why_hard_to_copy": "Seating is an NP-complete constraint problem; a solid heuristic (simulated annealing with weighted preferences) plus tolerant guest-list parsing is more than a drag-and-drop canvas.",
+    "signals": [
+      {
+        "platform": "hn",
+        "url": "https://news.ycombinator.com/item?id=48453838",
+        "date": "2026-06-08",
+        "summary": "A commenter says he built a small tool with a simple constraint solver to decide the seating chart for his own small wedding, and that it left him confident in the result.",
+        "engagement": "comment in a 445-point thread"
+      },
+      {
+        "platform": "hn",
+        "url": "https://news.ycombinator.com/item?id=45717526",
+        "date": "2025-10-27",
+        "summary": "A commenter planning a wedding describes assembling the guest list from texts, photos of his father's address book and Excel files, and says an AI agent could not do such messy data and website tasks reliably.",
+        "engagement": "comment"
+      },
+      {
+        "platform": "hn",
+        "url": "https://news.ycombinator.com/item?id=46487945",
+        "date": "2026-01-04",
+        "summary": "A developer launched Seatplan.io, drag-and-drop seating charts for weddings and events, showing ongoing interest in the problem.",
+        "engagement": "5 points"
+      }
+    ],
+    "competitors_seen": [
+      {
+        "name": "Tablecharm",
+        "url": "https://www.producthunt.com/products/tablecharm",
+        "note": "Keep-apart and keep-together rules with a Solve button; $29 one-time, free to try."
+      },
+      {
+        "name": "SeatLogic",
+        "url": "https://peerpush.com/p/seatlogic",
+        "note": "Freemium seating planner starting at about $39.99."
+      },
+      {
+        "name": "Seatplan.io",
+        "url": "https://news.ycombinator.com/item?id=46487945",
+        "note": "Drag-and-drop charts, no clear solver."
+      }
+    ],
+    "satellite": {
+      "name": "Guest List Cleaner",
+      "what": "Paste or upload a messy guest list; it merges duplicates, splits couples/households and exports a tidy CSV.",
+      "why_shared": "Couples share the cleaner with relatives who keep their own lists.",
+      "handoff": "'Seat these guests automatically' opens the solver with the cleaned list."
+    },
+    "marketing": {
+      "where": [
+        "Wedding planning forums and Facebook groups",
+        "Pinterest-style wedding boards",
+        "Product Hunt",
+        "Hacker News Show HN"
+      ],
+      "target": "Couples and party hosts with 50-200 guests.",
+      "funnel": "Free guest-list cleaner -> seating solver -> printable chart.",
+      "cold_outreach": "Offer free solves to day-of coordinators who run several events a year.",
+      "post_ideas": [
+        "Seating a wedding is a constraint problem: here is the maths",
+        "Merging four guest lists without duplicates",
+        "Keep-apart rules that never create an unseatable table"
+      ]
+    },
+    "capital_usd": 12,
+    "capital_note": "Domain only.",
+    "uses_paid_api": false,
+    "paid_api_note": null,
+    "confidence": "low",
+    "notes": "Paid competitors at $29-40 one-time exist, so free needs a clear solver advantage. Demand evidence is anecdotal."
+  },
+  {
+    "id": "hnB-012",
+    "name": "Camp Radar",
+    "idea": "A hand-curated calendar of when local summer camp and class registrations open, with reminders ahead of each opening day.",
+    "description": "Parents miss registration windows and end up taking whatever spots are left, because dates are scattered across town recreation pages and individual camp sites (resident-first windows, late-fee cutoffs and aid deadlines vary). Camp Radar starts with one metro area, hand-collects each provider's opening, resident-priority, late-fee and aid dates, and emails or exports ICS reminders per family. The moat is the curated dataset kept current, not the reminder code.",
+    "niche": "Parenting & Family",
+    "niche2": null,
+    "is_feature": false,
+    "feature_for": null,
+    "web_delivery": "Next.js on Vercel; Supabase table of providers/dates edited by an admin page; ICS export and email reminders from a scheduled function.",
+    "why_hard_to_copy": "The defensible part is a hand-collected, locally verified registration-date dataset (and parent corrections), which takes sustained manual work per metro area.",
+    "signals": [
+      {
+        "platform": "hn",
+        "url": "https://news.ycombinator.com/item?id=47747041",
+        "date": "2026-04-13",
+        "summary": "A parent says every year he either misses his kids' summer camp deadlines or scrambles for leftover spots, and is building reminders (possibly auto-booking) so parents can sign up before camps fill.",
+        "engagement": "comment in an 'ask what you are working on' thread"
+      }
+    ],
+    "competitors_seen": [
+      {
+        "name": "Town recreation registration pages",
+        "url": "https://www.townofcortlandtny.gov/cn/webpage.cfm?tpid=18486",
+        "note": "Example of the scattered, per-town registration dates with resident-first and late-fee windows that parents must track by hand."
+      },
+      {
+        "name": "NeelCamp",
+        "url": "https://neelcamp.com/",
+        "note": "The HN commenter's own early reminder product."
+      }
+    ],
+    "satellite": {
+      "name": "Camp Date Reminder",
+      "what": "Paste a camp page link or enter an opening date, get an ICS reminder two weeks and one day before.",
+      "why_shared": "Parents share it in school and neighbourhood chats in February-March.",
+      "handoff": "'Get all your town's camps pre-loaded' opens Camp Radar for that area."
+    },
+    "marketing": {
+      "where": [
+        "Local parent Facebook groups",
+        "School PTA newsletters",
+        "Neighbourhood email lists",
+        "Nextdoor-style community boards"
+      ],
+      "target": "Working parents of 5-12 year olds in one metro area.",
+      "funnel": "Free reminder -> town-level calendar -> yearly sign-up for the next season.",
+      "cold_outreach": "Send parent-group admins a free seasonal registration calendar for their town.",
+      "post_ideas": [
+        "Every summer camp registration date for [town] in one page",
+        "Why camps fill in March and how to be ready",
+        "Resident-first registration windows explained"
+      ]
+    },
+    "capital_usd": 12,
+    "capital_note": "Domain only.",
+    "uses_paid_api": false,
+    "paid_api_note": null,
+    "confidence": "low",
+    "notes": "One signal and a seasonal product; the dataset work is the whole moat and must be done city by city. Do not offer auto-booking or payments (money area)."
+  },
+  {
+    "id": "hnB-013",
+    "name": "Routine Boards",
+    "idea": "Free web builder for printable and on-screen visual schedules and first-then boards for children who are non-verbal or autistic.",
+    "description": "Parents of children who rely on picture schedules describe laminated cards and velcro boards as hard to manage and impossible to take along. Routine Boards lets caregivers build a day schedule or first-then board from an open pictogram library or their own photos, print it at true card sizes and use the same board full-screen on any tablet. The moat is a licensed, well-organised symbol set and print layouts, plus offline use.",
+    "niche": "Accessibility",
+    "niche2": "Parenting & Family",
+    "is_feature": false,
+    "feature_for": null,
+    "web_delivery": "Next.js PWA on Vercel; boards stored in Supabase with photos kept small or local; offline caching with a service worker; print CSS for card sizes.",
+    "why_hard_to_copy": "Curation and correct licensing of an open pictogram set, plus print layouts matched to real laminate/velcro card sizes and offline reliability, are more careful than a generic to-do board. Weak against apps from the same builder.",
+    "signals": [
+      {
+        "platform": "hn",
+        "url": "https://news.ycombinator.com/item?id=46945142",
+        "date": "2026-02-09",
+        "summary": "A solo developer and father of three, two with severe disabilities, says visual schedules (laminated cards, velcro boards) are a lifeline for non-verbal children but a nightmare to manage and do not leave the house, so he built an app for them.",
+        "engagement": "comment"
+      },
+      {
+        "platform": "hn",
+        "url": "https://news.ycombinator.com/item?id=46946439",
+        "date": "2026-02-09",
+        "summary": "Another father of a disabled child replied in that thread that he loves the idea behind the visual routine app, confirming interest from a second household.",
+        "engagement": "comment"
+      },
+      {
+        "platform": "hn",
+        "url": "https://news.ycombinator.com/item?id=47750009",
+        "date": "2026-04-13",
+        "summary": "The same developer reports good feedback from other parents and caregivers for a picture-routine app for non-verbal children and kids with autism or ADHD.",
+        "engagement": "comment"
+      }
+    ],
+    "competitors_seen": [
+      {
+        "name": "MyVisualRoutine",
+        "url": "https://myvisualroutine.com",
+        "note": "iOS/Android app with a free tier and paid unlimited routines; native, not web."
+      },
+      {
+        "name": "First & Then",
+        "url": "https://apps.apple.com/app/id655591623",
+        "note": "iPad app at $1.99 with photos, timer and a finished box; no web version."
+      }
+    ],
+    "satellite": {
+      "name": "First-Then Card Printer",
+      "what": "Pick two pictures and print a first-then card at the right size in seconds, with no account.",
+      "why_shared": "Teachers and therapists share printables in special-needs groups.",
+      "handoff": "'Build a full-day schedule you can use on a tablet' opens Routine Boards."
+    },
+    "marketing": {
+      "where": [
+        "Autism parent and teacher Facebook groups",
+        "Special-education teacher communities and Teachers Pay Teachers audiences",
+        "Occupational therapist forums",
+        "Product Hunt"
+      ],
+      "target": "Parents, special-education teachers and therapists of children who need visual supports.",
+      "funnel": "Free printable card -> saved boards -> shared with school or respite carers via link.",
+      "cold_outreach": "Offer therapists a free board set for their top five routines.",
+      "post_ideas": [
+        "Visual schedules without the laminator",
+        "Getting a picture routine to work for school and home alike",
+        "Check the licence before you use that pictogram"
+      ]
+    },
+    "capital_usd": 12,
+    "capital_note": "Domain only; symbol libraries chosen must be free and licence-compatible.",
+    "uses_paid_api": false,
+    "paid_api_note": null,
+    "confidence": "low",
+    "notes": "Signals come from the maker of a competing native app, so demand is plausible but not independently quantified. Check pictogram licences (several popular sets are non-commercial) and keep any photos of children out of server storage by default."
+  },
+  {
+    "id": "hnB-014",
+    "name": "Gran Screen",
+    "idea": "A caregiver-managed big-button home page for older relatives: only the links, audiobooks, radio, video-call and photos you choose, installable from the browser.",
+    "description": "Adult children report that parents struggle with logins, two-factor flows and modern sites, and that off-the-shelf senior tablets or kiosk apps are native and costly. Gran Screen is a PWA home page with large tiles for the few sites and media the family chooses, remotely edited by a caregiver, with ad-free simple games and a daily 'I am fine' tap. It cannot lock down a device like a native kiosk app; the plan is to be the lightest option that works on any tablet already in the house.",
+    "niche": "Seniors & Caregiving",
+    "niche2": "Accessibility",
+    "is_feature": false,
+    "feature_for": null,
+    "web_delivery": "Installable PWA on Vercel; Supabase stores each household's tile list and caregiver permissions; media is links/streams only, no hosting of audio or video.",
+    "why_hard_to_copy": "Weak: simple to rebuild. Differentiation comes from caregiver-side remote control plus carefully usability-tested defaults for 80+ users, which takes real testing with seniors rather than code.",
+    "signals": [
+      {
+        "platform": "hn",
+        "url": "https://news.ycombinator.com/item?id=47729327",
+        "date": "2026-04-11",
+        "summary": "A founder whose SaaS has been used by people over 65 for ten years asks how to simplify sign-in because users forget the address and which email and password they used and find Google sign-in confusing.",
+        "engagement": "58 points"
+      },
+      {
+        "platform": "hn",
+        "url": "https://news.ycombinator.com/item?id=47042747",
+        "date": "2026-02-17",
+        "summary": "A thread on watching an elderly relative struggle with the modern web: replies describe a 24-minute bill payment with an emailed code, QR/banking-app logins that fail every time, and a hospice patient asked for a new email address.",
+        "engagement": "48 points, 15 comments"
+      },
+      {
+        "platform": "hn",
+        "url": "https://news.ycombinator.com/item?id=46922549",
+        "date": "2026-02-07",
+        "summary": "A builder says it is hard to find an audiobook player that a non-technical, visually impaired person in their eighties can operate, so he made a locked-down Android app managed by a caregiver.",
+        "engagement": "6 points"
+      }
+    ],
+    "competitors_seen": [
+      {
+        "name": "Tech Ease",
+        "url": "https://apps.apple.com/sv/app/tech-ease/id6695750585",
+        "note": "iPad launcher with large one-tap buttons; caregivers change layout remotely; native."
+      },
+      {
+        "name": "GrandPad",
+        "url": "https://www.podfeet.com/blog/2025/04/ces-2025-grandpad/",
+        "note": "Dedicated senior tablet with family management and cellular; hardware purchase and subscription."
+      },
+      {
+        "name": "Homer Audio Player",
+        "url": "https://news.ycombinator.com/item?id=46922549",
+        "note": "Android kiosk audio player with caregiver content management."
+      }
+    ],
+    "satellite": null,
+    "marketing": {
+      "where": [
+        "Caregiver and family tech-support communities",
+        "Senior centre and library tech-help volunteers",
+        "Hacker News Ask threads about seniors",
+        "Local council on aging newsletters"
+      ],
+      "target": "Adult children who act as tech support for a parent or grandparent.",
+      "funnel": "Setup page for the relative's device -> caregiver adds tiles remotely -> weekly family photo/message tile.",
+      "cold_outreach": "Offer library tech-help volunteers a free setup template for the patrons they assist.",
+      "post_ideas": [
+        "The five tiles my 84-year-old father actually needs",
+        "Why sign-in is the real barrier for older users",
+        "Set up a tablet in ten minutes without app stores"
+      ]
+    },
+    "capital_usd": 12,
+    "capital_note": "Domain only.",
+    "uses_paid_api": false,
+    "paid_api_note": null,
+    "confidence": "low",
+    "notes": "Strong repeated pain (three independent threads) but native senior launchers already exist and a web page cannot kiosk-lock a device. Treat as an accessibility-flavoured family tool, not a hardware replacement."
+  },
+  {
+    "id": "hnB-015",
+    "name": "Open When",
+    "idea": "A family binder that tells loved ones where everything is and what to do with each online account after you die or are incapacitated, without storing passwords.",
+    "description": "People worry about what a spouse would face with email, photo storage, subscriptions and documents after a death, and a password manager alone does not explain what to do. Open When keeps an inventory of accounts by provider with the exact memorialise/close/transfer steps, who the family contact is and where documents live, encrypted in the browser and released to named people only on a check-in lapse or manual trigger. The moat is a curated, regularly updated per-provider procedures dataset plus careful client-side encryption.",
+    "niche": "Seniors & Caregiving",
+    "niche2": "Data & Documents",
+    "is_feature": false,
+    "feature_for": null,
+    "web_delivery": "Next.js on Vercel; client-side encryption (Web Crypto) before data reaches Supabase; scheduled function sends a check-in email and releases a sealed link to trusted contacts if unanswered.",
+    "why_hard_to_copy": "The provider-by-provider procedures dataset (Apple, Google, Meta, banks' notification steps etc.) must be researched and kept current, and zero-knowledge encryption plus a safe release flow is easy to get wrong.",
+    "signals": [
+      {
+        "platform": "hn",
+        "url": "https://news.ycombinator.com/item?id=47689759",
+        "date": "2026-04-08",
+        "summary": "An Ask HN asks how people manage their digital legacy, worrying about what his wife would face with accounts, old photos and documents after his death beyond handing over a password manager.",
+        "engagement": "16 points, 16 comments"
+      },
+      {
+        "platform": "hn",
+        "url": "https://news.ycombinator.com/item?id=49763311",
+        "date": "2026-09-19",
+        "summary": "A student launched Seal, an iOS app for encrypted letters and passwords that open for family after a long inactivity countdown; commenters questioned device loss, Apple dependency and the inactivity trigger, and one asked why it is not a client-side web app.",
+        "engagement": "13 points"
+      },
+      {
+        "platform": "hn",
+        "url": "https://news.ycombinator.com/item?id=49764765",
+        "date": "2026-09-19",
+        "summary": "Commenter asks why Seal is not also available as a client-side web app, suggesting appetite for a browser version.",
+        "engagement": "comment"
+      }
+    ],
+    "competitors_seen": [
+      {
+        "name": "Apple Legacy Contact / Google Inactive Account Manager",
+        "url": "https://digitalready.tas.gov.au/resources/your-digital-legacy",
+        "note": "Platform features plus government checklists; per-platform only and no single family overview."
+      },
+      {
+        "name": "Planning checklists (insurers, estate lawyers)",
+        "url": "https://mpestateplanning.uk/your-digital-legacy-planning-checklist/",
+        "note": "Static PDFs/checklists; no tool that keeps them current."
+      },
+      {
+        "name": "Seal (iOS)",
+        "url": "https://news.ycombinator.com/item?id=49763311",
+        "note": "Encrypted envelopes released to family after inactivity; iPhone/iPad only, depends on Apple CloudKit per its own thread."
+      }
+    ],
+    "satellite": {
+      "name": "Account Inventory Checklist",
+      "what": "A printable checklist generator that lists the accounts most people forget, with memorialise/close links per provider.",
+      "why_shared": "Estate planners, financial-planning bloggers and family members share it as a weekend task.",
+      "handoff": "'Keep this updated and notify my contacts' continues in Open When."
+    },
+    "marketing": {
+      "where": [
+        "Personal-finance-adjacent blogs (non-advice angle)",
+        "Hospice and caregiver support communities",
+        "Password-manager user forums",
+        "Hacker News"
+      ],
+      "target": "Adults 35-65 with a spouse or ageing parents and many online accounts.",
+      "funnel": "Free checklist -> encrypted binder -> trusted-contact release.",
+      "cold_outreach": "Offer family-support nonprofits a branded checklist for their workshops.",
+      "post_ideas": [
+        "What your family needs to do with your Google and Apple accounts",
+        "The digital legacy checklist nobody gives you",
+        "Why 'give them my password manager' is not a plan"
+      ]
+    },
+    "capital_usd": 12,
+    "capital_note": "Domain only.",
+    "uses_paid_api": false,
+    "paid_api_note": null,
+    "confidence": "low",
+    "notes": "One signal; trust and liability (data loss, wrongful release) are significant. Do not store account passwords or financial data; keep to locations and instructions, and avoid legal/estate advice. The trusted-contact release flow adds a scheduled email job (Supabase cron on the free plan is enough). A second builder (Seal, Sep 2026) shows others see the same need; the open design question from that thread is who decides someone is gone and how to avoid false triggers."
+  },
+  {
+    "id": "hnB-016",
+    "name": "Table Captions",
+    "idea": "A shared live-captions page for small gatherings: one phone listens, everyone else reads the text on their own screen.",
+    "description": "Hearing-aid users say restaurants, parties and group conversations remain hard even with aids, and people build captioning tools for hard-of-hearing family members. Table Captions turns any phone browser into the microphone and shows large, speaker-labelled text on any screen via a join code, aimed at church groups, clubs, family dinners and small meetings. It relies on the browser's built-in speech recognition for the free core.",
+    "niche": "Accessibility",
+    "niche2": "Community & Nonprofit",
+    "is_feature": false,
+    "feature_for": null,
+    "web_delivery": "Next.js PWA on Vercel; Web Speech API in the speaker's browser; Supabase Realtime broadcasts text to joined viewers; no audio is stored or uploaded to our servers.",
+    "why_hard_to_copy": "Weak. A vibe coder can wire the Web Speech API in a weekend; the only defensible parts are reliable multi-device sync, readable caption styling for hearing loss and group-friendly speaker labelling.",
+    "signals": [
+      {
+        "platform": "hn",
+        "url": "https://news.ycombinator.com/item?id=48990019",
+        "date": "2026-07-21",
+        "summary": "A developer posted an on-device live-captions app he built for his hard-of-hearing wife.",
+        "engagement": "1 point"
+      },
+      {
+        "platform": "hn",
+        "url": "https://news.ycombinator.com/item?id=46244100",
+        "date": "2025-12-12",
+        "summary": "A GrapheneOS user missed Android's Live Caption feature and built an offline voice-typing and live-captions app.",
+        "engagement": "4 points"
+      },
+      {
+        "platform": "hn",
+        "url": "https://news.ycombinator.com/item?id=46035807",
+        "date": "2025-11-24",
+        "summary": "A hearing-aid wearer says aids still struggle in noisy rooms with multiple voices, like restaurants and parties, and is considering live-caption glasses to supplement them.",
+        "engagement": "comment"
+      }
+    ],
+    "competitors_seen": [
+      {
+        "name": "Rylo Live Transcribe",
+        "url": "https://rylo.com/live-transcribe",
+        "note": "Free phone app for face-to-face captions, native."
+      },
+      {
+        "name": "Ava",
+        "url": "https://ava.me/live-captions",
+        "note": "Captions for in-person and online conversations; subscription."
+      },
+      {
+        "name": "Windows Live Captions",
+        "url": "https://support.microsoft.com/accessibility/windows/use-live-captions-to-better-understand-audio",
+        "note": "Built into Windows, includes microphone audio; single-device."
+      }
+    ],
+    "satellite": null,
+    "marketing": {
+      "where": [
+        "Hearing-loss support communities (HLAA-style local groups)",
+        "Church accessibility committees",
+        "Club secretaries who host meetings",
+        "Hacker News Show HN"
+      ],
+      "target": "Hard-of-hearing people and the groups that include them.",
+      "funnel": "Host opens a room link -> guests join by code -> optional saved transcript.",
+      "cold_outreach": "Offer a local hearing-loss support group a free trial at their next meeting.",
+      "post_ideas": [
+        "Live captions for the whole table with just a browser",
+        "Setting up captions at a club meeting without new hardware",
+        "What captions can and cannot do in noisy rooms"
+      ]
+    },
+    "capital_usd": 12,
+    "capital_note": "Domain only; Web Speech API is free in supporting browsers.",
+    "uses_paid_api": false,
+    "paid_api_note": null,
+    "confidence": "low",
+    "notes": "Browser speech recognition quality and support vary (Chrome and Safari work best) and may send audio to the browser vendor's servers, which must be disclosed. Native tools are strong, so this only fits the group-sharing niche. Optional paid speech APIs could improve accuracy later."
+  },
+  {
+    "id": "hnB-017",
+    "name": "Plug-In Solar Rulebook",
+    "idea": "Enter your country or US state and address: see whether plug-in (balcony) solar is allowed, the wattage cap, what to register, which devices qualify, and a realistic yield estimate.",
+    "description": "Plug-in solar became legal or semi-legal in the UK, several US states and elsewhere during 2026, and every thread shows confusion: which certification applies, how many panels per circuit, what renters can do, what a US 120 V split-phase home means. The tool combines a hand-maintained rules table (caps, registration steps, certification such as UL 3700, circuit and socket limits, renter notes) with a free-data yield and payback estimate for the roof or balcony direction. The moat is the curated, constantly changing regulatory dataset plus honest uncertainty ranges, which generic solar calculators and one-country tools lack.",
+    "niche": "Home & DIY",
+    "niche2": "Gardening & Outdoors",
+    "is_feature": false,
+    "feature_for": null,
+    "web_delivery": "Next.js on Vercel; rules stored as versioned rows in Supabase (with source links and last-verified dates); yield estimate calls a free public solar-irradiance API from a Vercel route with caching; static pages per country/state for search traffic.",
+    "why_hard_to_copy": "A hand-curated, dated rules dataset across jurisdictions that changed repeatedly in 2026, plus shading/orientation modelling and circuit-safety checks, needs domain research and upkeep that a quick vibe-coded calculator will not have.",
+    "signals": [
+      {
+        "platform": "hn",
+        "url": "https://news.ycombinator.com/item?id=50056822",
+        "date": "2026-10-12",
+        "summary": "A 264-point thread on plug-in solar panels shows constant confusion about legality, split-phase US wiring, utility approval, circuit limits and who can install what.",
+        "engagement": "264 points, 280 comments"
+      },
+      {
+        "platform": "hn",
+        "url": "https://news.ycombinator.com/item?id=49023291",
+        "date": "2026-07-23",
+        "summary": "Thread on UK households being free to install plug-in balcony solar: commenters ask where this stands in the US, whether the meter will show it, and one lists three headaches for US buyers (device certification that barely exists yet, hard-to-source panels, state-by-state rules).",
+        "engagement": "88 points, 64 comments"
+      },
+      {
+        "platform": "hn",
+        "url": "https://news.ycombinator.com/item?id=48334949",
+        "date": "2026-05-30",
+        "summary": "A developer launched a free tool estimating what plug-in solar could generate at any British address using government LIDAR shading data; commenters asked for rooftops, multiple mounting spots and non-UK coverage.",
+        "engagement": "126 points, 44 comments"
+      },
+      {
+        "platform": "hn",
+        "url": "https://news.ycombinator.com/item?id=50072281",
+        "date": "2026-10-13",
+        "summary": "A renter doing balcony-solar advocacy says he does not know the real costs or process for installing and asks what regulatory burden could be reduced.",
+        "engagement": "comment"
+      }
+    ],
+    "competitors_seen": [
+      {
+        "name": "Helios",
+        "url": "https://news.ycombinator.com/item?id=48334949",
+        "note": "Free UK-only address-level yield estimator; no rules guide, no other countries."
+      },
+      {
+        "name": "Balcony solar power (Wikipedia)",
+        "url": "https://en.wikipedia.org/wiki/Balcony_solar_power",
+        "note": "Overview of national rules and limits; static, not personalised."
+      },
+      {
+        "name": "Is balcony solar legal? country guide",
+        "url": "https://www.promptquorum.com/balcony-solar/is-balcony-solar-legal-country-guide",
+        "note": "Static multi-country guide; no address or yield tool."
+      },
+      {
+        "name": "pv magazine USA safety article",
+        "url": "https://pv-magazine-usa.com/2026/08/19/ensuring-safety-of-plug-in-solar/",
+        "note": "News coverage of safety standards; not an interactive tool."
+      },
+      {
+        "name": "Octopus Energy plug-in solar",
+        "url": "https://octopus.energy/plug-in-solar/",
+        "note": "UK retailer selling kits; sales-driven, not neutral."
+      }
+    ],
+    "satellite": {
+      "name": "Can I Plug It In Here?",
+      "what": "A three-question checker (country/state, rented or owned, mounting) that returns a one-screen yes/maybe/no with the cap and the registration form to use.",
+      "why_shared": "Forum users and news-thread commenters link a neutral answer page instead of re-explaining the rules.",
+      "handoff": "'See what it would generate at your address' opens the full planner."
+    },
+    "marketing": {
+      "where": [
+        "Hacker News Show HN",
+        "Energy and solar forums (non-Reddit, e.g. DIY solar communities)",
+        "Renter and apartment-living Facebook groups",
+        "Local sustainability newsletters",
+        "Mastodon and Bluesky energy communities"
+      ],
+      "target": "Renters and homeowners curious about plug-in solar, first in the UK and US states with new laws.",
+      "funnel": "Free legality checker -> address yield estimate -> shopping and installation checklist.",
+      "cold_outreach": "Share the checker with energy journalists and utility-advocacy groups covering new state laws.",
+      "post_ideas": [
+        "Plug-in solar rules by state, kept current with sources",
+        "What 'G98' and 'UL 3700' mean for your balcony",
+        "How much will a vertical balcony panel really make where you live?"
+      ]
+    },
+    "capital_usd": 12,
+    "capital_note": "Domain only; irradiance data from a free public API.",
+    "uses_paid_api": false,
+    "paid_api_note": null,
+    "confidence": "medium",
+    "notes": "Strong current attention (264-point thread, UK launch, US state laws) but the rules table is a maintenance commitment and must carry sources, last-verified dates and a clear 'not legal or electrical advice' notice. Affiliate or sales links should stay out to keep trust. Verify the terms of the chosen irradiance API before building."
+  }
+]

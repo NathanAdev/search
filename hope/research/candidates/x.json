@@ -1,0 +1,438 @@
+[
+  {
+    "id": "x-001",
+    "name": "Open Slots Finder",
+    "idea": "A filterable directory of artists and makers who currently have commission slots open, with price range, style and queue status.",
+    "description": "Buyers of art, emotes, VTuber assets, game art and custom costumes currently hunt through social posts to find someone who is taking orders. This directory lets makers keep a profile (links to their own portfolio and own payment page, no money handled here) with a live open/closed/waitlist status, price bands and style tags, and lets buyers filter by type, budget and availability. Start with one tight vertical (for example Twitch/VTuber assets, or fursuit makers) so the list is complete and trusted before widening.",
+    "niche": "Creators & Streamers",
+    "niche2": "Hobbies & Crafts",
+    "is_feature": false,
+    "feature_for": null,
+    "web_delivery": "Next.js on Vercel hobby, Supabase Postgres + magic-link auth for makers to update their own status; profiles hold links and tiny thumbnails only, no image hosting.",
+    "why_hard_to_copy": "The code is easy; the moat is a hand-seeded, vetted maker list in one vertical and makers who keep their open/closed status fresh (network effect in a small niche). A clone with an empty directory is useless.",
+    "signals": [
+      {"platform": "x", "url": "https://x.com/micvlilly/status/2043810827740885434", "date": "2026-04-13", "summary": "Wants a site to browse artists who have commissions open and search them by art type and price.", "engagement": "unknown"},
+      {"platform": "x", "url": "https://x.com/chipichipi01/status/2053681686584443262", "date": "2026-05-11", "summary": "Wishes there were a Skeb-style commission site for artists outside Japan.", "engagement": "unknown"},
+      {"platform": "x", "url": "https://x.com/TheBiggestYonk/status/2089721472407212091", "date": "2026-08-18", "summary": "Asks where a non-artist friend can find an artist for Twitch emotes that is not Fiverr or Etsy.", "engagement": "unknown"},
+      {"platform": "x", "url": "https://x.com/TripsMayVary/status/2103226223224914111", "date": "2026-09-24", "summary": "Looking for where to find a capsule artist for a Steam game and asks whether a site specialising in this exists; says if not, there should be one.", "engagement": "unknown"},
+      {"platform": "x", "url": "https://x.com/pizzacaw/status/2112702680728752328", "date": "2026-10-21", "summary": "Says fursuit makers are hard to find and wishes one website listed every maker so they could filter by price and type.", "engagement": "unknown"}
+    ],
+    "competitors_seen": [
+      {"name": "Artists&Clients", "url": "https://alternativeto.net/software/artistsandclients/about", "note": "Commissions marketplace with filtering; listing is thin, not verified live."},
+      {"name": "ArtStation / Behance", "url": "https://beta.hcss.nl/?p=9158", "note": "Portfolio platforms; not built around an open-slots status."},
+      {"name": "Individual maker Carrd pages (queue/slot status per maker)", "url": "https://clowncarcrittersfaq.carrd.co/", "note": "Web search found no fursuit maker directory with price filter or waitlist status; each maker publishes their own page."}
+    ],
+    "satellite": {"name": "Commission price and quote sheet generator", "what": "Free page where an artist fills in styles, prices and terms and gets a shareable price sheet / quote template.", "why_shared": "Every artist needs one and posts it in their bio, which exposes the directory link.", "handoff": "One button on the generated sheet: 'Show my open slots in the directory'."},
+    "marketing": {
+      "where": ["Bluesky and X artist communities", "Discord servers for VTuber/emote makers", "Tumblr and Carrd link-lists", "itch.io / gamedev Discords (for game artists)", "Product Hunt"],
+      "target": "Small digital artists and custom makers who want free visibility, and the buyers looking for them.",
+      "funnel": "Maker sees the shared price sheet or a friend's profile, claims a free listing in two minutes, buyers find them by filter.",
+      "cold_outreach": "DM 50 makers in one vertical offering to pre-fill their listing from their public pages, asking only for a yes.",
+      "post_ideas": ["Which emote artists have slots open this week (live list)", "Free price sheet generator for commission artists", "Price ranges for Twitch emote commissions, from listed profiles"]
+    },
+    "uses_paid_api": false,
+    "paid_api_note": null,
+    "capital_usd": 12,
+    "capital_note": "Domain only; Supabase free and Vercel hobby cover 500 monthly users.",
+    "confidence": "medium",
+    "notes": "Five independent X posts over six months, all asking the same thing in different verticals (I merged the fursuit maker request in as a first vertical). Honest weakness: marketplace cold start and existing generic platforms. No payments are held, only links out. The fursuit request is a single post."
+  },
+  {
+    "id": "x-002",
+    "name": "Mistria Farm Planner",
+    "idea": "A tile-accurate drag-and-drop farm layout planner for Fields of Mistria, shareable by link.",
+    "description": "Players of the farming sim Fields of Mistria want to plan their farm layout before placing and decorating in game, as Stardew players can. The planner would hold hand-measured footprints for buildings, crops, paths and decor, and the fixed anchors (farmhouse, shrine), with undo, layers and a share link. Hard to copy because the footprint and rule data must be measured and verified in game.",
+    "niche": "Gaming Communities",
+    "niche2": "Hobbies & Crafts",
+    "is_feature": false,
+    "feature_for": null,
+    "web_delivery": "Static React/canvas app on Vercel; layouts saved as compressed JSON in the URL, optional Supabase table for named saves.",
+    "why_hard_to_copy": "Needs a hand-verified dataset of tile footprints and placement rules for each object, plus patch tracking; generic grid editors do not have it.",
+    "signals": [
+      {"platform": "x", "url": "https://x.com/kktwojingle/status/2092045211924885644", "date": "2026-08-25", "summary": "Asks whether a website exists to plan a Mistria farm before decorating in game, notes one exists for Stardew, and says planning on a large scale in her head is hard.", "engagement": "unknown"}
+    ],
+    "competitors_seen": [
+      {"name": "fieldsofmistria.it.com farm layout guide", "url": "https://www.fieldsofmistria.it.com/guides/farm-layout", "note": "Unofficial text guide, not an interactive planner."},
+      {"name": "Fields of Mistria wiki (wiki.gg)", "url": "https://fieldsofmistria.wiki.gg/wiki/Fields_of_Mistria_Wiki/de", "note": "Wiki; I could not confirm it has an interactive layout planner."}
+    ],
+    "satellite": {"name": "Mistria object size cheat sheet", "what": "Searchable table of every placeable object and its tile footprint.", "why_shared": "Players link it in guides and Discords.", "handoff": "Each row has an 'add to planner' button."},
+    "marketing": {
+      "where": ["Fields of Mistria Discord and community forums", "Steam discussion threads", "Bluesky and X game hashtags", "Wiki talk pages"],
+      "target": "Fields of Mistria players who plan layouts and decorate.",
+      "funnel": "Cheat sheet in search results, then the planner, then the share link posted in Discord.",
+      "cold_outreach": "Message popular layout-sharing players asking to import their screenshots as template layouts.",
+      "post_ideas": ["Plan your Mistria farm before year 1 (free tile planner)", "Every Mistria object by tile size", "Template layouts from the community"]
+    },
+    "uses_paid_api": false,
+    "paid_api_note": null,
+    "capital_usd": 12,
+    "capital_note": "Domain only.",
+    "confidence": "low",
+    "notes": "One post. A grid editor is a weekend job; the defensible part is the verified footprint data and keeping up with patches. Game-specific audience size is unknown."
+  },
+  {
+    "id": "x-003",
+    "name": "Hours Any Day",
+    "idea": "A web reader for the Liturgy of the Hours that opens any past or future date with the correct calendar rules.",
+    "description": "A user who missed two days through illness could not open them in the app she uses, which only goes back one day. A web app would compute the liturgical day correctly (season, feast precedence, psalter week, local calendar) and show the prayers for any date, installable as a PWA with offline caching. Correct calendar logic is the hard part.",
+    "niche": "Faith & Religion",
+    "niche2": "Productivity & Planning",
+    "is_feature": false,
+    "feature_for": null,
+    "web_delivery": "PWA on Vercel hobby; calendar rules computed client-side; texts stored as static JSON or in Supabase.",
+    "why_hard_to_copy": "Liturgical calendar precedence rules (Easter computation, solemnities vs memorials, national and diocesan proper calendars) are correctness-critical and rarely implemented well; offline PWA.",
+    "signals": [
+      {"platform": "x", "url": "https://x.com/writriverdale/status/2099112707471643052", "date": "2026-09-13", "summary": "Missed two days due to illness and asks for a website that shows Liturgy of the Hours for past days, because the iBreviary app only goes back one day.", "engagement": "unknown"}
+    ],
+    "competitors_seen": [
+      {"name": "Universalis", "url": "https://apps.apple.com/us/app/universalis/id284942719", "note": "Paid app that views any date, past, present or future."},
+      {"name": "DivineOffice.org (per forum thread)", "url": "https://forum.musicasacra.com/forum/discussion/comment/170809", "note": "Popular choice, but a poster said access had become restricted."}
+    ],
+    "satellite": {"name": "Liturgical calendar date lookup", "what": "Enter any date and see the season, feast rank and color for the chosen calendar.", "why_shared": "Parish staff and bloggers link to it for date questions.", "handoff": "Link button 'Open the prayers for this day'."},
+    "marketing": {
+      "where": ["Catholic Twitter/X and Bluesky", "Parish staff and music director forums (for example musicasacra.com)", "Catholic app directories"],
+      "target": "Laypeople and clergy who pray the Hours and want free access to any date.",
+      "funnel": "Calendar lookup search traffic, then the reader.",
+      "cold_outreach": "Offer the calendar lookup to parish-tech newsletters.",
+      "post_ideas": ["Missed a few days? Open any date of the Hours", "Why the calendar differs by country, explained with the rules"]
+    },
+    "uses_paid_api": false,
+    "paid_api_note": null,
+    "capital_usd": 12,
+    "capital_note": "Domain only.",
+    "confidence": "low",
+    "notes": "One post. New niche 'Faith & Religion' because no canonical niche fits. Big risk: the official English breviary texts are copyrighted, so a launch needs public-domain or openly licensed texts or a licence; check this first."
+  },
+  {
+    "id": "x-004",
+    "name": "Disc Edition Database",
+    "idea": "A community database of physical film releases (editions, barcodes, special features), like Discogs but for movies.",
+    "description": "A collector wants a Discogs-style site to see every physical release of a film. The site would hold one page per edition with barcode, region, cuts, extras and packaging, and let users add copies to a collection or wantlist. Barcode scanning runs in the browser camera.",
+    "niche": "Collectors",
+    "niche2": "Photo & Video",
+    "is_feature": false,
+    "feature_for": null,
+    "web_delivery": "Next.js + Supabase; barcode lookup in browser with a JS decoder; no image hosting beyond small cover thumbnails.",
+    "why_hard_to_copy": "The edition database itself: community-curated, cross-linked by barcode, with a moderation process; code is not the moat.",
+    "signals": [
+      {"platform": "x", "url": "https://x.com/Pratheism/status/2040168184670519559", "date": "2026-04-03", "summary": "Wishes for a Discogs-like website for films to see all physical releases.", "engagement": "unknown"}
+    ],
+    "competitors_seen": [
+      {"name": "Movie Collector Shelf", "url": "https://apps.apple.com/lu/app/id6763939928", "note": "iOS personal collection manager with a community catalog; not a public edition database."}
+    ],
+    "satellite": {"name": "Edition comparison page", "what": "Enter a film and compare known releases side by side (cut, region, extras).", "why_shared": "Collector forums link such comparisons.", "handoff": "'Add your copy' button."},
+    "marketing": {
+      "where": ["Physical media collector forums and Discords", "Bluesky/X physical media communities", "Letterboxd lists"],
+      "target": "Blu-ray, 4K and boutique-label collectors.",
+      "funnel": "Edition comparison pages in search, then free accounts to track a collection.",
+      "cold_outreach": "Ask forum collectors to seed one label's releases.",
+      "post_ideas": ["Every edition of one cult film compared", "Which boutique labels have the most complete cuts"]
+    },
+    "uses_paid_api": false,
+    "paid_api_note": null,
+    "capital_usd": 12,
+    "capital_note": "Domain only.",
+    "confidence": "low",
+    "notes": "One post. I did not verify other existing physical-media databases (such as Blu-ray.com); the scorer should check how well they cover this before rating."
+  },
+  {
+    "id": "x-005",
+    "name": "Duo Pose Studio",
+    "idea": "A browser posing mannequin for multiple figures that interact (hug, fight, hold hands), shareable by link.",
+    "description": "Artists want pose-reference sites that work for more than one person in frame and are not just a Pinterest board. A 3D mannequin tool with a library of hand-authored two-figure interaction poses, contact constraints and camera angles, running client side, fills that. The ability to save a scene as a link avoids storing images.",
+    "niche": "Hobbies & Crafts",
+    "niche2": "Creators & Streamers",
+    "is_feature": false,
+    "feature_for": null,
+    "web_delivery": "Three.js app on Vercel; poses as small JSON; scenes saved in the URL or a Supabase row.",
+    "why_hard_to_copy": "Needs a hand-authored library of believable two-figure poses with contact constraints (inverse kinematics), which takes art and rigging skill.",
+    "signals": [
+      {"platform": "x", "url": "https://x.com/awesomesexyboyy/status/2050560110431551518", "date": "2026-05-02", "summary": "Wants a website like Line of Action but with several people in the frame interacting.", "engagement": "unknown"},
+      {"platform": "x", "url": "https://x.com/Xx_Sn0ww0lf_xX/status/2081124773153669584", "date": "2026-07-25", "summary": "Asks for a pose gallery website that is not Pinterest, and whether Line of Action has a gallery mode.", "engagement": "unknown"}
+    ],
+    "competitors_seen": [
+      {"name": "Posemy.art", "url": "https://posemy.art/", "note": "Free browser posing tool with thousands of premade poses; I could not confirm how well it handles interacting figures."},
+      {"name": "Magic Poser", "url": "https://apps.appfollow.io/ios/magic-poser-art-pose-tool/1141755970?country=bz", "note": "Mainly a mobile app."}
+    ],
+    "satellite": {"name": "Pose of the day", "what": "Daily random mannequin pose with a timer for gesture practice.", "why_shared": "Art practice communities share daily prompts.", "handoff": "'Open this pose in the studio'."},
+    "marketing": {
+      "where": ["Art practice Discords and Bluesky/X art tags", "Comic and illustration communities", "Product Hunt"],
+      "target": "Illustrators and comic artists who need two-person reference.",
+      "funnel": "Daily pose page, then the studio.",
+      "cold_outreach": "Ask art-tutorial creators to try the duo poses for a video.",
+      "post_ideas": ["Free hug and hand-holding pose references from every angle", "Duo gesture drawing timer"]
+    },
+    "uses_paid_api": false,
+    "paid_api_note": null,
+    "capital_usd": 12,
+    "capital_note": "Domain only.",
+    "confidence": "low",
+    "notes": "Two posts. Posemy.art already has a large library and may cover multi-figure scenes; the real gap is unverified."
+  },
+  {
+    "id": "x-006",
+    "name": "Scene Soundtrack Lookup",
+    "idea": "A crowd-sourced database that tells you where a song was used in a film, show or fashion runway show.",
+    "description": "Two users want to look up whether a song appears in a film and to find the music for runway shows. A community-edited site with timestamps per scene and sources would answer both. Start with runway shows, which have no obvious dedicated database.",
+    "niche": "Music & Audio",
+    "niche2": "Photo & Video",
+    "is_feature": false,
+    "feature_for": null,
+    "web_delivery": "Next.js + Supabase with edit history and moderation queue; track and film metadata linked out, no audio hosted.",
+    "why_hard_to_copy": "A curated, moderated, timestamped dataset with contributors is the moat; cold start is brutal.",
+    "signals": [
+      {"platform": "x", "url": "https://x.com/claripapois/status/2101377739391488382", "date": "2026-09-19", "summary": "Asks for a website that tells you whether a given song appears in a movie.", "engagement": "unknown"},
+      {"platform": "x", "url": "https://x.com/bbysopopularrr/status/2053478744258490724", "date": "2026-05-10", "summary": "Wishes for a website dedicated to runway show soundtracks.", "engagement": "unknown"}
+    ],
+    "competitors_seen": [
+      {"name": "Tunefind", "url": "https://www.ghacks.net/?p=94879", "note": "Songs from TV and film, organised by show and episode; hard to search by song."},
+      {"name": "WhatSong / What Is That Song?", "url": "https://alternativeto.net/software/tunefind", "note": "Alternatives listed on AlternativeTo; film and TV only."}
+    ],
+    "satellite": null,
+    "marketing": {
+      "where": ["Fashion communities on Bluesky/X and Tumblr", "Music discovery forums", "Film soundtrack fans"],
+      "target": "Fashion and film fans who chase song IDs.",
+      "funnel": "Song pages in search, then contributors add scenes.",
+      "cold_outreach": "Seed with one fashion week season and ask fan accounts to extend it.",
+      "post_ideas": ["Full soundtrack of one fashion week", "Songs from one director's films by scene"]
+    },
+    "uses_paid_api": false,
+    "paid_api_note": null,
+    "capital_usd": 12,
+    "capital_note": "Domain only.",
+    "confidence": "low",
+    "notes": "Two posts about slightly different media. Tunefind and others already serve film and TV; only the runway angle looks open. Moat depends on community."
+  },
+  {
+    "id": "x-007",
+    "name": "Play It Online Board Games",
+    "idea": "A directory of which board games can be played online with friends, on which platform, free or paid, and how good the implementation is.",
+    "description": "A user asks whether anyone has built a repository of all board games playable online with friends. The directory would map each game to its online implementations, price, player counts, supports voice and async play, and user ratings of the implementation quality. It links out to the platforms, no game engine hosted.",
+    "niche": "Gaming Communities",
+    "niche2": "Hobbies & Crafts",
+    "is_feature": false,
+    "feature_for": null,
+    "web_delivery": "Next.js + Supabase; filterable table with user-submitted implementation records; no real-time play hosted.",
+    "why_hard_to_copy": "The cross-platform dataset (which game is on which of the dozen platforms and how it plays) is hand-curated and goes stale, so ongoing curation is the moat.",
+    "signals": [
+      {"platform": "x", "url": "https://x.com/sohmahajan/status/2114375313518145591", "date": "2026-10-25", "summary": "Asks whether anyone has built a repo of all board games that can be played online with friends and says someone should if not.", "engagement": "unknown"}
+    ],
+    "competitors_seen": [
+      {"name": "FreeBoardGames.org alternatives list", "url": "https://www.alternativeto.net/software/freeboardgames/?p=2", "note": "Lists many platforms (Yucata, Boardspace, PlayingCards.io), but each is a platform, not a cross-platform directory."},
+      {"name": "Best sites to play online board games with friends", "url": "https://maketecheasier.com/play-online-board-games-with-friends", "note": "Editorial article, not a searchable per-game database."}
+    ],
+    "satellite": {"name": "Game night picker", "what": "Enter group size and platform access, get games you can play online right now.", "why_shared": "Friend groups share the result.", "handoff": "Link to the full directory."},
+    "marketing": {
+      "where": ["Board game Discords", "BoardGameGeek forums", "Bluesky/X tabletop tags"],
+      "target": "Friend groups playing remotely.",
+      "funnel": "Game night picker then directory.",
+      "cold_outreach": "Ask board game podcasts to share the picker.",
+      "post_ideas": ["All the 4-player games you can play for free in a browser", "Where to play game X online"]
+    },
+    "uses_paid_api": false,
+    "paid_api_note": null,
+    "capital_usd": 12,
+    "capital_note": "Domain only.",
+    "confidence": "low",
+    "notes": "One post, posted the day of my search. The idea is plausible but is mostly editorial curation."
+  },
+  {
+    "id": "x-008",
+    "name": "If Something Happens Binder",
+    "idea": "A private, client-side encrypted 'what to do if I die or am ill' binder for family, with a guided checklist and trusted-contact release.",
+    "description": "A user wants a site or app to help prepare a book of instructions for her children covering her and her husband's affairs. The app would give a guided checklist of what to record (accounts, contacts, wishes, locations of documents), encrypt everything in the browser, and release it to named contacts after a missed check-in. It is a notes organiser, not legal advice or a will service, and holds no money.",
+    "niche": "Seniors & Caregiving",
+    "niche2": "Productivity & Planning",
+    "is_feature": false,
+    "feature_for": null,
+    "web_delivery": "Next.js on Vercel; WebCrypto encryption in the browser; Supabase stores only ciphertext; pg_cron check-in emails via a free email tier.",
+    "why_hard_to_copy": "Client-side encryption with a trustworthy recovery and release design plus expert-written, country-specific checklists; mistakes here are costly.",
+    "signals": [
+      {"platform": "x", "url": "https://x.com/lesotho35/status/2046684088078135563", "date": "2026-04-21", "summary": "Wishes for a website or app that helps prepare a book of instructions for her children so her and her husband's affairs are sorted if something happens.", "engagement": "unknown"}
+    ],
+    "competitors_seen": [
+      {"name": "Everplans", "url": "https://everplans.com/blog/associated-press-lists-everplans-as-convenient-end-of-life-planning-solution", "note": "Paid, around $75 to $100 a year per one blog."},
+      {"name": "Digital Legacy Vault and others", "url": "https://web.frazerconsultants.com/three-digital-legacy-management-tools-you-need-to-know/", "note": "Newer vault apps with delayed release; SecureSafe and Life Safe Legacy have paid tiers."}
+    ],
+    "satellite": {"name": "First 48 hours checklist", "what": "Printable checklist for a family after a death or hospitalisation, by country.", "why_shared": "Widely shared in family and support groups.", "handoff": "Button to build your own binder."},
+    "marketing": {
+      "where": ["Caregiver and senior-living communities", "Estate planning bloggers (non-legal)", "Facebook groups for families"],
+      "target": "Adults 45 to 70 organising for their children.",
+      "funnel": "Free checklist, then the binder.",
+      "cold_outreach": "Offer the checklist to caregiver newsletters.",
+      "post_ideas": ["What your kids will need to know if you are unreachable", "The one-page checklist for the first 48 hours"]
+    },
+    "uses_paid_api": false,
+    "paid_api_note": null,
+    "capital_usd": 12,
+    "capital_note": "Domain; free email tier assumed.",
+    "confidence": "low",
+    "notes": "One post, though crowded competitor set shows the need is real. Liability and security burden are high for a solo developer; keep it a document organiser, with no passwords by default, and no legal advice (legal services are banned in the spec)."
+  },
+  {
+    "id": "x-009",
+    "name": "ALPR Incident Ledger",
+    "idea": "A sourced ledger of documented license-plate-reader misuse cases and documented solved cases by city.",
+    "description": "People on opposite sides of the debate want an aggregation of documented Flock camera incidents: one wants misuse by police compiled, another wants a list of crimes the cameras deterred or solved. A ledger with citations, dates and public-records links per city would serve both, separated from the camera location maps that already exist.",
+    "niche": "Community & Nonprofit",
+    "niche2": "Data & Documents",
+    "is_feature": false,
+    "feature_for": null,
+    "web_delivery": "Next.js + Supabase table of incidents with source URLs; editor workflow for submissions; static pages per city.",
+    "why_hard_to_copy": "Editorial rigor: each entry needs a primary source and consistent classification, which takes sustained curation; local public-records requests make it better over time.",
+    "signals": [
+      {"platform": "x", "url": "https://x.com/richhomiekhan/status/2103125541843054603", "date": "2026-09-24", "summary": "Asks whether a website compiles abuses of Flock cameras by police, citing cases in several states.", "engagement": "unknown"},
+      {"platform": "x", "url": "https://x.com/ReCoastalSD/status/2093049745963126786", "date": "2026-08-27", "summary": "Asks for a website listing crimes Flock cameras have deterred and criminals they helped catch.", "engagement": "unknown"}
+    ],
+    "competitors_seen": [
+      {"name": "DeFlock", "url": "https://404media.co/the-open-source-project-deflock-is-mapping-license-plate-surveillance-cameras-all-over-the-world", "note": "Volunteer map of ALPR locations, not an incident ledger."},
+      {"name": "Local news how-to guides on finding Flock cameras", "url": "https://www.atlantanewsfirst.com/2026/09/09/are-you-being-tracked-how-find-flock-cameras-or-see-if-youve-been-searched-metro-atlanta/", "note": "Search tools such as Have I Been Flocked and Eyes On Flock are mentioned by search results; I did not open them."}
+    ],
+    "satellite": null,
+    "marketing": {
+      "where": ["Civil liberties groups and local government watchdog communities", "Local news outlets", "Mastodon and Bluesky privacy circles"],
+      "target": "Residents, journalists and council staff researching ALPR contracts.",
+      "funnel": "City pages in search, then submissions.",
+      "cold_outreach": "Offer the ledger to reporters covering a local contract vote.",
+      "post_ideas": ["Every documented misuse case in one state with sources", "What the city audit logs actually showed"]
+    },
+    "uses_paid_api": false,
+    "paid_api_note": null,
+    "capital_usd": 12,
+    "capital_note": "Domain only.",
+    "confidence": "low",
+    "notes": "Politically charged; legal and defamation risk if sourcing is weak, so every row must cite a primary source. Two posts from opposite sides give a fair demand signal."
+  },
+  {
+    "id": "x-010",
+    "name": "Doctor Supply Atlas",
+    "idea": "A state-by-state view of licensed physician counts and where they trained.",
+    "description": "One user asks for a website tracking the number of licensed physicians by state and which medical schools they graduated from. The app would merge public state medical board statistics into one comparable dataset with charts and downloads. State formats differ, so the data work is the product.",
+    "niche": "Data & Documents",
+    "niche2": "Health & Fitness",
+    "is_feature": false,
+    "feature_for": null,
+    "web_delivery": "Precomputed aggregates in Supabase (well under the 500 MB free limit) with static charts on Vercel.",
+    "why_hard_to_copy": "Requires normalising fragmented public board data across states into a consistent schema, updated periodically; a one-off scraper does not stay current.",
+    "signals": [
+      {"platform": "x", "url": "https://x.com/jw32457/status/2102759284933345675", "date": "2026-09-23", "summary": "Asks whether a website tracks the number of licensed medical doctors by state and where they went to school.", "engagement": "unknown"}
+    ],
+    "competitors_seen": [
+      {"name": "Med School Mapper (Robert Graham Center)", "url": "https://www.ruralhealthinfo.org/resources/10706", "note": "County-level physician and school data; current state-level output not confirmed."},
+      {"name": "Texas Medical Board statistics", "url": "https://www.tmb.texas.gov/file/statistics-physicians-by-in-and-out-of-state-september-2026", "note": "Single-state reports, latest dated September 2026."}
+    ],
+    "satellite": null,
+    "marketing": {
+      "where": ["Health policy and data journalism communities", "Medical education forums", "Open data newsletters"],
+      "target": "Journalists, researchers and policy staff.",
+      "funnel": "Chart pages in search, data download.",
+      "cold_outreach": "Pitch one state comparison to data reporters.",
+      "post_ideas": ["Which states depend most on physicians trained abroad", "Physician counts by state, one chart"]
+    },
+    "uses_paid_api": false,
+    "paid_api_note": null,
+    "capital_usd": 12,
+    "capital_note": "Domain only.",
+    "confidence": "low",
+    "notes": "One post. Heavy one-off ETL work and coverage may be partial; this is a niche research tool, not a mass-market app."
+  },
+  {
+    "id": "x-011",
+    "name": "Crossover Issue Finder",
+    "idea": "Pick two comic characters and see every issue they both appear in.",
+    "description": "A reader wants a site like a DC character guide that lists all appearances of a character and also lists the comics two characters share. This is a join over a character-appearance dataset, with fuzzy name merging and reading-order links.",
+    "niche": "Collectors",
+    "niche2": "Hobbies & Crafts",
+    "is_feature": false,
+    "feature_for": null,
+    "web_delivery": "Next.js + Supabase Postgres with a pre-built appearance table; queries run server side.",
+    "why_hard_to_copy": "Cleaning and merging character-appearance data from open sources (aliases, versions, teams) is the work; the query itself is trivial.",
+    "signals": [
+      {"platform": "x", "url": "https://x.com/Wonder0sho/status/2082430545024159791", "date": "2026-07-31", "summary": "Wishes for a site like a DC universe guide that lists all appearances of a character and shows the comics two chosen characters share.", "engagement": "unknown"}
+    ],
+    "competitors_seen": [
+      {"name": "Grand Comics Database", "url": "https://www.comics.org/series/52296/characters/", "note": "Character lists per series; site notes character appearance data is incomplete during a migration."}
+    ],
+    "satellite": null,
+    "marketing": {
+      "where": ["Comic collector forums and Discords", "Bluesky/X comics community", "Podcast communities"],
+      "target": "Comic readers building reading lists.",
+      "funnel": "Pair pages in search, then lists.",
+      "cold_outreach": "Offer reading-order lists to comic bloggers.",
+      "post_ideas": ["Every issue where these two heroes team up", "Rare crossovers of two characters"]
+    },
+    "uses_paid_api": false,
+    "paid_api_note": null,
+    "capital_usd": 12,
+    "capital_note": "Domain only.",
+    "confidence": "low",
+    "notes": "One post. Data licence and availability must be checked (Grand Comics Database licence terms were not verified)."
+  },
+  {
+    "id": "x-012",
+    "name": "Pull Log",
+    "idea": "A pull and collection logger for card and gacha games with per-account hit-rate stats.",
+    "description": "Fans of rhythm and card games want a place to log which cards and costumes they own, as an older tracker did for another franchise, and card pack openers want to track packs opened per account with hit percentages to see who is lucky. One logger per game with a curated card list and optional shared community pull-rate statistics would serve both.",
+    "niche": "Collectors",
+    "niche2": "Gaming Communities",
+    "is_feature": false,
+    "feature_for": null,
+    "web_delivery": "Next.js + Supabase; per-game card datasets as static JSON; users log pulls manually or via CSV paste.",
+    "why_hard_to_copy": "Per-game curated card/costume data and crowd-sourced pull statistics only matter at volume; each game needs maintenance.",
+    "signals": [
+      {"platform": "x", "url": "https://x.com/gamurune/status/2044252222679138336", "date": "2026-04-15", "summary": "Wishes for a Project Sekai site like an earlier idol-game tracker to log which cards and costumes she has.", "engagement": "unknown"},
+      {"platform": "x", "url": "https://x.com/guthrie_cd/status/2043842638491599117", "date": "2026-04-14", "summary": "Wants a site that tracks packs opened by account with filters to compare hit rates; game not named in the post.", "engagement": "unknown"}
+    ],
+    "competitors_seen": [
+      {"name": "Pocket Tactics Project Sekai card list", "url": "https://www.pockettactics.com/project-sekai/cards", "note": "Static card list, not a personal tracker."}
+    ],
+    "satellite": null,
+    "marketing": {
+      "where": ["Game Discords", "Fan communities on Bluesky/X", "Fandom wikis"],
+      "target": "Players of gacha and trading card games.",
+      "funnel": "Card list pages, then a free log.",
+      "cold_outreach": "Ask fan-wiki editors to link the tracker.",
+      "post_ideas": ["Track every card you own for game X", "Community pull rates after 10,000 logged packs"]
+    },
+    "uses_paid_api": false,
+    "paid_api_note": null,
+    "capital_usd": 12,
+    "capital_note": "Domain only.",
+    "confidence": "low",
+    "notes": "Two posts about different games. Unverified: sekai.best and other fan sites may already cover the first request (my search could not confirm what they offer)."
+  },
+  {
+    "id": "x-013",
+    "name": "Fan Gallery Hub",
+    "idea": "A link-based gallery of fan art and fan merch for one creator's community, with credits to the original artists.",
+    "description": "A VTuber with commissioned and gifted art wants a gallery showing the pieces with credit to each artist, and a fan wants an online artist alley compiling all fan-made merch for a talent group. A hub that stores links, credits and tags (not image files) lets communities browse by artist, character and merch type.",
+    "niche": "Creators & Streamers",
+    "niche2": "Collectors",
+    "is_feature": false,
+    "feature_for": null,
+    "web_delivery": "Next.js + Supabase table of entries (external URL, artist handle, tags); previews through official embeds or thumbnails; no image storage.",
+    "why_hard_to_copy": "Community curation and permissions (artist opt-in, takedown handling) in one fandom; weak technical moat.",
+    "signals": [
+      {"platform": "x", "url": "https://x.com/BakunawaVT/status/2090431950029000997", "date": "2026-08-20", "summary": "Keeps a backup of commissioned and gifted art and asks whether a website exists to show a gallery of their VTuber's art with credit to artists.", "engagement": "unknown"},
+      {"platform": "x", "url": "https://x.com/MomoikaTako/status/2046789861894709314", "date": "2026-04-22", "summary": "Wishes for a website that compiles all fan-made merch for a VTuber talent group, like an online artist alley.", "engagement": "unknown"}
+    ],
+    "competitors_seen": [
+      {"name": "Notion credit pages kept by streamers", "url": "https://yuzimii.notion.site/Artist-Credits-e1774b64fcae4ab2924c051a2b7eb495", "note": "Manual credit lists, not a gallery."},
+      {"name": "DeviantArt", "url": "https://www.deviantart.com/inlinverst/art/Inlinverst-Chibi-665313024", "note": "General art host; not a per-creator credited hub."}
+    ],
+    "satellite": null,
+    "marketing": {
+      "where": ["VTuber Discords", "Bluesky/X fandom tags", "Fan wikis"],
+      "target": "VTubers and fan communities.",
+      "funnel": "Creator makes a free hub, fans submit links.",
+      "cold_outreach": "Offer to set up a hub for small VTubers.",
+      "post_ideas": ["Credit every fan artist in one page", "Online artist alley for talent X"]
+    },
+    "uses_paid_api": false,
+    "paid_api_note": null,
+    "capital_usd": 12,
+    "capital_note": "Domain only.",
+    "confidence": "low",
+    "notes": "Two thin posts and easily copied; moat is only the community. Include only if the scorer wants a community-led idea."
+  }
+]

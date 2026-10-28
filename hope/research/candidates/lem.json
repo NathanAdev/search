@@ -1,0 +1,534 @@
+[
+ {
+  "id": "lem-001",
+  "name": "TableMatch",
+  "idea": "A local-group board for tabletop and board game hosts to post sessions, GMs to pitch games, and players to RSVP or vote with availability.",
+  "description": "Local game groups run on WhatsApp or Discord where session requests scroll off screen and GMs cannot pitch one-shots or campaigns with a vote on interest. TableMatch gives each local group one page: GMs post a pitch with dates, players mark availability, a poll shows which pitches have enough interest, and an optional BoardGameGeek collection import shows who owns a wanted game. Moat is the availability-overlap and quorum logic plus the BGG collection/wishlist matching, and the network effect inside each small local group.",
+  "niche": "Gaming Communities",
+  "niche2": "Event Planning",
+  "is_feature": false,
+  "feature_for": null,
+  "web_delivery": "Responsive web app/PWA; Supabase auth + Postgres with row-level security per group; BGG public XML API called from a Vercel serverless function with caching.",
+  "why_hard_to_copy": "Availability-overlap and minimum-players logic, BGG collection syncing with rate-limit handling, and per-group communities that stick once a local group migrates.",
+  "signals": [
+   {
+    "platform": "lemmy",
+    "url": "https://lemmy.dbzer0.com/post/56519037",
+    "date": "2025-10-29",
+    "summary": "A regular at a local board game hub says the WhatsApp group makes session requests get buried and asks for software that matches people who own games with people who want to play them; wants it open source and self-hostable.",
+    "engagement": "34 points, 16 comments"
+   },
+   {
+    "platform": "lemmy",
+    "url": "https://ttrpg.network/post/37688819",
+    "date": "2026-05-25",
+    "summary": "Organiser of a face-to-face RPG meetup says Discord and Meetup do not let GMs propose one-shots or campaigns with availability and an interest poll; commenters suggest stitching together polls, forms and Warhorn.",
+    "engagement": "9 points, 6 comments"
+   }
+  ],
+  "competitors_seen": [
+   {
+    "name": "Kallax",
+    "url": "https://kallax.io/",
+    "note": "Suggested in the thread; not FOSS or self-hostable per the commenter"
+   },
+   {
+    "name": "Game Night Picks",
+    "url": "https://gamenightpicks.com/",
+    "note": "Syncs with BGG and lets invitees vote on games, but built for a single group night"
+   },
+   {
+    "name": "Warhorn",
+    "url": "https://warhorn.net/",
+    "note": "Event scheduling for tabletop games; suggested by a commenter in the 2026 thread"
+   },
+   {
+    "name": "MeepleUp",
+    "url": "https://apps.apple.com/ec/app/meepleup/id6754894730",
+    "note": "iOS app with BGG import and RSVP; native only"
+   }
+  ],
+  "satellite": {
+   "name": "Game Night Overlap",
+   "what": "Paste several BGG usernames and see which owned games fit the player count and time, plus a shareable availability grid.",
+   "why_shared": "Every host wants a quick answer to what can we play tonight; people share the result link in their group chat.",
+   "handoff": "Result page offers Turn this into a standing group with a pitch board and RSVP."
+  },
+  "marketing": {
+   "where": [
+    "BoardGameGeek forums and guilds",
+    "Lemmy c/boardgames and c/rpg",
+    "Local game store Discords and Facebook groups",
+    "Warhorn and Meetup organiser circles"
+   ],
+   "target": "Organisers of local board game and RPG groups with 10-80 members",
+   "funnel": "Satellite overlap tool -> group page -> invite link in the existing chat",
+   "cold_outreach": "Message organisers who publicly complain that WhatsApp or Discord buries session posts",
+   "post_ideas": [
+    "How our 40-person board game hub stopped losing session requests in WhatsApp",
+    "Free tool: paste BGG usernames, see what you can play tonight",
+    "Template: a GM pitch that gets players to commit"
+   ]
+  },
+  "capital_usd": 12,
+  "capital_note": "Domain name only; Supabase free + Vercel hobby cover hosting",
+  "uses_paid_api": false,
+  "paid_api_note": null,
+  "confidence": "medium",
+  "notes": "Competitors exist (Kallax, Game Night Picks, MeepleUp), so differentiation must be the GM-pitch plus interest-poll flow for local groups. Check current BGG API terms before building."
+ },
+ {
+  "id": "lem-002",
+  "name": "StitchScript",
+  "idea": "Paste a written crochet round/row pattern and get a standard symbol chart back, with repeats expanded and stitch counts checked.",
+  "description": "A crocheter wants chart-based patterns for granny squares but the best-known chart editor needs every stitch placed by hand. StitchScript parses written instructions (R1: 12 dc in magic ring, repeat from * to *) into a circular or row chart with symbols, flags rows whose stitch count does not match, and toggles US/UK terms. The moat is a robust pattern-language parser with the idiosyncratic abbreviations, repeats and turning-chain rules, plus the symbol rendering.",
+  "niche": "Hobbies & Crafts",
+  "niche2": null,
+  "is_feature": false,
+  "feature_for": null,
+  "web_delivery": "Client-side parser and SVG renderer in a Next.js/Vite app on Vercel; saved patterns in Supabase; no server compute needed.",
+  "why_hard_to_copy": "Crochet instruction grammar (abbreviations, nested repeats, in-same-stitch, US vs UK names) is fiddly and needs domain testing against real patterns.",
+  "signals": [
+   {
+    "platform": "lemmy",
+    "url": "https://piefed.social/c/crochet@lemmy.ca/p/2288162/does-anyone-know-of-a-good-online-chart-maker",
+    "date": "2026-08-16",
+    "summary": "A crocheter who prefers charts for granny squares asks for a free browser chart tool; found Stitch Fiddle but it makes you place every stitch manually and she wants to type something like R1, 12 dc and have the round drawn.",
+    "engagement": "13 points, 0 comments"
+   }
+  ],
+  "competitors_seen": [
+   {
+    "name": "Stitch Fiddle",
+    "url": "https://www.stitchfiddle.com",
+    "note": "Free online chart tool; draws charts but does not parse written rows (per the poster)"
+   },
+   {
+    "name": "CrochetPatternGen",
+    "url": "https://www.stork.ai/en/crochetpatterngen",
+    "note": "Goes the other way: creates written patterns from photos/text"
+   }
+  ],
+  "satellite": {
+   "name": "US/UK Crochet Term Converter",
+   "what": "Paste a pattern, swap US and UK stitch names and see a stitch-count check.",
+   "why_shared": "Crocheters constantly hit patterns written in the other convention.",
+   "handoff": "Offer Turn this into a chart."
+  },
+  "marketing": {
+   "where": [
+    "Ravelry forums",
+    "Lemmy c/crochet and c/knitting",
+    "Pinterest crochet boards",
+    "Etsy pattern-designer communities"
+   ],
+   "target": "Crocheters who use written patterns and pattern designers who want to publish charts",
+   "funnel": "Converter page -> chart generator -> saved pattern library",
+   "cold_outreach": "Contact small pattern designers who sell written-only patterns",
+   "post_ideas": [
+    "Chart of a popular free granny square next to its written version",
+    "US vs UK terms cheat sheet that converts itself",
+    "Why your stitch count never matches: a checker"
+   ]
+  },
+  "capital_usd": 12,
+  "capital_note": "Domain name only; Supabase free + Vercel hobby cover hosting",
+  "uses_paid_api": false,
+  "paid_api_note": null,
+  "confidence": "low",
+  "notes": "Single weak signal (no replies). Check Stitch Fiddle and other tools for any text-import feature before building."
+ },
+ {
+  "id": "lem-003",
+  "name": "PreRead",
+  "idea": "Drop in an EPUB and get the unknown words (after subtracting words you already know) ranked by frequency, with context sentences and Anki export, all in the browser.",
+  "description": "Language learners who read books want to learn a text's vocabulary before reading it: lemmatise every word, count occurrences, filter out known words, attach a bilingual definition and the original sentence, and export flashcards. PreRead does it client-side so copyrighted books never leave the device, and can also rank a library of EPUBs by lexical difficulty (unique-word count). Moat is per-language lemmatisation and inflection data plus a known-words model that persists across books.",
+  "niche": "Languages",
+  "niche2": "Education & Study",
+  "is_feature": false,
+  "feature_for": null,
+  "web_delivery": "EPUB unzip + tokenise + lemma lookup entirely in the browser (Web Worker, open lemma lists); known-word list and settings synced via Supabase; static data files on Vercel.",
+  "why_hard_to_copy": "Needs per-language lemma/inflection data and clean handling of elisions, multiword expressions and proper nouns; a generic LLM wrapper cannot do deterministic frequency counts over a whole book.",
+  "signals": [
+   {
+    "platform": "lemmy",
+    "url": "https://sh.itjust.works/post/60804895",
+    "date": "2026-05-26",
+    "summary": "A French learner wants software that lemmatises an EPUB, counts words, removes known words, adds bilingual definitions with the source sentence and builds Anki cards; commenters point to JPDB for Japanese and no French equivalent is named.",
+    "engagement": "12 points, 7 comments"
+   },
+   {
+    "platform": "lemmy",
+    "url": "https://piefed.social/c/languagelearning/p/2081644/has-anyone-here-tried-plusonelanguage-any-other-suggestion-to-help-with-increasing-voca",
+    "date": "2026-05-22",
+    "summary": "A learner asks whether anyone has tried PlusOneLanguage and for other ways to grow vocabulary from reading real texts, wary of a heavily promoted product.",
+    "engagement": "4 points, 3 comments"
+   }
+  ],
+  "competitors_seen": [
+   {
+    "name": "JPDB",
+    "url": "https://jpdb.io",
+    "note": "Japanese only; combines parser, dictionary and SRS"
+   },
+   {
+    "name": "Jihanzi",
+    "url": "https://chinese-forums.com/forums/topic/59347-jihanzi-vocabulary-extraction-and-content-recommendation",
+    "note": "Chinese-only site that extracts vocabulary from EPUB/PDF/text"
+   },
+   {
+    "name": "han-cihui",
+    "url": "https://github.com/jannes/han-cihui",
+    "note": "Command-line Mandarin EPUB vocabulary analysis"
+   },
+   {
+    "name": "TeakReader",
+    "url": "https://apps.apple.com/app/id6773223960",
+    "note": "iOS EPUB reader with Learning/Known/Ignored word states for English learners"
+   }
+  ],
+  "satellite": {
+   "name": "Book Difficulty Meter",
+   "what": "Drop an EPUB and see unique-word count, estimated coverage of the top 2000 words and a rough difficulty band.",
+   "why_shared": "Learners choosing their next book want this and share the numbers in forums.",
+   "handoff": "Offer Get the full unknown-word list and Anki deck."
+  },
+  "marketing": {
+   "where": [
+    "Lemmy c/languagelearning",
+    "Language-specific forums",
+    "Anki forums",
+    "Learner YouTube comment sections"
+   ],
+   "target": "Intermediate learners reading real books in French, Spanish, German, Italian",
+   "funnel": "Difficulty meter -> unknown-word list -> account for known-word sync",
+   "cold_outreach": "Reply to learners posting about extracting word lists by hand",
+   "post_ideas": [
+    "I ranked 600 French EPUBs by vocabulary difficulty",
+    "Learn a book's words before you read it: workflow",
+    "Graded readers vs frequency-ranked prereading"
+   ]
+  },
+  "capital_usd": 12,
+  "capital_note": "Domain name only; Supabase free + Vercel hobby cover hosting",
+  "uses_paid_api": false,
+  "paid_api_note": null,
+  "confidence": "medium",
+  "notes": "Existing tools are single-language or CLI; a general multi-language web version looks open. Lemma data coverage per language is the real work; start with French or Spanish."
+ },
+ {
+  "id": "lem-004",
+  "name": "CognateMap",
+  "idea": "Pick two languages and get cognate and false-friend lists with the regular sound-shift rules (like -tion to -cion), plus practice and text highlighting.",
+  "description": "A learner argues that related languages share thousands of near-identical words and wants a tool that, given two languages, lists them and highlights them in a text. CognateMap would precompute cognate pairs from open etymology data, group them by sound-correspondence rules, mark false friends, and highlight likely cognates in pasted text. Moat is the curated rule sets and false-friend lists, which are expert work.",
+  "niche": "Languages",
+  "niche2": null,
+  "is_feature": false,
+  "feature_for": null,
+  "web_delivery": "Precomputed JSON per language pair served statically from Vercel; matching and highlighting client-side; optional accounts in Supabase.",
+  "why_hard_to_copy": "Needs hand-checked sound-correspondence rules and false-friend lists per language pair; naive string similarity gives wrong answers.",
+  "signals": [
+   {
+    "platform": "lemmy",
+    "url": "https://libretechni.ca/post/559465",
+    "date": "2025-12-15",
+    "summary": "A learner of French and Dutch wants a tool where you pick two languages and get a list or dictionary of words that are near-identical, plus machine translation that exploits them; replies note it needs filtering for false friends and meaning drift.",
+    "engagement": "10 points, 7 comments"
+   }
+  ],
+  "competitors_seen": [
+   {
+    "name": "Language Transfer",
+    "url": "https://www.languagetransfer.org/",
+    "note": "Free audio courses that teach cognate patterns; not a lookup or highlighting tool"
+   }
+  ],
+  "satellite": {
+   "name": "False Friend Checker",
+   "what": "Paste a sentence and see words that look like your language but mean something else.",
+   "why_shared": "Shareable and fun for learners.",
+   "handoff": "Offer the full cognate list for the language pair."
+  },
+  "marketing": {
+   "where": [
+    "Lemmy c/languagelearning",
+    "Language learning forums",
+    "Linguistics Discords"
+   ],
+   "target": "Learners of a language related to one they know",
+   "funnel": "False-friend checker -> pair explorer -> practice mode",
+   "cold_outreach": "Share with polyglot bloggers who write about cognates",
+   "post_ideas": [
+    "The sound-shift rules that unlock thousands of French-English words",
+    "False friends between Dutch and German that will embarrass you",
+    "Highlight the words you already know in any French text"
+   ]
+  },
+  "capital_usd": 12,
+  "capital_note": "Domain name only; Supabase free + Vercel hobby cover hosting",
+  "uses_paid_api": false,
+  "paid_api_note": null,
+  "confidence": "low",
+  "notes": "Single signal and the original poster's framing is loose. Check existing cognate resources (Wiktionary etymology, language-specific lists) before building."
+ },
+ {
+  "id": "lem-005",
+  "name": "AncientKeys",
+  "idea": "A browser input method for ancient and historical scripts (polytonic Greek, Old Norse, Coptic, cuneiform) with transliteration typing, sign pickers and copy/share.",
+  "description": "Someone asks for a keyboard app that supports extinct languages such as Ancient Greek, Old Norse, Sumerian and Coptic. AncientKeys is a PWA input method: type Beta Code or plain transliteration and get correct polytonic Unicode, pick Old Norse/Old English letters, search cuneiform signs by reading or sign name, and save snippets. The moat is the linguistic input rules and sign-list data, which general keyboards lack.",
+  "niche": "Languages",
+  "niche2": "Genealogy & History",
+  "is_feature": false,
+  "feature_for": null,
+  "web_delivery": "Static PWA on Vercel with client-side transliteration engine and bundled sign lists; optional saved snippets via Supabase.",
+  "why_hard_to_copy": "Correct Unicode normalisation for polytonic Greek, Beta Code conversion and sign-list mapping (Sumerian readings to cuneiform) needs scholarly data and testing.",
+  "signals": [
+   {
+    "platform": "lemmy",
+    "url": "https://fedia.io/m/asklemmy@lemmy.world/p/5226930",
+    "date": "2026-02-06",
+    "summary": "A user asks if there is a keyboard app for Android or iOS that supports extinct languages such as Ancient Greek, Old Norse, Sumerian and Coptic.",
+    "engagement": "27 points, 3 comments"
+   }
+  ],
+  "competitors_seen": [
+   {
+    "name": "OpenL Ancient Greek Keyboard",
+    "url": "https://openl.io/keyboard/ancient-greek",
+    "note": "Browser keyboard for basic Ancient Greek and common polytonic characters"
+   },
+   {
+    "name": "Keyman",
+    "url": "https://keyman.com",
+    "note": "Keyboard framework with several ancient Greek keyboards; installs as app/extension"
+   },
+   {
+    "name": "Branah Coptic Keyboard",
+    "url": "https://www.branah.com/coptic",
+    "note": "Browser keyboard for Coptic only"
+   }
+  ],
+  "satellite": {
+   "name": "Beta Code Converter",
+   "what": "Paste Beta Code or transliteration and get polytonic Greek Unicode back.",
+   "why_shared": "Classics students and bloggers need this constantly and link to it.",
+   "handoff": "Offer the full multi-script input pad."
+  },
+  "marketing": {
+   "where": [
+    "Textkit forums",
+    "Lemmy c/languagelearning and c/history",
+    "Classics and Assyriology Discords",
+    "Old Norse and Old English study groups"
+   ],
+   "target": "Students and hobbyists of classical, Norse, Coptic and cuneiform languages",
+   "funnel": "Converter page -> multi-script pad -> saved snippets",
+   "cold_outreach": "Offer it to bloggers who write guides on typing ancient Greek",
+   "post_ideas": [
+    "Type polytonic Greek on any phone without installing a keyboard",
+    "Search cuneiform signs by Sumerian reading",
+    "Old Norse letters cheat sheet with an input pad"
+   ]
+  },
+  "capital_usd": 12,
+  "capital_note": "Domain name only; Supabase free + Vercel hobby cover hosting",
+  "uses_paid_api": false,
+  "paid_api_note": null,
+  "confidence": "low",
+  "notes": "Search found good Greek and Coptic web keyboards, but none for Old Norse or cuneiform. Single signal; the mobile-keyboard request could only be partly met by a web page (no system-wide keyboard)."
+ },
+ {
+  "id": "lem-006",
+  "name": "SafeSettings",
+  "idea": "A family checklist and tracker of every parental-control setting across kids' services (Discord, Roblox, Minecraft/Microsoft, YouTube...), curated, dated and linked.",
+  "description": "A parent with several kids' apps finds each service has its own controls, terminology and login and wants one place to manage or at least see them. A web app cannot control other services, but it can hold a hand-curated, date-stamped settings database per platform, generate a per-child checklist by age, deep-link to each settings page and flag when a platform changes its controls. The moat is the maintained settings dataset and change tracking.",
+  "niche": "Parenting & Family",
+  "niche2": null,
+  "is_feature": false,
+  "feature_for": null,
+  "web_delivery": "Next.js app with curated markdown/JSON data per platform on Vercel; per-family checklists and reminders in Supabase (no kid data beyond first names/ages).",
+  "why_hard_to_copy": "A hand-maintained, verified-on-date settings database that tracks platform changes; generic AI answers go stale and are often wrong.",
+  "signals": [
+   {
+    "platform": "lemmy",
+    "url": "https://sh.itjust.works/post/59167962",
+    "date": "2026-04-26",
+    "summary": "A technically inclined parent says each kids' app/service has its own controls, terminology and login and asks what tools would make online safety easier to manage; a reply wants one place to manage all services and standard messaging for friend requests and weekly summaries.",
+    "engagement": "3 points, 5 comments"
+   },
+   {
+    "platform": "lemmy",
+    "url": "https://feddit.org/post/23883263",
+    "date": "2026-01-04",
+    "summary": "A user asks about alternatives to Google Family and points to timelimit as a candidate, showing parents are shopping for a non-Google way to manage kids' screen time.",
+    "engagement": "16 points, 2 comments"
+   }
+  ],
+  "competitors_seen": [
+   {
+    "name": "Google Family Link",
+    "url": "https://families.google.com/familylink/",
+    "note": "Controls Android/Google services only"
+   },
+   {
+    "name": "Canopy Discord guide",
+    "url": "https://canopy.us/blog/discord-parental-control/",
+    "note": "Per-platform guide, not a cross-platform tracker"
+   },
+   {
+    "name": "Salfeld Minecraft guide",
+    "url": "https://salfeld.com/en/guide/minecraft-parental-controls/",
+    "note": "Per-platform guide; the Minecraft controls live in the Microsoft account"
+   }
+  ],
+  "satellite": {
+   "name": "Is My Kid's Discord Locked Down?",
+   "what": "Five-minute interactive checklist for one platform with screenshots and dates.",
+   "why_shared": "Parents share a one-page checklist in school chats.",
+   "handoff": "Offer a family dashboard covering all platforms."
+  },
+  "marketing": {
+   "where": [
+    "Parenting forums and Facebook groups",
+    "Lemmy c/parenting",
+    "School PTA newsletters",
+    "Local library digital literacy workshops"
+   ],
+   "target": "Parents of 8-15 year olds with gaming and chat accounts",
+   "funnel": "Single-platform checklist -> family profile -> change alerts",
+   "cold_outreach": "Offer the data to parenting bloggers as an embeddable checklist",
+   "post_ideas": [
+    "Roblox, Discord and Minecraft: the 12 settings to check tonight",
+    "Why parental controls are three logins per kid",
+    "What changed in Discord Family Center this month"
+   ]
+  },
+  "capital_usd": 12,
+  "capital_note": "Domain name only; Supabase free + Vercel hobby cover hosting",
+  "uses_paid_api": false,
+  "paid_api_note": null,
+  "confidence": "low",
+  "notes": "Two weak signals. The tool is information, not enforcement, so it may feel thin to parents wanting actual control. Maintenance burden of the data is the real cost."
+ },
+ {
+  "id": "lem-007",
+  "name": "DryRoute",
+  "idea": "Road-trip planner that lines up forecast rain with your ETA at each point along the route and suggests a later departure or alternative route.",
+  "description": "A driver asked for an app that combines driving directions with weather to show where it is not raining along a 600-mile route. DryRoute samples the route at the time you will actually be there, shows precipitation and wind along the timeline, and compares departure times or routes. Moat is the time-aligned sampling (ETA per segment against hourly forecasts) and free-tier public APIs, not a pretty map.",
+  "niche": "Travel",
+  "niche2": null,
+  "is_feature": false,
+  "feature_for": null,
+  "web_delivery": "Map UI (MapLibre) in a Next.js app; routing and forecast calls proxied through Vercel serverless functions with caching; saved trips in Supabase.",
+  "why_hard_to_copy": "ETA-aligned forecast sampling across alternative routes and departure windows, with caching to stay inside free API quotas.",
+  "signals": [
+   {
+    "platform": "lemmy",
+    "url": "https://lemmy.world/post/40658538",
+    "date": "2025-12-24",
+    "summary": "A driver planning a 600-mile trip asks for an app that fuses driving directions with weather to show where it will not be raining; a commenter suggests Drive Weather and another notes Magic Earth has paid weather features.",
+    "engagement": "34 points, 12 comments"
+   }
+  ],
+  "competitors_seen": [
+   {
+    "name": "Drive Weather App",
+    "url": "https://driveweatherapp.com/",
+    "note": "Suggested in the thread; existing route-weather app"
+   },
+   {
+    "name": "Magic Earth",
+    "url": "https://www.magicearth.com/",
+    "note": "Navigation app with a modest annual cost for weather features, per a commenter"
+   }
+  ],
+  "satellite": {
+   "name": "Rain-Free Window Finder",
+   "what": "Enter origin, destination and a date range and see the driest departure hours.",
+   "why_shared": "Shareable result for family trips and event travel.",
+   "handoff": "Offer the full per-segment route weather view."
+  },
+  "marketing": {
+   "where": [
+    "Lemmy c/travel and c/cycling",
+    "Road-trip and RV forums",
+    "Motorcycle and van-life communities",
+    "Festival and wedding travel groups"
+   ],
+   "target": "Long-distance drivers, motorcyclists and cyclists planning around rain",
+   "funnel": "Departure-window finder -> route weather -> saved trips",
+   "cold_outreach": "Pitch to motorcycle touring clubs that plan group rides",
+   "post_ideas": [
+    "How we chose our departure time for a 600-mile drive by rain radar",
+    "The driest route is not the shortest: a worked example",
+    "Free tool for choosing your road-trip start time"
+   ]
+  },
+  "capital_usd": 12,
+  "capital_note": "Domain name only; Supabase free + Vercel hobby cover hosting",
+  "uses_paid_api": false,
+  "paid_api_note": null,
+  "confidence": "low",
+  "notes": "Existing apps cover this; the edge would be departure-time optimisation. Check free-tier terms of weather and routing APIs for commercial use (Open-Meteo free tier is non-commercial; US NWS data is free)."
+ },
+ {
+  "id": "lem-008",
+  "name": "FracPlan",
+  "idea": "A free browser floor-plan drawer that accepts exact fractional-inch and mixed-unit dimensions, then shows a simple 3D view for furniture layout.",
+  "description": "A home decorator found existing floor-plan tools too imprecise: one cannot take a wall length like 9/16 of an inch, another disables the field, and the paid cloud ones cost money. FracPlan is a 2D wall editor with exact fraction/metric entry, snapping and constraints, plus a basic 3D extrusion and furniture blocks. The moat is the unit-parsing and constraint-based geometry, which is real CAD-style logic.",
+  "niche": "Home & DIY",
+  "niche2": null,
+  "is_feature": false,
+  "feature_for": null,
+  "web_delivery": "Canvas/WebGL editor in the browser; plans saved as JSON in Supabase; no server compute.",
+  "why_hard_to_copy": "Exact rational-number geometry, wall joins and constraint editing are non-trivial and easy to get subtly wrong.",
+  "signals": [
+   {
+    "platform": "lemmy",
+    "url": "https://lemmy.world/post/48083827",
+    "date": "2026-06-12",
+    "summary": "A user wants a free or open-source tool that builds an accurate 2D floor plan, converts it to 3D and lets them decorate; says Sweet Home 3D cannot accept a 9/16 fraction wall length and OpenPlan3D's field is disabled.",
+    "engagement": "3 points, 5 comments"
+   }
+  ],
+  "competitors_seen": [
+   {
+    "name": "Sweet Home 3D",
+    "url": "https://www.sweethome3d.com/",
+    "note": "Free desktop app; poster says precision is insufficient for fractions"
+   },
+   {
+    "name": "Floorplanner",
+    "url": "https://www.floorplanner.com",
+    "note": "Cloud floor-plan tool; free tier limited"
+   }
+  ],
+  "satellite": {
+   "name": "Fraction Calculator for Builders",
+   "what": "Add, subtract and convert feet, inches, fractions and metric with a tape-measure style display.",
+   "why_shared": "DIYers and carpenters use this daily.",
+   "handoff": "Offer Draw it as a plan."
+  },
+  "marketing": {
+   "where": [
+    "Lemmy c/diy and c/homeimprovement",
+    "Woodworking and renovation forums",
+    "Interior-decorating hobby groups"
+   ],
+   "target": "Homeowners and DIYers planning rooms or furniture layouts",
+   "funnel": "Fraction calculator -> room sketch -> saved plans",
+   "cold_outreach": "Offer to renovation bloggers",
+   "post_ideas": [
+    "Plan a room with true 9/16 inch measurements",
+    "Free floor-plan tool that doesn't round your walls",
+    "Layout a bedroom before buying furniture"
+   ]
+  },
+  "capital_usd": 12,
+  "capital_note": "Domain name only; Supabase free + Vercel hobby cover hosting",
+  "uses_paid_api": false,
+  "paid_api_note": null,
+  "confidence": "low",
+  "notes": "Weak engagement (3 points); crowded category. Only worth building around the exact-fraction entry angle."
+ }
+]

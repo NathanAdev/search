@@ -1,0 +1,266 @@
+[
+ {
+  "id": "fb-001",
+  "name": "Club Shelf",
+  "idea": "A book-club hub that works for the whole club even when members use different reading trackers: ranked polls, club TBR with votes, RSVPs and a club-wide ratings leaderboard.",
+  "description": "Book-club organisers on StoryGraph keep asking for ranked or multi-pick polls, a shared club TBR members can upvote, several admins, club stats and a leaderboard that includes members who are not on the platform. Club Shelf is a standalone web app where the organiser creates a club, members join by link with no account, and each member can optionally upload their StoryGraph or Goodreads CSV export to prefill ratings and 'who has this on their TBR'. Voting maths (ranked choice, approval) and CSV-export parsing are the technical core.",
+  "niche": "Hobbies & Crafts",
+  "niche2": "Community & Nonprofit",
+  "is_feature": false,
+  "feature_for": null,
+  "web_delivery": "Next.js on Vercel Hobby, Supabase free for clubs/polls/RSVPs (row-level security per club), Open Library API for book covers, CSV parsing client-side; installable PWA.",
+  "why_hard_to_copy": "Moderate at best: ranked-choice/approval voting correctness, tolerant parsing of StoryGraph and Goodreads CSV exports (edition-agnostic matching of books) and club-level stats are real work, but a basic polls-and-RSVP club app is weekend-copyable (Bookclubs already exists).",
+  "signals": [
+   {
+    "platform": "web",
+    "url": "https://roadmap.thestorygraph.com/requests-ideas/posts/book-clubs-v2",
+    "date": "2024-04-17",
+    "summary": "Official 'Book Clubs V2' request thread opened by the vendor; the board listing shows it as an Ideas-status item with 96 and 43 as its two counters (votes and comments, unlabeled) and the thread has 60+ replies of feature asks.",
+    "engagement": "96/43 counters on board listing, 60+ comments"
+   },
+   {
+    "platform": "web",
+    "url": "https://roadmap.thestorygraph.com/requests-ideas/posts/book-clubs-v2",
+    "date": "2026-06-07",
+    "summary": "A club member asks for polls with more than 4 books, pick-3-of-8 voting, ranked-preference voting, and separate roles for members, mods and organiser, plus streaks for regular attendance.",
+    "engagement": "1 like (thread-level activity continues through Aug 2026)"
+   },
+   {
+    "platform": "web",
+    "url": "https://roadmap.thestorygraph.com/requests-ideas/posts/book-clubs-v2",
+    "date": "2026-01-22",
+    "summary": "Organiser wants several administrators and the ability to transfer ownership so a club keeps its history when a member steps back; a reply says co-admin help is what stops her starting a club.",
+    "engagement": "7 likes on the post, 2 on the reply"
+   },
+   {
+    "platform": "web",
+    "url": "https://roadmap.thestorygraph.com/requests-ideas/posts/book-clubs-v2",
+    "date": "2026-08-10",
+    "summary": "Member asks for club book suggestions that use the members' past reviews, like the buddy-read recommender, to feed the next poll.",
+    "engagement": "1 like"
+   },
+   {
+    "platform": "web",
+    "url": "https://roadmap.thestorygraph.com/requests-ideas/posts/book-clubs-v2",
+    "date": "2025-02-19",
+    "summary": "A large club migrated from Goodreads lists the gaps they hit: 5-book polls, notifications for all readalong posts, readalong dates vs single meeting date, club stats, club-run challenges and a ratings leaderboard that counts everyone regardless of when they read.",
+    "engagement": "7 likes"
+   }
+  ],
+  "competitors_seen": [
+   {
+    "name": "Bookclubs (bookclubs.com)",
+    "url": "https://apps.apple.com/app/id1485140274",
+    "note": "Free, web and iOS; ranked-choice polls, meeting scheduling and RSVPs. No cross-tracker import or ratings leaderboard seen."
+   },
+   {
+    "name": "StoryGraph Book Clubs",
+    "url": "https://roadmap.thestorygraph.com/changelog/book-clubs-",
+    "note": "In-app only, V1 shipped 2024; single owner, 4-option polls, leaderboard needs members to have accounts."
+   },
+   {
+    "name": "Book Club by BookMovement",
+    "url": "https://apps.apple.com/us/app/book-club-by-bookmovement/id971265430",
+    "note": "iOS, meeting reminders and RSVPs; limited stats."
+   }
+  ],
+  "satellite": {
+   "name": "Book Club Ranked Poll",
+   "what": "Free no-login ranked-choice poll for picking the next read; paste titles, share link, see Condorcet/IRV result.",
+   "why_shared": "Organisers share poll links in WhatsApp/Discord groups, exposing the full app to every member.",
+   "handoff": "Result page offers 'turn this poll into a club' to keep the TBR, RSVPs and stats."
+  },
+  "marketing": {
+   "where": [
+    "StoryGraph community forums and Discord servers",
+    "Goodreads group admins",
+    "Facebook book-club groups",
+    "Product Hunt",
+    "Library book-club coordinators"
+   ],
+   "target": "Volunteer organisers of 8-40 member book clubs, especially ones migrating off Goodreads",
+   "funnel": "Free ranked poll link shared with the club -> members see the club page -> organiser creates a club",
+   "cold_outreach": "Message club admins who posted public feature wishes: 'built this for the exact polls and co-admin gaps you listed'.",
+   "post_ideas": [
+    "How our 30-person club picks books with ranked-choice instead of a messy group chat",
+    "Free ranked-choice poll for book clubs, no signup",
+    "We turned our members' Goodreads exports into a club leaderboard"
+   ]
+  },
+  "capital_usd": 12,
+  "capital_note": "Domain only; Supabase and Vercel free tiers, Open Library API is free.",
+  "uses_paid_api": false,
+  "paid_api_note": null,
+  "confidence": "medium",
+  "notes": "Strong, current, multi-user signal (comments dated through Aug 2026) but a competitor (Bookclubs) already covers polls and RSVPs, so the pitch must be cross-tracker import plus club stats. StoryGraph has no public API, so import relies on the user-uploaded CSV export. Vote counts on the listing are unlabeled; stated as counters, not confirmed votes."
+ },
+ {
+  "id": "fb-002",
+  "name": "Pitch Plan",
+  "idea": "Tournament-day and mini-league planner for youth clubs: fixtures across pitches and time slots, live standings with sport-specific tiebreakers, and a printable end-of-season report.",
+  "description": "Parents and volunteer coaches running youth tournaments and small leagues ask their team-manager app for tournament mode, league tables, league-calendar import and a printable season report, and the vendor has kept those on 'planned' for a year or more. Pitch Plan generates round-robin and pool-plus-knockout schedules for several divisions sharing limited pitches, with rest-time and duplicate-opponent constraints, then publishes a public standings page and a one-page PDF season report. All solver and tiebreaker logic runs in the browser so it fits the free tiers.",
+  "niche": "Sports & Teams",
+  "niche2": "Event Planning",
+  "is_feature": false,
+  "feature_for": null,
+  "web_delivery": "Next.js on Vercel Hobby; scheduling solver in a Web Worker client-side; Supabase free stores tournaments and results; public read-only standings URL; print CSS for PDF report.",
+  "why_hard_to_copy": "Constraint-based fixture scheduling (shared pitches, rest gaps, balanced home/away, multi-division) and per-sport tiebreaker rules are correctness-critical and fiddly; plain bracket makers are easy, a trustworthy multi-field scheduler is not.",
+  "signals": [
+   {
+    "platform": "web",
+    "url": "https://mingle-sport.nolt.io/200",
+    "date": "2025-08-13",
+    "summary": "Users want a Tournament activity with start/end time, meet-up time, description and a link to the tournament site (Tournify named); merged with an older duplicate in Jan 2026.",
+    "engagement": "30 upvotes"
+   },
+   {
+    "platform": "web",
+    "url": "https://mingle-sport.nolt.io/169",
+    "date": "2025-03-02",
+    "summary": "Coach asks for a fast way to enter other teams' matches so the team can see a league table; status Planned, and a second 'League table' request was merged into it on 2026-02-03.",
+    "engagement": "18 upvotes"
+   },
+   {
+    "platform": "web",
+    "url": "https://mingle-sport.nolt.io/49",
+    "date": "2024-02-29",
+    "summary": "Request to import the league's fixture list so all matches are added automatically; vendor moved it to In Progress on 2026-07-01 after two years.",
+    "engagement": "15 upvotes"
+   },
+   {
+    "platform": "web",
+    "url": "https://mingle-sport.nolt.io/155",
+    "date": "2024-12-18",
+    "summary": "Coach wants a customisable, printable A4 end-of-season report (form, home/away record, top scorers, awards, team colours); marked Planned on 2025-11-04 and the vendor said it would use the idea as input.",
+    "engagement": "17 upvotes"
+   }
+  ],
+  "competitors_seen": [
+   {
+    "name": "LeagueLobster scheduler",
+    "url": "https://scheduler.leaguelobster.com/sportspress",
+    "note": "Free round-robin fixture generator with venue constraints; part of a paid league suite."
+   },
+   {
+    "name": "Tournify",
+    "url": "https://tournifyapp.com",
+    "note": "Paid tournament software for clubs, named in the Mingle thread as the tool people link to."
+   },
+   {
+    "name": "Mingle Sport",
+    "url": "https://mingle-sport.nolt.io/top",
+    "note": "Team manager app whose board shows the gaps; tournaments and standings still not shipped."
+   }
+  ],
+  "satellite": {
+   "name": "Free Round-Robin Fixture Generator",
+   "what": "Enter teams, pitches, start time, match length; get a printable schedule instantly.",
+   "why_shared": "Coaches paste it into parent WhatsApp groups and club websites.",
+   "handoff": "Printable page carries a 'live standings and results page' button that opens the full planner."
+  },
+  "marketing": {
+   "where": [
+    "Youth football/soccer club Facebook groups",
+    "Local league secretary forums",
+    "Coach forums and Discord servers",
+    "SportsPress/WordPress club-site communities",
+    "Product Hunt"
+   ],
+   "target": "Volunteer tournament organisers and league secretaries of youth clubs (soccer, hockey, handball)",
+   "funnel": "Free fixture generator -> share link to standings -> organiser creates a free account to save and publish",
+   "cold_outreach": "Offer to generate a club's next tournament schedule for free and ask for feedback.",
+   "post_ideas": [
+    "How to schedule 12 teams on 3 pitches without anyone playing back-to-back",
+    "Free U10 tournament schedule generator with printable sheets",
+    "What tiebreakers youth leagues actually use and how to automate them"
+   ]
+  },
+  "capital_usd": 12,
+  "capital_note": "Domain only; all compute is client-side.",
+  "uses_paid_api": false,
+  "paid_api_note": null,
+  "confidence": "medium",
+  "notes": "Signals come from one vendor board (Mingle Sport), several older than 12 months, but the vendor activity on them in 2026 and merged duplicates show the demand persists. Competitors exist (LeagueLobster free generator, Tournify), so the pitch must be the multi-pitch constraint quality plus the free printable season report. Mingle has no public API, so this is standalone, not an add-on."
+ },
+ {
+  "id": "fb-003",
+  "name": "Lesson Reflow",
+  "idea": "A teacher pacing calendar where lessons flow forward day by day but chosen lessons stay locked to a date, with holidays, in-service days and A/B or weekend schedules handled.",
+  "description": "Teachers and homeschoolers on Common Curriculum have asked for a decade to pin a test, assembly or live lesson to a date while the other lesson cards bump forward around it. Lesson Reflow is a drag-and-drop pacing calendar: the user defines the school calendar (breaks, in-service days, rotating day cycles, weekend classes), places unit and lesson cards, locks some to dates, and the rest reflow automatically when a day is lost. Copying a semester forward to next year re-snaps to the new calendar.",
+  "niche": "Education & Study",
+  "niche2": "Productivity & Planning",
+  "is_feature": false,
+  "feature_for": null,
+  "web_delivery": "Next.js PWA on Vercel Hobby; reflow engine runs client-side and works offline via service worker; Supabase free for accounts and plans; PDF/ICS export via browser APIs.",
+  "why_hard_to_copy": "The reflow engine (locked items, skipped days, rotating day cycles, split periods, year-to-year re-snap) is correctness-critical calendar logic; plenty of planner CRUD apps exist but few handle locking plus bumping correctly.",
+  "signals": [
+   {
+    "platform": "web",
+    "url": "https://commoncurriculum.canny.io/feature-requests/p/locking-lessons-to-a-day",
+    "date": "2025-12-04",
+    "summary": "Teacher again begs for a lock feature; a homeschooler (2025-11-19) wants live lessons locked to a day while other lessons are pushed forward, and another (2025-11-12) notes it has been asked for ten years.",
+    "engagement": "127 votes, 20+ comments, 6 comments in 2025"
+   },
+   {
+    "platform": "web",
+    "url": "https://commoncurriculum.canny.io/feature-requests/p/saturday-andor-sunday-weekend-classes-were-an-option",
+    "date": "2024-02-21",
+    "summary": "Teachers with Saturday or Sunday classes cannot schedule them in the planner, which assumes Monday to Friday.",
+    "engagement": "131 votes, 20 comments"
+   },
+   {
+    "platform": "web",
+    "url": "https://commoncurriculum.canny.io/feature-requests/p/i-could-copy-an-entire-week-month-or-semester-worth-of-lessons",
+    "date": "2020-09-16",
+    "summary": "Teachers want to copy a week, month or semester of lessons into next year or the second semester and tweak it instead of retyping.",
+    "engagement": "118 votes, 12 comments"
+   }
+  ],
+  "competitors_seen": [
+   {
+    "name": "Common Curriculum",
+    "url": "https://commoncurriculum.canny.io/feature-requests",
+    "note": "Teacher lesson planner whose board shows the unshipped lock feature."
+   },
+   {
+    "name": "Planbook",
+    "url": "https://www.planbook.com",
+    "note": "Paid teacher planner with lesson bumping; per-year subscription."
+   },
+   {
+    "name": "Homeschool Planet",
+    "url": "https://homeschoolplanet.com/features",
+    "note": "Homeschool planner with automatic rescheduling; paid."
+   }
+  ],
+  "satellite": {
+   "name": "School Calendar Day Counter",
+   "what": "Free tool: paste your school year dates, breaks and cycle (A/B, 6-day) and get a printable day-by-day calendar with the 100th day and instructional-day count.",
+   "why_shared": "Teachers share school calendars with colleagues and departments.",
+   "handoff": "Calendar page offers 'place your units on this calendar' to open the planner."
+  },
+  "marketing": {
+   "where": [
+    "Teacher Facebook groups",
+    "Teachers Pay Teachers community",
+    "Homeschool forums (e.g. The Well-Trained Mind)",
+    "Product Hunt",
+    "Instructional coach newsletters"
+   ],
+   "target": "K-12 teachers and homeschool parents who plan lessons by calendar day",
+   "funnel": "Free day counter calendar -> add units and lessons -> sign up to save and reflow",
+   "cold_outreach": "Reply helpfully to public teacher requests for lock/bump features with the free tool.",
+   "post_ideas": [
+    "Why your lesson planner breaks every time a snow day hits (and a way to fix it)",
+    "Free instructional-day counter for any school calendar",
+    "Copy last year's pacing guide onto this year's calendar in one click"
+   ]
+  },
+  "capital_usd": 12,
+  "capital_note": "Domain only.",
+  "uses_paid_api": false,
+  "paid_api_note": null,
+  "confidence": "medium",
+  "notes": "The strongest dated evidence is a single thread with 2025 comments; most of the board is old (2015-2020), so the recency rests on that thread plus the Sept 2025 AI-export request. Competitor Planbook already bumps lessons, so differentiation is lock-plus-bump, rotation cycles and a free tier."
+ }
+]

@@ -1,0 +1,151 @@
+[
+  {
+    "id": "frA-001",
+    "name": "Marches Hub",
+    "idea": "A West Marches / open-table sandbox campaign site where players post session logs and drop pins on a shared map, with each player only seeing what their characters have discovered.",
+    "description": "A GM running a sandbox campaign wants players to add their own logs, wiki edits and drawings, plus a map with information pins, without wrestling a self-hosted wiki or forcing everyone onto Google/Discord accounts. Marches Hub gives each campaign a magic-link player roster, discovery-gated map pins (a pin is only visible once a character has been there), an expedition board where any player can call a session, and a rotating-roster rule set typical of West Marches play. The moat is the per-player knowledge-state permission model plus open-table scheduling rules that general wiki tools do not model.",
+    "niche": "Gaming Communities",
+    "niche2": null,
+    "is_feature": false,
+    "feature_for": null,
+    "web_delivery": "Next.js on Vercel hobby; Supabase Postgres with row-level security for per-player visibility; Leaflet image-map for hand-drawn maps; magic-link login so players need no Google/Discord account.",
+    "why_hard_to_copy": "Per-player discovery-gated visibility (row-level security over pins, logs and map layers) and open-table scheduling logic are fiddly to get right; a generic notes or wiki clone does not cover them. Small-niche community word of mouth also matters.",
+    "signals": [
+      {
+        "platform": "forum",
+        "url": "https://www.enworld.org/threads/campaign-management-tools.719275/",
+        "date": "2026-05-26",
+        "summary": "The original poster wants a campaign tool where players can add personal logs, wiki edits and uploaded drawings, plus a map with information pins for a West Marches-style sandbox. Replies complain that MediaWiki is tedious to host and update, wiki syntax slows content creation, and some players refuse to create Google/Discord/Microsoft accounts just to join.",
+        "engagement": "9 replies on page 1 (all 2026-05-26), thread runs 5 pages"
+      }
+    ],
+    "competitors_seen": [
+      {
+        "name": "Kanka",
+        "url": "https://kanka.io",
+        "note": "Free with paid tier; entity-based campaign wiki, no discovery-gated map pins or open-table scheduling."
+      },
+      {
+        "name": "Legend Keeper",
+        "url": "https://www.legendkeeper.com",
+        "note": "Paid; wiki plus map boards, GM-centric, not built for player-contributed logs with per-player visibility."
+      },
+      {
+        "name": "World Anvil",
+        "url": "https://www.worldanvil.com",
+        "note": "Free tier plus paid; heavy worldbuilding focus, steep learning curve."
+      },
+      {
+        "name": "Obsidian Portal",
+        "url": "https://www.obsidianportal.com",
+        "note": "Long-running campaign wiki; dated UI, no discovery-gated map."
+      }
+    ],
+    "satellite": {
+      "name": "Expedition Board",
+      "what": "Free single-page tool for open-table GMs: players propose a session, others sign up, and it tracks who is available and which characters are in town.",
+      "why_shared": "Open-table GMs share and link to it in their Discord or forum announcements.",
+      "handoff": "Each expedition page offers 'turn this into a full campaign hub' with the roster pre-filled."
+    },
+    "marketing": {
+      "where": [
+        "EN World forums",
+        "RPG.net forums",
+        "RPGGeek",
+        "itch.io TTRPG community",
+        "West Marches blogs and Discord servers"
+      ],
+      "target": "GMs running open-table or sandbox campaigns with 6+ rotating players",
+      "funnel": "Free expedition board in forum threads, then upgrade to the full hub for the whole campaign",
+      "cold_outreach": "Reply in threads where GMs describe running a West Marches game and offer a free hub for their campaign.",
+      "post_ideas": [
+        "How I let players discover my hex map one pin at a time",
+        "A no-account campaign site for West Marches games",
+        "Why your sandbox campaign wiki should not need a Discord login"
+      ]
+    },
+    "capital_usd": 12,
+    "capital_note": "Domain name only; Supabase free and Vercel hobby cover hosting at this scale.",
+    "uses_paid_api": false,
+    "paid_api_note": null,
+    "confidence": "low",
+    "notes": "Single recent thread (page 1 only read; later pages not checked). Map image uploads can hit Supabase free storage limits, so cap image size. Campaign-wiki space is crowded; the differentiator is discovery-gated visibility, not wiki features."
+  },
+  {
+    "id": "frA-002",
+    "name": "RPG Shelf",
+    "idea": "A catalog for tabletop RPG collectors that tracks print books, PDFs and backer rewards together, tagged by game system, edition and line.",
+    "description": "TTRPG fans keep 1,000+ books across print shelves, DriveThruRPG, itch.io and crowdfunding, and today they juggle Google Sheets, PDF folders and BoardGameGeek's RPGGeek. RPG Shelf lets you add a book by cover, ISBN or product title, matches it to a canonical product (system, edition, line, format), and answers 'do I already own this?' from your phone at the game store. The moat is a curated TTRPG product taxonomy (system, edition, line, reprints, bundles) and a fix-it flow for items missing from public databases, which generic book trackers lack.",
+    "niche": "Collectors",
+    "niche2": "Gaming Communities",
+    "is_feature": false,
+    "feature_for": null,
+    "web_delivery": "Next.js PWA on Vercel hobby with Supabase Auth and Postgres; barcode lookup via the browser BarcodeDetector API with manual fallback; Open Library for ISBN metadata; offline cache so it works inside a game store.",
+    "why_hard_to_copy": "The value is a hand-curated RPG product database (system and edition mapping, reprints, bundle contents) plus user-contributed corrections; a generic book scanner clone does not know that a 5e core rulebook and its revised printing are one line.",
+    "signals": [
+      {
+        "platform": "forum",
+        "url": "https://forum.rpg.net/index.php?threads/cataloging-your-collection-what-are-you-doing-and-how-are-you-doing-it.938443/",
+        "date": "2026-10-02",
+        "summary": "A poster asked how people catalog their print TTRPG books and supplements; the first replies were a Google Sheet with a tab per system, BookWyrm, PDF folders sorted by system, and a 1,600-item spreadsheet. One user said RPGGeek is okay but weak at sorting (no easy way to list only D&D) and hard to extend with missing items. Another user built a private shelf-photo scanner but will not share it because hosting, accounts and costs are a burden.",
+        "engagement": "48+ posts on page 1 within five days (2026-10-02 to 2026-10-07)"
+      }
+    ],
+    "competitors_seen": [
+      {
+        "name": "RPGGeek",
+        "url": "https://rpggeek.com",
+        "note": "Free; collection tied to BGG database, weak sorting by system and hard to add missing items per forum users."
+      },
+      {
+        "name": "COMPASS",
+        "url": "https://github.com/DSPaul/COMPASS",
+        "note": "Free Windows desktop app for rulebooks and PDFs; no web or phone use."
+      },
+      {
+        "name": "Grimoire (ElfHosted)",
+        "url": "https://store.elfhosted.com/product/grimoire/",
+        "note": "Paid ($9/month); indexes a folder of PDFs for full-text search and campaign tracking, not a print-plus-PDF owned-or-not catalog."
+      },
+      {
+        "name": "DriveThruRPG Library app",
+        "url": "https://www.drivethrurpg.com",
+        "note": "Free; only covers items bought on DriveThruRPG."
+      },
+      {
+        "name": "BookWyrm",
+        "url": "https://joinbookwyrm.com",
+        "note": "Free federated book tracker; no TTRPG system or edition fields."
+      }
+    ],
+    "satellite": {
+      "name": "Sheet Cleaner",
+      "what": "Free page where you paste or upload your RPG Google Sheet or CSV and it matches titles to canonical products, flags duplicates and shows missing ISBNs.",
+      "why_shared": "Collectors with a messy spreadsheet share before-and-after cleanups and ask for the tool in threads like the RPG.net cataloging one.",
+      "handoff": "After cleanup, one click imports the matched list into an RPG Shelf account."
+    },
+    "marketing": {
+      "where": [
+        "RPG.net forums",
+        "EN World",
+        "RPGGeek guilds",
+        "TTRPG Discord servers",
+        "Kickstarter backer communities"
+      ],
+      "target": "TTRPG collectors with 300+ books and PDFs across several storefronts",
+      "funnel": "Free sheet cleaner, then free tier up to 200 items, then paid unlimited if monetized later",
+      "cold_outreach": "Reply to cataloging threads with a free shelf import for the thread's spreadsheet users.",
+      "post_ideas": [
+        "I cleaned up a 1,600-book RPG spreadsheet automatically",
+        "Do you already own it? A phone check for the game store shelf",
+        "Why RPGGeek and BookWyrm both miss RPG editions"
+      ]
+    },
+    "capital_usd": 12,
+    "capital_note": "Domain only; Open Library and browser barcode detection are free.",
+    "uses_paid_api": false,
+    "paid_api_note": null,
+    "confidence": "medium",
+    "notes": "Single high-engagement thread, no older corroboration checked. BoardGameGeek XML API terms restrict commercial use and now need a token, so seed the product data from Open Library plus your own curation. Crowded adjacent space (book trackers), so the RPG-specific taxonomy must be the real differentiator."
+  }
+]

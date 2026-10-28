@@ -1,0 +1,691 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Gap Ledger: web app ideas people are asking for</title>
+<meta name="description" content="Filterable ledger of hard-to-copy web app ideas, each traced to a dated public complaint.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Schibsted+Grotesk:wght@400;500;600&family=Spline+Sans+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --font-display: "Instrument Serif", "Iowan Old Style", Georgia, serif;
+  --font-body: "Schibsted Grotesk", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: "Spline Sans Mono", ui-monospace, "Cascadia Mono", Consolas, monospace;
+
+  --t-xs: 0.75rem; --t-sm: 0.8125rem; --t-base: 1rem; --t-lg: 1.25rem;
+  --t-xl: 1.5625rem; --t-2xl: 1.953rem; --t-3xl: 2.441rem; --t-4xl: 3.052rem;
+  --s1: 4px; --s2: 8px; --s3: 12px; --s4: 16px; --s5: 24px; --s6: 32px; --s7: 48px; --s8: 72px;
+  --r-chip: 3px; --r-card: 6px;
+
+  color-scheme: light;
+  --paper: #f6f2ea;
+  --surface: #fffdf9;
+  --ink: #1b1915;
+  --ink-2: #514d44;
+  --muted: #7d776a;
+  --line: #e2dccf;
+  --track: #ebe5d8;
+  --accent: #24477a;
+  --accent-ink: #ffffff;
+  --accent-wash: #e7edf7;
+  --good: #0ca30c;
+  --warn: #fab219;
+  --bad: #d03b3b;
+  --flag: #8a4b0f;
+  --flag-wash: #f8ecd8;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --paper: #12110d;
+    --surface: #1b1a15;
+    --ink: #efe9da;
+    --ink-2: #c3bba8;
+    --muted: #8f8878;
+    --line: #2d2b24;
+    --track: #2b2923;
+    --accent: #93b4ea;
+    --accent-ink: #10131a;
+    --accent-wash: #1e2638;
+    --flag: #e9b46a;
+    --flag-wash: #2d2416;
+  }
+}
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --paper: #12110d;
+  --surface: #1b1a15;
+  --ink: #efe9da;
+  --ink-2: #c3bba8;
+  --muted: #8f8878;
+  --line: #2d2b24;
+  --track: #2b2923;
+  --accent: #93b4ea;
+  --accent-ink: #10131a;
+  --accent-wash: #1e2638;
+  --flag: #e9b46a;
+  --flag-wash: #2d2416;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font: 400 var(--t-base)/1.5 var(--font-body);
+  overflow-wrap: break-word;
+}
+a { color: var(--accent); text-underline-offset: 3px; }
+a:hover { text-decoration-thickness: 2px; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+button { font: inherit; color: inherit; cursor: pointer; }
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+/* ---------- masthead ---------- */
+.mast {
+  max-width: 1320px; margin: 0 auto;
+  padding: var(--s6) clamp(16px, 4vw, 40px) var(--s5);
+  display: grid; grid-template-columns: 1fr auto; gap: var(--s4) var(--s6); align-items: end;
+  border-bottom: 1px solid var(--line);
+}
+.mast h1 {
+  margin: 0; font: 400 clamp(2.441rem, 6vw, 4.768rem)/0.95 var(--font-display);
+  letter-spacing: -0.03em;
+}
+.mast h1 em { color: var(--accent); }
+.mast p { margin: var(--s3) 0 0; max-width: 56ch; color: var(--ink-2); }
+.mast-tools { display: flex; gap: var(--s2); align-items: center; }
+.stamp { font: 400 var(--t-xs)/1.3 var(--font-mono); color: var(--muted); text-align: right; letter-spacing: 0.02em; }
+.btn {
+  border: 1px solid var(--line); background: var(--surface); border-radius: var(--r-chip);
+  padding: 6px 12px; min-height: 36px;
+}
+.btn:hover { border-color: var(--ink-2); }
+.btn[aria-pressed="true"], .btn.on { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+
+/* ---------- summary strip ---------- */
+.strip {
+  max-width: 1320px; margin: 0 auto;
+  padding: var(--s5) clamp(16px, 4vw, 40px);
+  display: grid; grid-template-columns: auto 1fr; gap: var(--s5) var(--s7); align-items: start;
+}
+.tally { display: flex; gap: var(--s6); }
+.tally div { min-width: 0; }
+.tally b { display: block; font: 400 var(--t-4xl)/1 var(--font-display); letter-spacing: -0.03em; font-variant-numeric: lining-nums; }
+.tally span { display: block; margin-top: var(--s1); font: 400 var(--t-xs)/1.3 var(--font-mono); color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; }
+.niches { display: flex; flex-wrap: wrap; gap: var(--s2); align-content: flex-start; }
+.niche {
+  display: inline-flex; align-items: baseline; gap: 6px;
+  border: 1px solid var(--line); background: transparent; border-radius: var(--r-chip);
+  padding: 4px 9px; font-size: var(--t-sm); line-height: 1.3; min-height: 30px; align-items: center;
+}
+.niche i { font: 400 var(--t-xs) var(--font-mono); font-style: normal; color: var(--muted); }
+.niche:hover { border-color: var(--ink-2); }
+.niche[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+.niche[aria-pressed="true"] i { color: inherit; opacity: 0.8; }
+.niche[data-zero="1"] { opacity: 0.45; }
+
+/* ---------- layout ---------- */
+.shell {
+  max-width: 1320px; margin: 0 auto;
+  padding: 0 clamp(16px, 4vw, 40px) var(--s8);
+  display: grid; grid-template-columns: minmax(280px, 340px) minmax(0, 1fr); gap: var(--s6);
+  align-items: start;
+}
+.filters { position: sticky; top: var(--s3); max-height: calc(100vh - 24px); overflow: auto; border-top: 2px solid var(--ink); padding: var(--s3) var(--s3) 0 0; scrollbar-width: thin; }
+.filters > summary { display: none; }
+.filters h2, .filters h3 { margin: 0; }
+.fgroup { padding: var(--s4) 0; border-bottom: 1px solid var(--line); }
+.fgroup h3 { font: 500 var(--t-xs)/1.2 var(--font-mono); text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); margin-bottom: var(--s3); display: flex; justify-content: space-between; align-items: baseline; gap: var(--s2); }
+.fgroup h3 .linkbtn { font: 400 var(--t-xs) var(--font-mono); border: 0; background: none; color: var(--accent); text-decoration: underline; text-underline-offset: 3px; padding: 4px 0; text-transform: none; letter-spacing: 0; }
+input[type="search"] {
+  width: 100%; min-height: 40px; padding: 8px 12px; border: 1px solid var(--line); border-radius: var(--r-chip);
+  background: var(--surface); color: var(--ink); font: inherit;
+}
+.check { display: flex; gap: var(--s2); align-items: center; min-height: 32px; font-size: var(--t-sm); cursor: pointer; }
+.check input { width: 16px; height: 16px; accent-color: var(--accent); margin: 0; }
+.seg { display: inline-flex; border: 1px solid var(--line); border-radius: var(--r-chip); overflow: hidden; }
+.seg button { border: 0; background: transparent; padding: 4px 10px; font: 500 var(--t-xs) var(--font-mono); min-height: 28px; }
+.seg button[aria-pressed="true"] { background: var(--ink); color: var(--paper); }
+select {
+  width: 100%; min-height: 40px; padding: 8px 10px; border: 1px solid var(--line); border-radius: var(--r-chip);
+  background: var(--surface); color: var(--ink); font: inherit;
+}
+input[type="range"] { width: 100%; accent-color: var(--accent); margin: 6px 0 0; height: 24px; }
+.srow { display: grid; grid-template-columns: auto 1fr auto; gap: 2px var(--s2); align-items: center; padding: var(--s2) 0; }
+.srow + .srow { border-top: 1px dotted var(--line); }
+.srow .nm { font-size: var(--t-sm); font-weight: 500; }
+.srow .val { font: 500 var(--t-xs) var(--font-mono); color: var(--ink-2); min-width: 4.5ch; text-align: right; }
+.srow .rng { grid-column: 1 / 3; }
+.srow .wt { display: flex; align-items: center; gap: 4px; font: 400 var(--t-xs) var(--font-mono); color: var(--muted); justify-self: end; }
+.srow .wt input { width: 8ch; padding: 3px 4px; border: 1px solid var(--line); border-radius: var(--r-chip); background: var(--surface); color: var(--ink); font: 400 var(--t-xs) var(--font-mono); }
+.srow[data-off="1"] .nm, .srow[data-off="1"] .val { opacity: 0.4; text-decoration: line-through; }
+.srow[data-off="1"] input[type="range"] { opacity: 0.35; }
+.hint { margin: var(--s2) 0 0; font-size: var(--t-xs); color: var(--muted); line-height: 1.4; }
+.reset { margin-top: var(--s4); width: 100%; }
+
+/* ---------- cards ---------- */
+.list { display: grid; gap: var(--s5); min-width: 0; }
+.listhead { display: flex; justify-content: space-between; gap: var(--s3); align-items: baseline; flex-wrap: wrap; border-top: 2px solid var(--ink); padding-top: var(--s3); font: 400 var(--t-sm) var(--font-mono); color: var(--ink-2); }
+.card {
+  background: var(--surface); border: 1px solid var(--line); border-radius: var(--r-card);
+  padding: var(--s5) clamp(16px, 3vw, var(--s6));
+  display: grid; grid-template-columns: minmax(0, 1fr) minmax(250px, 300px); gap: var(--s5) var(--s6);
+}
+.card > * { min-width: 0; }
+.c-main { grid-column: 1; }
+.c-rings { grid-column: 2; grid-row: 1 / span 2; }
+.c-market { grid-column: 1 / -1; border-top: 1px solid var(--line); padding-top: var(--s5); }
+.rank { font: 400 var(--t-xs)/1 var(--font-mono); color: var(--muted); letter-spacing: 0.08em; }
+.tags { display: flex; flex-wrap: wrap; gap: 6px; margin: var(--s2) 0 var(--s3); }
+.tag { font: 400 var(--t-xs)/1.2 var(--font-mono); padding: 3px 7px; border: 1px solid var(--line); border-radius: var(--r-chip); color: var(--ink-2); }
+.tag.feat { border-color: var(--accent); color: var(--accent); }
+.tag.low { background: var(--flag-wash); border-color: var(--flag); color: var(--flag); }
+.card h2 { margin: 0; font: 400 var(--t-3xl)/1.02 var(--font-display); letter-spacing: -0.025em; }
+.c-idea { margin: var(--s2) 0 0; font-size: var(--t-lg); line-height: 1.3; font-weight: 500; letter-spacing: -0.01em; }
+.c-desc { margin: var(--s3) 0 0; color: var(--ink-2); max-width: 66ch; }
+.sec-h { margin: var(--s5) 0 var(--s2); font: 500 var(--t-xs)/1.2 var(--font-mono); text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); }
+.why-list { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--s3); }
+.why-list li { border-left: 2px solid var(--accent); padding-left: var(--s3); }
+.why-meta { display: flex; flex-wrap: wrap; gap: 4px var(--s3); font: 400 var(--t-xs)/1.4 var(--font-mono); color: var(--muted); }
+.why-meta b { font-weight: 500; color: var(--ink-2); }
+.why-list p { margin: 2px 0 0; font-size: var(--t-sm); }
+.rings { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--s3) var(--s2); align-items: start; }
+.ring-wrap { text-align: center; display: grid; justify-items: center; gap: 2px; }
+.ring-wrap.overall { grid-column: 1 / -1; margin-bottom: var(--s2); }
+.ring { width: 100%; max-width: 62px; height: auto; display: block; overflow: visible; }
+.overall .ring { max-width: 124px; }
+.ring-track { fill: none; stroke: var(--track); stroke-width: 5; }
+.ring-arc { fill: none; stroke-width: 5; stroke-linecap: butt; }
+.ring-arc.good { stroke: var(--good); } .ring-arc.warn { stroke: var(--warn); } .ring-arc.bad { stroke: var(--bad); }
+.ring-num { fill: var(--ink); font: 500 13.5px var(--font-mono); text-anchor: middle; dominant-baseline: central; }
+.overall .ring-num { font-size: 15.5px; }
+.ring-wrap[data-off="1"] .ring { opacity: 0.25; }
+.ring-lab { font: 400 10.5px/1.15 var(--font-mono); color: var(--ink-2); letter-spacing: 0.01em; }
+.overall .ring-lab { font-size: var(--t-xs); text-transform: uppercase; letter-spacing: 0.08em; }
+.ring-sub { font: 400 10.5px/1.2 var(--font-mono); color: var(--muted); }
+.band { font: 500 var(--t-xs) var(--font-mono); color: var(--ink-2); }
+.cash { margin: var(--s3) 0 0; font: 500 var(--t-sm)/1.3 var(--font-mono); }
+.score-notes { margin: var(--s4) 0 0; padding: 0; list-style: none; display: grid; gap: 6px; font-size: var(--t-xs); color: var(--ink-2); }
+.score-notes b { font-family: var(--font-mono); font-weight: 500; }
+.mgrid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: var(--s5); }
+.mgrid h3 { margin: 0 0 4px; font: 500 var(--t-xs)/1.2 var(--font-mono); text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); }
+.mgrid p, .mgrid ul { margin: 0; font-size: var(--t-sm); color: var(--ink-2); }
+.mgrid ul { padding-left: 1.1em; }
+.sat { grid-column: 1 / -1; background: var(--accent-wash); border-radius: var(--r-chip); padding: var(--s4); }
+.sat h3 { color: var(--accent); }
+.sat dl { margin: var(--s2) 0 0; display: grid; grid-template-columns: max-content 1fr; gap: 2px var(--s3); font-size: var(--t-sm); }
+.sat dt { font: 500 var(--t-xs) var(--font-mono); color: var(--muted); padding-top: 2px; }
+.sat dd { margin: 0; }
+.comp { margin-top: var(--s4); font-size: var(--t-xs); color: var(--muted); }
+.more { justify-self: center; padding: 10px 20px; min-height: 44px; }
+.empty { padding: var(--s7) var(--s5); text-align: center; border: 1px dashed var(--line); border-radius: var(--r-card); color: var(--ink-2); }
+.empty b { display: block; font: 400 var(--t-2xl)/1.1 var(--font-display); color: var(--ink); margin-bottom: var(--s2); }
+.foot { max-width: 1320px; margin: 0 auto; padding: var(--s5) clamp(16px, 4vw, 40px) var(--s7); color: var(--muted); font-size: var(--t-xs); border-top: 1px solid var(--line); }
+
+/* ---------- motion ---------- */
+@media (prefers-reduced-motion: no-preference) {
+  .card { animation: rise 280ms ease-out both; }
+  .ring-arc { transition: stroke-dasharray 300ms ease-out; }
+  @keyframes rise { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+}
+
+/* ---------- responsive ---------- */
+@media (max-width: 1100px) {
+  .card { grid-template-columns: minmax(0, 1fr); }
+  .c-rings { grid-column: 1; grid-row: auto; }
+  .rings { grid-template-columns: repeat(4, minmax(0, 1fr)); max-width: 420px; }
+}
+@media (max-width: 959px) {
+  .mast { grid-template-columns: 1fr; }
+  .stamp { text-align: left; }
+  .strip { grid-template-columns: 1fr; gap: var(--s4); }
+  .shell { grid-template-columns: 1fr; gap: var(--s4); }
+  .filters { position: static; max-height: none; overflow: visible; border-top: 0; padding-top: 0; }
+  .filters > summary {
+    display: flex; justify-content: space-between; align-items: center; gap: var(--s3);
+    position: sticky; top: 0; z-index: 5; list-style: none; cursor: pointer;
+    background: var(--ink); color: var(--paper); border-radius: var(--r-chip);
+    padding: 12px 16px; min-height: 48px; font-weight: 500;
+  }
+  .filters > summary::-webkit-details-marker { display: none; }
+  .filters > summary span { font: 400 var(--t-xs) var(--font-mono); opacity: 0.8; }
+  .filters[open] > summary { margin-bottom: var(--s3); }
+}
+@media (max-width: 520px) {
+  .tally { gap: var(--s5); flex-wrap: wrap; }
+  .tally b { font-size: var(--t-3xl); }
+  .card h2 { font-size: var(--t-2xl); }
+  .rings { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  .ring-lab { font-size: 9.5px; }
+}
+@media print { .filters, .more, .mast-tools { display: none; } .card { break-inside: avoid; } }
+</style>
+</head>
+<body>
+
+<header class="mast">
+  <div>
+    <h1>Gap <em>Ledger</em></h1>
+    <p>Web app ideas that real people asked for in public, scored on eight axes for a solo builder on Supabase and Vercel free tiers. Every idea links to a dated complaint.</p>
+  </div>
+  <div>
+    <div class="mast-tools">
+      <button class="btn" id="themeBtn" type="button" aria-pressed="false">Dark mode</button>
+    </div>
+    <div class="stamp" id="stamp"></div>
+  </div>
+</header>
+
+<section class="strip" aria-label="Summary">
+  <div class="tally">
+    <div><b id="nTotal">0</b><span>ideas in ledger</span></div>
+    <div><b id="nShown">0</b><span>match filters</span></div>
+    <div><b id="nFeat">0</b><span>feature ideas</span></div>
+  </div>
+  <div class="niches" id="niches" role="group" aria-label="Filter by niche (multi-select)"></div>
+</section>
+
+<main class="shell">
+  <details class="filters" id="filters" open>
+    <summary>Filters <span id="fsum"></span></summary>
+
+    <div class="fgroup">
+      <h3><label for="q">Search</label></h3>
+      <input id="q" type="search" placeholder="name, problem, niche, source" autocomplete="off">
+    </div>
+
+    <div class="fgroup">
+      <h3>Sort <span></span></h3>
+      <label class="sr" for="sort">Sort by</label>
+      <select id="sort"></select>
+    </div>
+
+    <div class="fgroup">
+      <h3>Startup capital
+        <span class="seg" role="group" aria-label="Currency">
+          <button type="button" data-cur="USD" aria-pressed="true">USD</button>
+          <button type="button" data-cur="RON" aria-pressed="false">RON</button>
+        </span>
+      </h3>
+      <div class="srow" style="grid-template-columns:1fr auto;padding-top:0">
+        <span class="nm">Max cash to launch</span><span class="val" id="capVal"></span>
+        <input class="rng" id="cap" type="range" min="0" max="100" step="1" style="grid-column:1/-1" aria-label="Maximum startup capital">
+      </div>
+      <p class="hint">Cash only: domain, tools, paid services. Your own time is not counted.</p>
+    </div>
+
+    <div class="fgroup">
+      <h3>Scores <button type="button" class="linkbtn" id="allOn">all on</button></h3>
+      <p class="hint" style="margin:0 0 var(--s2)">Checkbox: use this score in filtering and in Overall. Slider: minimum. Weight: share of Overall.</p>
+      <div id="scoreRows"></div>
+      <button type="button" class="btn reset" id="resetW">Reset weights</button>
+    </div>
+
+    <div class="fgroup">
+      <h3>Show</h3>
+      <label class="check"><input type="checkbox" id="showFeat" checked> Feature ideas (add-ons to existing apps)</label>
+      <label class="check"><input type="checkbox" id="showLow" checked> Low-confidence ideas</label>
+      <label class="check"><input type="checkbox" id="showPaid" checked> Ideas that rely on a paid API</label>
+    </div>
+
+    <button type="button" class="btn reset" id="resetAll">Clear all filters</button>
+  </details>
+
+  <section class="list" aria-live="polite">
+    <div class="listhead"><span id="lhCount"></span><span id="lhSort"></span></div>
+    <div id="cards" style="display:grid;gap:var(--s5)"></div>
+    <button type="button" class="btn more" id="more" hidden></button>
+  </section>
+</main>
+
+<footer class="foot" id="foot"></footer>
+
+<script type="application/json" id="ideas-data">__IDEAS_JSON__</script>
+<script>
+(() => {
+'use strict';
+
+const CONFIG = {
+  usdRon: __USD_RON__,
+  generated: '__DATE__',
+  pageSize: 24,
+  bandGood: 67,
+  bandWarn: 34,
+  capStepUsd: 5,
+  defaultWeight: 1,
+};
+
+const SCORES = [
+  { k: 'replicatability', label: 'Replicatability', tip: 'How long and hard it is for the average vibe coder to rebuild. Hard to copy = high.', w: 1 },
+  { k: 'wtr',             label: 'WTR',             tip: 'Want to Replicate: how few people could and would copy it. Fewer copiers = high.', w: 1 },
+  { k: 'competition',     label: 'Competition',     tip: 'How many similar products already sell. Less competition = high.', w: 1 },
+  { k: 'marketability',   label: 'Marketability',   tip: 'How easy it is to reach and sell to this market. Easy = high.', w: 1 },
+  { k: 'satellite',       label: 'Satellite',       tip: 'How well it supports a small free tool that funnels to the product. Better fit = high.', w: 0.5 },
+  { k: 'capital',         label: 'Startup capital', tip: 'How little cash it takes to launch. Cheaper = high.', w: 1 },
+  { k: 'want',            label: 'Want',            tip: 'How many people want it, or that specific feature. More demand = high.', w: 1 },
+  { k: 'newability',      label: 'Newability',      tip: 'How recent the complaints are. Newer = high.', w: 1 },
+];
+
+const IDEAS = JSON.parse(document.getElementById('ideas-data').textContent);
+const $ = (id) => document.getElementById(id);
+const SVGNS = 'http://www.w3.org/2000/svg';
+
+const defaults = () => ({
+  niches: new Set(),
+  on: Object.fromEntries(SCORES.map((s) => [s.k, true])),
+  min: Object.fromEntries(SCORES.map((s) => [s.k, 0])),
+  w: Object.fromEntries(SCORES.map((s) => [s.k, s.w])),
+  cur: 'USD',
+  capUsd: Infinity,
+  sort: 'overall',
+  q: '',
+  feat: true,
+  low: true,
+  paid: true,
+  shown: CONFIG.pageSize,
+});
+let st = defaults();
+
+const maxCapUsd = Math.max(CONFIG.capStepUsd, Math.ceil(Math.max(0, ...IDEAS.map((i) => i.capital_usd || 0)) / CONFIG.capStepUsd) * CONFIG.capStepUsd);
+st.capUsd = maxCapUsd;
+
+/* ---------- tiny DOM helpers (data is always set as text) ---------- */
+function h(tag, props, ...kids) {
+  const e = document.createElement(tag);
+  for (const [k, v] of Object.entries(props || {})) {
+    if (v == null || v === false) continue;
+    if (k === 'class') e.className = v;
+    else if (k === 'text') e.textContent = v;
+    else if (k.startsWith('on')) e.addEventListener(k.slice(2), v);
+    else e.setAttribute(k, v === true ? '' : v);
+  }
+  for (const c of kids.flat(Infinity)) {
+    if (c == null || c === false) continue;
+    e.append(c.nodeType ? c : document.createTextNode(String(c)));
+  }
+  return e;
+}
+function sv(tag, attrs) {
+  const e = document.createElementNS(SVGNS, tag);
+  for (const [k, v] of Object.entries(attrs || {})) e.setAttribute(k, v);
+  return e;
+}
+
+/* ---------- scoring ---------- */
+const bandOf = (v) => (v >= CONFIG.bandGood ? 'good' : v >= CONFIG.bandWarn ? 'warn' : 'bad');
+const bandWord = (v) => (v >= CONFIG.bandGood ? 'strong' : v >= CONFIG.bandWarn ? 'mixed' : 'weak');
+
+function overall(idea) {
+  let num = 0, den = 0;
+  for (const s of SCORES) {
+    if (!st.on[s.k]) continue;
+    const w = st.w[s.k];
+    if (!(w > 0)) continue;
+    num += w * (idea.scores[s.k] ?? 0);
+    den += w;
+  }
+  return den ? Math.round(num / den) : 0;
+}
+
+const fmtUsd = (n) => '$' + Math.round(n).toLocaleString('en-US');
+const ron = (usd) => Math.round(usd * CONFIG.usdRon);
+const fmtRon = (n) => Math.round(n).toLocaleString('en-US') + ' RON';
+const fmtCap = (usd) => (usd === 0 ? 'free' : fmtUsd(usd) + ' · ' + fmtRon(ron(usd)));
+
+/* ---------- filtering ---------- */
+function haystack(i) {
+  return [i.name, i.idea, i.description, i.niche, i.niche2, i.feature_for,
+    ...(i.signals || []).map((x) => x.summary + ' ' + x.platform)].filter(Boolean).join(' ').toLowerCase();
+}
+IDEAS.forEach((i) => { i._hay = haystack(i); });
+
+function passes(i, skipNiche) {
+  if (!skipNiche && st.niches.size && !st.niches.has(i.niche) && !(i.niche2 && st.niches.has(i.niche2))) return false;
+  if (!st.feat && i.is_feature) return false;
+  if (!st.low && i.confidence === 'low') return false;
+  if (!st.paid && i.uses_paid_api) return false;
+  if ((i.capital_usd || 0) > st.capUsd) return false;
+  for (const s of SCORES) {
+    if (st.on[s.k] && (i.scores[s.k] ?? 0) < st.min[s.k]) return false;
+  }
+  if (st.q) {
+    const terms = st.q.toLowerCase().split(/\s+/).filter(Boolean);
+    if (!terms.every((t) => i._hay.includes(t))) return false;
+  }
+  return true;
+}
+
+function sorter() {
+  const k = st.sort;
+  if (k === 'cheapest') return (a, b) => (a.capital_usd || 0) - (b.capital_usd || 0) || b._ov - a._ov;
+  if (k === 'overall') return (a, b) => b._ov - a._ov || (b.scores.want - a.scores.want);
+  return (a, b) => (b.scores[k] ?? 0) - (a.scores[k] ?? 0) || b._ov - a._ov;
+}
+
+/* ---------- rings ---------- */
+function ring(value, label, opts = {}) {
+  const R = 18, C = 2 * Math.PI * R;
+  const svg = sv('svg', { viewBox: '0 0 44 44', class: 'ring', role: 'img', 'aria-label': `${label}: ${value} out of 99, ${bandWord(value)}` });
+  svg.append(sv('circle', { cx: 22, cy: 22, r: R, class: 'ring-track' }));
+  svg.append(sv('circle', {
+    cx: 22, cy: 22, r: R, class: 'ring-arc ' + bandOf(value),
+    'stroke-dasharray': `${(C * value) / 99} ${C}`, transform: 'rotate(-90 22 22)',
+  }));
+  const t = sv('text', { x: 22, y: 22, class: 'ring-num' });
+  t.textContent = String(value);
+  svg.append(t);
+  return h('div', { class: 'ring-wrap' + (opts.overall ? ' overall' : ''), 'data-off': opts.off ? '1' : null, title: opts.tip },
+    svg,
+    h('div', { class: 'ring-lab', text: label }),
+    opts.sub ? h('div', { class: 'ring-sub', text: opts.sub }) : null,
+    opts.overall ? h('div', { class: 'band', text: bandWord(value) }) : null);
+}
+
+/* ---------- card ---------- */
+function domain(u) { try { return new URL(u).hostname.replace(/^www\./, ''); } catch { return 'source'; } }
+
+function card(i, rank) {
+  const signals = [...(i.signals || [])].sort((a, b) => String(b.date).localeCompare(String(a.date)));
+  const notes = Object.entries(i.score_notes || {}).filter(([k]) => SCORES.some((s) => s.k === k));
+  const m = i.marketing || {};
+  const sat = i.satellite;
+
+  const main = h('div', { class: 'c-main' },
+    h('div', { class: 'rank', text: 'No. ' + String(rank).padStart(3, '0') }),
+    h('div', { class: 'tags' },
+      h('span', { class: 'tag', text: i.niche }),
+      i.niche2 ? h('span', { class: 'tag', text: i.niche2 }) : null,
+      i.is_feature ? h('span', { class: 'tag feat', text: 'feature idea' + (i.feature_for ? ' for ' + i.feature_for : '') }) : null,
+      i.confidence === 'low' ? h('span', { class: 'tag low', text: 'low confidence' }) : null,
+      i.uses_paid_api ? h('span', { class: 'tag low', title: i.paid_api_note || '', text: 'paid API' }) : null,
+      h('span', { class: 'tag', text: signals.length + (signals.length === 1 ? ' source' : ' sources') })),
+    h('h2', { text: i.name }),
+    h('p', { class: 'c-idea', text: i.idea }),
+    h('p', { class: 'c-desc', text: i.description }),
+    h('div', { class: 'sec-h', text: 'Why build it now' }),
+    h('ul', { class: 'why-list' }, signals.map((x) =>
+      h('li', null,
+        h('div', { class: 'why-meta' },
+          h('b', { text: x.platform }),
+          h('span', { text: x.date }),
+          x.engagement && x.engagement !== 'unknown' ? h('span', { text: x.engagement }) : null,
+          h('a', { href: x.url, target: '_blank', rel: 'noopener noreferrer', text: domain(x.url) + ' ↗' })),
+        h('p', { text: x.summary })))));
+
+  const ringsEl = h('div', { class: 'c-rings' },
+    h('div', { class: 'rings' },
+      ring(i._ov, 'Overall', { overall: true, tip: 'Weighted average of the scores that are switched on.' }),
+      SCORES.map((s) => ring(i.scores[s.k] ?? 0, s.label, {
+        off: !st.on[s.k], tip: s.tip,
+      }))),
+    h('p', { class: 'cash', text: 'Cash to launch: ' + fmtCap(i.capital_usd || 0) }),
+    notes.length ? h('ul', { class: 'score-notes' }, notes.map(([k, v]) =>
+      h('li', null, h('b', { text: SCORES.find((s) => s.k === k).label + ' ' + (i.scores[k] ?? '') + ': ' }), v))) : null,
+    i.capital_note ? h('p', { class: 'hint', text: 'Covers: ' + i.capital_note }) : null,
+    i.uses_paid_api && i.paid_api_note ? h('p', { class: 'hint', text: 'Paid API: ' + i.paid_api_note }) : null);
+
+  const market = h('div', { class: 'c-market' },
+    h('div', { class: 'sec-h', style: 'margin-top:0', text: 'How to market' }),
+    h('div', { class: 'mgrid' },
+      h('div', null, h('h3', { text: 'Where' }), h('ul', null, (m.where || []).map((w) => h('li', { text: w })))),
+      h('div', null, h('h3', { text: 'Target consumers' }), h('p', { text: m.target || '' })),
+      h('div', null, h('h3', { text: 'Funnel' }), h('p', { text: m.funnel || '' })),
+      h('div', null, h('h3', { text: 'Cold outreach angle' }), h('p', { text: m.cold_outreach || '' })),
+      h('div', null, h('h3', { text: 'Example posts' }), h('ul', null, (m.post_ideas || []).map((p) => h('li', { text: p })))),
+      h('div', null, h('h3', { text: 'Hard to copy because' }), h('p', { text: i.why_hard_to_copy || '' })),
+      sat ? h('div', { class: 'sat' },
+        h('h3', { text: 'Satellite site: ' + sat.name }),
+        h('dl', null,
+          h('dt', { text: 'What' }), h('dd', { text: sat.what }),
+          h('dt', { text: 'Why shared' }), h('dd', { text: sat.why_shared }),
+          h('dt', { text: 'Hand-off' }), h('dd', { text: sat.handoff }))) : null),
+    (i.competitors_seen || []).length ? h('p', { class: 'comp' }, 'Competitors seen: ',
+      i.competitors_seen.map((c, n) => [n ? '; ' : '', c.url ? h('a', { href: c.url, target: '_blank', rel: 'noopener noreferrer', text: c.name }) : c.name, c.note ? ' (' + c.note + ')' : ''])) : null,
+    i.web_delivery ? h('p', { class: 'comp', text: 'Ships as: ' + i.web_delivery }) : null);
+
+  return h('article', { class: 'card' }, main, ringsEl, market);
+}
+
+/* ---------- controls ---------- */
+function buildControls() {
+  const sort = $('sort');
+  [['overall', 'Overall (high to low)'], ['cheapest', 'Cheapest first'], ...SCORES.map((s) => [s.k, s.label + ' (high to low)'])]
+    .forEach(([v, t]) => sort.append(h('option', { value: v, text: t })));
+  sort.addEventListener('change', () => { st.sort = sort.value; st.shown = CONFIG.pageSize; update(); });
+
+  const rows = $('scoreRows');
+  SCORES.forEach((s) => {
+    const cb = h('input', { type: 'checkbox', checked: true, id: 'on-' + s.k, 'aria-label': 'Use ' + s.label });
+    const rng = h('input', { type: 'range', min: 0, max: 99, step: 1, value: 0, class: 'rng', id: 'min-' + s.k, 'aria-label': 'Minimum ' + s.label });
+    const wt = h('input', { type: 'number', min: 0, max: 5, step: 0.1, value: s.w, id: 'w-' + s.k, 'aria-label': 'Weight of ' + s.label });
+    const val = h('span', { class: 'val', id: 'val-' + s.k, text: 'min 0' });
+    const row = h('div', { class: 'srow', id: 'row-' + s.k, title: s.tip },
+      cb, h('label', { class: 'nm', for: 'on-' + s.k, text: s.label }), val,
+      rng, h('label', { class: 'wt' }, '×', wt));
+    cb.addEventListener('change', () => { st.on[s.k] = cb.checked; st.shown = CONFIG.pageSize; update(); });
+    rng.addEventListener('input', () => { st.min[s.k] = +rng.value; st.shown = CONFIG.pageSize; update(); });
+    wt.addEventListener('input', () => { const n = parseFloat(wt.value); st.w[s.k] = Number.isFinite(n) && n >= 0 ? n : 0; update(); });
+    rows.append(row);
+  });
+
+  const cap = $('cap');
+  cap.addEventListener('input', () => {
+    const v = +cap.value;
+    st.capUsd = v >= +cap.max ? Infinity : (st.cur === 'USD' ? v : v / CONFIG.usdRon);
+    st.shown = CONFIG.pageSize; update();
+  });
+  document.querySelectorAll('[data-cur]').forEach((b) => b.addEventListener('click', () => {
+    st.cur = b.dataset.cur; syncCap(); update();
+  }));
+  $('q').addEventListener('input', (e) => { st.q = e.target.value.trim(); st.shown = CONFIG.pageSize; update(); });
+  $('showFeat').addEventListener('change', (e) => { st.feat = e.target.checked; st.shown = CONFIG.pageSize; update(); });
+  $('showLow').addEventListener('change', (e) => { st.low = e.target.checked; st.shown = CONFIG.pageSize; update(); });
+  $('showPaid').addEventListener('change', (e) => { st.paid = e.target.checked; st.shown = CONFIG.pageSize; update(); });
+  $('allOn').addEventListener('click', () => { SCORES.forEach((s) => { st.on[s.k] = true; $('on-' + s.k).checked = true; }); update(); });
+  $('resetW').addEventListener('click', () => { SCORES.forEach((s) => { st.w[s.k] = s.w; $('w-' + s.k).value = s.w; }); update(); });
+  $('resetAll').addEventListener('click', () => {
+    st = defaults(); st.capUsd = maxCapUsd;
+    $('q').value = ''; $('sort').value = 'overall'; $('showFeat').checked = true; $('showLow').checked = true; $('showPaid').checked = true;
+    SCORES.forEach((s) => { $('on-' + s.k).checked = true; $('min-' + s.k).value = 0; $('w-' + s.k).value = s.w; });
+    syncCap(); update();
+  });
+  $('more').addEventListener('click', () => { st.shown += CONFIG.pageSize; render(); });
+
+  const fl = $('filters');
+  const mq = window.matchMedia('(min-width: 960px)');
+  const sync = () => { fl.open = mq.matches; };
+  mq.addEventListener('change', sync); sync();
+
+  const tb = $('themeBtn');
+  const root = document.documentElement;
+  const setTheme = (t) => {
+    root.dataset.theme = t; tb.setAttribute('aria-pressed', String(t === 'dark')); tb.textContent = t === 'dark' ? 'Light mode' : 'Dark mode';
+    try { localStorage.setItem('gap-ledger-theme', t); } catch { /* storage may be blocked */ }
+  };
+  let saved = null;
+  try { saved = localStorage.getItem('gap-ledger-theme'); } catch { /* storage may be blocked */ }
+  setTheme(saved || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'));
+  tb.addEventListener('click', () => setTheme(root.dataset.theme === 'dark' ? 'light' : 'dark'));
+}
+
+function syncCap() {
+  const cap = $('cap');
+  const usd = st.cur === 'USD';
+  const max = usd ? maxCapUsd : ron(maxCapUsd);
+  cap.max = String(max);
+  cap.step = String(usd ? CONFIG.capStepUsd : Math.max(1, Math.round(CONFIG.capStepUsd * CONFIG.usdRon)));
+  cap.value = String(st.capUsd === Infinity ? max : Math.min(max, usd ? st.capUsd : ron(st.capUsd)));
+  document.querySelectorAll('[data-cur]').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.cur === st.cur)));
+}
+
+/* ---------- render ---------- */
+let view = [];
+
+function update() {
+  IDEAS.forEach((i) => { i._ov = overall(i); });
+  view = IDEAS.filter((i) => passes(i, false)).sort(sorter());
+  chips(); labels(); render();
+}
+
+function chips() {
+  const counts = new Map();
+  IDEAS.forEach((i) => { if (passes(i, true)) {
+    counts.set(i.niche, (counts.get(i.niche) || 0) + 1);
+    if (i.niche2 && i.niche2 !== i.niche) counts.set(i.niche2, (counts.get(i.niche2) || 0) + 0);
+  } });
+  const all = [...new Set(IDEAS.map((i) => i.niche))].sort((a, b) => (counts.get(b) || 0) - (counts.get(a) || 0) || a.localeCompare(b));
+  const box = $('niches');
+  box.replaceChildren(...all.map((n) => {
+    const c = counts.get(n) || 0;
+    return h('button', {
+      type: 'button', class: 'niche', 'aria-pressed': String(st.niches.has(n)), 'data-zero': c === 0 ? '1' : null,
+      onclick: () => { st.niches.has(n) ? st.niches.delete(n) : st.niches.add(n); st.shown = CONFIG.pageSize; update(); },
+    }, n, h('i', { text: String(c) }));
+  }));
+}
+
+function labels() {
+  $('nTotal').textContent = String(IDEAS.length);
+  $('nShown').textContent = String(view.length);
+  $('nFeat').textContent = String(IDEAS.filter((i) => i.is_feature).length);
+  $('fsum').textContent = `${view.length} of ${IDEAS.length} shown`;
+  const usd = st.cur === 'USD';
+  $('capVal').textContent = st.capUsd === Infinity ? 'any' : (usd ? '≤ ' + fmtUsd(st.capUsd) : '≤ ' + fmtRon(ron(st.capUsd)));
+  SCORES.forEach((s) => {
+    $('val-' + s.k).textContent = st.on[s.k] ? 'min ' + st.min[s.k] : 'off';
+    $('row-' + s.k).dataset.off = st.on[s.k] ? '' : '1';
+  });
+  const sel = $('sort');
+  $('lhCount').textContent = `${view.length} ${view.length === 1 ? 'idea' : 'ideas'}`;
+  $('lhSort').textContent = 'sorted by ' + sel.options[sel.selectedIndex].text.toLowerCase();
+}
+
+function render() {
+  const box = $('cards');
+  const slice = view.slice(0, st.shown);
+  if (!view.length) {
+    box.replaceChildren(h('div', { class: 'empty' }, h('b', { text: 'Nothing matches.' }),
+      'Lower a minimum, raise the capital limit, or clear the niche picks.'));
+  } else {
+    box.replaceChildren(...slice.map((i, n) => card(i, n + 1)));
+  }
+  const more = $('more');
+  const left = view.length - slice.length;
+  more.hidden = left <= 0;
+  more.textContent = `Show ${Math.min(CONFIG.pageSize, left)} more (${left} left)`;
+}
+
+$('stamp').textContent = 'Compiled ' + CONFIG.generated + '\nUSD 1 = RON ' + CONFIG.usdRon.toFixed(2);
+$('stamp').style.whiteSpace = 'pre-line';
+$('foot').textContent = 'Scores run 0 to 99, higher is better for the builder. Rings: red 0-33, amber 34-66, green 67-99, and the number is always printed in the middle. Overall is a weighted average of the scores that are switched on (Satellite counts half by default). Cash estimates exclude your own time.';
+buildControls();
+syncCap();
+update();
+})();
+</script>
+</body>
+</html>

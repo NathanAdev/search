@@ -1,0 +1,854 @@
+[
+  {
+    "id": "seB-001",
+    "name": "DicePool Lab",
+    "idea": "No-code visual calculator that gives exact odds for custom tabletop dice mechanics (success pools, push/reroll, exploding, keep/drop, roll-under opposed rolls, mixed results).",
+    "description": "A GM or game designer builds a roll from blocks (pool size, success threshold, push once, explode on max, drop N failures, roll-under vs opposed) and instantly sees exact probability tables such as 'at least 2 successes with N dice, pushed or not', plus a side-by-side comparison of two characters. Results are shareable by link and printable for a GM screen. Hard to copy because the engine has to get stateful mechanics exactly right (push re-rolls, die-vs-die elimination, bounded explosions, crit-on-match) and ship presets for real systems, while the incumbent AnyDice needs its own scripting language.",
+    "niche": "Gaming Communities",
+    "niche2": null,
+    "is_feature": false,
+    "feature_for": null,
+    "web_delivery": "Pure client-side SPA on Vercel hobby (TypeScript exact-distribution engine, config encoded in the URL); Supabase free only for optional saved presets.",
+    "why_hard_to_copy": "Correctness-critical probability engine for mechanics that generic dice roller libraries do not model, plus a curated library of system presets (Year Zero, Blades-style, d100 roll-under, etc.).",
+    "signals": [
+      {
+        "platform": "stackexchange",
+        "url": "https://rpg.stackexchange.com/questions/219416/opposed-rolls-in-d100-roll-under-games",
+        "date": "2026-05-27",
+        "summary": "A designer hacking together a d100 roll-under game asks how to compute the odds of opposed rolls (both succeed, both fail, crits) and how a skill gap shifts them; no tool answers it directly.",
+        "engagement": "10 score, 1050 views, 2 answers"
+      },
+      {
+        "platform": "stackexchange",
+        "url": "https://rpg.stackexchange.com/questions/218984/complex-dice-rolling-system-for-a-d6-struggling-to-get-an-accurate-probability",
+        "date": "2026-03-21",
+        "summary": "Someone helping a friend's homebrew (roll N d6, all must meet a bar, a drop modifier forgives failed dice) cannot get the AnyDice code right and wants an accurate probability calculator.",
+        "engagement": "7 score, 964 views, 2 answers"
+      },
+      {
+        "platform": "stackexchange",
+        "url": "https://rpg.stackexchange.com/questions/218715/calculate-the-chance-for-multiple-successes-when-using-a-pool-of-d6",
+        "date": "2026-02-06",
+        "summary": "A Vaesen player has the book's one-success table but cannot work out the odds for two or more successes with the push-the-roll rule (re-roll everything that is not a 6).",
+        "engagement": "8 score, 622 views, 2 answers"
+      },
+      {
+        "platform": "stackexchange",
+        "url": "https://rpg.stackexchange.com/questions/219029/highest-die-in-a-standard-dice-pool-after-eliminating-dice-vs-a-rerolling-explo",
+        "date": "2026-03-29",
+        "summary": "A designer wrote a long AnyDice script to compare a plain pool against a pool that re-rolls 1s and explodes 6s with a matching/elimination step, and is unsure it is right.",
+        "engagement": "6 score, 803 views, 2 answers"
+      },
+      {
+        "platform": "stackexchange",
+        "url": "https://rpg.stackexchange.com/questions/219675/roll-xd6-mixed-success-on-4-full-success-on-5-6-crit-on-match",
+        "date": "2026-07-24",
+        "summary": "Asks for the outcome odds of a Blades-in-the-Dark-like pool with mixed success on 4, full success on 5-6 and crits on matching dice, for 1 to 4 dice.",
+        "engagement": "5 score, 441 views, 2 answers"
+      },
+      {
+        "platform": "stackexchange",
+        "url": "https://softwarerecs.stackexchange.com/questions/95384/software-to-calculate-and-plot-entire-distributions-of-formulas-with-dice",
+        "date": "2026-05-12",
+        "summary": "Wants a free web or app tool that computes and plots the exact probability distribution of compound dice formulas (not simulation), ideally with arbitrary precision and moments.",
+        "engagement": "2 score, 65 views, 1 answer"
+      },
+      {
+        "platform": "stackexchange",
+        "url": "https://rpg.stackexchange.com/questions/219102/how-do-i-define-variables-as-the-result-of-a-function-in-anydice",
+        "date": "2026-04-16",
+        "summary": "A user stuck on AnyDice's scripting syntax (cannot define a variable from a function result), showing the learning-curve pain of the incumbent.",
+        "engagement": "4 score, 409 views, 3 answers"
+      }
+    ],
+    "competitors_seen": [
+      {
+        "name": "AnyDice",
+        "url": "https://anydice.com/",
+        "note": "Free, exact distributions, but you must learn its own scripting language; no visual builder, no built-in push or opposed-roll helpers."
+      },
+      {
+        "name": "Icepool",
+        "url": "https://pypi.org/project/icepool/2.2.2/",
+        "note": "Powerful Python library (Pyodide web apps exist) but requires coding."
+      },
+      {
+        "name": "Contract RPG dice pool calculator",
+        "url": "https://thecontractrpg.com/info/probability",
+        "note": "Single-system calculator with fixed rules."
+      }
+    ],
+    "satellite": {
+      "name": "System odds pages",
+      "what": "One static page per popular dice system (Year Zero / Vaesen push odds, Blades-style pools, d100 roll-under) with the engine preloaded.",
+      "why_shared": "Same engine, long-tail search traffic from players asking 'chance of at least 2 successes with N dice'.",
+      "handoff": "'Customize this roll' button opens DicePool Lab with the config in the URL."
+    },
+    "marketing": {
+      "where": [
+        "RPG Stack Exchange (answer on-topic probability questions and link the tool)",
+        "ENWorld and GiantITP forums dice-math threads",
+        "itch.io TTRPG game-jam and devlog communities",
+        "Discord servers of indie TTRPG designers"
+      ],
+      "target": "Homebrew GMs and indie tabletop designers tuning difficulty",
+      "funnel": "Search or forum answer -> preset odds page -> custom builder -> shareable link that other designers open",
+      "cold_outreach": "Message creators of small Year Zero / Blades hacks on itch.io offering a ready-made odds table for their core roll.",
+      "post_ideas": [
+        "Exact odds of the Vaesen push mechanic for 1-10 dice (table)",
+        "Why 'roll under, both succeed' opposed d100 rolls favour the higher skill more than you think",
+        "Built a visual AnyDice alternative for dice pools - feedback wanted"
+      ]
+    },
+    "capital_usd": 12,
+    "capital_note": "Domain only; everything else on free tiers.",
+    "uses_paid_api": false,
+    "paid_api_note": null,
+    "confidence": "high",
+    "notes": "Strongest demand cluster in my sweep: six independent RPG.SE questions in about nine months plus a softwarerecs request. Doubt: a free tool for hobbyists has weak direct monetization (ads, donations, or a pro tier for saved/shared systems). AnyDice is the entrenched incumbent, so the wedge is no-code plus push/opposed/mixed-result blocks."
+  },
+  {
+    "id": "seB-002",
+    "name": "Round Night",
+    "idea": "Zero-signup live tournament runner for casual offline events (Swiss and multi-player table pods) with a public screen that updates in real time.",
+    "description": "An organizer types player names and gets correct pairings every round (no repeat opponents, byes, late arrivals, mid-event withdrawals, changing the round count on the fly), players report their own results from their phones, and a projector page updates standings instantly without reloads. Aimed at chess clubs, board-game cafes, table-tennis clubs and card-game store nights. Hard to copy because pairing edge cases (odd counts, late entries, repeat avoidance, 3-4 player pods) need real rules knowledge and the live-sync flow has to be dead simple.",
+    "niche": "Sports & Teams",
+    "niche2": "Gaming Communities",
+    "is_feature": false,
+    "feature_for": null,
+    "web_delivery": "Next.js or SvelteKit on Vercel hobby; Supabase free Realtime channels for the live standings page and player result entry via a join code; pairing engine in TypeScript.",
+    "why_hard_to_copy": "Correct Swiss/pod pairing with late entries and withdrawals (bbpPairings-level edge cases) plus reliable real-time sync during an event; casual organizers will not forgive a bad pairing.",
+    "signals": [
+      {
+        "platform": "stackexchange",
+        "url": "https://chess.stackexchange.com/questions/48118/what-are-the-pain-points-for-you-in-pairing-software-when-you-run-offline-chess",
+        "date": "2026-10-15",
+        "summary": "An experienced offline-tournament organizer says existing tools (Challonge and others) lag mid-event, force long forms, need page reloads for the live screen, and make withdrawals or changing the round count hard; wants one-click creation, live pairings on a screen and player self-reported results.",
+        "engagement": "1 score, 39 views, 0 answers"
+      },
+      {
+        "platform": "lemmy",
+        "url": "https://lemmy.zip/post/72727060",
+        "date": "2026-10-05",
+        "summary": "A table tennis club captain and referee released a free open-source desktop tournament manager because existing options did not fit; it is desktop-only (Linux/Windows/macOS), offline and needs no account, leaving the web/phone side open.",
+        "engagement": "61 upvotes, 1 comment"
+      }
+    ],
+    "competitors_seen": [
+      {
+        "name": "Challonge",
+        "url": "https://challonge.com",
+        "note": "Named by the organizer as laggy with heavy forms; web-based."
+      },
+      {
+        "name": "Swiss Manager / SwissSys / TournamentService (FIDE-endorsed list)",
+        "url": "https://www.fide.com/FIDE/handbook/C04Annex3_EPLIST.pdf",
+        "note": "Windows desktop programs built on the Dutch system engines JaVaFo and bbpPairings."
+      },
+      {
+        "name": "bbpPairings",
+        "url": "https://docs.chessroster.com/swisssys/app-docs/user-guide/pairings/bbppairings-engine/",
+        "note": "FIDE-endorsed free pairing engine (GPL), command-line, no web UI."
+      },
+      {
+        "name": "LibreTT",
+        "url": "https://github.com/tradicije/librett-desktop",
+        "note": "Free open-source desktop app for table tennis tournaments, no web version."
+      }
+    ],
+    "satellite": {
+      "name": "How many Swiss rounds?",
+      "what": "Free one-page calculator: enter player count and format, get recommended round count, bye count and a plain-language tiebreak explainer.",
+      "why_shared": "Every organizer asks this before an event, so it is a natural search entry; runs fully client-side.",
+      "handoff": "'Run this event live' button creates the tournament with those settings."
+    },
+    "marketing": {
+      "where": [
+        "Local chess club newsletters and club directories",
+        "BoardGameGeek tournament and event forums",
+        "Discord servers of local game stores and TCG organizers",
+        "Lichess and Chess.com club forums"
+      ],
+      "target": "Volunteer organizers of casual offline tournaments (chess, table tennis, board games, card games)",
+      "funnel": "Rounds calculator -> create event with a join code -> projector page seen by every attendee -> attendees become next organizers",
+      "cold_outreach": "Email club secretaries offering to run their next rapid night for free in exchange for feedback.",
+      "post_ideas": [
+        "Running a 24-player Swiss night from a phone: what broke and what did not",
+        "Why Challonge-style brackets are wrong for club nights",
+        "Free live standings screen for your club tournament"
+      ]
+    },
+    "capital_usd": 12,
+    "capital_note": "Domain only.",
+    "uses_paid_api": false,
+    "paid_api_note": null,
+    "confidence": "low",
+    "notes": "Thin: the SE poster is himself a tool builder researching pain points, and the Lemmy post is a competitor launch. Market is crowded with desktop tools; the wedge is web plus phone self-reporting plus live screen. Keep entry fees and payouts out of scope (money rule)."
+  },
+  {
+    "id": "seB-003",
+    "name": "BackSide",
+    "idea": "In-browser tool that pairs the front and back scans of old prints into one record with a caption, written as standard XMP/EXIF metadata.",
+    "description": "Drop flatbed scans or phone shots; the tool pairs front and back by filename or order, auto-crops and straightens each print, keeps the handwritten back as a linked second image or panel, and lets you type who, where and when once. The caption and approximate date are embedded as standard XMP/IPTC fields so they survive in Google Photos or genealogy software, and everything exports as a ZIP without uploading anything. Aimed at families digitizing albums. Hard to copy only moderately: the moat is a polished client-side crop/deskew/pairing workflow and correct metadata writing, which store-bought phone apps do not combine.",
+    "niche": "Photo & Video",
+    "niche2": "Genealogy & History",
+    "is_feature": false,
+    "feature_for": null,
+    "web_delivery": "PWA: getUserMedia for phone capture or file drop for flatbed scans, OpenCV.js/WASM or canvas code for crop and deskew, File System Access API / ZIP download for output; no server.",
+    "why_hard_to_copy": "Client-side image pipeline (edge detection, perspective and page-curve correction) plus correct XMP/IPTC/EXIF writing with partial dates, wrapped in a pairing workflow; a weekend clone would skip the curved-page and metadata correctness.",
+    "signals": [
+      {
+        "platform": "stackexchange",
+        "url": "https://softwarerecs.stackexchange.com/questions/95325/simple-win11-program-for-photo-scanning",
+        "date": "2026-04-16",
+        "summary": "Wants simple software to scan the front and back of old family photos, paste the back (with the handwriting) onto the same file as the front and add a typed caption underneath.",
+        "engagement": "0 score, 52 views, 0 answers"
+      },
+      {
+        "platform": "stackexchange",
+        "url": "https://softwarerecs.stackexchange.com/questions/95524/android-app-for-digitizing-books-photo-albums",
+        "date": "2026-08-13",
+        "summary": "Looking for a phone app that photographs album and book pages and straightens wavy pages automatically, because proper book scanners are too expensive.",
+        "engagement": "1 score, 65 views, 0 answers"
+      },
+      {
+        "platform": "stackexchange",
+        "url": "https://softwarerecs.stackexchange.com/questions/94852/utility-for-document-ingres-scanning-cropping-filtering-saving",
+        "date": "2025-10-31",
+        "summary": "Wants a document-ingest utility that suggests a crop, corrects perspective and wrinkles, cleans shadows and creases, and saves lossless or lossy output for sequences of pages.",
+        "engagement": "0 score, 35 views, 0 answers"
+      }
+    ],
+    "competitors_seen": [
+      {
+        "name": "Photomyne",
+        "url": "https://photomyne.com/articles/photomyne-vs-google-photoscan-1782307842_en",
+        "note": "Scans photo backs and whole albums but the full feature set needs a paid subscription; app-store only."
+      },
+      {
+        "name": "Google PhotoScan",
+        "url": "https://learningenglish.voanews.com/amp/new-google-app-photoscan-helps-bring-old-photos-back-to-life/3605339.html",
+        "note": "Free glare-free phone scans of single prints; Photomyne's own comparison says it has no back-of-photo scanning."
+      }
+    ],
+    "satellite": {
+      "name": "Scan DPI and file-size calculator",
+      "what": "Enter the print size and the goal (screen, 4x6 reprint, 8x10) and get the recommended scan DPI, pixel dimensions and TIFF/JPEG file size.",
+      "why_shared": "A related photo.SE question about working out a scan's resolution in ppi drew 827 views (2026-06-13), so the audience asks this constantly; pure client-side math.",
+      "handoff": "Link: 'Now scan and caption them with BackSide'."
+    },
+    "marketing": {
+      "where": [
+        "WikiTree G2G forum",
+        "RootsChat genealogy forum",
+        "Genealogy Stack Exchange",
+        "Local genealogy and historical society newsletters"
+      ],
+      "target": "Family historians and relatives digitizing shoeboxes of prints",
+      "funnel": "DPI calculator or forum answer -> BackSide demo with sample scans -> batch of a whole album -> ZIP shared with relatives",
+      "cold_outreach": "Offer genealogical society volunteers a free 'scanning day' workflow sheet that uses the tool.",
+      "post_ideas": [
+        "Scan front and back of every photo and keep the caption: a no-upload workflow",
+        "What DPI should you scan old prints at?",
+        "Embedding names and dates in scans so they survive Google Photos"
+      ]
+    },
+    "capital_usd": 12,
+    "capital_note": "Domain only.",
+    "uses_paid_api": false,
+    "paid_api_note": null,
+    "confidence": "medium",
+    "notes": "Three independent SE requests, but each has very low engagement (28-65 views). The category is served by Photomyne (paid) and PhotoScan, so differentiation is front+back pairing, standard metadata and no-upload/no-subscription. Be honest that a basic version is a weekend project; the quality of crop/deskew is the real work."
+  },
+  {
+    "id": "seB-004",
+    "name": "Exam Pseudocode Studio",
+    "idea": "Browser IDE that runs AQA/OCR/Cambridge/IB exam pseudocode, fills the trace table automatically and draws the matching flowchart from the same code.",
+    "description": "Students and teachers write pseudocode in the exact dialect of their exam board, step through it, and get a trace table generated as it runs plus a flowchart rendered from the same program, so all three exam representations stay consistent. Teachers can share exercises by link. Hard to copy because it needs dialect-accurate parsers and an interpreter for several boards' pseudocode specifications and a flowchart layout that follows exam conventions.",
+    "niche": "Education & Study",
+    "niche2": null,
+    "is_feature": false,
+    "feature_for": null,
+    "web_delivery": "Static SPA on Vercel hobby; parser/interpreter and flowchart layout run in the browser (web worker); Supabase free for shared exercises and class codes.",
+    "why_hard_to_copy": "Exam-board-specific pseudocode dialects with exact semantics (arrays indexing, string functions, file handling) and exam-style flowchart and trace-table conventions; niche syllabus knowledge most developers lack.",
+    "signals": [
+      {
+        "platform": "stackexchange",
+        "url": "https://softwarerecs.stackexchange.com/questions/94874/looking-for-a-software-or-website-that-combines-flow-charts-pesudocode-and-trac",
+        "date": "2025-11-08",
+        "summary": "A student wants one tool that combines flowchart, pseudocode and trace-table creation; the tools they tried only do flowcharts and have overwhelming interfaces.",
+        "engagement": "0 score, 34 views, 0 answers"
+      },
+      {
+        "platform": "hn",
+        "url": "https://news.ycombinator.com/item?id=45633656",
+        "date": "2025-10-19",
+        "summary": "A developer wrote up building an IGCSE pseudocode interpreter, showing hobbyists are attacking the same exam-pseudocode tooling gap (builder-side evidence, not a complaint; predates the window by six days).",
+        "engagement": "6 points, 0 comments"
+      }
+    ],
+    "competitors_seen": [
+      {
+        "name": "Coddy exam pseudocode editors",
+        "url": "https://coddy.tech/pseudocode/ocr",
+        "note": "Free browser editors/interpreters for OCR, AQA and Cambridge pseudocode; no flowchart generation found."
+      },
+      {
+        "name": "PseudoRun (Firefox extension)",
+        "url": "https://addons.mozilla.org/fa/firefox/addon/igcse-pseudocode-editor/",
+        "note": "Cambridge pseudocode with step execution and trace-table generator, but a browser extension."
+      },
+      {
+        "name": "Pseudocoder (Chrome extension)",
+        "url": "https://chromewebstore.google.com/detail/iajmenglcaipmhlcpagngchehdgeoime",
+        "note": "Converts Python/Java to exam pseudocode with an interactive trace table."
+      }
+    ],
+    "satellite": {
+      "name": "Trace table maker",
+      "what": "Paste a short loop in plain pseudocode and get a printable trace table for homework or revision.",
+      "why_shared": "Highest-intent search among students; tiny client-side page.",
+      "handoff": "'Open in Studio to see the flowchart' button."
+    },
+    "marketing": {
+      "where": [
+        "Computing At School (CAS) community",
+        "TES resources marketplace",
+        "Isaac Computer Science teacher community",
+        "Teacher Facebook and Discord groups for GCSE/IGCSE computing"
+      ],
+      "target": "GCSE, IGCSE and A-level computer science teachers and students",
+      "funnel": "Free trace table page -> Studio -> teacher shares class exercise links before exams",
+      "cold_outreach": "Email CS department heads offering a ready set of past-paper-style exercises that run in the tool.",
+      "post_ideas": [
+        "Auto trace tables for AQA pseudocode (free)",
+        "Draw the flowchart from your pseudocode - for OCR J277 revision",
+        "Why your trace table loses marks and how to check it"
+      ]
+    },
+    "capital_usd": 12,
+    "capital_note": "Domain only.",
+    "uses_paid_api": false,
+    "paid_api_note": null,
+    "confidence": "low",
+    "notes": "One true user request plus a builder signal. Existing browser runners already cover editing and running, so the differentiator is the flowchart plus trace table in one place and board-accurate dialects. Teachers adopt tools slowly; seasonal around exam dates."
+  },
+  {
+    "id": "seB-005",
+    "name": "SheetSalvage",
+    "idea": "Drag-and-drop tool that salvages data from corrupted .xlsx/.xlsm files entirely in the browser, with nothing uploaded.",
+    "description": "Reads a damaged OOXML package with a tolerant parser (broken or missing zip directory, malformed sheet XML, lost shared strings), lists which sheets and cells are recoverable and exports a clean workbook or CSVs. Spreadsheets with business data never leave the machine, unlike online repair services. Hard to copy because tolerant zip/XML salvage and handling real-world corruption modes (crash during save, sync conflicts, script damage) needs a corpus of broken files and a lot of edge-case work.",
+    "niche": "Data & Documents",
+    "niche2": null,
+    "is_feature": false,
+    "feature_for": null,
+    "web_delivery": "Static site on Vercel hobby; fflate/JSZip-style tolerant unzip plus a custom lenient XML reader in a web worker; no server, no storage.",
+    "why_hard_to_copy": "Lenient OOXML and zip recovery with a growing corpus of real corruption cases; most clones just call a strict spreadsheet library that fails on damaged files.",
+    "signals": [
+      {
+        "platform": "stackexchange",
+        "url": "https://softwarerecs.stackexchange.com/questions/95187/gratis-or-low-cost-solution-for-corrupted-excel-files",
+        "date": "2026-02-10",
+        "summary": "Regularly hits corrupted xlsx/xlsm files (scripts, crashes during save, shared-drive conflicts); Excel's Open and Repair often fails or recovers only part, so asks for a free or low-cost tool that recovers sheets, formulas and values, ideally without installing software.",
+        "engagement": "3 score, 744 views, 2 answers"
+      }
+    ],
+    "competitors_seen": [
+      {
+        "name": "OfficeRecovery online",
+        "url": "https://online.officerecovery.com/excel",
+        "note": "Requires uploading the file; free tier is slow."
+      },
+      {
+        "name": "Wondershare Repairit",
+        "url": "https://repairit.wondershare.com/file-repair/how-to-repair-xlsx-file-content.html",
+        "note": "Upload-based online repair, commercial."
+      },
+      {
+        "name": "WPS File Repair",
+        "url": "https://www.wps.com/feature/recover-excel-file/",
+        "note": "Local repair but inside the WPS desktop/mobile app."
+      }
+    ],
+    "satellite": {
+      "name": "Why is my xlsx corrupt?",
+      "what": "Drop a file and see exactly what is wrong (missing content types, bad relationships, truncated sheet) without repairing.",
+      "why_shared": "Free diagnosis pulls in the same searchers and builds trust that nothing is uploaded.",
+      "handoff": "'Recover the data' button runs the salvage."
+    },
+    "marketing": {
+      "where": [
+        "MrExcel forum threads on corrupt files",
+        "Super User and Microsoft Q&A answers",
+        "SEO long tail for 'xlsx corrupted' error messages"
+      ],
+      "target": "Office workers and small-business owners with a damaged workbook",
+      "funnel": "Search for the error -> free diagnosis -> salvage export -> optional paid batch or donation",
+      "cold_outreach": "Answer help threads with a no-upload recovery option and a short demo gif.",
+      "post_ideas": [
+        "Excel says the file is corrupt: what the error actually means",
+        "Recover an xlsx without uploading it anywhere",
+        "How shared-drive conflicts corrupt spreadsheets"
+      ]
+    },
+    "capital_usd": 12,
+    "capital_note": "Domain only.",
+    "uses_paid_api": false,
+    "paid_api_note": null,
+    "confidence": "low",
+    "notes": "One signal (decent views). No browser-only repair tool turned up in my search, which supports the gap, but recovery success rate is the whole product and cannot be verified without a test corpus. Competitors are mostly paid desktop vendors."
+  },
+  {
+    "id": "seB-006",
+    "name": "Moon & Sun Alignment Finder",
+    "idea": "Free PWA that tells you the next dates and times the Sun or Moon will sit at a chosen spot in the sky (landmark, skyline notch), including terrain horizon.",
+    "description": "Pick a location and aim at a landmark (compass or tap on a map/skyline) or enter azimuth and elevation, and get the next several dates when the Moon, full Moon or Sun lines up within a tolerance, plus a yearly sun-path view to judge shade from trees and buildings. Aimed at photographers and gardeners who want it free on Android and iOS. Hard to copy only moderately: ephemeris math is available in libraries, the craft is the reverse search with tolerance, refraction and a terrain horizon profile.",
+    "niche": "Photo & Video",
+    "niche2": "Gardening & Outdoors",
+    "is_feature": false,
+    "feature_for": null,
+    "web_delivery": "PWA on Vercel hobby: astronomy-engine in the browser, DeviceOrientation/compass for aiming, free public terrain tiles for the horizon, Supabase free for saved spots.",
+    "why_hard_to_copy": "Reverse ephemeris search with tolerance, refraction and terrain-horizon masking is more work than a sun-position viewer; incumbent apps keep it behind paid mobile apps.",
+    "signals": [
+      {
+        "platform": "stackexchange",
+        "url": "https://photo.stackexchange.com/questions/138458/is-there-a-free-or-cheap-app-that-you-can-point-to-a-spot-in-the-sky-and-it-will",
+        "date": "2026-04-15",
+        "summary": "Wants a free or cheap app to point the phone at a spot (for example above a town landmark) and learn the next time the Moon will be there; says known apps only show where the Moon is on a chosen date, not the reverse.",
+        "engagement": "0 score, 344 views, 3 answers"
+      },
+      {
+        "platform": "stackexchange",
+        "url": "https://softwarerecs.stackexchange.com/questions/95203/position-and-angle-of-sun",
+        "date": "2026-02-22",
+        "summary": "Wants an Android app showing the Sun's position at their location for any week or month to see where light ends up and whether trees or houses shade it, happy to pay once; says existing answers are ten years old.",
+        "engagement": "1 score, 28 views, 0 answers"
+      }
+    ],
+    "competitors_seen": [
+      {
+        "name": "The Photographer's Ephemeris (TPE)",
+        "url": "https://photoephemeris.com/en",
+        "note": "Has a web app and moon simulator; iOS version can find when the Sun/Moon clears hills; full features paid/mobile."
+      },
+      {
+        "name": "PhotoPills",
+        "url": "https://nightskypix.com/photopills-app-review/",
+        "note": "Paid mobile photo planner with ephemerides and calculators (review page)."
+      }
+    ],
+    "satellite": {
+      "name": "Next supermoon / moon-over-landmark date",
+      "what": "Tiny page: enter a place name and get dates the Moon rises or sets at the same bearing as a landmark.",
+      "why_shared": "Photographers search for specific moon-over-landmark dates; shares the same engine.",
+      "handoff": "'Plan the full shot' opens the finder with the spot saved."
+    },
+    "marketing": {
+      "where": [
+        "Photography Stack Exchange answers",
+        "Local photography club newsletters",
+        "Astrophotography forums such as Cloudy Nights",
+        "Garden planning groups on Facebook"
+      ],
+      "target": "Landscape photographers and gardeners wanting free sun/moon planning",
+      "funnel": "Moon-over-landmark page -> finder -> saved spots -> shared plans with friends",
+      "cold_outreach": "Offer local photographers a pre-computed alignment sheet for a famous skyline.",
+      "post_ideas": [
+        "When will the full Moon sit on top of your local landmark? (free tool)",
+        "Plan a yearly sun path to see garden shade",
+        "Reverse ephemeris search explained"
+      ]
+    },
+    "capital_usd": 12,
+    "capital_note": "Domain only.",
+    "uses_paid_api": false,
+    "paid_api_note": null,
+    "confidence": "low",
+    "notes": "Honest doubt: TPE and PhotoPills already do the reverse search in paid/mobile form, so demand is 'free web' rather than 'new capability'. Both SE signals have low engagement. Without terrain-horizon masking the product is trivially copyable."
+  },
+  {
+    "id": "seB-007",
+    "name": "Rare Sky Events Almanac",
+    "idea": "Searchable almanac of planetary transits, mutual occultations and eclipses for any observer body over centuries, precomputed and filterable in the browser.",
+    "description": "Browse or filter long-range lists of transits, occultations and eclipses (Earth and other planets as the viewpoint), with exact timing, visibility by location where relevant and links to compute custom windows in the browser. Aimed at amateur astronomers, science writers and worldbuilders. Hard to copy because it needs validated ephemeris computations cross-checked against published catalogues, but the output is a static dataset that is cheap to host.",
+    "niche": "Science & Maker",
+    "niche2": null,
+    "is_feature": false,
+    "feature_for": null,
+    "web_delivery": "Build step precomputes events into static JSON served from Vercel hobby; browser filtering and optional custom search with astronomy-engine in a web worker.",
+    "why_hard_to_copy": "Domain-expert computation (mutual events seen from other planets, accuracy over centuries) validated against catalogues; not something a generic vibe-coded page can get right.",
+    "signals": [
+      {
+        "platform": "stackexchange",
+        "url": "https://astronomy.stackexchange.com/questions/62308/is-there-a-website-containing-lists-of-transits-eclipses-occultations-similar-to",
+        "date": "2026-04-03",
+        "summary": "Asks for a website with long-range lists of transits, eclipses and occultations like an older site that is now gone and only reachable through the web archive.",
+        "engagement": "1 score, 176 views, 1 answer"
+      },
+      {
+        "platform": "stackexchange",
+        "url": "https://softwarerecs.stackexchange.com/questions/95333/software-for-calculating-astronomical-body-positions-seen-from-the-surface-of-a",
+        "date": "2026-04-20",
+        "summary": "Wants free software that uses JPL or VSOP ephemerides to detect transits and mutual occultations as seen from the surface of any planet.",
+        "engagement": "2 score, 26 views, 0 answers"
+      }
+    ],
+    "competitors_seen": [
+      {
+        "name": "Project Pluto assorted events",
+        "url": "https://projectpluto.com/mut_pln.htm",
+        "note": "Plain tables of mutual planetary occultations and transits over thousands of years; not filterable, dynamical time."
+      },
+      {
+        "name": "timeanddate Mercury transit list",
+        "url": "https://www.timeanddate.com/eclipse/list-mercury.html",
+        "note": "Good for Earth-view transits only."
+      },
+      {
+        "name": "Wikipedia list of mutual planetary eclipses",
+        "url": "https://en.wikipedia.org/wiki/List_of_mutual_planetary_eclipses",
+        "note": "Overview list; accuracy of far dates questionable."
+      }
+    ],
+    "satellite": {
+      "name": "Next rare event countdown",
+      "what": "Embeddable widget showing the next transit, occultation or eclipse and a countdown.",
+      "why_shared": "Science bloggers and teachers can embed it; links back to the almanac.",
+      "handoff": "Click-through opens the filtered almanac."
+    },
+    "marketing": {
+      "where": [
+        "Astronomy Stack Exchange answers",
+        "Cloudy Nights forum",
+        "Astronomy club newsletters",
+        "Worldbuilding Stack Exchange"
+      ],
+      "target": "Amateur astronomers, science educators and worldbuilders",
+      "funnel": "Search for a rare event -> almanac entry page -> custom search -> embeds",
+      "cold_outreach": "Offer astronomy clubs a yearly rare-events sheet for their newsletter.",
+      "post_ideas": [
+        "Every Venus-Jupiter occultation to 2100",
+        "Transits seen from Mars: a calendar",
+        "Where did savage-garden.org go? A modern replacement"
+      ]
+    },
+    "capital_usd": 12,
+    "capital_note": "Domain only; computation done on the developer's own machine at build time.",
+    "uses_paid_api": false,
+    "paid_api_note": null,
+    "confidence": "low",
+    "notes": "Small audience and several free tables already exist (Project Pluto, timeanddate); the gap is filter/search UX and non-Earth viewpoints. Two low-engagement requests two weeks apart."
+  },
+  {
+    "id": "seB-008",
+    "name": "Manuscript Style Linter",
+    "idea": "Web linter that checks a LaTeX manuscript and bibliography against a chosen journal's style rules and converts US/UK spelling safely.",
+    "description": "Upload or paste a .tex and .bib, pick a journal rule pack, and get a report with line references for required macros, citation form, title/section/caption capitalization, code markup and missing bib fields such as DOI, plus a spelling normalizer that leaves math, code, quotes and citations untouched. Aimed at researchers whose papers bounce at editorial check. Hard to copy because the value is hand-curated, expert-maintained rule packs and a LaTeX-aware tokenizer, not generic grammar checking.",
+    "niche": "Writing & Publishing",
+    "niche2": "Science & Maker",
+    "is_feature": false,
+    "feature_for": null,
+    "web_delivery": "Client-side TypeScript parser on Vercel hobby; rule packs as JSON in the repo; files never leave the browser; Supabase free only for optional rule-pack contributions.",
+    "why_hard_to_copy": "Curated per-journal rule packs plus a LaTeX-aware tokenizer that can skip math, verbatim and citations; generic AI or grammar tools do not know journal macros.",
+    "signals": [
+      {
+        "platform": "stackexchange",
+        "url": "https://tex.stackexchange.com/questions/765886/is-there-a-tool-that-checks-a-manuscript-against-the-journal-of-statistical-soft",
+        "date": "2026-08-27",
+        "summary": "Notes that general linters (chktex, lacheck) know nothing about a journal's style guide, so violations are found by editors one revision round at a time, and asks for a tool that checks .tex/.Rnw/.Rmd plus bibliography against the Journal of Statistical Software guide.",
+        "engagement": "1 score, 43 views, 1 answer"
+      },
+      {
+        "platform": "stackexchange",
+        "url": "https://academia.stackexchange.com/questions/226889/is-there-a-tool-that-could-help-me-to-put-my-article-into-british-english",
+        "date": "2026-06-05",
+        "summary": "A researcher whose target journal requires British English and who is unfamiliar with it asks for a tool to convert the article.",
+        "engagement": "16 score, 1929 views, 4 answers"
+      }
+    ],
+    "competitors_seen": [
+      {
+        "name": "chktex",
+        "url": "https://ctan.org/pkg/chktex",
+        "note": "Free LaTeX linter for typography and syntax, not journal-specific."
+      },
+      {
+        "name": "Paperpal and Writefull",
+        "url": "https://manusights.com/blog/paperpal-vs-writefull",
+        "note": "Subscription AI language and submission checks; Overleaf integration but no verified journal-specific rule coverage."
+      }
+    ],
+    "satellite": {
+      "name": "US to UK spelling for LaTeX",
+      "what": "Free page that converts American to British spelling in pasted LaTeX while skipping math, code and citations.",
+      "why_shared": "Highest-traffic entry (the academia question had 1.9k views).",
+      "handoff": "'Check the whole manuscript against a journal' upsell."
+    },
+    "marketing": {
+      "where": [
+        "TeX Stack Exchange answers",
+        "Academia Stack Exchange answers",
+        "Overleaf community forum",
+        "Society mailing lists for journals with custom LaTeX classes"
+      ],
+      "target": "Researchers and grad students submitting LaTeX papers to specific journals",
+      "funnel": "Spelling converter or forum answer -> journal check -> contribute a rule pack for their journal",
+      "cold_outreach": "Offer journal editorial offices a free rule pack for their house style to cut desk rejections.",
+      "post_ideas": [
+        "Convert American to British spelling in LaTeX without breaking your math",
+        "A lint report for the JSS style guide",
+        "Why chktex will not catch your journal's rules"
+      ]
+    },
+    "capital_usd": 12,
+    "capital_note": "Domain only.",
+    "uses_paid_api": false,
+    "paid_api_note": null,
+    "confidence": "low",
+    "notes": "Each journal pack is manual work, so coverage grows slowly and monetization is unclear. Two related but different requests. A related softwarerecs thread (95130, 2026-01-18) wants Overleaf track-changes rendered into the exported PDF, another manuscript workflow gap (needs LaTeX compilation, so not included)."
+  },
+  {
+    "id": "seB-009",
+    "name": "Stipend Compass",
+    "idea": "Crowd-verified atlas of PhD and postdoc stipends by country, university and field, with a living-cost ratio so you can tell if an offer is livable.",
+    "description": "Prospective and current graduate students look up stipends (reported net amounts, teaching supplements, tuition waivers) and see each one divided by a local living-wage figure, with a 'can I live on this offer' check. Submissions are verified by email domain or offer-letter attestation and shown as ranges. Hard to copy because the asset is a curated, community-verified dataset with a consistent methodology, which cannot be generated in a weekend.",
+    "niche": "Education & Study",
+    "niche2": null,
+    "is_feature": false,
+    "feature_for": null,
+    "web_delivery": "Next.js on Vercel hobby with a Supabase free Postgres table of submissions, row-level security and a moderation queue; living-wage reference data as a static table.",
+    "why_hard_to_copy": "Verified crowdsourced dataset and consistent methodology (net vs gross, per field, per university); network effects once students contribute.",
+    "signals": [
+      {
+        "platform": "stackexchange",
+        "url": "https://academia.stackexchange.com/questions/224230/is-there-a-website-where-we-can-find-the-average-stipend-salary-for-the-phd-and",
+        "date": "2025-12-04",
+        "summary": "A PhD student on a very low stipend in Hungary asks for a website listing typical PhD and postdoc stipends per country and, more importantly, whether they cover living costs; none seems to exist, so he proposes sharing estimates in the thread.",
+        "engagement": "3 score, 1350 views, 3 answers"
+      }
+    ],
+    "competitors_seen": [
+      {
+        "name": "StudyInternational stipend articles",
+        "url": "https://studyinternational.com/news/highest-phd-stipends/",
+        "note": "Editorial country lists with inconsistent figures, not a searchable dataset."
+      },
+      {
+        "name": "GradCafe stipend database thread",
+        "url": "https://forum.thegradcafe.com/topic/114969-stipened-database/",
+        "note": "2019 forum thread about a stipend database that uses a living-wage ratio; I could not confirm the current state of that site."
+      }
+    ],
+    "satellite": {
+      "name": "Offer sanity check",
+      "what": "Single page: enter stipend, city and household size, get the ratio to a living wage and a plain verdict.",
+      "why_shared": "Applicants comparing offers arrive with exactly this question; it seeds the dataset with submissions.",
+      "handoff": "'Add your stipend anonymously' prompt after the result."
+    },
+    "marketing": {
+      "where": [
+        "GradCafe forum",
+        "Academia Stack Exchange answers",
+        "Graduate student union and PhD association newsletters",
+        "Mastodon and Bluesky academic communities"
+      ],
+      "target": "Prospective PhD applicants, international students and postdocs comparing offers",
+      "funnel": "Offer sanity check -> country comparison pages (SEO) -> contribute your stipend -> dataset grows",
+      "cold_outreach": "Ask national PhD associations to seed verified figures in exchange for a branded country page.",
+      "post_ideas": [
+        "Is a 470 euro PhD stipend livable? Stipends vs living wage by country",
+        "What the PhD offer letter does not tell you",
+        "Crowd-sourced stipend table - add yours"
+      ]
+    },
+    "capital_usd": 12,
+    "capital_note": "Domain only.",
+    "uses_paid_api": false,
+    "paid_api_note": null,
+    "confidence": "low",
+    "notes": "One request with good views (1.35k). Data quality and moderation are the real work; avoid computing taxes (use reported net figures) to stay clear of the tax ban. A free, reusable living-wage reference source per country is not verified."
+  },
+  {
+    "id": "seB-010",
+    "name": "Luck Tuner",
+    "idea": "Interactive designer for fair-feeling randomness: compare plain chance, pity counters, pseudo-random distribution and shuffle bags, and get exact streak statistics and code.",
+    "description": "A game designer enters a target drop or crit chance and sees side by side how independent rolls, pity timers, increasing-chance (PRD) and shuffle-bag systems behave: longest failure streak, expected attempts, variance, and a tunable knob between fully random and fully predictable. The tool solves the constants numerically and exports snippets for common engines. Aimed at indie developers and tabletop designers. Hard to copy because it needs exact Markov-chain analysis and numeric constant solving rather than Monte Carlo guesses.",
+    "niche": "Gaming Communities",
+    "niche2": "Dev Tools",
+    "is_feature": false,
+    "feature_for": null,
+    "web_delivery": "Static SPA on Vercel hobby; analysis and simulation in a web worker; shareable parameter links; no backend needed.",
+    "why_hard_to_copy": "Exact Markov-chain streak distributions and numeric PRD constant solving across several systems, with clear visualisation; most posts only hand-wave the math.",
+    "signals": [
+      {
+        "platform": "stackexchange",
+        "url": "https://gamedev.stackexchange.com/questions/217152/reducing-variance-in-random-events",
+        "date": "2026-03-26",
+        "summary": "A designer wants ways to interpolate between pure random and a deterministic counter so unlucky streaks shrink but outcomes stay unpredictable, with an adjustable amount of randomness.",
+        "engagement": "2 score, 274 views, 2 answers"
+      },
+      {
+        "platform": "stackexchange",
+        "url": "https://gamedev.stackexchange.com/questions/217188/balancing-economy-in-a-wave-based-survival-shooter",
+        "date": "2026-04-23",
+        "summary": "An indie developer balances weapon and ammo prices against per-wave income using a hand-made spreadsheet and asks how to turn that data into prices; shows the lack of a simple balancing sandbox (adjacent to the RNG need).",
+        "engagement": "6 score, 1148 views, 1 answer"
+      }
+    ],
+    "competitors_seen": [
+      {
+        "name": "Liquipedia Dota 2 random distribution page",
+        "url": "https://liquipedia.net/dota2/Random_Number_Generation",
+        "note": "Explains PRD; no interactive tool."
+      },
+      {
+        "name": "lxsmnsyc/PRD",
+        "url": "https://github.com/lxsmnsyc/PRD",
+        "note": "JavaScript library for PRD, no UI."
+      }
+    ],
+    "satellite": {
+      "name": "PRD constant lookup",
+      "what": "Static table and mini-calculator: nominal chance in, PRD constant and first-hit chance out.",
+      "why_shared": "Developers search exactly this; zero backend.",
+      "handoff": "'See streak distribution' opens the full designer."
+    },
+    "marketing": {
+      "where": [
+        "Game Development Stack Exchange answers",
+        "Roblox DevForum",
+        "itch.io devlog communities",
+        "Godot and Unity community forums"
+      ],
+      "target": "Indie game developers and gacha or loot designers",
+      "funnel": "Constant lookup page -> streak visualizer -> code export",
+      "cold_outreach": "Reply to forum threads about RNG feeling unfair with a one-link demo of the streak comparison.",
+      "post_ideas": [
+        "Why a 25% crit still gives 12-hit dry streaks and how PRD fixes it",
+        "Pity timer vs shuffle bag: exact streak numbers",
+        "Tune your loot luck without a spreadsheet"
+      ]
+    },
+    "capital_usd": 12,
+    "capital_note": "Domain only.",
+    "uses_paid_api": false,
+    "paid_api_note": null,
+    "confidence": "low",
+    "notes": "Demand is shown by two modest questions, one of which (economy balancing) is only adjacent. Could be folded into DicePool Lab as a mode. No dedicated web calculator showed up in my search, but the mechanics are well documented, so differentiation is the exact-statistics UX."
+  },
+  {
+    "id": "seB-011",
+    "name": "Fairy Problem Bench",
+    "idea": "Browser solver for fairy chess problems with a visual editor for custom pieces and arbitrary board sizes.",
+    "description": "Problem composers and solvers set up a position, define their own fairy pieces (leapers, riders, hoppers) with a visual move editor, pick a stipulation such as helpmate in n or series mover, and solve entirely in the browser. Problems are saved and shared by link. Hard to copy because it means porting or wrapping a serious solver (Popeye-class) to WebAssembly and exposing custom piece definitions, plus knowledge of problem-chess conventions.",
+    "niche": "Gaming Communities",
+    "niche2": null,
+    "is_feature": false,
+    "feature_for": null,
+    "web_delivery": "WebAssembly solver in a web worker, static site on Vercel hobby; Supabase free for saved and shared problems.",
+    "why_hard_to_copy": "Niche domain expertise and a WASM port of a complex C solver (or a custom TypeScript solver) with user-defined pieces; almost no one can clone it quickly.",
+    "signals": [
+      {
+        "platform": "stackexchange",
+        "url": "https://chess.stackexchange.com/questions/47934/is-there-a-chess-problem-solving-software-where-i-can-create-my-own-fairy-pieces",
+        "date": "2026-07-08",
+        "summary": "Wants chess-problem solving software where he can define his own fairy pieces and change the board size; Popeye only offers about 160 predefined fairy pieces and he cannot create new ones.",
+        "engagement": "4 score, 138 views, 1 answer"
+      }
+    ],
+    "competitors_seen": [
+      {
+        "name": "Jacobi",
+        "url": "https://wismuth.com/jacobi/",
+        "note": "Browser helpmate and proof-game solver; fewer stipulations, conditions and fairy pieces than Popeye."
+      },
+      {
+        "name": "Fairy-Stockfish WebAssembly",
+        "url": "https://github.com/gbtami/fairy-stockfish.wasm",
+        "note": "Supports custom variants in the browser but is a game engine, not a problem solver."
+      },
+      {
+        "name": "Popeye and other problem software (overview)",
+        "url": "https://en.wikipedia.org/wiki/Software_for_handling_chess_problems",
+        "note": "Popeye is native and command-line; custom pieces limited to its built-in list."
+      }
+    ],
+    "satellite": null,
+    "marketing": {
+      "where": [
+        "Chess Stack Exchange",
+        "Julia's Fairies (fairy chess site)",
+        "Problem chess composer communities and mailing lists"
+      ],
+      "target": "Fairy chess composers and solvers",
+      "funnel": "Shared solvable problem links circulate within the small community",
+      "cold_outreach": "Offer to host a composer's collection as live, solvable diagrams.",
+      "post_ideas": [
+        "Define your own fairy piece and solve in the browser",
+        "Helpmate in 4 with a custom hopper: shareable diagram",
+        "Popeye in your browser (without installing)"
+      ]
+    },
+    "capital_usd": 12,
+    "capital_note": "Domain only.",
+    "uses_paid_api": false,
+    "paid_api_note": null,
+    "confidence": "low",
+    "notes": "Tiny audience and single signal; included because the moat is high and cost near zero. Popeye is open source on GitHub but I did not verify its licence, so a port may force a compatible licence. A chess variant web app (Chessperiment) was announced on the same site on 2026-01-28 (https://chess.stackexchange.com/questions/47619/ive-created-a-chess-variant-webapp-for-highly-custom-chess-variants-feedback), showing adjacent interest but for playing, not solving."
+  },
+  {
+    "id": "seB-012",
+    "name": "Fingerspelling Reader",
+    "idea": "Installable offline PWA for practising reading fingerspelling (BSL two-handed, Auslan, ASL) at adjustable speed.",
+    "description": "Learners see words fingerspelled by a clean hand animation at chosen speeds, type what they read, and progress through word lists by level, all cached offline so it works on airgapped phones and planes. Teachers can share word lists by link. Hard to copy only through assets: original, community-reviewed handshape animations for several sign languages are the work, the code is simple.",
+    "niche": "Accessibility",
+    "niche2": "Languages",
+    "is_feature": false,
+    "feature_for": null,
+    "web_delivery": "PWA on Vercel hobby with a service worker caching SVG/animation assets; progress stored locally; Supabase free optional for shared word lists.",
+    "why_hard_to_copy": "Original handshape assets for multiple sign languages with Deaf-community review; honestly the software is easy, the assets are the moat.",
+    "signals": [
+      {
+        "platform": "stackexchange",
+        "url": "https://linguistics.stackexchange.com/questions/51656/offline-apps-and-programs-for-practicing-reading-bsl-auslan-fingerspelling",
+        "date": "2026-04-09",
+        "summary": "Loves existing HTML fingerspelling-reading games but airgaps home and phone, so asks for an offline desktop or iOS version that practises reading fingerspelling at different speeds; paywalled apps are too risky to try blind.",
+        "engagement": "0 score, 49 views, 0 answers"
+      }
+    ],
+    "competitors_seen": [
+      {
+        "name": "Auslan fingerspelling practice game",
+        "url": "https://auslan.org.au/spell/practice.html",
+        "note": "Free browser game cited by the asker; online only."
+      },
+      {
+        "name": "Sign Language Forum BSL fingerspelling game",
+        "url": "https://www.signlanguageforum.com/bsl/fingerspelling/fingerspelling-game/",
+        "note": "Free browser game cited by the asker; online only."
+      }
+    ],
+    "satellite": null,
+    "marketing": {
+      "where": [
+        "Sign language learner groups on Facebook and Discord",
+        "Local BSL and Auslan class teachers",
+        "Linguistics Stack Exchange"
+      ],
+      "target": "Sign language learners, interpreters in training and teachers",
+      "funnel": "Free practice page -> install as app -> share a custom word list with a class",
+      "cold_outreach": "Offer sign language tutors a free, installable practice tool for their students.",
+      "post_ideas": [
+        "Practise fingerspelling reading offline (installable)",
+        "BSL vs ASL fingerspelling speed drills",
+        "Make a custom fingerspelling word list for your class"
+      ]
+    },
+    "capital_usd": 12,
+    "capital_note": "Domain only; assets produced by the developer.",
+    "uses_paid_api": false,
+    "paid_api_note": null,
+    "confidence": "low",
+    "notes": "Very thin (49 views, one asker). Free online games already exist, so the delta is offline install plus multiple sign languages. Likely a small, non-commercial niche; flag low market size."
+  }
+]

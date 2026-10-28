@@ -1,0 +1,1587 @@
+[
+  {
+    "id": "gh-001",
+    "name": "Hosted Reading Sync (KOReader-compatible)",
+    "idea": "A free hosted progress-sync endpoint for KOReader e-reader users plus a browser dashboard of reading stats, so nobody has to self-host a sync server.",
+    "description": "Gives each reader a personal sync account whose address they paste into KOReader; progress per book is stored as tiny rows and shown on a web dashboard. Users can also drop their KOReader statistics file into the page and get charts computed entirely in the browser. Aimed at e-ink readers who want position sync across devices without Docker. Hard to copy because the sync protocol has device/document-hash quirks and the stats file is an obscure SQLite schema.",
+    "niche": "Hobbies & Crafts",
+    "niche2": "Data & Documents",
+    "is_feature": false,
+    "feature_for": null,
+    "web_delivery": "Vercel serverless routes implement the sync HTTP API against Supabase Postgres (one small row per user+book); dashboard is a normal web app; statistics.sqlite is parsed client-side with sql.js (WASM). No file storage needed.",
+    "why_hard_to_copy": "Needs wire-compatibility with an existing device-side protocol (document hashing, never-sync-backwards rules) and parsing of KOReader's statistics database client-side; niche e-reader knowledge most vibe coders lack.",
+    "signals": [
+      {
+        "platform": "github",
+        "url": "https://github.com/koreader/koreader/issues/15902",
+        "date": "2026-08-19",
+        "summary": "Users reported that KOReader's progress sync server could not be pushed to or pulled from on Pocketbook and Android; the long thread later turned into an OTA-server outage discussion, showing how fragile the single default sync server is.",
+        "engagement": "9 reactions, 66 comments"
+      },
+      {
+        "platform": "github",
+        "url": "https://github.com/koreader/koreader/issues/14527",
+        "date": "2025-10-28",
+        "summary": "Request to improve the automatic progress-sync experience, which is cumbersome especially when there is no WiFi connection.",
+        "engagement": "9 reactions, 17 comments"
+      },
+      {
+        "platform": "github",
+        "url": "https://github.com/crocodilestick/Calibre-Web-Automated/issues/319",
+        "date": "2025-03-20",
+        "summary": "Asks the Calibre-Web-Automated library server to sync reading progress with KOReader devices; a second thread (issue 461, 2025-08-02) asks the same for its web reader. Both still active in 2026 (last updated 2026-01-29 and 2026-05-10).",
+        "engagement": "37 reactions, 25 comments"
+      },
+      {
+        "platform": "github",
+        "url": "https://github.com/janeczku/calibre-web/issues/2298",
+        "date": "2022-01-30",
+        "summary": "Long-running request to sync reading position between devices logged into the same account; still being updated in 2026 (last update 2026-08-03).",
+        "engagement": "59 reactions, 34 comments"
+      },
+      {
+        "platform": "github",
+        "url": "https://github.com/advplyr/audiobookshelf/issues/3504",
+        "date": "2024-10-12",
+        "summary": "Top request on Audiobookshelf to sync ebooks to Kobo e-readers; still receiving comments in Sept 2026, including a community member who built a small bridge because the feature does not exist.",
+        "engagement": "270 reactions, 14 comments"
+      }
+    ],
+    "competitors_seen": [
+      {
+        "name": "KoInsight",
+        "url": "https://blog.brightcoding.dev/2026/09/30/georgesgkoinsight-self-hosted-dashboard-for-koreader-stats",
+        "note": "Self-hosted dashboard that can also act as a sync server; you must run Docker yourself."
+      },
+      {
+        "name": "koreader-driftless",
+        "url": "https://zff.dev/eyJhb/koreader-driftless",
+        "note": "Self-hosted progress sync and document server; no hosted option."
+      },
+      {
+        "name": "korrosync",
+        "url": "https://docs.rs/crate/korrosync/latest",
+        "note": "Self-hosted Rust sync server; sync only, no dashboard."
+      }
+    ],
+    "satellite": {
+      "name": "KOReader Stats Viewer",
+      "what": "Free page where you drop your KOReader statistics file and get reading charts (pages per day, time per book, streaks) computed locally.",
+      "why_shared": "Readers who do not need sync still arrive and share their charts, which feeds the main product.",
+      "handoff": "Banner: want these stats to update automatically? Point KOReader at your free sync address."
+    },
+    "marketing": {
+      "where": [
+        "MobileRead forums",
+        "KOReader GitHub discussions",
+        "Hacker News Show HN",
+        "AlternativeTo listing",
+        "e-reader Discord servers"
+      ],
+      "target": "KOReader users on Kindle, Kobo, Pocketbook and Android who do not run a home server",
+      "funnel": "Stats viewer page -> create free sync account -> paste address into KOReader",
+      "cold_outreach": "Reply helpfully on sync-failure threads and offer the hosted endpoint as a fallback.",
+      "post_ideas": [
+        "I made a free place to sync KOReader progress without Docker",
+        "Drop your statistics file here and see your reading year in charts",
+        "What happens to your progress when the default sync server is down?"
+      ]
+    },
+    "capital_usd": 12,
+    "capital_note": "Domain name; Supabase and Vercel free tiers cover the small rows.",
+    "confidence": "medium",
+    "notes": "Demand evidence is spread over several projects and mostly older threads that stay active; the KOReader outage thread is a single event. Self-hosted alternatives exist, so the pitch is purely 'no server to run'. I did not verify the exact sync API surface in this session.",
+    "uses_paid_api": false,
+    "paid_api_note": null
+  },
+  {
+    "id": "gh-002",
+    "name": "MediaMover",
+    "idea": "A browser tool that imports exports from Trakt, Letterboxd, TV Time, StoryGraph, Goodreads and others into one clean library and exports back out to any of them.",
+    "description": "Users drop their export files into the page; parsers normalise titles, dates, ratings and rewatch counts, match them against open metadata, and let the user review low-confidence matches. The result is a shareable read-only library page plus export files in the format of any target service. Aimed at people leaving or hedging against a tracker that changes pricing or shuts down. The moat is the pile of obscure export formats and matching edge cases.",
+    "niche": "Collectors",
+    "niche2": "Hobbies & Crafts",
+    "is_feature": false,
+    "feature_for": null,
+    "web_delivery": "Static web app with all parsing and matching UI in the browser; Supabase stores only the user's optional shareable library JSON; Vercel serves the pages and a small metadata proxy route.",
+    "why_hard_to_copy": "Many undocumented export formats, season/episode and edition mapping edge cases, and fuzzy matching with a review step; accumulating tested parsers takes real time.",
+    "signals": [
+      {
+        "platform": "github",
+        "url": "https://github.com/FuzzyGrim/Yamtrack/issues/1613",
+        "date": "2026-07-31",
+        "summary": "Asks the Yamtrack media tracker to import the raw data export from Trakt.",
+        "engagement": "18 reactions, 5 comments"
+      },
+      {
+        "platform": "github",
+        "url": "https://github.com/FuzzyGrim/Yamtrack/issues/1279",
+        "date": "2026-03-26",
+        "summary": "Asks for import from Letterboxd.",
+        "engagement": "12 reactions, 8 comments"
+      },
+      {
+        "platform": "github",
+        "url": "https://github.com/FuzzyGrim/Yamtrack/issues/1544",
+        "date": "2026-07-03",
+        "summary": "Asks for import of TV Time data.",
+        "engagement": "12 reactions, 5 comments"
+      },
+      {
+        "platform": "github",
+        "url": "https://github.com/FuzzyGrim/Yamtrack/issues/957",
+        "date": "2025-11-06",
+        "summary": "Asks for import from StoryGraph and Ryot.",
+        "engagement": "7 reactions, 7 comments"
+      },
+      {
+        "platform": "github",
+        "url": "https://github.com/FuzzyGrim/Yamtrack/issues/1014",
+        "date": "2025-12-04",
+        "summary": "Asks to share lists publicly; an earlier thread (issue 317) asks for a read-only page of the whole tracked library.",
+        "engagement": "9 reactions, 5 comments"
+      }
+    ],
+    "competitors_seen": [
+      {
+        "name": "Sofa",
+        "url": "https://www.sofahq.com/blog/import-your-library-take-it-with-you",
+        "note": "Imports Goodreads, Letterboxd, Trakt and CSVs; app-centric, not an export-anywhere converter."
+      },
+      {
+        "name": "Moviebase",
+        "url": "https://moviebase.app/resources/how-to-switch-to-moviebase-from-another-tracker",
+        "note": "Guides for switching from other trackers; one-way into its own app."
+      },
+      {
+        "name": "Curate",
+        "url": "https://www.producthunt.com/products/curate-9",
+        "note": "Product Hunt launch with StoryGraph, Trakt and TV Time importers."
+      },
+      {
+        "name": "Ryot",
+        "url": "https://easypanel.io/docs/templates/ryot",
+        "note": "Self-hosted tracker with several importers."
+      }
+    ],
+    "satellite": {
+      "name": "Export Fixer",
+      "what": "Free one-file converter, e.g. TV Time CSV to Letterboxd/Trakt-ready CSV, no account.",
+      "why_shared": "Single-purpose converters rank for 'TV Time to Trakt' style searches.",
+      "handoff": "After conversion: keep a merged shareable library page."
+    },
+    "marketing": {
+      "where": [
+        "AlternativeTo",
+        "Product Hunt",
+        "Hacker News Show HN",
+        "Mastodon hashtags for film and book tracking",
+        "Trakt and Letterboxd community forums"
+      ],
+      "target": "Heavy movie, TV and book loggers switching or consolidating services",
+      "funnel": "Search for 'import X to Y' -> converter -> shareable library page",
+      "cold_outreach": "Comment on migration threads with a ready converter link.",
+      "post_ideas": [
+        "Move your TV Time history anywhere in a minute",
+        "One library for films, shows and books with exports back out",
+        "I found 40 duplicate rewatches while merging my tracker exports"
+      ]
+    },
+    "capital_usd": 12,
+    "capital_note": "Domain only.",
+    "confidence": "low",
+    "notes": "Crowded space (Sofa, Curate, Simkl, Trakt, Ryot). Demand evidence all comes from one repo's request stream. Metadata sources such as TMDB have licensing limits for commercial use that must be checked before launch. A competitor page claims TV Time is shutting down in July 2026; I did not verify that.",
+    "uses_paid_api": false,
+    "paid_api_note": null
+  },
+  {
+    "id": "gh-003",
+    "name": "Upkeep Planner",
+    "idea": "A home maintenance planner where recurring chores are generated per appliance and per season, and the next due date counts from when you actually did it.",
+    "description": "Add the appliances and parts of your home, pick from a hand-curated library of maintenance tasks with sensible intervals, and get a calendar with reminders that reschedule from completion. Also tracks lent-out items with return reminders. For homeowners and renters who find general to-do apps too dumb for recurring care. The curated task library and correct recurrence rules are the moat.",
+    "niche": "Home & DIY",
+    "niche2": null,
+    "is_feature": false,
+    "feature_for": null,
+    "web_delivery": "PWA on Vercel with Supabase auth and Postgres; reminders via email using Supabase scheduled functions or push for installed PWAs; task library shipped as JSON seeds.",
+    "why_hard_to_copy": "A hand-curated, region- and climate-aware task and interval library plus a recurrence engine that handles 'after completion', seasonal windows and skipped cycles.",
+    "signals": [
+      {
+        "platform": "github",
+        "url": "https://github.com/sysadminsmedia/homebox/issues/172",
+        "date": "2024-08-16",
+        "summary": "Asks Homebox for maintenance plans where recurring maintenance is auto-created on completion. In April 2026 a user added a bounty and in June 2026 another reported implementing it, so the need is still open.",
+        "engagement": "36 reactions, 13 comments"
+      },
+      {
+        "platform": "github",
+        "url": "https://github.com/sysadminsmedia/homebox/issues/74",
+        "date": "2024-06-28",
+        "summary": "Wants a reminder when a lent-out item passes its expected return date; updated 2026-06-15.",
+        "engagement": "8 reactions, 6 comments"
+      },
+      {
+        "platform": "github",
+        "url": "https://github.com/nextcloud/deck/issues/480",
+        "date": "2018-06-07",
+        "summary": "Top-voted request for recurring cards on Nextcloud's kanban board. Comments in August and October 2026 show people still asking, and one commenter announced a separate add-on that adds recurrence.",
+        "engagement": "115 reactions, 43 comments"
+      },
+      {
+        "platform": "github",
+        "url": "https://github.com/go-vikunja/vikunja/issues/1369",
+        "date": "2025-09-01",
+        "summary": "Asks for more precise recurrence settings for repeating tasks; updated 2026-05-17.",
+        "engagement": "11 reactions, 5 comments"
+      },
+      {
+        "platform": "github",
+        "url": "https://github.com/danielbrendel/hortusfox-web/issues/505",
+        "date": "2026-02-25",
+        "summary": "Asks for an optional end condition on recurring tasks in a plant manager.",
+        "engagement": "0 reactions, 0 comments"
+      },
+      {
+        "platform": "github",
+        "url": "https://github.com/donetick/donetick/issues/457",
+        "date": "2026-01-09",
+        "summary": "Wants shared tasks that several household members can complete.",
+        "engagement": "4 reactions, 4 comments"
+      }
+    ],
+    "competitors_seen": [
+      {
+        "name": "Hearth (iOS)",
+        "url": "https://apps.apple.com/app/id6759873999",
+        "note": "Appliance log with model/serial and 35+ reminder templates; iOS only."
+      },
+      {
+        "name": "Life Maintenance",
+        "url": "https://mwm.ai/ja/apps/life-maintenance/6768329555",
+        "note": "500+ prebuilt schedules; calendar sync is a Premium feature."
+      },
+      {
+        "name": "HomeKeep (iOS)",
+        "url": "https://apps.apple.com/mx/app/homekeep-maintenance-tracker/id6759167634",
+        "note": "39 preloaded tasks, one-time price, no inventory."
+      },
+      {
+        "name": "Homebox",
+        "url": "https://github.com/sysadminsmedia/homebox",
+        "note": "Self-hosted inventory, maintenance tracking only partial."
+      }
+    ],
+    "satellite": {
+      "name": "Seasonal Home Checklist Printer",
+      "what": "Free page: enter home type and climate zone, get a printable spring/fall checklist.",
+      "why_shared": "Evergreen seasonal searches and shares.",
+      "handoff": "Turn the printed checklist into reminders in the planner."
+    },
+    "marketing": {
+      "where": [
+        "Product Hunt",
+        "AlternativeTo",
+        "first-time homeowner Facebook groups and forums",
+        "Pinterest checklists",
+        "DIY and home-improvement YouTube comment sections"
+      ],
+      "target": "New homeowners and landlords",
+      "funnel": "Printable checklist -> sign up to get reminders",
+      "cold_outreach": "Offer free setup for small property managers.",
+      "post_ideas": [
+        "The 12 things your furnace and water heater want each year",
+        "Smoke detector batteries and 9 other chores you forget",
+        "Why 'every 3 months' should start from when you did it"
+      ]
+    },
+    "capital_usd": 12,
+    "capital_note": "Domain; email sending stays inside free quota at small scale.",
+    "confidence": "medium",
+    "notes": "Engagement on the top thread is real but the other signals are thin. Several iOS competitors exist, so the angle is a web/PWA product with a better curated library.",
+    "uses_paid_api": false,
+    "paid_api_note": null
+  },
+  {
+    "id": "gh-004",
+    "name": "Kinship Explorer",
+    "idea": "Upload a GEDCOM file and see exactly how any two people in the tree are related, including in-laws and step relatives, with culture-aware names and kinship terms.",
+    "description": "Everything runs in the browser: parse the family tree file, pick two people, and get the path, the relationship name in the user's language, and a diagram. Name display can follow local conventions such as patronymics or surname-first order. Anniversary and birthday lists can be exported as a calendar file. Hard to copy because kinship terms and name conventions differ by culture and in-law logic is fiddly.",
+    "niche": "Genealogy & History",
+    "niche2": null,
+    "is_feature": false,
+    "feature_for": null,
+    "web_delivery": "Static web app on Vercel; GEDCOM parsed and queried entirely in the browser (no upload, no storage); Supabase only for optional saved views and share links.",
+    "why_hard_to_copy": "Correctness-critical kinship logic (half, step, in-law, multiple spouses) plus per-language relationship terms and name-order formats; client-side parsing of messy GEDCOM variants.",
+    "signals": [
+      {
+        "platform": "github",
+        "url": "https://github.com/gramps-project/gramps-web/issues/578",
+        "date": "2025-01-24",
+        "summary": "Wants a diagram showing how two specific people are related. Comments on 2026-10-15 show the maintainer undecided on the UI and the requester insisting it must work for any two people, not only the home person.",
+        "engagement": "11 reactions, 6 comments"
+      },
+      {
+        "platform": "github",
+        "url": "https://github.com/gramps-project/gramps-web/issues/584",
+        "date": "2025-01-28",
+        "summary": "Relationships by marriage (in-laws, nieces and nephews) currently show as 'not related'; asks for them to be calculated. Updated 2026-10-19.",
+        "engagement": "8 reactions, 2 comments"
+      },
+      {
+        "platform": "github",
+        "url": "https://github.com/gramps-project/gramps-web/issues/444",
+        "date": "2024-05-22",
+        "summary": "Asks for custom name display formats because the default order does not match patronymic naming conventions; updated 2026-05-20.",
+        "engagement": "17 reactions, 10 comments"
+      },
+      {
+        "platform": "github",
+        "url": "https://github.com/gramps-project/gramps-web/issues/800",
+        "date": "2025-10-26",
+        "summary": "Relationship graph should connect multiple spouses instead of showing separate pairings.",
+        "engagement": "7 reactions, 5 comments"
+      },
+      {
+        "platform": "github",
+        "url": "https://github.com/gramps-project/gramps-web/issues/683",
+        "date": "2025-06-29",
+        "summary": "Wants anniversary notifications or a calendar subscription of anniversaries; updated 2026-09-08.",
+        "engagement": "5 reactions, 12 comments"
+      }
+    ],
+    "competitors_seen": [
+      {
+        "name": "GEDminer Kinship Explorer",
+        "url": "https://gedminer.com/gedcom-viewer-online",
+        "note": "Free browser GEDCOM viewer with relationship calculation up to 8th cousins; in-law support not confirmed."
+      },
+      {
+        "name": "Topola Viewer",
+        "url": "https://pewu.github.io/topola-viewer",
+        "note": "Open-source client-side chart viewer; no relationship calculator found."
+      },
+      {
+        "name": "Family Viewer",
+        "url": "https://github.com/jepst/familyviewer",
+        "note": "Client-side JS viewer with search; no relationship calculator found."
+      }
+    ],
+    "satellite": {
+      "name": "How Are We Related?",
+      "what": "Tiny free page: paste two lineage descriptions or upload a small file and get the plain-language relationship.",
+      "why_shared": "Family group chats share answers like 'second cousin once removed'.",
+      "handoff": "Link to the full explorer for the whole tree."
+    },
+    "marketing": {
+      "where": [
+        "WikiTree G2G forum",
+        "Genealogy Stack Exchange",
+        "Gramps community forum",
+        "Facebook genealogy groups",
+        "AlternativeTo"
+      ],
+      "target": "Family historians and the relatives who ask them 'how are we related'",
+      "funnel": "Relationship question -> explorer -> saved tree view",
+      "cold_outreach": "Answer relationship questions on genealogy Q&A sites with a link showing the path.",
+      "post_ideas": [
+        "Why your spouse's cousin is not 'not related' in your tree",
+        "Explain any two people's relationship in one click",
+        "Patronymic and surname-first names without breaking your GEDCOM"
+      ]
+    },
+    "capital_usd": 12,
+    "capital_note": "Domain only.",
+    "confidence": "medium",
+    "notes": "All five signals come from one project's tracker, though several are recently active. Existing client-side viewers (GEDminer) overlap; the differentiator would be in-law/step logic, multi-language terms, and name formats.",
+    "uses_paid_api": false,
+    "paid_api_note": null
+  },
+  {
+    "id": "gh-005",
+    "name": "Band Stage Sync",
+    "idea": "A songbook and setlist web app where band members open the live setlist on their own phones, transposed for their instrument, with guests allowed temporary view access.",
+    "description": "Store songs in ChordPro, transpose or apply a capo per player, reorder setlists live, and push the current song to everyone's screen. Works offline as a PWA for venues with bad signal. Aimed at bands, worship teams and open-mic hosts. Real-time sync and correct chord transposition (flats/sharps, slash chords) are the moat.",
+    "niche": "Music & Audio",
+    "niche2": "Community & Nonprofit",
+    "is_feature": false,
+    "feature_for": null,
+    "web_delivery": "PWA on Vercel; Supabase Realtime channels for the live setlist; songs stored as text; service worker caches the setlist for offline use.",
+    "why_hard_to_copy": "Correct transposition logic across chord notations, real-time multi-device sync, and offline-first behaviour on stage.",
+    "signals": [
+      {
+        "platform": "github",
+        "url": "https://github.com/devmount/SongDrive/issues/296",
+        "date": "2026-10-01",
+        "summary": "A group making music together asks for ad-hoc participants to get temporary read-only access to the setlist without a full account.",
+        "engagement": "1 reaction, 0 comments"
+      },
+      {
+        "platform": "github",
+        "url": "https://github.com/devmount/SongDrive/issues/9",
+        "date": "2019-05-21",
+        "summary": "Offline capability for the songbook has been requested since 2019 and the thread was updated in 2026-08.",
+        "engagement": "0 reactions, 0 comments"
+      },
+      {
+        "platform": "github",
+        "url": "https://github.com/pandulapeter/campfire/issues/4",
+        "date": "2026-10-23",
+        "summary": "Song display ignores underline tags that are part of the ChordPro format, showing how format edge cases bite in songbook apps.",
+        "engagement": "1 reaction, 2 comments"
+      }
+    ],
+    "competitors_seen": [
+      {
+        "name": "MySongbook.app",
+        "url": "https://alternativeto.net/software/mysongbook-app/about/",
+        "note": "Browser-based, offline, ChordPro, setlists; freemium subscription."
+      },
+      {
+        "name": "GigNotes",
+        "url": "https://apps.apple.com/app/id1536908681",
+        "note": "ChordPro and setlists free; sharing with bandmates is paid."
+      },
+      {
+        "name": "aChordion",
+        "url": "https://alternativeto.net/software/achordion/about/",
+        "note": "Band sharing needs a subscription."
+      },
+      {
+        "name": "OnSong",
+        "url": "https://appfollow.io/ios/onsong/1330350343?country=ua",
+        "note": "Paid iOS app with wireless sharing."
+      }
+    ],
+    "satellite": {
+      "name": "Free Chord Transposer",
+      "what": "Paste a chord sheet, pick a key or capo, copy a clean transposed version.",
+      "why_shared": "Musicians search for transposers constantly.",
+      "handoff": "Save to a band space and share the live setlist."
+    },
+    "marketing": {
+      "where": [
+        "Product Hunt",
+        "worship-team and church music forums",
+        "guitar and ukulele forums",
+        "AlternativeTo",
+        "open-mic host groups"
+      ],
+      "target": "Amateur bands, worship teams, open-mic hosts",
+      "funnel": "Transposer page -> create band space -> invite members by link",
+      "cold_outreach": "Offer free setup to church music directors.",
+      "post_ideas": [
+        "Stop texting PDFs of setlists to your band",
+        "Capo math so the singer and the guitarist both stay happy",
+        "A songbook that still works when the venue wifi dies"
+      ]
+    },
+    "capital_usd": 12,
+    "capital_note": "Domain only.",
+    "confidence": "low",
+    "notes": "GitHub evidence is thin (tiny projects); the real demand signal for paid band-sharing is visible only in competitor pricing. Needs corroboration from other sources.",
+    "uses_paid_api": false,
+    "paid_api_note": null
+  },
+  {
+    "id": "gh-006",
+    "name": "Open Language Reader",
+    "idea": "A browser reader where you import a text, click any word for a definition, track known words, and get proper word splitting for languages like Korean, Japanese and Thai.",
+    "description": "Paste text, upload an EPUB, or load subtitles; words are segmented using the browser's built-in segmenter, looked up in downloadable dictionary packs that work offline, and graded known/learning/unknown. Study progress and streaks are kept per language. Aimed at self-directed language learners who outgrew flashcards. The per-language segmentation and offline dictionary packs are the moat.",
+    "niche": "Languages",
+    "niche2": "Education & Study",
+    "is_feature": false,
+    "feature_for": null,
+    "web_delivery": "PWA on Vercel; text and vocabulary in IndexedDB with optional Supabase sync; dictionary packs fetched once from static hosting and cached; segmentation uses the browser's Intl.Segmenter plus small bundled tokenizers.",
+    "why_hard_to_copy": "Per-language tokenization edge cases, curated offline dictionary packs, and EPUB/subtitle parsing, all client-side.",
+    "signals": [
+      {
+        "platform": "github",
+        "url": "https://github.com/LuteOrg/lute-v3/issues/228",
+        "date": "2024-02-10",
+        "summary": "Asks the Lute reader to support offline dictionary files; thread updated 2026-06-02.",
+        "engagement": "1 reaction, 11 comments"
+      },
+      {
+        "platform": "github",
+        "url": "https://github.com/LuteOrg/lute-v3/issues/11",
+        "date": "2023-09-20",
+        "summary": "Wants Korean text parsing for learners; updated 2026-04-05.",
+        "engagement": "1 reaction, 7 comments"
+      },
+      {
+        "platform": "github",
+        "url": "https://github.com/LuteOrg/lute-v3/issues/725",
+        "date": "2026-08-06",
+        "summary": "Suggests importing YouTube videos with interactive subtitles into the reader.",
+        "engagement": "1 reaction, 0 comments"
+      },
+      {
+        "platform": "github",
+        "url": "https://github.com/LuteOrg/lute-v3/issues/648",
+        "date": "2026-01-07",
+        "summary": "Asks to synchronise audio with subtitle files while reading.",
+        "engagement": "4 reactions, 1 comment"
+      },
+      {
+        "platform": "github",
+        "url": "https://github.com/simjanos-dev/LinguaCafe/issues/3",
+        "date": "2024-01-08",
+        "summary": "Question thread on what is needed to add more languages, still being updated in 2026-02.",
+        "engagement": "0 reactions, 25 comments"
+      }
+    ],
+    "competitors_seen": [
+      {
+        "name": "LWT (Learning with Texts)",
+        "url": "https://root.packagist.org/packages/hugofara/lwt",
+        "note": "Self-hosted PHP app; needs a server."
+      },
+      {
+        "name": "MnemoRead",
+        "url": "https://alternativeto.net/software/mnemoread/about/",
+        "note": "Browser EPUB reader with tap-to-define and SRS."
+      },
+      {
+        "name": "Vocablee",
+        "url": "https://alternativeto.net/software/vocablee/about",
+        "note": "Subscription; limited free version."
+      },
+      {
+        "name": "FLTR",
+        "url": "https://foreign-language-text-reader.sourceforge.io",
+        "note": "Java desktop app."
+      }
+    ],
+    "satellite": {
+      "name": "Word Frequency Checker",
+      "what": "Paste a text, see which words you need to know for 95% coverage.",
+      "why_shared": "Learners share graded-text tools.",
+      "handoff": "Start reading that text with the clickable reader."
+    },
+    "marketing": {
+      "where": [
+        "Language learning forums and Discords",
+        "Hacker News Show HN",
+        "AlternativeTo",
+        "YouTube language-learning creators",
+        "Mastodon language-learning hashtags"
+      ],
+      "target": "Intermediate learners of Korean, Japanese, Greek and other languages that tools handle poorly",
+      "funnel": "Frequency checker -> reader -> account sync",
+      "cold_outreach": "Pitch to language YouTubers as a free tool for their audience.",
+      "post_ideas": [
+        "Read your first novel in Korean with a reader that splits words correctly",
+        "Offline dictionary packs for language readers",
+        "Turn any subtitle file into a reading lesson"
+      ]
+    },
+    "capital_usd": 12,
+    "capital_note": "Domain; dictionary data from open sources.",
+    "confidence": "low",
+    "notes": "Engagement per thread is very low; demand is inferred from a handful of recurring feature gaps across two projects. Dictionary data licensing must be checked.",
+    "uses_paid_api": false,
+    "paid_api_note": null
+  },
+  {
+    "id": "gh-007",
+    "name": "Spool Stash",
+    "idea": "A hosted, multi-user filament inventory for 3D printing with barcode and NFC spool scanning and a shared community filament database.",
+    "description": "Track every spool and remaining weight, scan manufacturer barcodes or open NFC spool tags from a phone to add spools in seconds, and share a library with a print club or print farm. Export spool data to slicer or colour tools. Aimed at hobbyists and small print shops who do not want to run a home server. The curated filament database and tag-format parsing are the moat.",
+    "niche": "Science & Maker",
+    "niche2": "Hobbies & Crafts",
+    "is_feature": false,
+    "feature_for": null,
+    "web_delivery": "PWA on Vercel; Supabase auth, Postgres and row-level security for multi-user spaces; camera barcode scanning via the browser BarcodeDetector API; NFC via Web NFC on Android Chrome only.",
+    "why_hard_to_copy": "A hand-maintained filament database (brands, materials, temperatures, colours) and parsing of emerging spool tag standards.",
+    "signals": [
+      {
+        "platform": "github",
+        "url": "https://github.com/Donkie/Spoolman/issues/776",
+        "date": "2025-10-31",
+        "summary": "Asks the Spoolman filament manager to support an open NFC tag format for spools, updated 2026-10-04.",
+        "engagement": "30 reactions, 20 comments"
+      },
+      {
+        "platform": "github",
+        "url": "https://github.com/Donkie/Spoolman/issues/501",
+        "date": "2024-10-01",
+        "summary": "Wants sign-in and multi-tenancy; as of 2026-05 a user says their reverse-proxy auth workaround is unusable because of websocket cookies.",
+        "engagement": "12 reactions, 9 comments"
+      },
+      {
+        "platform": "github",
+        "url": "https://github.com/Donkie/Spoolman/issues/852",
+        "date": "2026-02-17",
+        "summary": "Asks for multi-user support with roles, permissions and password protection.",
+        "engagement": "5 reactions, 1 comment"
+      },
+      {
+        "platform": "github",
+        "url": "https://github.com/Donkie/Spoolman/issues/789",
+        "date": "2025-11-30",
+        "summary": "Wants manufacturer barcode scanning to create spools quickly; updated 2026-10-25.",
+        "engagement": "5 reactions, 9 comments"
+      },
+      {
+        "platform": "github",
+        "url": "https://github.com/Donkie/Spoolman/issues/705",
+        "date": "2025-05-29",
+        "summary": "Wants import and export between spool and filament management tools.",
+        "engagement": "6 reactions, 3 comments"
+      }
+    ],
+    "competitors_seen": [
+      {
+        "name": "Filamio",
+        "url": "https://alternativeto.net/software/filamio/about/",
+        "note": "Hosted web app; free tier capped at 50 spools and one warehouse, team access paid."
+      },
+      {
+        "name": "Spoolman",
+        "url": "https://www.hostinger.com/vps/docker/spoolman",
+        "note": "Open source, self-hosted only."
+      },
+      {
+        "name": "Spoolstock",
+        "url": "https://apps.apple.com/app/id6480470069",
+        "note": "Cloud-synced app with a 20-item free tier."
+      }
+    ],
+    "satellite": {
+      "name": "Filament Colour Matcher",
+      "what": "Pick a colour and see the closest filaments across brands from the database.",
+      "why_shared": "Print designers share it for colour choices.",
+      "handoff": "Add matched spools to your stash."
+    },
+    "marketing": {
+      "where": [
+        "3D printing forums and Discords",
+        "Printables and MakerWorld community comments",
+        "Hacker News Show HN",
+        "YouTube 3D printing channels",
+        "AlternativeTo"
+      ],
+      "target": "Home 3D printer owners and small print farms",
+      "funnel": "Colour matcher -> free stash -> invite club members",
+      "cold_outreach": "Offer print-farm owners a free shared workspace for feedback.",
+      "post_ideas": [
+        "Scan a spool barcode and add it in one second",
+        "Stop buying duplicate colours you already own",
+        "Share a filament library with your makerspace"
+      ]
+    },
+    "capital_usd": 12,
+    "capital_note": "Domain only.",
+    "confidence": "medium",
+    "notes": "Hosted competitor Filamio exists with a limited free tier, so the angle is generosity plus a better database. Web NFC works only on Android Chrome.",
+    "uses_paid_api": false,
+    "paid_api_note": null
+  },
+  {
+    "id": "gh-008",
+    "name": "Parts Bin Online",
+    "idea": "A hosted electronics parts inventory with SI-unit-aware parameters, free-storage-slot finder and order import from distributors.",
+    "description": "Hobbyists log components with parameters that understand units (100nF equals 0.1uF), find the next free drawer or reel slot, and import DigiKey or Mouser orders instead of typing each line. Projects keep a BOM with stock check and cost roll-up, printable as a pick list. Aimed at electronics hobbyists and small hardware teams who will not run a server. SI-aware search and distributor importers are the moat.",
+    "niche": "Science & Maker",
+    "niche2": "Collectors",
+    "is_feature": false,
+    "feature_for": null,
+    "web_delivery": "Web app on Vercel with Supabase Postgres; distributor lookups via free distributor APIs through serverless routes; order-CSV import parsed client-side; label printing through browser print CSS.",
+    "why_hard_to_copy": "Unit-normalising parameter search, distributor order and BOM parsing, and storage-location logic are domain-specific and fiddly.",
+    "signals": [
+      {
+        "platform": "github",
+        "url": "https://github.com/Part-DB/Part-DB-server/issues/542",
+        "date": "2024-03-05",
+        "summary": "Wants to import all items of a DigiKey order by order ID instead of adding each part by hand; updated 2026-06-03.",
+        "engagement": "11 reactions, 2 comments"
+      },
+      {
+        "platform": "github",
+        "url": "https://github.com/Part-DB/Part-DB-server/issues/598",
+        "date": "2024-04-17",
+        "summary": "Asks for SI unit prefixes in part parameters so equal values can be compared; updated 2026-06-09.",
+        "engagement": "9 reactions, 5 comments"
+      },
+      {
+        "platform": "github",
+        "url": "https://github.com/Part-DB/Part-DB-server/issues/1347",
+        "date": "2026-04-19",
+        "summary": "Wants the system to show free storage locations when adding stock.",
+        "engagement": "7 reactions, 0 comments"
+      },
+      {
+        "platform": "github",
+        "url": "https://github.com/Part-DB/Part-DB-server/issues/999",
+        "date": "2025-08-18",
+        "summary": "Needs a printable build/BOM pick list with quantities and locations.",
+        "engagement": "6 reactions, 2 comments"
+      },
+      {
+        "platform": "github",
+        "url": "https://github.com/Part-DB/Part-DB-server/issues/603",
+        "date": "2024-04-21",
+        "summary": "Wants cost calculation after building a project; updated 2026-01-17.",
+        "engagement": "8 reactions, 8 comments"
+      }
+    ],
+    "competitors_seen": [
+      {
+        "name": "Binner",
+        "url": "https://github.com/replaysMike/Binner/wiki",
+        "note": "Free open-source parts inventory with DigiKey/Mouser/Octopart integrations; self-hosted."
+      },
+      {
+        "name": "InvenTree",
+        "url": "https://github.com/topics/mouser?o=desc&s=forks",
+        "note": "Open-source inventory with supplier import CLI; self-hosted."
+      },
+      {
+        "name": "KiCost",
+        "url": "https://pypi.python.org/pypi/kicost/0.1.41",
+        "note": "KiCad BOM costing script, not an inventory."
+      },
+      {
+        "name": "BOMER",
+        "url": "https://www.eevblog.com/forum/projects/bomer/msg1264719/",
+        "note": "Old hosted tool with tight free-tier limits."
+      }
+    ],
+    "satellite": {
+      "name": "SI Value Converter and Resistor/Capacitor Code Decoder",
+      "what": "Free page decoding component markings and converting nF/uF/pF.",
+      "why_shared": "Hobbyists bookmark such tools.",
+      "handoff": "Save decoded parts to your bin."
+    },
+    "marketing": {
+      "where": [
+        "EEVblog forum",
+        "Hackaday comments and Hackaday.io",
+        "KiCad forum",
+        "Hacker News Show HN",
+        "AlternativeTo"
+      ],
+      "target": "Electronics hobbyists and small hardware teams",
+      "funnel": "Decoder page -> inventory -> BOM stock check",
+      "cold_outreach": "Offer makerspaces a shared free workspace.",
+      "post_ideas": [
+        "Import your DigiKey order into an inventory in one paste",
+        "Is a 0.1uF the same as a 100nF? Your parts database should know",
+        "Find the next free drawer automatically"
+      ]
+    },
+    "capital_usd": 12,
+    "capital_note": "Domain; distributor API keys are free to register.",
+    "confidence": "low",
+    "notes": "Strong self-hosted alternatives (Binner, InvenTree, Part-DB) mean the gap is 'no hosting needed'. Distributor API terms and rate limits need checking.",
+    "uses_paid_api": false,
+    "paid_api_note": null
+  },
+  {
+    "id": "gh-009",
+    "name": "FreeBusy Hub",
+    "idea": "Combine all your calendars into one subscribable feed that shows only busy blocks, with a per-calendar choice of what details to reveal.",
+    "description": "Paste the private ICS links of your work, personal and family calendars; the service expands recurring events correctly and publishes a single secret feed URL (and a small availability page) that shows 'busy' or selected details only. Aimed at people who juggle work and private calendars, freelancers, and families that share one availability view. The moat is correct recurrence and timezone handling across messy real-world feeds.",
+    "niche": "Productivity & Planning",
+    "niche2": "Parenting & Family",
+    "is_feature": false,
+    "feature_for": null,
+    "web_delivery": "Vercel serverless route fetches the user's source ICS URLs on request with short caching, expands events (RRULE, EXDATE, timezones) and returns a filtered ICS; Supabase stores account and feed settings; configuration UI is a normal web app.",
+    "why_hard_to_copy": "Correctness-critical iCalendar handling: recurrence expansion, timezone definitions, all-day and multi-day edge cases, and CLASS/transparency fields that vary between providers.",
+    "signals": [
+      {
+        "platform": "github",
+        "url": "https://github.com/nextcloud/calendar/issues/6247",
+        "date": "2024-08-08",
+        "summary": "Wants to share a whole calendar as free/busy only without marking every event. Comments through 2026-10-20 call it a standard for calendar sharing and point out how Google's default visibility works.",
+        "engagement": "41 reactions, 21 comments"
+      },
+      {
+        "platform": "github",
+        "url": "https://github.com/nextcloud/calendar/issues/7641",
+        "date": "2025-10-29",
+        "summary": "An Outlook-using organisation member wants one 'global' feed that mixes several calendars and hides details of the personal ones.",
+        "engagement": "7 reactions, 3 comments"
+      },
+      {
+        "platform": "github",
+        "url": "https://github.com/nextcloud/calendar/issues/3044",
+        "date": "2021-04-27",
+        "summary": "Asks for a team-owned calendar tied to a group rather than a user; thread updated 2026-10-16.",
+        "engagement": "43 reactions, 7 comments"
+      },
+      {
+        "platform": "github",
+        "url": "https://github.com/seanmorley15/AdventureLog/issues/459",
+        "date": "2025-01-19",
+        "summary": "Asks for a calendar ICS URL so trip data can be used in external calendars; updated 2026-03-16.",
+        "engagement": "15 reactions, 0 comments"
+      },
+      {
+        "platform": "github",
+        "url": "https://github.com/gramps-project/gramps-web/issues/683",
+        "date": "2025-06-29",
+        "summary": "Wants calendar subscription of family anniversaries; updated 2026-09-08.",
+        "engagement": "5 reactions, 12 comments"
+      }
+    ],
+    "competitors_seen": [
+      {
+        "name": "SYNCDATE",
+        "url": "https://workspace.google.com/marketplace/app/syncdate/761398899444?hl=hi",
+        "note": "Syncs calendars with busy-only copies; works by copying events between calendars, not a single feed."
+      },
+      {
+        "name": "Sync Them Calendars",
+        "url": "https://workspace.google.com/marketplace/app/sync_them_calendars/1052199174637",
+        "note": "Google Workspace add-on to combine availability without sharing details."
+      },
+      {
+        "name": "OneCal",
+        "url": "https://www.onecal.io/blog/how-to-merge-outlook-calendars",
+        "note": "Paid sync service; its own guide notes manual ICS merges cannot hide private details."
+      },
+      {
+        "name": "SavvyCal merge guide",
+        "url": "https://savvycal.com/articles/merge-google-calendars",
+        "note": "Manual ICS import copies full details; offers automated alternative."
+      }
+    ],
+    "satellite": {
+      "name": "ICS Privacy Scrubber",
+      "what": "Paste an ICS link or file and download a busy-only version, processed in the browser.",
+      "why_shared": "One-off need that people search for.",
+      "handoff": "Turn the scrubbed file into a live merged feed."
+    },
+    "marketing": {
+      "where": [
+        "Hacker News Show HN",
+        "Product Hunt",
+        "AlternativeTo",
+        "productivity and freelancer communities",
+        "Mastodon calendar and privacy hashtags"
+      ],
+      "target": "Remote workers with work and private calendars, small teams, families",
+      "funnel": "Scrubber tool -> sign up to keep a live feed -> share availability link",
+      "cold_outreach": "Reply to calendar-sharing threads on forums with the live-feed alternative.",
+      "post_ideas": [
+        "Share your availability without sharing your dentist appointment",
+        "One link that merges Google, Outlook and iCloud as busy-only",
+        "Why copying events between calendars keeps breaking"
+      ]
+    },
+    "capital_usd": 12,
+    "capital_note": "Domain only; fetch-on-demand feeds fit free quotas at small scale.",
+    "confidence": "medium",
+    "notes": "Users must hand over secret ICS URLs, so trust and security design matter. Several sync tools address the same pain with different mechanisms. Strongest evidence is the single Nextcloud thread, not independent projects.",
+    "uses_paid_api": false,
+    "paid_api_note": null
+  },
+  {
+    "id": "gh-010",
+    "name": "MealMerge",
+    "idea": "A meal planner whose shopping list correctly adds up the same ingredient across recipes, converts units, and optionally subtracts what is in your pantry.",
+    "description": "Plan the week from your saved recipes and get one shopping list where 2 eggs plus 3 eggs becomes 5, grams and cups are reconciled by ingredient, and pantry items can be taken off. Also supports adding a whole day or a whole week to the list in one click and notes on list items. Aimed at households and shared student kitchens who find recipe managers' lists naive. The moat is an ingredient parser plus unit and density conversion rules.",
+    "niche": "Food & Cooking",
+    "niche2": "Parenting & Family",
+    "is_feature": false,
+    "feature_for": null,
+    "web_delivery": "PWA on Vercel with Supabase Postgres; ingredient parsing and merging run in the browser; household sharing via Supabase auth and row-level security.",
+    "why_hard_to_copy": "Accurate ingredient parsing and unit/density conversion across metric and imperial with fuzzy ingredient matching; a hand-built conversion table is slow to get right.",
+    "signals": [
+      {
+        "platform": "github",
+        "url": "https://github.com/grocy/grocy/issues/840",
+        "date": "2020-05-09",
+        "summary": "Adding two recipes that both need scallions only puts the first recipe's amount on the shopping list. A comment on 2026-10-24 asks that 2 eggs already listed plus a meal needing 3 eggs should give 5.",
+        "engagement": "4 reactions, 37 comments"
+      },
+      {
+        "platform": "github",
+        "url": "https://github.com/grocy/grocy/issues/686",
+        "date": "2020-04-01",
+        "summary": "Wants recipe ingredients added to the shopping list even if already in stock, for a shared student house cooking for each other; updated 2026-01-19.",
+        "engagement": "9 reactions, 8 comments"
+      },
+      {
+        "platform": "github",
+        "url": "https://github.com/mealie-recipes/mealie/issues/6823",
+        "date": "2026-01-03",
+        "summary": "Bug report: 'add to list' for a whole day from the meal planner does not work.",
+        "engagement": "4 reactions, 6 comments"
+      },
+      {
+        "platform": "github",
+        "url": "https://github.com/TandoorRecipes/recipes/issues/4624",
+        "date": "2026-04-15",
+        "summary": "Wants notes on shopping list items.",
+        "engagement": "6 reactions, 0 comments"
+      },
+      {
+        "platform": "github",
+        "url": "https://github.com/TandoorRecipes/recipes/issues/1954",
+        "date": "2022-07-23",
+        "summary": "Proposal to rework how food units are handled; still being updated in January 2026.",
+        "engagement": "11 reactions, 29 comments"
+      },
+      {
+        "platform": "github",
+        "url": "https://github.com/julianpoy/RecipeSage/issues/2077",
+        "date": "2026-01-30",
+        "summary": "Wants to manage custom shopping list categories.",
+        "engagement": "0 reactions, 0 comments"
+      }
+    ],
+    "competitors_seen": [
+      {
+        "name": "Cooklist",
+        "url": "https://foodandnutrition.org/uncategorized/cooklist-ios-version-1-35-2/",
+        "note": "iOS app; shopping list leaves out items you already have and groups by aisle."
+      },
+      {
+        "name": "MealBoard",
+        "url": "https://www.casimedicos.com/apps/product/mealboard-meal-planner/",
+        "note": "Aggregates similar ingredients and organises by aisle."
+      },
+      {
+        "name": "Meal Master Plan",
+        "url": "https://apps.apple.com/app/meal-master-plan/id6443649573",
+        "note": "iOS app matching recipe ingredients to pantry items."
+      },
+      {
+        "name": "Mealie / Tandoor / KitchenOwl",
+        "url": "https://cooklang.org/blog/09-cooklang-vs-paprika-vs-mealie/",
+        "note": "Free self-hosted recipe managers that need a server; shopping-list merging is the complaint in their trackers."
+      }
+    ],
+    "satellite": {
+      "name": "Ingredient Unit Converter",
+      "what": "Free converter for cups, grams, ounces and sticks of butter by ingredient.",
+      "why_shared": "Bakers search and share conversion tools all the time.",
+      "handoff": "Import your recipes to see a merged shopping list."
+    },
+    "marketing": {
+      "where": [
+        "Product Hunt",
+        "AlternativeTo",
+        "meal-prep and budget-cooking communities",
+        "Pinterest recipe boards",
+        "Hacker News Show HN"
+      ],
+      "target": "Households, roommates and meal-preppers who plan weekly dinners",
+      "funnel": "Unit converter -> import recipes by URL -> weekly plan -> shared list",
+      "cold_outreach": "Answer 'combine ingredients across recipes' questions with a demo list.",
+      "post_ideas": [
+        "Why your meal planner lists eggs twice",
+        "Plan the week in 5 minutes and get one clean shopping list",
+        "Roommate dinners without spreadsheet chaos"
+      ]
+    },
+    "capital_usd": 12,
+    "capital_note": "Domain only.",
+    "confidence": "medium",
+    "notes": "Engagement per thread is modest; the strength is that the same gap appears across Grocy, Mealie, Tandoor and RecipeSage. Several app-store competitors do part of this, but I found no documentation of how they handle unit conversion.",
+    "uses_paid_api": false,
+    "paid_api_note": null
+  },
+  {
+    "id": "gh-011",
+    "name": "Family Recipe Box",
+    "idea": "A shared household recipe box with a one-click print-ready cookbook PDF for gifting or keeping the family recipes.",
+    "description": "Family members add recipes (typed, imported from a link, or from a file exported from another recipe manager) into one shared collection with chapters and notes about who made it. One click builds a paginated cookbook with table of contents and index as a PDF. Aimed at families preserving recipes for holidays and gifts. The moat is importing from many recipe-manager export formats and print-grade layout in the browser.",
+    "niche": "Food & Cooking",
+    "niche2": "Parenting & Family",
+    "is_feature": false,
+    "feature_for": null,
+    "web_delivery": "PWA on Vercel with Supabase auth and Postgres; PDF generated client-side (print CSS or a PDF library); recipe imports parsed in the browser (schema.org markup and common export files).",
+    "why_hard_to_copy": "Multiple recipe-manager export formats to normalise and a layout engine with sensible pagination, index and photo handling. A weekend clone would be rough; this is only moderately defensible.",
+    "signals": [
+      {
+        "platform": "github",
+        "url": "https://github.com/mealie-recipes/mealie/issues/1306",
+        "date": "2022-05-29",
+        "summary": "Asks Mealie to export recipes and whole cookbooks to PDF for printing; still updated 2026-10-20 and comments call cookbook export a must.",
+        "engagement": "20 reactions, 20 comments"
+      },
+      {
+        "platform": "github",
+        "url": "https://github.com/nextcloud/cookbook/issues/120",
+        "date": "2019-12-16",
+        "summary": "Wants to share a recipe with a spouse's account without duplicating it; updated 2026-10-09.",
+        "engagement": "89 reactions, 35 comments"
+      },
+      {
+        "platform": "github",
+        "url": "https://github.com/TomBursch/kitchenowl/issues/203",
+        "date": "2023-07-25",
+        "summary": "Requests PDF export of recipes and public sharing without an account; updated 2026-03-09.",
+        "engagement": "13 reactions, 1 comment"
+      },
+      {
+        "platform": "github",
+        "url": "https://github.com/norish-recipes/norish/issues/313",
+        "date": "2026-02-18",
+        "summary": "Asks for a way to export existing recipes; updated 2026-10-15.",
+        "engagement": "6 reactions, 5 comments"
+      },
+      {
+        "platform": "github",
+        "url": "https://github.com/norish-recipes/norish/issues/505",
+        "date": "2026-07-22",
+        "summary": "Wants a dedicated print layout for recipes.",
+        "engagement": "2 reactions, 1 comment"
+      }
+    ],
+    "competitors_seen": [
+      {
+        "name": "myfoodbook",
+        "url": "https://myfoodbook.com.au/node/59525",
+        "note": "Free online cookbook builder with PDF download."
+      },
+      {
+        "name": "Canva cookbook maker",
+        "url": "https://www.websitebuilderinsider.com/can-you-create-a-cookbook-on-canva/",
+        "note": "Drag-and-drop layouts; manual copying of recipes."
+      },
+      {
+        "name": "Blurb",
+        "url": "https://digitaldirectoutlet.gumroad.com/l/recipebook",
+        "note": "Paid print-on-demand (and template sellers on Gumroad); not a recipe manager."
+      },
+      {
+        "name": "RecipeSage / Mealie / KitchenOwl",
+        "url": "https://cooklang.org/blog/09-cooklang-vs-paprika-vs-mealie/",
+        "note": "Household recipe managers; self-hosted or limited export."
+      }
+    ],
+    "satellite": {
+      "name": "Recipe Card Printer",
+      "what": "Paste a recipe link and get a clean one-page printable card.",
+      "why_shared": "Frequently searched and easy to share with family.",
+      "handoff": "Save the card to the family box."
+    },
+    "marketing": {
+      "where": [
+        "Pinterest",
+        "family genealogy and heritage-recipe communities",
+        "Product Hunt",
+        "AlternativeTo",
+        "holiday gift-guide blogs"
+      ],
+      "target": "Families who want to preserve and gift recipes",
+      "funnel": "Recipe Card Printer -> family box invitation -> cookbook PDF",
+      "cold_outreach": "Offer genealogy bloggers a free heritage cookbook template.",
+      "post_ideas": [
+        "Turn grandma's recipe cards into a cookbook before the holidays",
+        "Share one recipe box across the whole family",
+        "Print-ready cookbook PDF with a table of contents in a minute"
+      ]
+    },
+    "capital_usd": 12,
+    "capital_note": "Domain only; no print fulfilment handled.",
+    "confidence": "low",
+    "notes": "Honest assessment: moderately easy to copy and several free cookbook builders exist. The multi-project demand for PDF export and household sharing is real but the combined product is not strongly defensible.",
+    "uses_paid_api": false,
+    "paid_api_note": null
+  },
+  {
+    "id": "gh-012",
+    "name": "Night Shift Baby Log",
+    "idea": "A shared baby tracker PWA that works offline at 3am, handles daylight-saving time properly, plots WHO growth percentiles, and lets parents add their own event types.",
+    "description": "Two or more caregivers log feeds (including which breast was last), sleep, diapers, medication doses and custom events such as reflux or bath, all synced in real time and usable offline. Shows wake windows, growth percentile charts and a one-page summary for the paediatrician. Aimed at new parents who do not want ads or a paid sharing tier. The moat is correct time handling plus real-time offline sync and growth-chart data.",
+    "niche": "Parenting & Family",
+    "niche2": "Health & Fitness",
+    "is_feature": false,
+    "feature_for": null,
+    "web_delivery": "Offline-first PWA on Vercel; Supabase Realtime and Postgres for multi-caregiver sync; local queue in IndexedDB for offline logging; growth percentile tables bundled as static data.",
+    "why_hard_to_copy": "Offline-first sync with conflict handling for running timers, DST/timezone-correct durations, and percentile (growth chart) data and calculations.",
+    "signals": [
+      {
+        "platform": "github",
+        "url": "https://github.com/babybuddy/babybuddy/issues/174",
+        "date": "2020-11-01",
+        "summary": "Reported problems with times around daylight saving changes; the thread was updated again on 2026-10-25.",
+        "engagement": "3 reactions, 20 comments"
+      },
+      {
+        "platform": "github",
+        "url": "https://github.com/babybuddy/babybuddy/issues/217",
+        "date": "2021-05-26",
+        "summary": "Wants generic, user-customisable event types because many requests are for medication, height and other custom things; updated 2026-10-05.",
+        "engagement": "7 reactions, 12 comments"
+      },
+      {
+        "platform": "github",
+        "url": "https://github.com/babybuddy/babybuddy/issues/1012",
+        "date": "2026-01-29",
+        "summary": "Wants a 'last breast' selector so the partner does not have to remember which side was used last.",
+        "engagement": "3 reactions, 0 comments"
+      },
+      {
+        "platform": "github",
+        "url": "https://github.com/babybuddy/babybuddy/issues/1031",
+        "date": "2026-03-31",
+        "summary": "Wants to track reflux events to show the doctor.",
+        "engagement": "1 reaction, 0 comments"
+      },
+      {
+        "platform": "github",
+        "url": "https://github.com/babybuddy/babybuddy/issues/1068",
+        "date": "2026-06-02",
+        "summary": "Wants a quick way to log a new dose of a previously entered medication.",
+        "engagement": "1 reaction, 0 comments"
+      },
+      {
+        "platform": "github",
+        "url": "https://github.com/babybuddy/babybuddy/issues/1013",
+        "date": "2026-01-29",
+        "summary": "Wants supplemental feeding to be recorded so the 'last feeding' timer shows the breastfeed start rather than the bottle.",
+        "engagement": "0 reactions, 0 comments"
+      }
+    ],
+    "competitors_seen": [
+      {
+        "name": "BabyApp (Baby Tracker & Sleep)",
+        "url": "https://apps.apple.com/app/id6758571672",
+        "note": "iOS app with WHO percentiles and family sharing; premium removes ads."
+      },
+      {
+        "name": "BabyTrack",
+        "url": "https://apps.apple.com/us/app/id6451158784",
+        "note": "No ads, but family sharing is in the paid Plus tier."
+      },
+      {
+        "name": "Baby Feeding Tracker",
+        "url": "https://apps.apple.com/us/app/-/id6756570673",
+        "note": "Free sharing by code; no growth charts mentioned."
+      },
+      {
+        "name": "Baby Buddy",
+        "url": "https://github.com/babybuddy/babybuddy",
+        "note": "Open-source self-hosted tracker (about 2,900 stars); needs a server."
+      }
+    ],
+    "satellite": {
+      "name": "Wake Window Calculator",
+      "what": "Free page: enter baby age, get typical wake windows and nap counts.",
+      "why_shared": "New parents search this constantly.",
+      "handoff": "Start logging to see your baby's own pattern."
+    },
+    "marketing": {
+      "where": [
+        "parenting forums and Facebook parent groups",
+        "Product Hunt",
+        "AlternativeTo",
+        "Pinterest newborn checklists",
+        "Hacker News Show HN"
+      ],
+      "target": "New parents and co-parents sharing night shifts",
+      "funnel": "Wake window calculator -> create baby profile -> invite partner",
+      "cold_outreach": "Offer doulas and midwives a free hand-out with a QR link.",
+      "post_ideas": [
+        "Log a 3am feed one-handed, even offline",
+        "Why your baby app gets daylight saving wrong",
+        "Free paediatrician summary page from your logs"
+      ]
+    },
+    "capital_usd": 12,
+    "capital_note": "Domain only.",
+    "confidence": "low",
+    "notes": "Many app-store competitors exist; the open web-based gap and self-hosted demand is the angle. Individual requests are small. Health-adjacent data needs a privacy policy.",
+    "uses_paid_api": false,
+    "paid_api_note": null
+  },
+  {
+    "id": "gh-013",
+    "name": "Plant Care Library",
+    "idea": "A free plant care library with watering, light and soil guidance per species, plus reminders that adapt to your room and season, usable as a plain web app.",
+    "description": "Search a species (or pick from a curated starter list), add the plant to a room, and get care reminders with intervals based on light, pot size and season rather than a flat every-7-days. Includes pet-toxicity flags and a 'what went wrong' checker for yellow or drooping leaves. Aimed at houseplant owners who find paid apps pushy. The moat is the curated species care dataset, not the app shell.",
+    "niche": "Gardening & Outdoors",
+    "niche2": "Pets",
+    "is_feature": false,
+    "feature_for": null,
+    "web_delivery": "PWA on Vercel; species dataset as static JSON built from open data (e.g. open plant databases) and hand-checked; Supabase for user plants and reminders; email or web-push reminders.",
+    "why_hard_to_copy": "Hand-curated and verified care dataset with adaptive interval rules; external plant APIs used by self-hosted apps have proved unreliable or paid.",
+    "signals": [
+      {
+        "platform": "github",
+        "url": "https://github.com/danielbrendel/hortusfox-web/issues/361",
+        "date": "2025-03-16",
+        "summary": "Asks the plant manager to connect to a plant database to import watering rhythm and sun exposure, suggesting the Perenual API; thread active until 2026-10-18.",
+        "engagement": "6 reactions, 9 comments"
+      },
+      {
+        "platform": "github",
+        "url": "https://github.com/MDeLuise/plant-it/issues/589",
+        "date": "2025-10-06",
+        "summary": "Adding or searching for a species fails with an error, with or without a key for the plant-data provider.",
+        "engagement": "5 reactions, 6 comments"
+      },
+      {
+        "platform": "github",
+        "url": "https://github.com/MDeLuise/plant-it/issues/617",
+        "date": "2026-07-04",
+        "summary": "Reports it cannot connect to the FloraCodex plant data source.",
+        "engagement": "2 reactions, 1 comment"
+      },
+      {
+        "platform": "github",
+        "url": "https://github.com/MDeLuise/plant-it/issues/108",
+        "date": "2024-02-06",
+        "summary": "Asks for more plant information sources; last updated 2026-10-24.",
+        "engagement": "1 reaction, 7 comments"
+      },
+      {
+        "platform": "github",
+        "url": "https://github.com/danielbrendel/hortusfox-web/issues/459",
+        "date": "2025-10-05",
+        "summary": "Wants to upload a room or garden map and tag plant locations on it.",
+        "engagement": "3 reactions, 2 comments"
+      }
+    ],
+    "competitors_seen": [
+      {
+        "name": "HortusFox",
+        "url": "https://alternativeto.net/software/house-plant-watering-reminder",
+        "note": "Free open source but self-hosted; one user comment says it lacks watering reminders."
+      },
+      {
+        "name": "Water me",
+        "url": "https://alternativeto.net/software/house-plant-watering-reminder",
+        "note": "Free open-source Android app for reminders."
+      },
+      {
+        "name": "Gardenia",
+        "url": "https://alternativeto.net/software/house-plant-watering-reminder",
+        "note": "Free on Apple devices, general garden reminders."
+      },
+      {
+        "name": "Plant Parent / Planta",
+        "url": "https://alternativeto.net/software/planta",
+        "note": "Popular freemium apps with paid features."
+      }
+    ],
+    "satellite": {
+      "name": "Is This Plant Safe For My Pet?",
+      "what": "Free lookup of common houseplants and whether they are toxic to cats and dogs.",
+      "why_shared": "Pet owners search and share this.",
+      "handoff": "Add the plant to your care list."
+    },
+    "marketing": {
+      "where": [
+        "houseplant forums and groups",
+        "Pinterest",
+        "Product Hunt",
+        "AlternativeTo",
+        "plant-swap and gardening club newsletters"
+      ],
+      "target": "Houseplant owners who dislike subscription plant apps",
+      "funnel": "Pet-safety lookup -> save plant -> care reminders",
+      "cold_outreach": "Offer local plant shops a QR care-card per plant sold.",
+      "post_ideas": [
+        "Your plant does not need water every Sunday",
+        "Which common houseplants are safe for cats",
+        "A plant care list that works without an app store"
+      ]
+    },
+    "capital_usd": 12,
+    "capital_note": "Domain only; dataset compiled from open sources by hand.",
+    "confidence": "low",
+    "notes": "Dataset effort is the real cost for a solo developer and licensing of source data needs checking. Evidence is from two small self-hosted projects.",
+    "uses_paid_api": false,
+    "paid_api_note": null
+  },
+  {
+    "id": "gh-014",
+    "name": "Shared Private Journal",
+    "idea": "A shared journal for couples, families or travel groups where entries are encrypted in the browser so even the host cannot read them.",
+    "description": "Create a journal, invite a partner or family, and write entries that are encrypted with a key shared only among members, with a recovery option. Entries can carry a place so a map view shows where memories happened. Aimed at people who want a private shared diary without paying for Day One's premium. The moat is trustworthy multi-member end-to-end encryption and key recovery done right in the browser.",
+    "niche": "Mental Wellbeing",
+    "niche2": "Parenting & Family",
+    "is_feature": false,
+    "feature_for": null,
+    "web_delivery": "Web app/PWA on Vercel; WebCrypto for client-side encryption with per-journal keys wrapped per member; Supabase stores only ciphertext; photos kept small and limited to stay in free storage.",
+    "why_hard_to_copy": "Multi-user key management, invitations, rotation and recovery are security-critical and easy to get wrong; most vibe-coded clones skip real encryption.",
+    "signals": [
+      {
+        "platform": "github",
+        "url": "https://github.com/journiv/journiv-app/issues/62",
+        "date": "2025-11-08",
+        "summary": "Asks to share a journal with other users for collaborative journals such as family or travel journals; updated 2026-04-07.",
+        "engagement": "8 reactions, 9 comments"
+      },
+      {
+        "platform": "github",
+        "url": "https://github.com/journiv/journiv-app/issues/186",
+        "date": "2025-12-06",
+        "summary": "Points out entries are stored in plain text in the database and asks for encryption, which matters if hosting for other people.",
+        "engagement": "6 reactions, 4 comments"
+      },
+      {
+        "platform": "github",
+        "url": "https://github.com/Demizo/Daily_You/issues/3",
+        "date": "2023-08-06",
+        "summary": "Asks to encrypt everything with a password; updated 2026-08-18.",
+        "engagement": "5 reactions, 10 comments"
+      },
+      {
+        "platform": "github",
+        "url": "https://github.com/Demizo/Daily_You/issues/260",
+        "date": "2025-10-28",
+        "summary": "Wants location data shown in entries and a map view of journal entries; updated 2026-07-15.",
+        "engagement": "6 reactions, 3 comments"
+      }
+    ],
+    "competitors_seen": [
+      {
+        "name": "Day One Shared Journals",
+        "url": "https://dayoneapp.com/shared-journals/",
+        "note": "End-to-end encrypted shared journals; creating one requires Premium."
+      },
+      {
+        "name": "Memkeep",
+        "url": "https://play.google.com/store/apps/details?id=com.memkeep.app",
+        "note": "Android shared memory book with E2E encryption, one-time purchase."
+      },
+      {
+        "name": "Sharing Me",
+        "url": "https://apps.apple.com/us/app/shine-app-sharing-me/id6756325680",
+        "note": "Shared circles; web access and E2E encryption are premium."
+      },
+      {
+        "name": "Couples Relief",
+        "url": "https://www.producthunt.com/products/couples-relief",
+        "note": "E2E encrypted app for couples using a shared code."
+      }
+    ],
+    "satellite": {
+      "name": "Browser Encryption Notebook",
+      "what": "Single private note page encrypted with a passphrase, no account.",
+      "why_shared": "People share simple privacy tools.",
+      "handoff": "Upgrade to a shared journal with invited members."
+    },
+    "marketing": {
+      "where": [
+        "privacy-focused communities and newsletters",
+        "Hacker News Show HN",
+        "Product Hunt",
+        "AlternativeTo",
+        "couples and long-distance relationship forums"
+      ],
+      "target": "Couples, families and travel groups who want a private shared diary",
+      "funnel": "Encrypted notebook page -> create shared journal -> invite partner",
+      "cold_outreach": "Pitch to privacy-tool roundups and journaling bloggers.",
+      "post_ideas": [
+        "A shared diary the host cannot read",
+        "Journal together on a trip without a premium subscription",
+        "How the keys work in a browser-encrypted shared journal"
+      ]
+    },
+    "capital_usd": 12,
+    "capital_note": "Domain only.",
+    "confidence": "low",
+    "notes": "Security claims must be audited before launch; reputational risk if keys are mishandled. Demand evidence is from two small self-hosted journaling projects plus competitors' premium gating.",
+    "uses_paid_api": false,
+    "paid_api_note": null
+  },
+  {
+    "id": "gh-015",
+    "name": "Volunteer Rota",
+    "idea": "A volunteer and club rota builder that fills shifts automatically from people's availability and handles swaps and find-a-sub requests.",
+    "description": "Organisers list roles and dates, volunteers mark when they cannot serve, and the tool proposes a fair rota; volunteers accept, decline or ask for a substitute from a simple link, no app install. Aimed at small churches, clubs, food banks and school groups that outgrew spreadsheets. The moat is the fairness-aware auto-fill logic with constraints, which is real scheduling logic rather than CRUD.",
+    "niche": "Community & Nonprofit",
+    "niche2": "Event Planning",
+    "is_feature": false,
+    "feature_for": null,
+    "web_delivery": "Web app on Vercel with Supabase; constraint-based auto-fill runs in the browser or a serverless function; magic-link responses and calendar feed per volunteer.",
+    "why_hard_to_copy": "Constraint scheduling (availability, blackout dates, fairness, team balance) and swap workflows are correctness-critical, unlike a simple signup sheet.",
+    "signals": [
+      {
+        "platform": "github",
+        "url": "https://github.com/ChurchCRM/CRM/issues/9701",
+        "date": "2026-09-10",
+        "summary": "The ChurchCRM maintainers opened an epic to redesign volunteer management around self-service scheduling, showing the existing volunteer tools were not enough.",
+        "engagement": "0 reactions, 2 comments"
+      },
+      {
+        "platform": "github",
+        "url": "https://github.com/ChurchCRM/CRM/issues/10742",
+        "date": "2026-10-18",
+        "summary": "Planning documentation of the workflow where a volunteer accepts, declines or finds a substitute from a member portal.",
+        "engagement": "0 reactions, 0 comments"
+      },
+      {
+        "platform": "github",
+        "url": "https://github.com/ChurchCRM/CRM/issues/8631",
+        "date": "2026-04-12",
+        "summary": "Asks for a ready-to-run Docker image to help testers and less-technical installer teams, signalling that small churches struggle to self-host.",
+        "engagement": "1 reaction, 14 comments"
+      },
+      {
+        "platform": "github",
+        "url": "https://github.com/ChurchCRM/CRM/issues/8694",
+        "date": "2026-04-16",
+        "summary": "Requests multi-campus support in the church management system.",
+        "engagement": "3 reactions, 5 comments"
+      },
+      {
+        "platform": "github",
+        "url": "https://github.com/devmount/SongDrive/issues/296",
+        "date": "2026-10-01",
+        "summary": "A music group asks for temporary read-only access so guests can see the setlist without an account.",
+        "engagement": "1 reaction, 0 comments"
+      }
+    ],
+    "competitors_seen": [
+      {
+        "name": "RosterThat",
+        "url": "https://alternativeto.net/software/rosterthat/about/",
+        "note": "Free for up to 20 people and two rosters; swaps supported."
+      },
+      {
+        "name": "WhenToHelp",
+        "url": "https://unison.io/blog/the-complete-guide-to-volunteer-scheduling-software-in-2026/",
+        "note": "Swap and auto-assignment features for churches and schools."
+      },
+      {
+        "name": "Shifts by Everhour",
+        "url": "https://everhour.com/shifts/volunteer-scheduling-software",
+        "note": "Free and paid plans, open shifts and swaps."
+      },
+      {
+        "name": "SignUpGenius",
+        "url": "https://everhour.com/blog/nonprofit-volunteer-scheduling-software/",
+        "note": "Free ad-supported; clunky for recurring events per one guide."
+      }
+    ],
+    "satellite": {
+      "name": "Rota Fairness Checker",
+      "what": "Paste a rota spreadsheet and see who is overloaded and who is never scheduled.",
+      "why_shared": "Organisers share it with their team leads.",
+      "handoff": "Rebuild the rota automatically with constraints."
+    },
+    "marketing": {
+      "where": [
+        "church and ministry leader communities",
+        "school PTA groups",
+        "food bank coordinator networks",
+        "Product Hunt",
+        "AlternativeTo"
+      ],
+      "target": "Volunteer coordinators at small churches, clubs and food banks",
+      "funnel": "Fairness checker -> import volunteers -> auto-fill rota",
+      "cold_outreach": "Email coordinators of local organisations with a free first rota.",
+      "post_ideas": [
+        "Stop being the person who texts everyone to find a sub",
+        "Is your volunteer rota fair? Check it in 30 seconds",
+        "Auto-fill a month of shifts around people's blackout dates"
+      ]
+    },
+    "capital_usd": 12,
+    "capital_note": "Domain only; no donation handling.",
+    "confidence": "low",
+    "notes": "Crowded niche with free tiers. GitHub evidence is weak (a single project roadmap). Included for niche coverage; any donation/contribution handling is deliberately out of scope.",
+    "uses_paid_api": false,
+    "paid_api_note": null
+  },
+  {
+    "id": "gh-016",
+    "name": "Trip Log",
+    "idea": "A travel log that imports saved places from Google Maps exports and GPX files, with per-visit notes, time-zone-correct itineraries and a calendar feed.",
+    "description": "Drop a Google Takeout saved-places file or GPX tracks and see them as visits on a map, attach notes to each visit rather than the place, and build multi-day itineraries where every leg shows the correct local time. Export the plan as a calendar file. Aimed at travellers who keep lists in Google Maps and want a structured record. The moat is the import parsers and time-zone-correct itinerary logic.",
+    "niche": "Travel",
+    "niche2": "Gardening & Outdoors",
+    "is_feature": false,
+    "feature_for": null,
+    "web_delivery": "Web app on Vercel; Takeout and GPX parsed client-side; maps via free open tile sources; Supabase stores trips as text/JSON with no heavy media hosting.",
+    "why_hard_to_copy": "Obscure export format parsing done entirely in the browser plus timezone-aware multi-leg itinerary logic.",
+    "signals": [
+      {
+        "platform": "github",
+        "url": "https://github.com/seanmorley15/AdventureLog/issues/916",
+        "date": "2025-11-12",
+        "summary": "Wants automatic import of saved-place collections from Google Maps because hundreds of saved places are part of the travel workflow.",
+        "engagement": "6 reactions, 0 comments"
+      },
+      {
+        "platform": "github",
+        "url": "https://github.com/seanmorley15/AdventureLog/issues/801",
+        "date": "2025-08-20",
+        "summary": "Trip planning should handle time zones; updated 2026-09-29.",
+        "engagement": "6 reactions, 4 comments"
+      },
+      {
+        "platform": "github",
+        "url": "https://github.com/seanmorley15/AdventureLog/issues/1166",
+        "date": "2026-05-27",
+        "summary": "Wants photos attached per visit rather than per location, so repeat visits are separated.",
+        "engagement": "6 reactions, 0 comments"
+      },
+      {
+        "platform": "github",
+        "url": "https://github.com/seanmorley15/AdventureLog/issues/1074",
+        "date": "2026-03-21",
+        "summary": "Wants GPX activities attached directly to a trip collection for multi-day hikes.",
+        "engagement": "3 reactions, 1 comment"
+      },
+      {
+        "platform": "github",
+        "url": "https://github.com/seanmorley15/AdventureLog/issues/459",
+        "date": "2025-01-19",
+        "summary": "Wants an ICS calendar URL for external use; updated 2026-03-16.",
+        "engagement": "15 reactions, 0 comments"
+      }
+    ],
+    "competitors_seen": [
+      {
+        "name": "AdventureLog",
+        "url": "https://selfhostyourself.com/alternative-to/wanderlog",
+        "note": "Self-hosted Wanderlog alternative with maps and itineraries."
+      },
+      {
+        "name": "Wanderer",
+        "url": "https://selfhostyourself.com/alternative-to/alltrails",
+        "note": "Self-hosted trail/trip log with GPX import and multiple users."
+      },
+      {
+        "name": "TREK",
+        "url": "https://selfhostyourself.com/alternative-to/wanderlog",
+        "note": "Self-hosted planner with real-time collaboration and journaling."
+      },
+      {
+        "name": "Wanderlog",
+        "url": "https://alternativeto.net/software/travelchime",
+        "note": "Popular hosted planner; pro tier exports places to Google Maps."
+      }
+    ],
+    "satellite": {
+      "name": "Google Maps List Viewer",
+      "what": "Drop your Takeout saved-places file and see all places on one map, filter by list.",
+      "why_shared": "People who want to move off Google Maps lists share the trick.",
+      "handoff": "Turn the places into a trip."
+    },
+    "marketing": {
+      "where": [
+        "travel blogs and forums",
+        "Mastodon travel hashtags",
+        "hiking and trail communities",
+        "Product Hunt",
+        "AlternativeTo"
+      ],
+      "target": "Self-planning travellers and hikers who keep lists in Google Maps",
+      "funnel": "List viewer -> save as trip -> itinerary and calendar feed",
+      "cold_outreach": "Pitch travel bloggers a free way to publish their saved places.",
+      "post_ideas": [
+        "See all your Google Maps saved places on one page",
+        "Plan a multi-timezone trip without losing track of local times",
+        "Per-visit notes: remember what you ate each time"
+      ]
+    },
+    "capital_usd": 12,
+    "capital_note": "Domain only.",
+    "confidence": "low",
+    "notes": "Crowded category. Demand evidence comes from one self-hosted project. I did not verify exactly what Google's current export format contains.",
+    "uses_paid_api": false,
+    "paid_api_note": null
+  }
+]

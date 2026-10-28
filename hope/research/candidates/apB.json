@@ -1,0 +1,695 @@
+[
+ {
+  "id": "apB-001",
+  "name": "OpenLoop Pattern Finder",
+  "idea": "Free, AI-free search engine for crochet and knit patterns that links out to designers' own sites and filters properly.",
+  "description": "People are leaving 1-3 star reviews on pattern apps because almost everything sits behind a Pro paywall, the photos look AI-generated, and there is no real search or free-only filter. This is a PWA index of free, human-made patterns (title, thumbnail link, yarn weight, hook/needle size, skill level, item type, time) that always sends the visitor to the designer's own page so ads and affiliate links are preserved. Moat: a hand-curated, normalised pattern dataset (yarn-weight and gauge normalisation, dedup across sites) and designer-friendly link-out, which scraper apps are being blamed for ignoring.",
+  "niche": "Hobbies & Crafts",
+  "niche2": null,
+  "is_feature": false,
+  "feature_for": null,
+  "web_delivery": "Next.js/Vite PWA on Vercel hobby, Supabase Postgres full-text search for the index; no uploads or media hosting (thumbnails hot-linked or omitted).",
+  "why_hard_to_copy": "The value is the curated, de-duplicated and normalised free-pattern index with designer opt-in; the code is easy but the dataset and designer trust take months of manual work.",
+  "signals": [
+   {
+    "platform": "appstore",
+    "url": "https://apps.apple.com/us/app/yarnpal-crochet-patterns/id6738537088",
+    "date": "2026-10-19",
+    "summary": "Review titled \"Two stars\": the app used to be useful, but a membership is now needed for nearly all patterns.",
+    "engagement": "of the 162 one-to-three star reviews among the latest 250, about 90 mention paywall/pro/not-free"
+   },
+   {
+    "platform": "appstore",
+    "url": "https://apps.apple.com/us/app/yarnpal-crochet-patterns/id6738537088",
+    "date": "2026-10-02",
+    "summary": "Review \"Horrible paywall and no way to sort around it\": only a handful of patterns are free and there is no way to filter to them.",
+    "engagement": "about 12 of the 162 low reviews mention missing search/filter/sort"
+   },
+   {
+    "platform": "appstore",
+    "url": "https://apps.apple.com/us/app/yarnpal-crochet-patterns/id6738537088",
+    "date": "2026-10-16",
+    "summary": "Review \"Over the AI\": reviewer is put off by obviously AI-made pattern photos and untested patterns.",
+    "engagement": "about 52 of the 162 low reviews mention AI images or AI patterns"
+   },
+   {
+    "platform": "appstore",
+    "url": "https://apps.apple.com/us/app/ribblr-crochet-knitting/id1529605339",
+    "date": "2026-04-22",
+    "summary": "Review \"UI is annoying, good patterns are lost amongst nonsense\": cannot sort or filter by common attributes and good patterns are buried.",
+    "engagement": "1 of 25 recent low reviews; another (2026-02-15) objects that bought patterns cannot be downloaded as PDF"
+   },
+   {
+    "platform": "appstore",
+    "url": "https://apps.apple.com/us/app/yarnbuddy-knit-and-crochet/id1267678125",
+    "date": "2026-09-27",
+    "summary": "Review \"This App Steals Income From Designers\": says a pattern app scrapes designer blogs and strips the ads and shop links, which is how free patterns earn money (design constraint: always link out).",
+    "engagement": "1 review; useful as a design constraint"
+   }
+  ],
+  "competitors_seen": [
+   {
+    "name": "AllFreeCrochet advanced search",
+    "url": "https://allfreecrochet.com/Tutorials/How-to-Use-Advanced-Search-Box",
+    "note": "free site with hook/weight/difficulty filters but single-publisher, ad-heavy"
+   },
+   {
+    "name": "Yarnspirations / Lion Brand / LoveCrafts free collections",
+    "url": "https://www.lovecrafts.com/en-au/collections/free-crochet-patterns",
+    "note": "each filters only its own catalog; no cross-site search"
+   },
+   {
+    "name": "YarnPal",
+    "url": "https://apps.apple.com/us/app/yarnpal-crochet-patterns/id6738537088",
+    "note": "mobile app, most patterns Pro-only, AI images"
+   }
+  ],
+  "satellite": {
+   "name": "Yarn weight and gauge converter",
+   "what": "Free page converting yarn weight names (US/UK/AU), hook and needle sizes and gauge swatches to stitch counts.",
+   "why_shared": "Crafters search for these conversions constantly and link to them from blogs.",
+   "handoff": "Every result links to 'find free patterns for this yarn weight' in the main index."
+  },
+  "marketing": {
+   "where": [
+    "Pinterest pattern boards",
+    "Ravelry forums and Facebook crochet groups (read the rules first)",
+    "craft blog directories and designer newsletters",
+    "Product Hunt"
+   ],
+   "target": "Budget crocheters and knitters who are tired of Pro-only pattern apps.",
+   "funnel": "Free converter or collection page -> index search -> email list of new free patterns.",
+   "cold_outreach": "Offer small designers a free listing that drives traffic back to their own site with their ads intact.",
+   "post_ideas": [
+    "I built a free pattern search that never hides patterns behind a paywall",
+    "Why pattern apps keep going Pro-only and what designers lose",
+    "Every free amigurumi pattern under 2 hours, filtered by yarn weight"
+   ]
+  },
+  "capital_usd": 12,
+  "capital_note": "Domain only; Supabase free and Vercel hobby cover the index.",
+  "uses_paid_api": false,
+  "paid_api_note": null,
+  "confidence": "medium",
+  "notes": "Weakest point: individual sites already have filters, and dataset building is manual. Strong, recent, high-volume review signal though. Designer consent/robots rules must be respected; index only titles and links."
+ },
+ {
+  "id": "apB-002",
+  "name": "TankLog Free",
+  "idea": "Aquarium journal with unlimited free water-test logging, charts, dosing maths and a species list you can extend.",
+  "description": "AquaticLog introduced a cap of about five to ten logged measurements a month on the free tier, and fish-keeping apps are criticised for small species catalogs, no way to add your own fish, and no incompatibility warnings. The web app logs unlimited parameters per tank, plots trends, calculates dose volumes and water-change maths, and lets users add custom species and check stocking compatibility. Moat: a curated species/compatibility table and correct chemistry calculators (tank volume net of substrate, product dosing, KH/GH/CO2 relationships).",
+  "niche": "Hobbies & Crafts",
+  "niche2": "Pets",
+  "is_feature": false,
+  "feature_for": null,
+  "web_delivery": "PWA on Vercel with Supabase auth and tables for tanks, tests and species; charts rendered client-side; installable on a phone for bench-side logging.",
+  "why_hard_to_copy": "The logger is simple, but the hand-curated compatibility/dosing data and correct calculators are not; building trust takes community seeding.",
+  "signals": [
+   {
+    "platform": "appstore",
+    "url": "https://apps.apple.com/us/app/aquaticlog/id583895470",
+    "date": "2026-01-04",
+    "summary": "Review \"Doesn't care about customers\": the app now limits the free tier to 5 measurements a month, which the reviewer calls a money grab.",
+    "engagement": "9 of the 10 recent low reviews (Jan to Jun 2026) complain about the 5-10 measurements per month cap"
+   },
+   {
+    "platform": "appstore",
+    "url": "https://apps.apple.com/us/app/aquaticlog/id583895470",
+    "date": "2026-06-28",
+    "summary": "Review \"10 measurements per month\": limiting free logging to ten a month is ridiculous.",
+    "engagement": "latest of the same cluster"
+   },
+   {
+    "platform": "appstore",
+    "url": "https://apps.apple.com/us/app/aquarimate/id587215055",
+    "date": "2026-02-18",
+    "summary": "Review \"This app fails hard\": common Tanganyika fish and canister filters are missing and fish cannot be entered manually.",
+    "engagement": "2 of 5 recent low reviews cite missing species or not saving fish"
+   },
+   {
+    "platform": "appstore",
+    "url": "https://apps.apple.com/us/app/aquarium-guide-fish-identifier/id662602456",
+    "date": "2025-12-18",
+    "summary": "Review \"Limited catalog\": small fish catalog, cannot add a species that is missing, many entries lack photos.",
+    "engagement": "3 of 10 recent low reviews mention catalog gaps; 2026-08-05 says it does not warn about incompatible fish and 2026-04-14 asks for shrimp and plants"
+   }
+  ],
+  "competitors_seen": [
+   {
+    "name": "AquaLog",
+    "url": "https://apps.apple.com/app/id6755156178",
+    "note": "iOS app, 50+ parameters, free tier limited, Pro for more"
+   },
+   {
+    "name": "Aquarium Tracker: Tank Manager",
+    "url": "https://apps.apple.com/app/id6755304265",
+    "note": "iPad-oriented tracker with trends"
+   },
+   {
+    "name": "AquaMeter",
+    "url": "https://mwm.ai/apps/aquameter-aquarium-tracker/6789518225",
+    "note": "one-time purchase, PDF reports, mobile only"
+   }
+  ],
+  "satellite": {
+   "name": "Tank dosing and water change calculator",
+   "what": "Free calculator for net tank volume, fertiliser/medication dose and water-change percentages.",
+   "why_shared": "Hobbyists share calculators in forums and need them before they ever sign up.",
+   "handoff": "Calculator results offer 'save to my tank log'."
+  },
+  "marketing": {
+   "where": [
+    "FishLore and Planted Tank style forums",
+    "reef2reef",
+    "aquarium YouTube comment sections and Discord servers",
+    "Facebook species-focused groups"
+   ],
+   "target": "Freshwater, planted and reef hobbyists who test water weekly.",
+   "funnel": "Calculator -> free log -> shareable tank page.",
+   "cold_outreach": "Offer species-focused forum moderators a free embeddable compatibility checker.",
+   "post_ideas": [
+    "Free tank log with no monthly measurement cap",
+    "Stocking checker that lets you add your own species",
+    "How to read your nitrate trend chart"
+   ]
+  },
+  "capital_usd": 12,
+  "capital_note": "Domain; Supabase free and Vercel hobby are enough for logs.",
+  "uses_paid_api": false,
+  "paid_api_note": null,
+  "confidence": "medium",
+  "notes": "A bare logger is a weekend project, so the plan only works if the curated species/dosing data is the product. At least four independent reviews in one cluster."
+ },
+ {
+  "id": "apB-003",
+  "name": "Gigbook",
+  "idea": "Browser-based band songbook and setlist manager with ChordPro import, correct transposition and shared live setlists, without a forced subscription.",
+  "description": "OnSong's 2026 version moved features behind a subscription, long-time one-time-purchase users say features were locked and old libraries cannot be searched or transposed without paying, and tab apps are criticised for monthly pricing. Gigbook is a PWA where a band shares one library and setlist, each member sees their own key or capo, and charts display full-screen on a tablet or phone. Moat: robust ChordPro/OnSong-format and plain-text chord sheet parsing, enharmonic-correct transposition (flats, sharps, Nashville numbers, slash chords) and shared real-time setlist state.",
+  "niche": "Music & Audio",
+  "niche2": null,
+  "is_feature": false,
+  "feature_for": null,
+  "web_delivery": "PWA with service worker for offline gigs; Supabase Realtime for shared setlists; chord sheets stored as text so no media hosting.",
+  "why_hard_to_copy": "Chord-sheet parsing and transposition edge cases plus real-time shared setlist sync; incumbents (BandHelper, OnSong) have years of format compatibility.",
+  "signals": [
+   {
+    "platform": "appstore",
+    "url": "https://apps.apple.com/us/app/onsong-2026/id1330350343",
+    "date": "2026-03-09",
+    "summary": "Review \"Locked it down to the point where it's unusable\": a user since the $12 one-time purchase days says each release locks down features that used to be useful.",
+    "engagement": "20 of the 65 recent low reviews mention subscription, upgrade or price"
+   },
+   {
+    "platform": "appstore",
+    "url": "https://apps.apple.com/us/app/onsong-2026/id1330350343",
+    "date": "2026-05-21",
+    "summary": "Review \"Cost to Keep OnSong Working\": after months away the reviewer cannot search a saved song, change key or print without paying to update.",
+    "engagement": "same cluster"
+   },
+   {
+    "platform": "appstore",
+    "url": "https://apps.apple.com/us/app/onsong-2026/id1330350343",
+    "date": "2026-01-23",
+    "summary": "Review \"Good But Has Limitations\": hard to upload music from a computer, and shared music is not reliably there after the first day.",
+    "engagement": "1 of 65; points at the library-sharing weakness"
+   },
+   {
+    "platform": "appstore",
+    "url": "https://apps.apple.com/us/app/onsong-2026/id1330350343",
+    "date": "2026-09-06",
+    "summary": "Review \"So disappointing\": a band of about 30 users that used to require members to buy the app now recommends a different chord app because it keeps getting worse.",
+    "engagement": "same cluster"
+   },
+   {
+    "platform": "appstore",
+    "url": "https://apps.apple.com/us/app/guitar-pro/id400666114",
+    "date": "2026-03-05",
+    "summary": "Review \"Useless\": complains the Guitar Pro mobile app is a reader behind subscriptions and cannot edit.",
+    "engagement": "20 of 23 recent reviews are 1-3 stars"
+   }
+  ],
+  "competitors_seen": [
+   {
+    "name": "BandHelper",
+    "url": "https://orphiq.com/resources/setlist-maker-apps",
+    "note": "paid per month/year; the usual recommendation for full bands"
+   },
+   {
+    "name": "OnSong (OnSong Console web companion)",
+    "url": "https://www.airturn.com/apps/onsong",
+    "note": "iOS-first, now subscription; console is a companion web UI only"
+   },
+   {
+    "name": "SongbookPro / Charts by WorshipTools",
+    "url": "https://forums.musicplayer.com/topic/181535-alternative-to-onsong/",
+    "note": "named as alternatives in a musician forum thread"
+   }
+  ],
+  "satellite": {
+   "name": "Chord chart transposer",
+   "what": "Paste lyrics with chords, pick a key or capo, get a clean one-page printable chart.",
+   "why_shared": "Worship leaders and gigging musicians search for this weekly.",
+   "handoff": "'Save to my band library' after the chart renders."
+  },
+  "marketing": {
+   "where": [
+    "TalkBass and Harmony Central forums",
+    "worship-leader communities and church music Facebook groups",
+    "Gearspace",
+    "Product Hunt"
+   ],
+   "target": "Gigging cover bands, worship teams and music teachers.",
+   "funnel": "Free transposer -> save chart -> invite bandmates to a shared setlist.",
+   "cold_outreach": "Message worship band leaders who publicly complained about OnSong pricing in forums with a free import tool.",
+   "post_ideas": [
+    "Import your OnSong library and keep gigging without a subscription",
+    "Why your capo and key shouldn't live in a paywalled app",
+    "Setlist app that works with no signal"
+   ]
+  },
+  "capital_usd": 12,
+  "capital_note": "Domain; Supabase free and Vercel hobby for text charts.",
+  "uses_paid_api": false,
+  "paid_api_note": null,
+  "confidence": "medium",
+  "notes": "Competition is real (BandHelper). Reading charts reliably on a phone in low-light venues is a UX risk. Signal count is strong for OnSong but only the pricing/locking cluster is about a gap a web app fills."
+ },
+ {
+  "id": "apB-004",
+  "name": "PlainRSVP",
+  "idea": "Invite and RSVP page for bigger parties that works for every guest without an Apple ID, with spreadsheet import and name-based non-responder tracking.",
+  "description": "Apple Invites reviewers complain that guests are tracked by email address, that Android and non-iCloud guests cannot open or answer invitations, and that you cannot import a spreadsheet or a Contacts group when you invite dozens of people. PlainRSVP gives each host one public link plus per-guest links, bulk import from CSV or vCard, household and plus-one handling, meal or dietary questions, and a 'who has not answered' list shown by name with copy-paste nudge texts. Moat is thin: the value is in guest-list import/dedup logic and polish, not in anything a determined vibe coder could not build.",
+  "niche": "Event Planning",
+  "niche2": null,
+  "is_feature": false,
+  "feature_for": null,
+  "web_delivery": "Vercel-hosted web app with Supabase tables for events, guests and responses; guests only open a link, no install or account; email reminders via Supabase/Resend free tier.",
+  "why_hard_to_copy": "Honestly weak: Partiful already offers no-app RSVP. Only guest-list import and household/dedup logic, plus wedding-style extras (meal choice, seating), give a small edge.",
+  "signals": [
+   {
+    "platform": "appstore",
+    "url": "https://apps.apple.com/us/app/apple-invites/id6472498645",
+    "date": "2026-09-08",
+    "summary": "Review \"Not for inviting more than a few people\": there is no way to upload a spreadsheet or import a Contacts group, so guests must be picked one at a time.",
+    "engagement": "34 of the 50 most recent reviews are 1-3 stars; at least 6 mention guest-list or RSVP friction"
+   },
+   {
+    "platform": "appstore",
+    "url": "https://apps.apple.com/us/app/apple-invites/id6472498645",
+    "date": "2026-08-28",
+    "summary": "Review \"Who uses email?\": non-responders are listed by email address, so the host cannot tell who has not answered when cancelling a party.",
+    "engagement": "same cluster"
+   },
+   {
+    "platform": "appstore",
+    "url": "https://apps.apple.com/us/app/apple-invites/id6472498645",
+    "date": "2026-09-26",
+    "summary": "Review \"Two requests!\": wants guests not to have to enter an email and asks for a public link anyone can open.",
+    "engagement": "same cluster"
+   },
+   {
+    "platform": "appstore",
+    "url": "https://apps.apple.com/us/app/apple-invites/id6472498645",
+    "date": "2026-10-16",
+    "summary": "Review \"I want to rate it higher!\": many guests, on Apple and Android, texted back that they could not see or open the invitation.",
+    "engagement": "same cluster; 2026-08-25 review also asks why recipients need the app"
+   }
+  ],
+  "competitors_seen": [
+   {
+    "name": "Partiful",
+    "url": "https://www.nbcnewyork.com/news/business/money-report/meet-partiful-the-gen-z-party-planning-staple-thats-taking-on-apple/6231135/",
+    "note": "free, web link works without an app or account, guests RSVP by phone or email; strong incumbent"
+   },
+   {
+    "name": "Apple Invites",
+    "url": "https://support.apple.com/en-bh/guide/apple-invites/devc9d9cdbd5/ios",
+    "note": "hosting needs iCloud+; non-Apple guests RSVP via iCloud.com with email code"
+   },
+   {
+    "name": "Evite",
+    "url": "https://www.nbcnewyork.com/news/business/money-report/meet-partiful-the-gen-z-party-planning-staple-thats-taking-on-apple/6231135/",
+    "note": "paid premium packages priced by guest count according to a search summary"
+   }
+  ],
+  "satellite": {
+   "name": "Guest list cleaner",
+   "what": "Paste or upload a messy guest list and get deduplicated households, plus-ones and a clean CSV.",
+   "why_shared": "Hosts of weddings and big parties need it before sending any invite.",
+   "handoff": "One click turns the cleaned list into an invite with per-guest links."
+  },
+  "marketing": {
+   "where": [
+    "wedding and baby-shower planning forums and Facebook groups",
+    "Pinterest party-planning boards",
+    "Product Hunt",
+    "school and church event organiser groups"
+   ],
+   "target": "Hosts of 30+ guest events (weddings, milestone birthdays, reunions) and mixed iPhone/Android crowds.",
+   "funnel": "Guest list cleaner -> create invite -> share link.",
+   "cold_outreach": "Reply to people publicly complaining that Apple Invites guests could not open their invite with a link to a no-account alternative.",
+   "post_ideas": [
+    "Import your whole guest spreadsheet and see non-responders by name",
+    "RSVP page that works for Android and grandma",
+    "Why your invite app should not require an iCloud email"
+   ]
+  },
+  "capital_usd": 12,
+  "capital_note": "Domain; email reminders fit free tiers at this scale.",
+  "uses_paid_api": false,
+  "paid_api_note": null,
+  "confidence": "medium",
+  "notes": "Strong, recent, multi-review signal, but low moat and a well-funded rival (Partiful). Worth it mainly as a wedding or large-guest-list niche play."
+ },
+ {
+  "id": "apB-005",
+  "name": "BirdTrip",
+  "idea": "Offline-first birding PWA: log checklists with no pack download, plan trips for any location, and export in eBird upload format.",
+  "description": "eBird's official app is blocking many users at a mandatory 'install a pack' screen, restricts exploring and logging to roughly a 30-mile radius, and made adding photos harder; several reviewers say to just use the website. BirdTrip is a phone-friendly PWA that stores the species list locally, lets you pick any hotspot or region before a trip, tallies counts offline and exports a CSV in eBird's record format for upload. Moat: offline-first sync, taxonomy and hotspot data integration and export-format correctness.",
+  "niche": "Hobbies & Crafts",
+  "niche2": "Gardening & Outdoors",
+  "is_feature": false,
+  "feature_for": null,
+  "web_delivery": "Installable PWA with service worker, IndexedDB for offline checklists and Supabase for sync; location through the browser's one-shot geolocation (no background GPS).",
+  "why_hard_to_copy": "Offline-first sync, taxonomy handling and eBird export-format correctness, plus integration with public eBird hotspot/frequency data; a vibe coder can make a tally counter but not the data layer.",
+  "signals": [
+   {
+    "platform": "appstore",
+    "url": "https://apps.apple.com/us/app/ebird/id988799279",
+    "date": "2026-05-11",
+    "summary": "Review \"Can use without extra downloads\": wants to skip installing offline packs because the install screen hangs, and to simply use online features.",
+    "engagement": "13 of the 34 recent 1-3 star reviews (2025-12-20 to 2026-08-15) say the pack install screen blocks the app"
+   },
+   {
+    "platform": "appstore",
+    "url": "https://apps.apple.com/us/app/ebird/id988799279",
+    "date": "2026-04-16",
+    "summary": "Review \"Just use the website\": stuck at the pick-a-pack screen and concludes the website is the only workable option.",
+    "engagement": "same cluster"
+   },
+   {
+    "platform": "appstore",
+    "url": "https://apps.apple.com/us/app/ebird/id988799279",
+    "date": "2026-01-02",
+    "summary": "Review \"Useless for birding\": cannot look up recent sightings for a place 90 minutes away because the app only shows about 30 miles around the user.",
+    "engagement": "2026-01-06 and 2026-07-05 reviews raise the same radius limit for exploring and logging checklists"
+   },
+   {
+    "platform": "appstore",
+    "url": "https://apps.apple.com/us/app/ebird/id988799279",
+    "date": "2026-05-02",
+    "summary": "Review \"Harder now to add photos\": photos used to attach from the phone but now need a computer.",
+    "engagement": "also 2025-11-28 'How Do I Add My Photos?'"
+   }
+  ],
+  "competitors_seen": [
+   {
+    "name": "eBird Mobile",
+    "url": "https://ebird.org/about/ebird-mobile/",
+    "note": "official app with offline packs; the target of these complaints"
+   },
+   {
+    "name": "Birdathon (iOS)",
+    "url": "https://apps.apple.com/app/id1211977440",
+    "note": "iOS app that imports text files and exports to eBird; not a web app"
+   },
+   {
+    "name": "Birda",
+    "url": "https://apps.apple.com/us/app/birda-bird-watching-birding/id1564130920",
+    "note": "gamified, mostly paywalled after a trial"
+   }
+  ],
+  "satellite": {
+   "name": "Trip target checklist",
+   "what": "Pick a county or hotspot and get a printable list of species you still need.",
+   "why_shared": "Birders share target lists with trip partners.",
+   "handoff": "Open the target list in BirdTrip to tally offline."
+  },
+  "marketing": {
+   "where": [
+    "BirdForum and local birding club mailing lists",
+    "Facebook regional birding groups",
+    "birding Discord servers",
+    "Mastodon birding community"
+   ],
+   "target": "Active eBirders who travel and often lack signal.",
+   "funnel": "Trip target page -> install PWA -> offline checklist -> CSV export.",
+   "cold_outreach": "Offer local rare-bird alert admins a free trip planner link.",
+   "post_ideas": [
+    "eBird app stuck on Pick a Pack? Here is a no-install checklist logger",
+    "Plan a birding trip anywhere, not just within 30 miles",
+    "Log offline in the field, export to eBird at home"
+   ]
+  },
+  "capital_usd": 12,
+  "capital_note": "Domain; the eBird API key is free.",
+  "uses_paid_api": false,
+  "paid_api_note": null,
+  "confidence": "medium",
+  "notes": "Check eBird API terms before launching (free key, non-commercial expectation). The pack bug may be fixed by eBird, so the radius and trip-planning complaints are the more durable gap."
+ },
+ {
+  "id": "apB-006",
+  "name": "PracticeLoop",
+  "idea": "Free web practice planner for musicians that cycles an exercise through all 12 keys and ladders tempo, with an accurate browser metronome and a shareable routine for teachers.",
+  "description": "Modacity users report that after a redesign the free tier limits practice items and lists and hides the history, and that you cannot create one item across many keys; users of Practice Space want to enter time without running a timer and see longer-term graphs. PracticeLoop lets you define an exercise once and run it through all keys or a circle-of-fourths order, raise tempo in steps automatically, log time manually or by timer, and share a routine link with a teacher. Moat is modest: Web Audio scheduling accuracy and key-cycling logic.",
+  "niche": "Music & Audio",
+  "niche2": "Education & Study",
+  "is_feature": false,
+  "feature_for": null,
+  "web_delivery": "PWA on Vercel with Web Audio API metronome and Supabase storage for routines and logs; no audio files stored.",
+  "why_hard_to_copy": "Sample-accurate Web Audio metronome scheduling and key-cycle/tempo-ladder logic are fiddly; the logging itself is easy to copy, so the moat is the practice engine and teacher sharing.",
+  "signals": [
+   {
+    "platform": "appstore",
+    "url": "https://apps.apple.com/us/app/-/id1351617981",
+    "date": "2026-01-14",
+    "summary": "Review \"Basic functions now hidden behind expensive paywall\": a daily free user for over a year says core functions moved behind premium after the update.",
+    "engagement": "12 of the 22 recent reviews are 1-3 stars; 7 mention pay or price"
+   },
+   {
+    "platform": "appstore",
+    "url": "https://apps.apple.com/us/app/-/id1351617981",
+    "date": "2026-01-14",
+    "summary": "Review \"Opinion about the update\": only a limited number of practice items and practice lists are allowed without premium.",
+    "engagement": "also 2025-12-19 paying user says pricing has gone up"
+   },
+   {
+    "platform": "appstore",
+    "url": "https://apps.apple.com/us/app/-/id1351617981",
+    "date": "2026-01-15",
+    "summary": "Review \"Strong idea, mediocre execution\": cannot create an item in multiple keys, so a 12-key bebop scale routine needs 12 hand-made items.",
+    "engagement": "1 review but a concrete feature"
+   },
+   {
+    "platform": "appstore",
+    "url": "https://apps.apple.com/us/app/practice-space/id1451645821",
+    "date": "2026-10-06",
+    "summary": "Review \"Has potential! But needs some improvement\": asks to enter practice time without running the timer because the timer glitches.",
+    "engagement": "2026-07-06 review wants long-term bar or line graphs of practice"
+   }
+  ],
+  "competitors_seen": [
+   {
+    "name": "Modacity",
+    "url": "https://alternativeto.net/software/modacity",
+    "note": "premium reported at $12.99/month or $129/year; free tier limited"
+   },
+   {
+    "name": "PitchPlay",
+    "url": "https://alternativeto.net/software/music-practice-manager/",
+    "note": "paid online practice planner"
+   },
+   {
+    "name": "Andante / Practice Log",
+    "url": "https://apps.apple.com/cd/app/practice-log/id6757978130",
+    "note": "free iOS practice journals, not web"
+   }
+  ],
+  "satellite": {
+   "name": "12-key exercise sheet generator",
+   "what": "Enter a pattern and get a transposed printable page through all keys.",
+   "why_shared": "Teachers hand these out and students search for them.",
+   "handoff": "'Practice this in PracticeLoop' button on the sheet."
+  },
+  "marketing": {
+   "where": [
+    "jazz and guitar teacher forums",
+    "TalkBass and Saxontheweb style forums",
+    "music teacher Facebook groups",
+    "YouTube music-teacher channel communities"
+   ],
+   "target": "Self-taught and student instrumentalists plus their private teachers.",
+   "funnel": "Exercise sheet generator -> practice routine -> teacher share link.",
+   "cold_outreach": "Offer private teachers a free class dashboard to see students' logged practice.",
+   "post_ideas": [
+    "Run any exercise through all 12 keys automatically",
+    "Free alternative to paying a monthly fee for a practice log",
+    "Tempo ladder: raise 4 BPM every success"
+   ]
+  },
+  "capital_usd": 12,
+  "capital_note": "Domain only.",
+  "uses_paid_api": false,
+  "paid_api_note": null,
+  "confidence": "medium",
+  "notes": "Low copy-resistance (trackers are easy). Only the engine and teacher sharing differentiate."
+ },
+ {
+  "id": "apB-007",
+  "name": "SwapSession",
+  "idea": "Scheduled language-exchange sessions in the browser with fair half-and-half timers, goal-based matching and no dating-style profiles.",
+  "description": "Tandem and Speaky reviewers say the apps feel like dating apps full of fake profiles, that multi-language use was easier before, and some were banned with no explanation. SwapSession matches people by language pair, level and time zone, books a time, opens a peer-to-peer video room in the browser with a timer that splits the hour between the two languages, and keeps profiles light with no photo-first browsing. Moat is the matching and scheduling quality plus trust features, but a cold-start network problem is the real risk.",
+  "niche": "Languages",
+  "niche2": "Community & Nonprofit",
+  "is_feature": false,
+  "feature_for": null,
+  "web_delivery": "Next.js app on Vercel; Supabase auth, scheduling tables and Realtime for signalling; WebRTC peer-to-peer video so no media is hosted.",
+  "why_hard_to_copy": "Time-zone and level matching with session scheduling, reputation and reporting; network effects in a language-pair niche. The cold start is hard for the builder too.",
+  "signals": [
+   {
+    "platform": "appstore",
+    "url": "https://apps.apple.com/us/app/tandem-practice-languages/id959001619",
+    "date": "2026-10-23",
+    "summary": "Review \"Why tandem sucks\": the app once helped learning but now attracts people looking for relationships despite being marketed for languages.",
+    "engagement": "about 6 of the 30 recent low reviews cite dating-style use, fake profiles or unexplained bans"
+   },
+   {
+    "platform": "appstore",
+    "url": "https://apps.apple.com/us/app/tandem-practice-languages/id959001619",
+    "date": "2026-09-03",
+    "summary": "Review \"Too Many Fake Accounts!\": gave one star because of fake accounts swamping a new user hoping to meet real native speakers.",
+    "engagement": "also 2026-08-15 'Do not recommend' (fake profiles and scammers)"
+   },
+   {
+    "platform": "appstore",
+    "url": "https://apps.apple.com/us/app/tandem-practice-languages/id959001619",
+    "date": "2026-09-10",
+    "summary": "Review \"Banned with no explanation or reason\": returning user found their account banned with no reason given.",
+    "engagement": "also 2026-08-31 'Banned me for no reason'"
+   },
+   {
+    "platform": "appstore",
+    "url": "https://apps.apple.com/us/app/speaky-language-exchange/id1118877445",
+    "date": "2026-01-27",
+    "summary": "Review \"Is this a dating app?\": profile pictures feel too personal and the app is unsuitable for serious conversation practice.",
+    "engagement": "2025-11-09 review says many accounts were inactive and the rest were looking for relationships"
+   }
+  ],
+  "competitors_seen": [
+   {
+    "name": "Tandem",
+    "url": "https://apps.apple.com/us/app/tandem-practice-languages/id959001619",
+    "note": "large user base, Pro subscription, accused of fake profiles and dating"
+   },
+   {
+    "name": "HelloTalk",
+    "url": "https://apps.apple.com/us/app/hellotalk-language-learning/id557130558",
+    "note": "similar chat-first exchange app"
+   },
+   {
+    "name": "Speaky",
+    "url": "https://apps.apple.com/us/app/speaky-language-exchange/id1118877445",
+    "note": "smaller exchange app with the same complaints"
+   }
+  ],
+  "satellite": null,
+  "marketing": {
+   "where": [
+    "language learning Discord servers",
+    "Lemmy language-learning communities and language-learner forums",
+    "university language-club mailing lists",
+    "YouTube polyglot comment communities"
+   ],
+   "target": "Serious adult learners who want structured speaking practice.",
+   "funnel": "Post a language pair and availability -> get matched -> weekly slot.",
+   "cold_outreach": "Message university language clubs and conversation-hour organisers to run sessions on the platform.",
+   "post_ideas": [
+    "A language exchange that books a time instead of chatting for weeks",
+    "Fair-time timer: 30 minutes each language",
+    "Exchange without profile photos"
+   ]
+  },
+  "capital_usd": 25,
+  "capital_note": "Domain plus possible small TURN relay cost if free STUN is not enough for some networks.",
+  "uses_paid_api": false,
+  "paid_api_note": null,
+  "confidence": "medium",
+  "notes": "Cold-start and moderation costs are the main doubts; video via WebRTC can fail behind strict NATs without a relay."
+ },
+ {
+  "id": "apB-008",
+  "name": "ChartWright",
+  "idea": "Knitting and crochet chart editor in the browser whose written instructions are correct for flat versus in-the-round work.",
+  "description": "A paying knitting-chart app user says the written instructions come out wrong when switching a chart from flat to in the round (rows read left to right while the knits and purls are not reversed); another says large colourwork charts such as corner-to-corner are painful because zooming and panning draw random cells. ChartWright is a canvas chart editor with a stitch-symbol grammar that converts charts to written lines and back, handles right-side/wrong-side reversal, repeats and stitch-count changes, and works with a stylus or mouse with proper pan/zoom. Moat is the domain logic.",
+  "niche": "Hobbies & Crafts",
+  "niche2": null,
+  "is_feature": false,
+  "feature_for": null,
+  "web_delivery": "Canvas/SVG editor as a PWA on Vercel; charts stored as JSON in Supabase; PNG/PDF export client-side.",
+  "why_hard_to_copy": "Correctness-critical stitch grammar (RS/WS reversal, in-the-round, repeats, increases/decreases changing counts) plus a large-chart editor; knitters will spot errors immediately.",
+  "signals": [
+   {
+    "platform": "appstore",
+    "url": "https://apps.apple.com/us/app/knitting-chart/id1251317736",
+    "date": "2026-01-11",
+    "summary": "Review \"Not for designers\": written instructions do not follow right-side/wrong-side logic when switching from flat to in the round; they read left to right and the knits and purls are not reversed.",
+    "engagement": "9 of 15 recent reviews are 1-3 stars; this is the clearest logic bug"
+   },
+   {
+    "platform": "appstore",
+    "url": "https://apps.apple.com/us/app/knitting-chart/id1251317736",
+    "date": "2026-08-26",
+    "summary": "Review \"Not for large projects\": fine for small charts but C2C-size charts are painful because panning and zooming draws random cells (no palm rejection).",
+    "engagement": "1 review"
+   },
+   {
+    "platform": "appstore",
+    "url": "https://apps.apple.com/us/app/knitting-chart/id1251317736",
+    "date": "2026-03-27",
+    "summary": "Review \"Instantly hard to use\": chart creation is confusing, lines get doubled and the chart starts with the total number of rows instead of row 1.",
+    "engagement": "1 review"
+   }
+  ],
+  "competitors_seen": [
+   {
+    "name": "Stitch Fiddle",
+    "url": "https://www.stitchfiddle.com/en/company/jobs",
+    "note": "online chart tool for knitting, crochet and cross stitch with a large community; written-instruction output not confirmed"
+   },
+   {
+    "name": "Knitting Chart (iOS)",
+    "url": "https://apps.apple.com/us/app/knitting-chart/id1251317736",
+    "note": "paid Pro, source of the complaints"
+   }
+  ],
+  "satellite": {
+   "name": "Chart reading direction explainer and converter",
+   "what": "Paste a one-sided chart or written row and get the opposite-side row and in-the-round version.",
+   "why_shared": "Knitters ask for it in forums and blog posts constantly.",
+   "handoff": "'Open in ChartWright editor'."
+  },
+  "marketing": {
+   "where": [
+    "knitting designer newsletters and Instagram",
+    "Pinterest knitting boards",
+    "Ravelry forums (read-only research, post only if allowed)",
+    "Facebook pattern-designer groups"
+   ],
+   "target": "Independent knit and crochet pattern designers and chart-following hobbyists.",
+   "funnel": "Free flat/round converter -> editor -> export to PDF for sale.",
+   "cold_outreach": "Offer indie designers a free test of exporting chart plus written instructions that match.",
+   "post_ideas": [
+    "Why your written instructions disagree with your chart in the round",
+    "Draw a big C2C chart without random cells",
+    "Free RS/WS row converter"
+   ]
+  },
+  "capital_usd": 12,
+  "capital_note": "Domain only.",
+  "uses_paid_api": false,
+  "paid_api_note": null,
+  "confidence": "low",
+  "notes": "Only three reviews of one small app (rc about 1.3k), Stitch Fiddle already exists. Kept because the domain-logic moat is real; verify demand before building."
+ }
+]

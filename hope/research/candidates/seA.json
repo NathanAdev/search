@@ -1,0 +1,1727 @@
+[
+  {
+    "id": "seA-001",
+    "name": "OfficialEntry",
+    "idea": "A hand-verified directory of the one official website for every ETA, e-visa and arrival card, with scam-lookalike warnings.",
+    "description": "Travellers pick a destination and get the official government URL for its ETA, e-visa, digital arrival card or e-declaration, whether it is free or paid, who needs it, how early to file, and a last-verified date. A 'Is this site official?' check compares a pasted URL with the curated allowlist. The moat is the verified, dated dataset: several governments do not index their own portals, so scam resellers outrank them and nobody has a clean source of truth.",
+    "niche": "Travel",
+    "niche2": null,
+    "is_feature": false,
+    "feature_for": null,
+    "web_delivery": "Static-first Next.js pages on Vercel Hobby (one SEO page per country and document) reading a Supabase table with source_url, official_domain, fee, verified_at; a 'report a change' form writes to Supabase.",
+    "why_hard_to_copy": "Hand-curated and dated registry of official portals (checked against embassy and ministry pages), plus a change log; scrapers cannot do it because many official portals are unindexed and the lookalike scam sites rank above them.",
+    "signals": [
+      {
+        "platform": "stackexchange",
+        "url": "https://travel.stackexchange.com/questions/203182/official-site-for-the-malaysia-digital-arrival-card-mdac",
+        "date": "2026-01-30",
+        "summary": "Asker says Malaysia does not get its Digital Arrival Card site indexed by Google, so scam sites rank first, and asks the community to confirm the official URL.",
+        "engagement": "question score 1, 569 views, 1 answers"
+      },
+      {
+        "platform": "stackexchange",
+        "url": "https://travel.stackexchange.com/questions/203181/whats-the-official-site-for-singapore-arrival-card-sgac",
+        "date": "2026-01-30",
+        "summary": "Same problem for the Singapore Arrival Card: the official page is missing from search results and fake sites appear instead.",
+        "engagement": "question score 0, 187 views, 1 answers"
+      },
+      {
+        "platform": "stackexchange",
+        "url": "https://travel.stackexchange.com/questions/203185/whats-the-official-site-for-sri-lanka-eta-applications",
+        "date": "2026-01-30",
+        "summary": "Asker wants the official Sri Lanka ETA site because scam sites rank in South Asia and the e-visa and ETA get confused.",
+        "engagement": "question score 0, 157 views, 1 answers"
+      },
+      {
+        "platform": "stackexchange",
+        "url": "https://travel.stackexchange.com/questions/203195/whats-the-official-site-for-saudi-e-visa-applications",
+        "date": "2026-02-01",
+        "summary": "Asker doubts that a .com domain is the real Saudi e-Visa portal; the answer lists three different portals, showing how confusing it is.",
+        "engagement": "question score -1, 394 views, 1 answers"
+      },
+      {
+        "platform": "stackexchange",
+        "url": "https://travel.stackexchange.com/questions/203291/recognising-a-valid-government-website",
+        "date": "2026-02-18",
+        "summary": "A broad thread on how to tell a valid government travel-document site from a scam; answers suggest cross-checking via foreign ministry sites and site: search tricks, i.e. no simple tool exists.",
+        "engagement": "question score 8, 1324 views, 3 answers"
+      },
+      {
+        "platform": "stackexchange",
+        "url": "https://travel.stackexchange.com/questions/204464/finding-authoritative-document-requirements-for-entry-into-qatar",
+        "date": "2026-08-22",
+        "summary": "Traveller cannot find authoritative entry-document requirements for Qatar from the interior ministry and wants a source rather than third-party pages.",
+        "engagement": "question score 8, 869 views, 1 answers"
+      },
+      {
+        "platform": "stackexchange",
+        "url": "https://travel.stackexchange.com/questions/204086/can-i-arrive-in-indonesia-without-having-done-an-arrival-card-submission-in-ad",
+        "date": "2026-07-18",
+        "summary": "Traveller unsure whether the Indonesia arrival card must be submitted in advance; gets mixed information.",
+        "engagement": "question score 9, 1133 views, 2 answers"
+      }
+    ],
+    "competitors_seen": [
+      {
+        "name": "Sherpa entry-requirements checker (embedded in airline and agency sites)",
+        "url": "https://www.zipair.net/en/faq/travelDocuments/whatSherpa",
+        "note": "Embedded widget, partners say info may be incomplete; not a standalone official-link directory."
+      },
+      {
+        "name": "Smartraveller / news advisories on Bali arrival card scams",
+        "url": "https://www.portnews.com.au/story/9243512/bali-tourists-targeted-by-arrival-card-scam-websites/",
+        "note": "One-country warnings only; web search found no country-by-country directory."
+      }
+    ],
+    "satellite": {
+      "name": "Is This Site Official?",
+      "what": "Paste a URL and see whether it matches a verified government travel-document portal.",
+      "why_shared": "Travellers share it in groups after seeing a suspicious site.",
+      "handoff": "Result page links to the country's full OfficialEntry entry."
+    },
+    "marketing": {
+      "where": [
+        "FlyerTalk forums",
+        "TripAdvisor destination forums",
+        "Travel Stack Exchange (answer questions, link only where site rules allow)",
+        "Facebook expat and digital-nomad groups",
+        "Show HN",
+        "Product Hunt"
+      ],
+      "target": "First-time visitors to Southeast Asia, Gulf states and ETA countries; expats and travel-forum helpers",
+      "funnel": "Search 'official <country> arrival card site' -> country page -> bookmark / share link.",
+      "cold_outreach": "Email travel bloggers and immigration-advice forum moderators offering a verified link they can cite instead of ad-ridden pages.",
+      "post_ideas": [
+        "The official MDAC / SGAC / Sri Lanka ETA links in one table (free, no fee)",
+        "How to spot a fake e-visa site in 10 seconds",
+        "Which countries now require a digital arrival card before landing"
+      ]
+    },
+    "capital_usd": 12,
+    "capital_note": "Domain only; own time excluded.",
+    "uses_paid_api": false,
+    "paid_api_note": null,
+    "confidence": "medium",
+    "notes": "Strongest multi-signal cluster in my data, but all signals come from one Q&A site (different askers). Low individual view counts on the official-site questions (157-569), higher on the general scam-site thread (1,324 views). SEO is uphill against scam and affiliate sites; ongoing verification effort is the real cost."
+  },
+  {
+    "id": "seA-002",
+    "name": "TransitCheck",
+    "idea": "Tell a traveller whether a given passport needs a visa to transit a specific airport, airside or landside, single ticket or separate.",
+    "description": "User enters passport nationality, any valid visas or residence permits, transit airport, and whether the legs are one ticket or self-transfer; the tool returns a verdict with the cited rule (Schengen airport transit visa lists, UK DATV, Canada transit, ETIAS airside exemption) and caveats. The moat is a sourced per-country rules table with last-verified dates, because the answer changes by nationality, visa held, ticket type and airport zone.",
+    "niche": "Travel",
+    "niche2": null,
+    "is_feature": false,
+    "feature_for": null,
+    "web_delivery": "Next.js on Vercel with a Supabase rules table (country, nationality group, exemption conditions, source URL, verified_at); evaluation runs in the browser.",
+    "why_hard_to_copy": "Correctness-critical rules engine over a hand-curated, cited dataset that changes often (nationality lists, exemptions for US/Schengen/UK visa holders); asking in forums is the current workaround because Timatic is paid.",
+    "signals": [
+      {
+        "platform": "stackexchange",
+        "url": "https://travel.stackexchange.com/questions/201507/do-i-need-a-transit-visa-through-munich-while-travelling-del-muc-yyz",
+        "date": "2025-10-29",
+        "summary": "Indian traveller on a single ticket through Munich to Toronto finds contradictory online information about needing a transit visa.",
+        "engagement": "question score 4, 1537 views, 2 answers"
+      },
+      {
+        "platform": "stackexchange",
+        "url": "https://travel.stackexchange.com/questions/201734/urgent-clarification-on-transit-and-schengen-visa-requirement-at-milan-malpensa",
+        "date": "2025-11-30",
+        "summary": "US-resident F-2 visa holder transiting Milan Malpensa to Pakistan needs urgent clarification on transit and Schengen visa requirements.",
+        "engagement": "question score 11, 2061 views, 1 answers"
+      },
+      {
+        "platform": "stackexchange",
+        "url": "https://travel.stackexchange.com/questions/202842/indian-national-w-us-visa-transiting-dublin-dub-to-london-lhr-common-tra",
+        "date": "2025-12-16",
+        "summary": "Indian citizen with a US visa fears a visa conflict when transiting Dublin to London on one ticket (Common Travel Area).",
+        "engagement": "question score 5, 1520 views, 2 answers"
+      },
+      {
+        "platform": "stackexchange",
+        "url": "https://travel.stackexchange.com/questions/203749/transit-through-frankfurt-for-indian-citizens",
+        "date": "2026-05-17",
+        "summary": "Parents on US tourist visas transiting Frankfurt Terminal 1 ask whether a Schengen visa is needed.",
+        "engagement": "question score 6, 1330 views, 2 answers"
+      },
+      {
+        "platform": "stackexchange",
+        "url": "https://travel.stackexchange.com/questions/203226/what-should-we-do-if-we-need-to-transit-three-times-in-canada",
+        "date": "2026-02-08",
+        "summary": "Kenyan traveller booked three Canada transits and discovers the transit visa allows only two entries.",
+        "engagement": "question score 9, 1199 views, 1 answers"
+      },
+      {
+        "platform": "stackexchange",
+        "url": "https://travel.stackexchange.com/questions/204045/do-i-need-an-etias-travel-authorisation-for-an-airside-transfer-in-lisbon",
+        "date": "2026-07-13",
+        "summary": "Traveller asks whether ETIAS would be needed for an airside transfer in Lisbon between non-Schengen points.",
+        "engagement": "question score 4, 861 views, 2 answers"
+      },
+      {
+        "platform": "stackexchange",
+        "url": "https://travel.stackexchange.com/questions/203217/do-egyptian-citizens-need-visas-in-order-to-transit-brazil",
+        "date": "2026-02-05",
+        "summary": "Egyptian family transiting Brazil asks for anyone with Timatic access to confirm visa needs, showing the data is gated.",
+        "engagement": "question score 1, 287 views, 1 answers"
+      }
+    ],
+    "competitors_seen": [
+      {
+        "name": "MyTravelReady transit visa checker",
+        "url": "https://www.mytravelready.ai/transit-visa-checker",
+        "note": "Free route-based checker that claims to verify government sources; commercial and possibly AI-assisted, so the moat is thin if they cover the same airports."
+      },
+      {
+        "name": "Swiss FDFA airport transit visa page",
+        "url": "https://www.eda.admin.ch/countries/egypt/en/home/visa/entry-ch/transit/do-i-need-an-airport-transit-visa.html",
+        "note": "Official but covers Switzerland only."
+      }
+    ],
+    "satellite": null,
+    "marketing": {
+      "where": [
+        "FlyerTalk forums",
+        "TripAdvisor destination forums",
+        "Travel Stack Exchange (answer questions, link only where site rules allow)",
+        "Facebook expat and digital-nomad groups",
+        "Show HN",
+        "Product Hunt",
+        "Expat and diaspora Facebook groups (Indian, Pakistani, Filipino travellers)"
+      ],
+      "target": "Passport holders from nationalities that face airport transit visas, and families booking connections",
+      "funnel": "Search 'do I need a transit visa for <airport>' -> checker result -> share link in diaspora groups.",
+      "cold_outreach": "Ask diaspora travel group admins to pin the tool; offer a free embed for travel agents.",
+      "post_ideas": [
+        "Do you need a visa to change planes in Frankfurt? A passport-by-passport answer",
+        "Airside vs landside: why your hand baggage rules change the visa answer",
+        "Self-transfer in Schengen: the transit rule most people miss"
+      ]
+    },
+    "capital_usd": 12,
+    "capital_note": "Domain only.",
+    "uses_paid_api": false,
+    "paid_api_note": null,
+    "confidence": "low",
+    "notes": "Direct competitor exists (MyTravelReady). Seven independent askers over 12 months is a good signal of recurring demand, but accuracy liability is real (must disclaim and cite sources). Consider merging with LayoverCheck if the coordinator wants fewer overlapping ideas."
+  },
+  {
+    "id": "seA-003",
+    "name": "LayoverCheck",
+    "idea": "Estimate whether a tight connection or self-transfer is realistic at a specific airport, step by step.",
+    "description": "User enters the arrival and departure terminals, ticket type (single vs separate), whether immigration and bag recheck are needed, and passport region; the tool lists each step (deplane, immigration, recheck, security, terminal change) with a typical time range and the bag-drop cutoff, and flags EES delays at Schengen airports. The moat is a hand-built per-airport process dataset for the busiest hubs, not generic minimum connection times.",
+    "niche": "Travel",
+    "niche2": null,
+    "is_feature": false,
+    "feature_for": null,
+    "web_delivery": "Next.js on Vercel; per-airport step times and terminal-transfer notes in Supabase; calculation client-side.",
+    "why_hard_to_copy": "Curated per-airport procedure data (terminal transfer routes, recheck and immigration rules, bag-drop closing times) that airlines do not publish for self-transfers.",
+    "signals": [
+      {
+        "platform": "stackexchange",
+        "url": "https://travel.stackexchange.com/questions/201618/is-45-minutes-enough-time-to-switch-american-airlines-flights-at-chicago-ohare",
+        "date": "2025-11-14",
+        "summary": "Friend has 45 minutes between two American Airlines flights at Chicago O'Hare and worries about a terminal change.",
+        "engagement": "question score 7, 2685 views, 3 answers"
+      },
+      {
+        "platform": "stackexchange",
+        "url": "https://travel.stackexchange.com/questions/201556/65-minutes-enough-to-do-international-transit-at-toronto-yyz-airport",
+        "date": "2025-11-05",
+        "summary": "Booked a 65-minute international transit at Toronto and asks whether immigration is needed and what happens if the flight is missed.",
+        "engagement": "question score 5, 2292 views, 1 answers"
+      },
+      {
+        "platform": "stackexchange",
+        "url": "https://travel.stackexchange.com/questions/202928/self-connection-in-cdg-from-terminal-1-to-terminal-2b-with-less-than-3-hours",
+        "date": "2025-12-28",
+        "summary": "Self-connection at Paris CDG from Terminal 1 to 2B with checked bags, immigration and a bag-drop cutoff 3 hours after landing.",
+        "engagement": "question score 6, 867 views, 1 answers"
+      },
+      {
+        "platform": "stackexchange",
+        "url": "https://travel.stackexchange.com/questions/203577/is-1hr-and-35-mins-enough-time-at-frankfurt-airport-for-a-self-transfer-t3-to-t1",
+        "date": "2026-04-12",
+        "summary": "1 hour 35 minutes for a Frankfurt self-transfer between Terminal 3 and Terminal 1 with immigration.",
+        "engagement": "question score 0, 370 views, 1 answers"
+      },
+      {
+        "platform": "stackexchange",
+        "url": "https://travel.stackexchange.com/questions/203005/do-i-have-enough-time-to-connect-at-lhr",
+        "date": "2026-01-06",
+        "summary": "Single-PNR Heathrow connection of 2:45 where the asker is unsure about bag recheck and immigration.",
+        "engagement": "question score 2, 444 views, 2 answers"
+      },
+      {
+        "platform": "stackexchange",
+        "url": "https://travel.stackexchange.com/questions/203536/impact-of-ees-on-connection-times-when-entering-poland",
+        "date": "2026-04-04",
+        "summary": "UK traveller asks how the EU Entry/Exit System affects allowed connection times in Warsaw.",
+        "engagement": "question score 3, 362 views, 0 answers"
+      },
+      {
+        "platform": "stackexchange",
+        "url": "https://travel.stackexchange.com/questions/205751/transit-at-incheon-with-no-checked-in-baggage-and-multiple-booking",
+        "date": "2026-10-23",
+        "summary": "Separate bookings at Incheon with hand baggage only; asks whether the gate can be reached without immigration.",
+        "engagement": "question score 2, 282 views, 2 answers"
+      }
+    ],
+    "competitors_seen": [
+      {
+        "name": "CheckMyLayover",
+        "url": "https://hunted.space/product/checkmylayover",
+        "note": "Free no-account tool rating a layover as comfortable, tight or dangerously short; could not verify its depth."
+      },
+      {
+        "name": "Eskimo travel MCT guide",
+        "url": "https://www.eskimo.travel/en/blog/connection-time-major-airports",
+        "note": "Static article of minimum connection times for major airports."
+      }
+    ],
+    "satellite": null,
+    "marketing": {
+      "where": [
+        "FlyerTalk forums",
+        "TripAdvisor destination forums",
+        "Travel Stack Exchange (answer questions, link only where site rules allow)",
+        "Facebook expat and digital-nomad groups",
+        "Show HN",
+        "Product Hunt",
+        "Cheap-flight and 'hacker fare' communities"
+      ],
+      "target": "Travellers booking self-transfers or short connections, especially long-haul with immigration",
+      "funnel": "Search 'enough time to connect at <airport>' -> airport page -> checker.",
+      "cold_outreach": "Message flight-deal bloggers who warn about self-transfers with a ready embed.",
+      "post_ideas": [
+        "Is 45 minutes enough at O'Hare? A step-by-step budget",
+        "The 5 airports where a terminal change eats an hour",
+        "EES queues and your Schengen connection: how much buffer now?"
+      ]
+    },
+    "capital_usd": 12,
+    "capital_note": "Domain only.",
+    "uses_paid_api": false,
+    "paid_api_note": null,
+    "confidence": "low",
+    "notes": "Competitor exists (CheckMyLayover). Seven separate threads in the window show recurring demand. Data creation for even 40 airports is manual; accuracy risk if times are wrong."
+  },
+  {
+    "id": "seA-004",
+    "name": "AirportRules",
+    "idea": "Per-airport quick facts that general travel sites do not track: liquids limit status, exit-from-transit feasibility, left-luggage and bag-drop hours.",
+    "description": "Each airport page shows whether the 100 ml liquids rule is still enforced (and which lanes use CT scanners), whether passengers can leave the departures or transit area, left-luggage and large-item storage options with hours, and earliest bag-drop time, each with a source link and verified date. Users can submit corrections. The moat is a hand-curated, dated, community-corrected dataset; the facts live on scattered airport pages and are only partly covered by news roundups.",
+    "niche": "Travel",
+    "niche2": null,
+    "is_feature": false,
+    "feature_for": null,
+    "web_delivery": "Next.js on Vercel reading Supabase tables (airport, rule, source_url, verified_at); logged-in-free correction form with moderation queue.",
+    "why_hard_to_copy": "Dated, sourced per-airport facts maintained by curation and user corrections; each fact must be verified at the airport's own page so it cannot be generated from a template.",
+    "signals": [
+      {
+        "platform": "stackexchange",
+        "url": "https://travel.stackexchange.com/questions/204025/how-can-i-know-which-airports-have-removed-the-100ml-liquid-rule",
+        "date": "2026-07-10",
+        "summary": "Traveller wants to know which airports have dropped the 100 ml liquids rule before packing; top answer says to dig through each airport website.",
+        "engagement": "question score 11, 2056 views, 1 answers"
+      },
+      {
+        "platform": "stackexchange",
+        "url": "https://travel.stackexchange.com/questions/203013/how-can-i-determine-if-an-airport-allows-passengers-to-exit-the-transit-departur",
+        "date": "2026-01-06",
+        "summary": "Asker wants a way to tell whether an airport lets you leave the transit or departure area on a long layover; answers say it varies by airport and terminal.",
+        "engagement": "question score 8, 2238 views, 3 answers"
+      },
+      {
+        "platform": "stackexchange",
+        "url": "https://travel.stackexchange.com/questions/204063/large-item-storage-at-hamburg-airport",
+        "date": "2026-07-16",
+        "summary": "Family needs reliable large-item storage (car seat) at Hamburg airport with long opening hours.",
+        "engagement": "question score 7, 976 views, 2 answers"
+      },
+      {
+        "platform": "stackexchange",
+        "url": "https://travel.stackexchange.com/questions/203762/how-early-can-you-drop-off-your-luggage-at-marseille-provence-airport-for-an-int",
+        "date": "2026-05-19",
+        "summary": "Asker wants to know how early luggage can be dropped at Marseille for an intra-Schengen flight.",
+        "engagement": "question score 6, 873 views, 2 answers"
+      },
+      {
+        "platform": "stackexchange",
+        "url": "https://travel.stackexchange.com/questions/201723/cutoff-times-for-seoul-city-air-terminal-check-in",
+        "date": "2025-11-28",
+        "summary": "Traveller checks bag-drop cutoffs at Seoul City Air Terminal for an Incheon morning flight.",
+        "engagement": "question score 3, 294 views, 1 answers"
+      },
+      {
+        "platform": "stackexchange",
+        "url": "https://travel.stackexchange.com/questions/203508/getting-accurate-estimates-of-tsa-line-lengths",
+        "date": "2026-03-25",
+        "summary": "Traveller finds the MyTSA app's Atlanta wait estimates top out at 60 minutes while other sources report 10 minutes to over 4 hours, and asks for the most accurate source of TSA wait times.",
+        "engagement": "question score 6, 1942 views, 1 answers"
+      }
+    ],
+    "competitors_seen": [
+      {
+        "name": "UK/Europe news roundups of airports that dropped the 100 ml rule",
+        "url": "https://www.timeout.com/uk/news/eight-uk-airports-have-changed-the-100ml-liquids-rule-at-security-full-list-of-british-transport-hubs-that-dont-have-strict-liquid-limits-012626",
+        "note": "Articles, not a maintained database; lists disagree and age quickly."
+      },
+      {
+        "name": "left-baggage.co.uk",
+        "url": "https://left-baggage.co.uk/",
+        "note": "One storage operator's locations only."
+      }
+    ],
+    "satellite": {
+      "name": "Liquids Rule Map",
+      "what": "One-page map and table of airports that have dropped the 100 ml limit, with last-verified dates.",
+      "why_shared": "Every summer travel season people ask which airports allow 2 litres.",
+      "handoff": "Each airport row links to its full AirportRules page."
+    },
+    "marketing": {
+      "where": [
+        "FlyerTalk forums",
+        "TripAdvisor destination forums",
+        "Travel Stack Exchange (answer questions, link only where site rules allow)",
+        "Facebook expat and digital-nomad groups",
+        "Show HN",
+        "Product Hunt",
+        "Travel and points-and-miles blogs (offer data as a link source)"
+      ],
+      "target": "Frequent flyers, families and layover travellers",
+      "funnel": "Search 'does <airport> still have the 100ml rule' -> airport page.",
+      "cold_outreach": "Pitch travel journalists who keep re-running 'which airports scrapped the liquids rule' lists with a live, dated source.",
+      "post_ideas": [
+        "Which airports have scrapped the 100 ml rule right now (updated weekly)",
+        "Can you leave the airport on a layover? Airport-by-airport",
+        "Where to store a car seat or bike at 20 European airports"
+      ]
+    },
+    "capital_usd": 12,
+    "capital_note": "Domain only.",
+    "uses_paid_api": false,
+    "paid_api_note": null,
+    "confidence": "medium",
+    "notes": "No dedicated tracker found in web search. Weakness: maintenance burden and staleness risk. Individual question view counts are 300-2,200, modest. Could be merged with NightTransfer if the coordinator wants a single airport-data product."
+  },
+  {
+    "id": "seA-005",
+    "name": "TicketName",
+    "idea": "Show exactly how to type a long, multi-part or single name on an airline booking so it matches the passport.",
+    "description": "User enters passport name parts and the airline; the tool outputs the first-name and last-name fields to use, handles field-length limits, single names (FNU/LNU conventions), suffixes, hyphens and missing middle names, and tells how risky the mismatch is. Includes a similar helper for two-field visa forms with Arabic and other multi-part names. The moat is a curated, airline-by-airline rules table; the logic has many edge cases that general advice pages skip.",
+    "niche": "Travel",
+    "niche2": null,
+    "is_feature": false,
+    "feature_for": null,
+    "web_delivery": "Next.js on Vercel; rules in Supabase (airline, max_chars, single_name_format, suffix_rule, source_url); pure client-side formatter.",
+    "why_hard_to_copy": "Correctness-critical, hand-sourced airline and GDS name-field rules and edge-case logic (mononyms, double surnames, diacritics, length truncation) with citations to each carrier's own guidance.",
+    "signals": [
+      {
+        "platform": "stackexchange",
+        "url": "https://travel.stackexchange.com/questions/204424/how-to-book-flights-if-i-have-a-very-long-name",
+        "date": "2026-08-13",
+        "summary": "Person with a very long name sometimes cannot book with the full name and must use shortened variants, and worries about the mismatch with the passport.",
+        "engagement": "question score 15, 1693 views, 2 answers"
+      },
+      {
+        "platform": "stackexchange",
+        "url": "https://travel.stackexchange.com/questions/203756/how-to-fill-in-the-first-name-and-last-name-for-an-arabic-name",
+        "date": "2026-05-18",
+        "summary": "Sponsor of a Schengen visa application cannot tell how to map a four-part Arabic name to just first and last name fields.",
+        "engagement": "question score 27, 2781 views, 2 answers"
+      },
+      {
+        "platform": "stackexchange",
+        "url": "https://travel.stackexchange.com/questions/203210/can-i-travel-with-asiana-with-doubled-up-long-name-on-itinerary",
+        "date": "2026-02-04",
+        "summary": "Indonesian passport holder with a doubled-up long name asks whether Asiana will accept the itinerary name.",
+        "engagement": "question score 1, 344 views, 0 answers"
+      },
+      {
+        "platform": "stackexchange",
+        "url": "https://travel.stackexchange.com/questions/202909/will-a-lack-of-middle-name-on-my-ticket-provide-difficulties-when-going-through",
+        "date": "2025-12-27",
+        "summary": "Traveller's ticket lacks the passport's middle name and asks whether that causes trouble at Chinese airport security.",
+        "engagement": "question score 19, 2196 views, 2 answers"
+      },
+      {
+        "platform": "stackexchange",
+        "url": "https://travel.stackexchange.com/questions/204470/travelled-singapore-with-different-name-earlier",
+        "date": "2026-08-24",
+        "summary": "Traveller who used a different name earlier asks which documents to carry for Singapore immigration.",
+        "engagement": "question score 5, 1885 views, 3 answers"
+      }
+    ],
+    "competitors_seen": [
+      {
+        "name": "Air India passenger-name format policy",
+        "url": "https://www.airindia.com/in/en/passenger-name-format.html",
+        "note": "Single-airline policy page; gives a 59-character limit example."
+      },
+      {
+        "name": "Finnair name elements guide",
+        "url": "https://easy.finnair.com/en/reservation---ticketing/reservation-handling/name-elements",
+        "note": "Single-airline travel-agent page."
+      },
+      {
+        "name": "Trip.com passenger name guide",
+        "url": "https://www.trip.com/guide/info/how-to-enter-a-passenger-name.html",
+        "note": "General article, no tool."
+      }
+    ],
+    "satellite": {
+      "name": "Name Match Check",
+      "what": "Type passport name and ticket name and see whether it is a safe, minor or risky mismatch.",
+      "why_shared": "Common anxiety after booking; people share the answer link.",
+      "handoff": "Result links to the full TicketName formatter for the airline."
+    },
+    "marketing": {
+      "where": [
+        "FlyerTalk forums",
+        "TripAdvisor Air Travel forum",
+        "Travel Stack Exchange",
+        "Facebook groups for migrant workers and diaspora travel",
+        "Show HN"
+      ],
+      "target": "Travellers with long, single or multi-part names; travel agents",
+      "funnel": "Search 'long name flight booking' -> tool page -> shortcut to airline guide.",
+      "cold_outreach": "Offer travel agencies serving diaspora communities a free embeddable widget.",
+      "post_ideas": [
+        "How to book a flight with a very long name: field limits by airline",
+        "Single-name passports: the FNU trick and when it fails",
+        "Missing middle name on your ticket: does it matter?"
+      ]
+    },
+    "capital_usd": 12,
+    "capital_note": "Domain only.",
+    "uses_paid_api": false,
+    "paid_api_note": null,
+    "confidence": "medium",
+    "notes": "No generator tool found in web search, only airline policy pages. Highest-engagement signal is the Arabic-name question (27 score, 2,781 views) but it is about a visa form, not a ticket. Rule data must be verified per airline; start with the top 30."
+  },
+  {
+    "id": "seA-006",
+    "name": "PassportValidity",
+    "idea": "Look up passport and ID-card validity rules for a destination and trip dates, including the ones airlines enforce.",
+    "description": "User enters passport expiry date, trip dates, destination and transit points; the tool computes whether the three-month, six-month or other rule is met measured from entry or departure, notes blank-page needs and whether national ID cards are accepted, and cites the official source. The moat is the curated rules table with the 'measured from entry vs departure' detail and ID-card acceptance, which blog lists get wrong or leave stale.",
+    "niche": "Travel",
+    "niche2": null,
+    "is_feature": false,
+    "feature_for": null,
+    "web_delivery": "Next.js on Vercel with Supabase table of country rules and sources; date arithmetic client-side.",
+    "why_hard_to_copy": "Hand-curated, cited per-country dataset with careful date logic (months beyond entry vs beyond departure, transit legs, ID cards) and visible last-verified date.",
+    "signals": [
+      {
+        "platform": "stackexchange",
+        "url": "https://travel.stackexchange.com/questions/202838/schengen-travel-with-uk-passport-expiring-close-to-3-month-rule-risk-of-denied",
+        "date": "2025-12-15",
+        "summary": "Passport expires just inside the Schengen three-month window on the return leg; family worries about denied boarding.",
+        "engagement": "question score 0, 459 views, 2 answers"
+      },
+      {
+        "platform": "stackexchange",
+        "url": "https://travel.stackexchange.com/questions/204077/flying-in-and-out-of-germany-on-a-soon-to-expire-italian-passport",
+        "date": "2026-07-17",
+        "summary": "Italian citizen's passport expires within two months of a trip to South America and renewal is unlikely in time.",
+        "engagement": "question score 3, 390 views, 1 answers"
+      },
+      {
+        "platform": "stackexchange",
+        "url": "https://travel.stackexchange.com/questions/204030/can-an-eu-citizen-enter-bosnia-or-montenegro-with-an-id-card-that-expires-in-les",
+        "date": "2026-07-11",
+        "summary": "Slovak family's child ID card has under three months left for a Balkans road trip into Bosnia and Montenegro.",
+        "engagement": "question score 4, 988 views, 2 answers"
+      },
+      {
+        "platform": "stackexchange",
+        "url": "https://travel.stackexchange.com/questions/203029/nuances-of-6-month-passport-requirement-for-visitors-in-peru",
+        "date": "2026-01-07",
+        "summary": "Traveller unsure how Peru's six-month validity rule is counted for a trip via Colombia.",
+        "engagement": "question score 1, 365 views, 2 answers"
+      },
+      {
+        "platform": "stackexchange",
+        "url": "https://travel.stackexchange.com/questions/201712/does-india-enforce-6-months-passport-validity-for-indian-citizens-leaving",
+        "date": "2025-11-27",
+        "summary": "Traveller asks whether India enforces six-month validity on departure for a trip to the USA via Doha.",
+        "engagement": "question score 6, 1419 views, 1 answers"
+      }
+    ],
+    "competitors_seen": [
+      {
+        "name": "Your Mileage May Vary list of countries by remaining validity",
+        "url": "https://yourmileagemayvary.com/2025/12/10/countries-you-can-visit-with-less-than-6-months-on-your-passport/",
+        "note": "Blog article list, no date calculator."
+      },
+      {
+        "name": "The Points Guy six-month rule guide",
+        "url": "https://thepointsguy.com/guide/complete-guide-to-the-six-month-passport-validity-rule/",
+        "note": "General guide; Sherpa-style checkers exist inside airline sites."
+      }
+    ],
+    "satellite": {
+      "name": "Passport Expiry vs Trip Dates",
+      "what": "Enter expiry date and trip dates to see pass or fail for the most common 3- and 6-month rules.",
+      "why_shared": "Panic-driven search when someone notices an expiry date.",
+      "handoff": "Links to destination-specific rows in PassportValidity."
+    },
+    "marketing": {
+      "where": [
+        "FlyerTalk forums",
+        "TripAdvisor destination forums",
+        "Travel Stack Exchange (answer questions, link only where site rules allow)",
+        "Facebook expat and digital-nomad groups",
+        "Show HN",
+        "Product Hunt"
+      ],
+      "target": "Travellers with passports close to expiry; families with minors' ID cards",
+      "funnel": "Search 'passport 5 months validity <country>' -> page.",
+      "cold_outreach": "Pitch passport-renewal and travel-document bloggers.",
+      "post_ideas": [
+        "Does your passport need 6 months for Peru? How it is counted",
+        "Schengen's 3-month rule: from entry or from departure?",
+        "ID cards in the Balkans: which countries accept them near expiry"
+      ]
+    },
+    "capital_usd": 12,
+    "capital_note": "Domain only.",
+    "uses_paid_api": false,
+    "paid_api_note": null,
+    "confidence": "low",
+    "notes": "Crowded field (airline-embedded checkers, blogs). Five askers across the window, moderate views (365-1,419 for most). Value would depend on being more accurate and more current than blogs; weak moat versus Sherpa. Liability disclaimer needed."
+  },
+  {
+    "id": "seA-007",
+    "name": "DualPassport",
+    "idea": "A rules guide for dual nationals and mixed-nationality families: which passport to show at check-in, security, border and EES lanes.",
+    "description": "User picks their two nationalities, destination and route; the tool says which passport to present at airline check-in, at security, entering and leaving, how entry and exit records interact (for example US exit not being recorded), and what special rules apply (UK entitlement-certificate requirement, EU/EES lanes for mixed couples). The moat is the curated rules matrix by nationality pair and destination with cited sources; rules changed in 2025-2026 and general articles are dated.",
+    "niche": "Travel",
+    "niche2": null,
+    "is_feature": false,
+    "feature_for": null,
+    "web_delivery": "Next.js on Vercel; rules matrix in Supabase with source and verified_at; wizard flow client-side.",
+    "why_hard_to_copy": "Hand-curated rules matrix by nationality pair x destination with citations; fast-changing (EES, UK 2026 dual-national entry rule) so freshness is the barrier.",
+    "signals": [
+      {
+        "platform": "stackexchange",
+        "url": "https://travel.stackexchange.com/questions/200485/dual-us-canada-citizen-which-passport-to-use-at-airport-security",
+        "date": "2025-10-25",
+        "summary": "US/Canadian dual citizen flying US to Canada asks whether they may show the US passport at airport security even though the booking is on the Canadian one.",
+        "engagement": "question score 6, 1953 views, 1 answers"
+      },
+      {
+        "platform": "stackexchange",
+        "url": "https://travel.stackexchange.com/questions/201664/does-the-passport-one-use-to-enter-and-leave-a-country-sometimes-determine-which",
+        "date": "2025-11-22",
+        "summary": "Asker wonders whether the passport used to leave one country forces which passport is used to enter the next.",
+        "engagement": "question score 5, 2864 views, 3 answers"
+      },
+      {
+        "platform": "stackexchange",
+        "url": "https://travel.stackexchange.com/questions/203124/dual-passports-uk-hk-holder-entering-leaving-the-us",
+        "date": "2026-01-22",
+        "summary": "UK/HK dual citizen entered the US on one passport but must leave on another and worries about an overstay record.",
+        "engagement": "question score 10, 1277 views, 2 answers"
+      },
+      {
+        "platform": "stackexchange",
+        "url": "https://travel.stackexchange.com/questions/203999/canada-netherlands-dual-citizen-traveling-to-slovenia-with-canadian-group-mand",
+        "date": "2026-07-02",
+        "summary": "Canada-Netherlands teen travelling with a Canadian group asks whether the EU passport is mandatory for entering Slovenia.",
+        "engagement": "question score 7, 1067 views, 2 answers"
+      },
+      {
+        "platform": "stackexchange",
+        "url": "https://travel.stackexchange.com/questions/203584/can-uk-eu-dual-nationals-enter-the-uk-legally-with-an-eu-passport-via-ireland",
+        "date": "2026-04-12",
+        "summary": "Asker describes a new UK rule requiring dual nationals to enter on a UK passport or buy a certificate, and asks about entry via Ireland with an EU passport.",
+        "engagement": "question score 16, 1897 views, 2 answers"
+      },
+      {
+        "platform": "stackexchange",
+        "url": "https://travel.stackexchange.com/questions/202881/does-a-non-eu-spouse-of-an-eu-citizen-need-to-go-through-ees",
+        "date": "2025-12-22",
+        "summary": "Dual UK/Irish citizen with a UK-only spouse asks which EES lane to use together.",
+        "engagement": "question score 11, 4213 views, 2 answers"
+      }
+    ],
+    "competitors_seen": [
+      {
+        "name": "The Local: rules for dual nationals travelling in Europe (2022)",
+        "url": "https://www.thelocal.com/20220901/passports-what-are-the-rules-for-dual-nationals-travelling-in-europe",
+        "note": "Country articles from 2022-2023, dated, no interactive tool."
+      },
+      {
+        "name": "The Points Guy: how to use dual passports",
+        "url": "https://thepointsguy.com/travel/how-to-use-dual-passports",
+        "note": "General advice article."
+      }
+    ],
+    "satellite": null,
+    "marketing": {
+      "where": [
+        "FlyerTalk forums",
+        "TripAdvisor destination forums",
+        "Travel Stack Exchange (answer questions, link only where site rules allow)",
+        "Facebook expat and digital-nomad groups",
+        "Show HN",
+        "Product Hunt",
+        "Expat Facebook groups (Americans in Europe, British in Ireland, etc.)"
+      ],
+      "target": "Dual nationals, expat families, mixed-nationality couples",
+      "funnel": "Search 'which passport to use dual citizen <route>' -> scenario page.",
+      "cold_outreach": "Offer expat association newsletters a short checklist plus link.",
+      "post_ideas": [
+        "UK dual nationals: the new entry rule explained",
+        "Which passport at airline check-in vs at the border?",
+        "Mixed EU/non-EU couple: which lane at EES?"
+      ]
+    },
+    "capital_usd": 12,
+    "capital_note": "Domain only.",
+    "uses_paid_api": false,
+    "paid_api_note": null,
+    "confidence": "low",
+    "notes": "Six distinct askers, several with 1,000-4,200 views. Moat is freshness and citation quality. Informational travel-document guidance only, not legal advice; the coordinator may want to treat the 'legal services' ban as a risk here."
+  },
+  {
+    "id": "seA-008",
+    "name": "RailFareJapan",
+    "idea": "Plan which Japan rail tickets to buy: pass vs individual reserved tickets vs regional passes, including advance-purchase quirks.",
+    "description": "User enters legs and dates; the tool compares the national pass with individual reserved fares and regional passes, flags trains excluded from passes, voucher-exchange quirks (for example airport express tickets bought online), and busy periods such as Golden Week. The moat is a curated fare and rules dataset, which is hard because there is no free fare API.",
+    "niche": "Travel",
+    "niche2": null,
+    "is_feature": false,
+    "feature_for": null,
+    "web_delivery": "Next.js on Vercel; fare tables and rules in Supabase; the comparison runs client-side.",
+    "why_hard_to_copy": "Curated fare tables and special-case rules (excluded trains, reservation windows, voucher exchanges) that need manual upkeep and Japan-specific knowledge.",
+    "signals": [
+      {
+        "platform": "stackexchange",
+        "url": "https://travel.stackexchange.com/questions/200491/what-railway-ticket-strategy-should-i-use-for-this-japan-itinerary",
+        "date": "2025-10-25",
+        "summary": "First-time visitor planning two weeks in Japan around Honshu asks what rail ticket strategy to use.",
+        "engagement": "question score 10, 2519 views, 2 answers"
+      },
+      {
+        "platform": "stackexchange",
+        "url": "https://travel.stackexchange.com/questions/203495/narita-skyliner-buy-tickets-in-advance",
+        "date": "2026-03-23",
+        "summary": "Travellers ask whether to pre-buy the Narita Skyliner given that the discounted online ticket is a voucher to be exchanged at the airport.",
+        "engagement": "question score 6, 1761 views, 1 answers"
+      },
+      {
+        "platform": "stackexchange",
+        "url": "https://travel.stackexchange.com/questions/201501/in-japan-how-important-is-it-to-reserve-rail-tickets-far-in-advance-do-places",
+        "date": "2025-10-28",
+        "summary": "Asker preparing for heavy rail use in December asks how likely reserved-seat trains are to fill and how far ahead tickets should be reserved.",
+        "engagement": "question score 9, 2132 views, 3 answers"
+      },
+      {
+        "platform": "stackexchange",
+        "url": "https://travel.stackexchange.com/questions/201643/japan-train-and-golden-week",
+        "date": "2025-11-18",
+        "summary": "Family planning Tokyo-Hiroshima travel overlapping Golden Week worries that a Japan Rail Pass only allows seat reservations after arrival, so they cannot reserve weeks ahead.",
+        "engagement": "question score 6, 2240 views, 3 answers"
+      }
+    ],
+    "competitors_seen": [
+      {
+        "name": "JR Pass worth-it guides",
+        "url": "https://saily.com/blog/is-japan-rail-pass-worth-it/",
+        "note": "Blog guides with manual comparison method; no dedicated interactive calculator found in web search results."
+      },
+      {
+        "name": "ShopBack JR pass vs single tickets",
+        "url": "https://www.shopback.com/blog/travel/jr-pass-vs-single-tickets-us",
+        "note": "Static comparison article."
+      }
+    ],
+    "satellite": null,
+    "marketing": {
+      "where": [
+        "Japan travel forums (Japan-Guide forum, TripAdvisor Japan)",
+        "Facebook Japan travel groups",
+        "Travel blogs",
+        "Show HN",
+        "Product Hunt"
+      ],
+      "target": "First-time Japan visitors planning multi-city trips",
+      "funnel": "Search 'JR pass worth it for <itinerary>' -> calculator.",
+      "cold_outreach": "Pitch Japan bloggers who currently publish static comparison tables.",
+      "post_ideas": [
+        "JR pass or single tickets for Tokyo-Kyoto-Osaka? Worked examples",
+        "Golden Week rail booking: what actually sells out",
+        "Skyliner voucher: buy online or at the counter?"
+      ]
+    },
+    "capital_usd": 12,
+    "capital_note": "Domain only; fare data entry is own time.",
+    "uses_paid_api": false,
+    "paid_api_note": null,
+    "confidence": "low",
+    "notes": "Weakest data story: no free fare feed, so the dataset must be built manually and goes stale, and the JR pass price changed in 2026 per one guide. Four signals, one with decent engagement (10 score, 2,519 views). Included but flagged low."
+  },
+  {
+    "id": "seA-009",
+    "name": "TicketAccess",
+    "idea": "A guide to which local transit and bus tickets foreigners can actually buy without a local phone number or domestic card.",
+    "description": "Per operator pages say whether online purchase needs a local phone number or card, which apps accept foreign cards or PayPal, whether ticket machines or on-board cash work, and the workaround that visitors report works. The moat is a curated, tested directory of operators across countries; generic maps and trip planners never document payment friction.",
+    "niche": "Travel",
+    "niche2": null,
+    "is_feature": false,
+    "feature_for": null,
+    "web_delivery": "Next.js on Vercel; operators table in Supabase with last_tested date; submission form for traveller reports.",
+    "why_hard_to_copy": "Hands-on curated directory of payment and verification friction by operator, kept current by traveller reports; not available from any API.",
+    "signals": [
+      {
+        "platform": "stackexchange",
+        "url": "https://travel.stackexchange.com/questions/203414/what-are-my-options-for-buying-nj-transit-tickets-online-or-at-ewr-airport-if-i",
+        "date": "2026-03-10",
+        "summary": "Traveller without a US phone number cannot see how to buy NJ Transit tickets between Newark airport and Penn Station.",
+        "engagement": "question score 12, 1644 views, 2 answers"
+      },
+      {
+        "platform": "stackexchange",
+        "url": "https://travel.stackexchange.com/questions/203281/can-you-buy-namma-metro-bengaluru-qr-code-tickets-without-an-indian-phone-numb",
+        "date": "2026-02-17",
+        "summary": "Asker hunts for any way to buy Bengaluru metro QR tickets without an Indian +91 phone number.",
+        "engagement": "question score 6, 351 views, 1 answers"
+      },
+      {
+        "platform": "stackexchange",
+        "url": "https://travel.stackexchange.com/questions/203538/bus-ticket-purchase-option-in-the-asturias",
+        "date": "2026-04-05",
+        "summary": "Visitor to Asturias asks how to buy bus tickets because the operator site found (Alsa) does not make the options clear.",
+        "engagement": "question score 6, 921 views, 4 answers"
+      }
+    ],
+    "competitors_seen": [],
+    "satellite": null,
+    "marketing": {
+      "where": [
+        "FlyerTalk forums",
+        "TripAdvisor destination forums",
+        "Travel Stack Exchange (answer questions, link only where site rules allow)",
+        "Facebook expat and digital-nomad groups",
+        "Show HN",
+        "Product Hunt"
+      ],
+      "target": "Visitors to countries with phone-number-gated ticketing (India, US commuter rail, Spain buses)",
+      "funnel": "Search 'buy <transit> ticket without local phone number'.",
+      "cold_outreach": "Ask transport enthusiasts and expat forum moderators for tested workarounds.",
+      "post_ideas": [
+        "Buying NJ Transit tickets as a tourist without a US SIM",
+        "Bengaluru metro tickets for foreigners: what works",
+        "Spanish bus tickets with a foreign card"
+      ]
+    },
+    "capital_usd": 12,
+    "capital_note": "Domain only.",
+    "uses_paid_api": false,
+    "paid_api_note": null,
+    "confidence": "low",
+    "notes": "Searched for a competitor and found none for this specific problem. Only three signals and the dataset is wide and shallow; value depends on community contributions. Included as an honest low-confidence idea."
+  },
+  {
+    "id": "seA-010",
+    "name": "SignFinder",
+    "idea": "Identify an unfamiliar foreign road sign by describing its shape, colour and symbols.",
+    "description": "User picks shape, background colour, border and symbols (or answers a short wizard) and gets matching signs with meaning, country or region variants, and a link to the source. The moat is the tagged sign dataset including unusual local signs (height-limit pictograms, regional warnings) rather than only the standard Vienna Convention set.",
+    "niche": "Travel",
+    "niche2": null,
+    "is_feature": false,
+    "feature_for": null,
+    "web_delivery": "Next.js on Vercel; sign metadata and tags in Supabase; images hotlinked from Wikimedia Commons with attribution (no image hosting).",
+    "why_hard_to_copy": "Hand-tagged dataset of signs with searchable visual attributes; image-based sign recognition is not available for free and generic searches return random pages.",
+    "signals": [
+      {
+        "platform": "stackexchange",
+        "url": "https://travel.stackexchange.com/questions/201740/what-is-the-meaning-of-this-spanish-road-sign-symbols",
+        "date": "2025-12-01",
+        "summary": "Driver cannot identify three red-circled pictograms and height or width arrows on a big yellow Spanish motorway sign (AP-8).",
+        "engagement": "question score 21, 3868 views, 2 answers"
+      },
+      {
+        "platform": "stackexchange",
+        "url": "https://travel.stackexchange.com/questions/202986/what-does-this-uzbekistan-street-sign-depicting-dark-glasses-mean",
+        "date": "2026-01-04",
+        "summary": "Traveller cannot find the meaning of an Uzbekistan street sign showing dark glasses.",
+        "engagement": "question score 12, 2813 views, 2 answers"
+      },
+      {
+        "platform": "stackexchange",
+        "url": "https://travel.stackexchange.com/questions/202964/what-does-this-australian-road-sign-mean",
+        "date": "2026-01-01",
+        "summary": "Tourist driving near Bathurst, NSW sees a sign about 'parallel vehicles' under 6 m and could not find an explanation online.",
+        "engagement": "question score 8, 2424 views, 3 answers"
+      }
+    ],
+    "competitors_seen": [
+      {
+        "name": "SignPath: Learn Traffic Signs (China-focused study app)",
+        "url": "https://mwm.ai/apps/signpath-learn-traffic-signs/6789643447",
+        "note": "Country-specific study app; web search found no general lookup by description."
+      }
+    ],
+    "satellite": null,
+    "marketing": {
+      "where": [
+        "Travel Stack Exchange (answer sign questions)",
+        "Driving-abroad forums",
+        "Expat Facebook groups",
+        "Wikimedia Commons community (as attribution partner)",
+        "Show HN"
+      ],
+      "target": "Tourists driving abroad, expats, hire-car customers",
+      "funnel": "Search 'what does this <country> road sign mean' -> sign detail page.",
+      "cold_outreach": "Contact hire-car blogs and expat driving-licence guides.",
+      "post_ideas": [
+        "What the pictograms on Spanish motorway signs mean",
+        "10 road signs that surprise tourists in Central Asia",
+        "Search road signs by shape and colour"
+      ]
+    },
+    "capital_usd": 12,
+    "capital_note": "Domain only.",
+    "uses_paid_api": false,
+    "paid_api_note": null,
+    "confidence": "low",
+    "notes": "Three high-view questions (2,424-3,868 views) but only one Q&A site. The Australian sign is a local sign, not a pictogram. Dataset creation is large; image licences (Commons attribution) must be handled; unclear willingness to return after one lookup, so it is mostly an SEO play."
+  },
+  {
+    "id": "seA-011",
+    "name": "BackupPowerPlanner",
+    "idea": "Plan home backup power: how long a power station runs your fridge, what generator you need, and how to wire it safely.",
+    "description": "User picks appliances (with start-up surge and compressor duty cycle from a curated database), a power station or generator, and the cord or wire run; the tool outputs real runtime after inverter losses, whether surge fits, wire gauge and breaker for the distance, and notes about inlets and interlocks. The moat is the appliance surge and duty-cycle dataset plus electrical-code logic; generic vendor blogs and single-formula calculators miss surge and derating.",
+    "niche": "Home & DIY",
+    "niche2": null,
+    "is_feature": false,
+    "feature_for": null,
+    "web_delivery": "Next.js PWA on Vercel; appliance and equipment data in Supabase; calculations in the browser, offline-capable for outages.",
+    "why_hard_to_copy": "Curated appliance start-up and duty-cycle dataset, inverter and cord derating, plus NEC-style wire, breaker and interlock logic; error-prone for hobbyists to rebuild correctly.",
+    "signals": [
+      {
+        "platform": "stackexchange",
+        "url": "https://diy.stackexchange.com/questions/326763/how-long-can-a-portable-power-supply-run-my-fridge-in-an-outage",
+        "date": "2025-12-02",
+        "summary": "Homeowner asks how long a 3,840 Wh portable power station can run a fridge during outages; the thread has 12 answers, showing the confusion.",
+        "engagement": "question score 12, 3219 views, 12 answers"
+      },
+      {
+        "platform": "stackexchange",
+        "url": "https://diy.stackexchange.com/questions/328797/can-i-use-a-2-5-kw-emergency-backup-generator-to-run-a-3-kw-heat-pump",
+        "date": "2026-01-21",
+        "summary": "Asker wants to know whether a 2.5 kW emergency generator can run a 3 kW heat pump.",
+        "engagement": "question score 6, 2226 views, 5 answers"
+      },
+      {
+        "platform": "stackexchange",
+        "url": "https://diy.stackexchange.com/questions/331127/is-a-nema-14-50-outlet-an-acceptable-generator-inlet",
+        "date": "2026-06-28",
+        "summary": "Asker asks whether a NEMA 14-50 outlet is an acceptable generator inlet.",
+        "engagement": "question score 10, 1610 views, 4 answers"
+      },
+      {
+        "platform": "stackexchange",
+        "url": "https://diy.stackexchange.com/questions/331815/can-i-use-tandem-breakers-to-free-up-space-for-a-generator-interlock-in-my-panel",
+        "date": "2026-08-23",
+        "summary": "Homeowner asks about using tandem breakers to free panel space for a generator interlock.",
+        "engagement": "question score 13, 1246 views, 2 answers"
+      },
+      {
+        "platform": "stackexchange",
+        "url": "https://diy.stackexchange.com/questions/323821/can-i-use-200-feet-of-extension-cord-to-power-a-greenhouse",
+        "date": "2025-10-26",
+        "summary": "Asker wants to power a greenhouse 175 ft away with a 200 ft extension cord for 15 A of heating.",
+        "engagement": "question score 4, 2526 views, 3 answers"
+      },
+      {
+        "platform": "stackexchange",
+        "url": "https://diy.stackexchange.com/questions/331205/extension-cord-getting-hot-when-running-my-air-conditioner",
+        "date": "2026-07-03",
+        "summary": "Extension cord runs hot when powering a 12,000 BTU air conditioner from a 15 A circuit.",
+        "engagement": "question score 6, 1332 views, 2 answers"
+      }
+    ],
+    "competitors_seen": [
+      {
+        "name": "Anker Solix fridge power station guide",
+        "url": "https://www.ankersolix.com/blogs/portable-power-station/portable-power-station-for-refrigerator",
+        "note": "Vendor sizing blog; no interactive derating, wire or inlet logic."
+      },
+      {
+        "name": "Bluetti fridge runtime guide",
+        "url": "https://www.bluettipower.com/blogs/buying-guide/how-long-can-bluetti-power-full-size-refrigerator",
+        "note": "Vendor content with brand bias."
+      }
+    ],
+    "satellite": {
+      "name": "Fridge Runtime Quick Calc",
+      "what": "Enter battery Wh and fridge size to get realistic runtime with duty cycle and inverter loss.",
+      "why_shared": "Storm and outage season search spike.",
+      "handoff": "Link to full planner for multi-appliance and generator hookup."
+    },
+    "marketing": {
+      "where": [
+        "Preparedness and off-grid forums",
+        "Solar and power-station owner Facebook groups",
+        "Hurricane-prep community pages",
+        "YouTube comment communities for power-station reviewers",
+        "Show HN"
+      ],
+      "target": "Homeowners in outage-prone areas, RV and off-grid users, DIY electricians",
+      "funnel": "Search 'how long will a power station run my fridge' -> calculator -> planner.",
+      "cold_outreach": "Email power-station review bloggers with an embeddable runtime widget.",
+      "post_ideas": [
+        "How long does a 3,840 Wh power station really run a fridge?",
+        "Will your generator start your heat pump? Surge explained",
+        "Why your 200 ft extension cord is getting warm"
+      ]
+    },
+    "capital_usd": 12,
+    "capital_note": "Domain only.",
+    "uses_paid_api": false,
+    "paid_api_note": null,
+    "confidence": "medium",
+    "notes": "Six independent DIY-site questions with high views (2,226-3,219 for the top ones). Safety liability: must show code disclaimers and advise a licensed electrician for inlet and interlock work. Several single-formula calculators exist; the dataset and derating logic are the differentiator."
+  },
+  {
+    "id": "seA-012",
+    "name": "PaverLayout",
+    "idea": "Generate random-pattern paving or tiling layouts from the real slab sizes with consistent joints and minimal cuts.",
+    "description": "User enters area and the available slab or tile sizes; the solver tries layouts that keep a constant joint width, avoid awkward slivers, and minimise cut pieces, then shows a printable plan and material counts. The moat is the constraint-solving layout algorithm for mixed modular sizes, which standard grid, running-bond or honeycomb tools do not cover.",
+    "niche": "Home & DIY",
+    "niche2": "Gardening & Outdoors",
+    "is_feature": false,
+    "feature_for": null,
+    "web_delivery": "Client-side canvas app (Next.js on Vercel); saved layouts in Supabase; solver in a web worker.",
+    "why_hard_to_copy": "Constraint/bin-packing layout solver for random-pattern modular paving, which needs real algorithm work rather than a CRUD form.",
+    "signals": [
+      {
+        "platform": "stackexchange",
+        "url": "https://gardening.stackexchange.com/questions/70768/random-patio-design-using-mixed-slabs-size-creates-inconsistent-spacing-gaps",
+        "date": "2026-05-12",
+        "summary": "Planner of a random-pattern natural-stone patio finds that using 290 mm slabs among larger ones makes some joints 15 mm instead of the intended 10 mm.",
+        "engagement": "question score 3, 146 views, 1 answers"
+      },
+      {
+        "platform": "stackexchange",
+        "url": "https://diy.stackexchange.com/questions/330353/how-can-i-systematically-plan-tile-placement-to-avoid-gaps-and-wasted-space",
+        "date": "2026-05-01",
+        "summary": "DIYer asks for a systematic method or tools to plan tile placement to avoid gaps and waste.",
+        "engagement": "question score 4, 1054 views, 3 answers"
+      }
+    ],
+    "competitors_seen": [
+      {
+        "name": "Herron tile planner",
+        "url": "https://alternativeto.net/software/herron/about",
+        "note": "Free browser planner with cut lists and standard patterns; random-pattern pavers not shown."
+      },
+      {
+        "name": "Layometry",
+        "url": "https://peerlist.io/havrylash/project/3d-tile-layout-planner-online--layometry",
+        "note": "3D planner with straight, running-bond and honeycomb layouts."
+      },
+      {
+        "name": "Calcufloor",
+        "url": "https://alternativeto.net/software/calcufloor/about",
+        "note": "Freemium plank and tile planner."
+      }
+    ],
+    "satellite": {
+      "name": "Paver Quantity Calculator",
+      "what": "Quick slab count and wastage estimate for a patio area.",
+      "why_shared": "Common first search before buying.",
+      "handoff": "Links to full random-pattern layout generation."
+    },
+    "marketing": {
+      "where": [
+        "DIY and landscaping forums",
+        "Garden design Facebook groups",
+        "YouTube DIY patio channels",
+        "Paving supplier blogs",
+        "Show HN"
+      ],
+      "target": "DIY patio builders and small landscapers using multi-size slab packs",
+      "funnel": "Search 'random pattern paving layout calculator' -> tool.",
+      "cold_outreach": "Offer paving suppliers a free pattern generator widget for their kits.",
+      "post_ideas": [
+        "Why your random-pattern patio gets uneven joints, and how to fix the layout",
+        "Plan a patio from a 4-size slab pack",
+        "Cut less stone: layout tips"
+      ]
+    },
+    "capital_usd": 12,
+    "capital_note": "Domain only.",
+    "uses_paid_api": false,
+    "paid_api_note": null,
+    "confidence": "low",
+    "notes": "Only two SE signals (146 and 1,054 views) and existing planners cover common patterns. Idea is credible technically but demand evidence is thin."
+  },
+  {
+    "id": "seA-013",
+    "name": "MiterReach",
+    "idea": "Check whether a given mitre saw can make a specific cut, including angled cuts and flip cuts.",
+    "description": "User enters the saw model (or blade size and slide travel) and the board profile and angles; the tool shows the maximum crosscut and height at that miter and bevel, whether a flip cut works, and the clearance needed. The moat is a hand-collected saw-capacity table from manuals plus geometry, which published 'max cut' specs hide.",
+    "niche": "Home & DIY",
+    "niche2": "Hobbies & Crafts",
+    "is_feature": false,
+    "feature_for": null,
+    "web_delivery": "Next.js on Vercel; saw specs in Supabase; geometry rendered client-side as a 2D diagram.",
+    "why_hard_to_copy": "Per-model capacity data at angles (mostly in PDF manuals) combined with cut geometry; buyers cannot get this from spec sheets that quote only 0-degree capacity.",
+    "signals": [
+      {
+        "platform": "stackexchange",
+        "url": "https://diy.stackexchange.com/questions/331737/how-can-i-determine-the-minimum-size-mitre-saw-needed-for-a-cutting-task",
+        "date": "2026-08-15",
+        "summary": "Asker needs to cut 220 mm x 90 mm PVC ducting and cannot tell whether a mitre saw with a smaller listed crosscut can do it, including with a flip cut.",
+        "engagement": "question score 1, 744 views, 4 answers"
+      },
+      {
+        "platform": "stackexchange",
+        "url": "https://diy.stackexchange.com/questions/326427/how-can-i-cut-a-56-bevel-in-2x6-with-a-10-inch-mitre-saw",
+        "date": "2025-11-20",
+        "summary": "DIYer asks whether a 10-inch mitre saw can cut a 56-degree bevel in a 2x6.",
+        "engagement": "question score 4, 1109 views, 3 answers"
+      }
+    ],
+    "competitors_seen": [
+      {
+        "name": "Omni Calculator miter angle",
+        "url": "https://www.omnicalculator.com/construction/miter-angle",
+        "note": "Calculates angles to set, not saw cut capacity."
+      }
+    ],
+    "satellite": null,
+    "marketing": {
+      "where": [
+        "Woodworking forums",
+        "Tool-review blogs",
+        "Facebook DIY groups",
+        "YouTube tool channels",
+        "Show HN"
+      ],
+      "target": "Buyers choosing a mitre saw; DIY carpenters",
+      "funnel": "Search 'can my miter saw cut a 2x12' -> tool.",
+      "cold_outreach": "Offer tool-review blogs a capacity widget per model.",
+      "post_ideas": [
+        "Can a 10-inch mitre saw cut a 2x6 at 56 degrees?",
+        "Flip cuts: how wide a board you can really cut",
+        "Saw capacity cheat sheet by model"
+      ]
+    },
+    "capital_usd": 12,
+    "capital_note": "Domain only.",
+    "uses_paid_api": false,
+    "paid_api_note": null,
+    "confidence": "low",
+    "notes": "Two signals, low-moderate views (744 and 1,109) and a niche audience. Included because the moat (curated per-model data) is real but demand is thin; likely better as a feature of a larger tool-buying site."
+  },
+  {
+    "id": "seA-014",
+    "name": "SafeCanning",
+    "idea": "A canning planner that applies altitude, jar size and acidity rules to tested recipes and warns when a change makes it unsafe.",
+    "description": "User picks a tested recipe family and altitude; the tool gives adjusted water-bath times or canner pressures, headspace and jar-size notes, and flags changes such as reduced sugar, added low-acid ingredients or process interruptions. It reproduces published USDA and extension tables and refuses to guess for untested changes. The moat is the careful, cited rules table and decision logic.",
+    "niche": "Food & Cooking",
+    "niche2": "Gardening & Outdoors",
+    "is_feature": false,
+    "feature_for": null,
+    "web_delivery": "Next.js PWA on Vercel; tables from public tested-recipe sources in Supabase; works offline in kitchens.",
+    "why_hard_to_copy": "Correctness-critical, cited processing tables and 'is this change safe?' decision logic; hard to get right and not a weekend CRUD build.",
+    "signals": [
+      {
+        "platform": "stackexchange",
+        "url": "https://cooking.stackexchange.com/questions/137235/what-does-low-acid-food-mean-for-water-bath-vs-pressure-canning",
+        "date": "2026-09-11",
+        "summary": "Asker is unsure what 'low-acid food' means for water-bath versus pressure canning and wants authority citations.",
+        "engagement": "question score 1, 851 views, 1 answers"
+      },
+      {
+        "platform": "stackexchange",
+        "url": "https://cooking.stackexchange.com/questions/137220/forgot-to-cook-salsa-before-steam-canning-do-i-need-to-toss-it",
+        "date": "2026-09-05",
+        "summary": "Home canner forgot to cook salsa before steam canning and asks whether to discard it.",
+        "engagement": "question score 0, 147 views, 0 answers"
+      },
+      {
+        "platform": "stackexchange",
+        "url": "https://cooking.stackexchange.com/questions/136719/do-i-have-to-worry-about-botulism-in-my-refrigerator-jam",
+        "date": "2026-02-13",
+        "summary": "Home cook reduced sugar in strawberry preserves and asks about botulism risk in the refrigerator jam.",
+        "engagement": "question score 3, 684 views, 2 answers"
+      },
+      {
+        "platform": "stackexchange",
+        "url": "https://cooking.stackexchange.com/questions/136890/canning-pints-of-beef-stew-my-propane-ran-out-10-mins-before-end",
+        "date": "2026-04-29",
+        "summary": "Canner ran out of propane 10 minutes before the end of a 75-minute pressure process on beef stew and asks if it must be reprocessed.",
+        "engagement": "question score 2, 115 views, 0 answers"
+      },
+      {
+        "platform": "stackexchange",
+        "url": "https://cooking.stackexchange.com/questions/137195/canning-muscadine-jelly-not-getting-the-quantity-expected-why",
+        "date": "2026-08-29",
+        "summary": "Jelly maker gets about half the stated yield from a pectin jelly recipe and asks why.",
+        "engagement": "question score 7, 1198 views, 1 answers"
+      },
+      {
+        "platform": "stackexchange",
+        "url": "https://cooking.stackexchange.com/questions/135484/high-altitude-candy-making-science",
+        "date": "2025-12-06",
+        "summary": "Candy maker wants the science of adjusting temperatures for high altitude.",
+        "engagement": "question score 1, 47 views, 0 answers"
+      }
+    ],
+    "competitors_seen": [
+      {
+        "name": "UC Master Food Preserver altitude guidance",
+        "url": "https://ucanr.edu/node/164927",
+        "note": "Extension document with altitude tables; not an interactive tool."
+      },
+      {
+        "name": "USU Utah altitude adjustments for home canning",
+        "url": "https://extension.usu.edu/preserve-the-harvest/research/utah-altitude-adjustments-for-home-canning.pdf",
+        "note": "Static PDF."
+      },
+      {
+        "name": "National Center for Home Food Preservation",
+        "url": "https://nchfp.uga.edu/",
+        "note": "Authoritative recipes and guides; web search found no altitude/jar calculator from them."
+      }
+    ],
+    "satellite": {
+      "name": "Altitude Time Adder",
+      "what": "Simple altitude-to-extra-minutes table for water-bath canning with source links.",
+      "why_shared": "Frequently needed and easy to bookmark.",
+      "handoff": "Links to the full SafeCanning planner for recipe-specific adjustments."
+    },
+    "marketing": {
+      "where": [
+        "Canning and preserving Facebook groups",
+        "Extension service newsletters",
+        "Homesteading forums and blogs",
+        "YouTube canning channels",
+        "Show HN"
+      ],
+      "target": "Home canners, gardeners with seasonal gluts, homesteaders",
+      "funnel": "Search 'canning altitude adjustment calculator' -> tool.",
+      "cold_outreach": "Offer extension educators a link for handouts.",
+      "post_ideas": [
+        "Altitude adjustment for water-bath canning in one table",
+        "Did you change the sugar? Is the jam still safe to can?",
+        "What to do when the canner pressure drops mid-process"
+      ]
+    },
+    "capital_usd": 12,
+    "capital_note": "Domain only.",
+    "uses_paid_api": false,
+    "paid_api_note": null,
+    "confidence": "medium",
+    "notes": "Six different asks over the window. Strong liability angle: must stick to published tested values, show sources and tell users to discard when unsure. Several questions are 'is this safe?' rather than tool requests, so demand for a tool is inferred."
+  },
+  {
+    "id": "seA-015",
+    "name": "RecipeFixer",
+    "idea": "Adapt a recipe to what you have: smart scaling, tiny-amount conversions and context-aware substitutions.",
+    "description": "Paste or enter a recipe and a target (half batch, different pan, missing ingredient); the tool scales eggs by weight, adjusts leavening and spice non-linearly, rounds tiny amounts to real packet or spoon sizes, flags prep ambiguity such as measure-before-grinding, and suggests substitutions that depend on the dish type. The moat is the baking-science rules and substitution matrix, not a linear multiplier.",
+    "niche": "Food & Cooking",
+    "niche2": null,
+    "is_feature": false,
+    "feature_for": null,
+    "web_delivery": "Next.js PWA on Vercel; rules in Supabase; all calculations client-side.",
+    "why_hard_to_copy": "Curated non-linear scaling rules and a dish-aware substitution matrix; plain multipliers are trivial, this is not.",
+    "signals": [
+      {
+        "platform": "stackexchange",
+        "url": "https://cooking.stackexchange.com/questions/135387/would-i-be-able-to-cut-this-cake-recipe-in-half-and-still-have-it-taste-just-as",
+        "date": "2025-11-11",
+        "summary": "Baker wants to halve a large cake recipe and asks about layer sizes and baking times.",
+        "engagement": "question score 5, 2223 views, 4 answers"
+      },
+      {
+        "platform": "stackexchange",
+        "url": "https://cooking.stackexchange.com/questions/135486/recipe-for-pizza-requires-09-ounces-of-yeast",
+        "date": "2025-12-06",
+        "summary": "Pizza recipe calls for 0.09 oz of yeast and the asker does not know how many 0.25 oz packets that is.",
+        "engagement": "question score 0, 1649 views, 5 answers"
+      },
+      {
+        "platform": "stackexchange",
+        "url": "https://cooking.stackexchange.com/questions/137163/my-muffin-recipe-says-1-c-cereal-ground-do-i-measure-before-or-after-grind",
+        "date": "2026-08-17",
+        "summary": "Muffin recipe says '1 c. cereal, ground' and the asker does not know whether to measure before or after grinding.",
+        "engagement": "question score 3, 766 views, 2 answers"
+      },
+      {
+        "platform": "stackexchange",
+        "url": "https://cooking.stackexchange.com/questions/137042/i-have-a-recipe-that-is-calling-for-12-basil-leaves-but-i-have-ground-basil-inst",
+        "date": "2026-06-25",
+        "summary": "Cook has ground basil instead of the 12 fresh leaves a recipe needs and asks for a conversion.",
+        "engagement": "question score 7, 1214 views, 2 answers"
+      },
+      {
+        "platform": "stackexchange",
+        "url": "https://cooking.stackexchange.com/questions/136568/can-i-substitute-chickpea-flour-for-besan-and-vice-versa",
+        "date": "2025-12-23",
+        "summary": "Asker wants to know whether chickpea flour and besan are interchangeable.",
+        "engagement": "question score 2, 683 views, 2 answers"
+      },
+      {
+        "platform": "stackexchange",
+        "url": "https://cooking.stackexchange.com/questions/137225/egg-substitute-for-egg-based-dishes",
+        "date": "2026-09-09",
+        "summary": "Person with an egg intolerance wants substitutes that work for scrambled eggs and omelets, not just baking.",
+        "engagement": "question score 2, 141 views, 1 answers"
+      }
+    ],
+    "competitors_seen": [
+      {
+        "name": "Instacart recipe converter",
+        "url": "https://company.instacart.com/ideas/recipe-converter",
+        "note": "Basic scaling by servings."
+      },
+      {
+        "name": "RecipeSage pan converter",
+        "url": "https://docs.recipesage.com/docs/tutorials/tools/pan-bakeware-converter/",
+        "note": "Pan-size multiplier only."
+      },
+      {
+        "name": "Omni Calculator fresh-to-dry herb conversion",
+        "url": "https://www.omnicalculator.com/food/fresh-to-dry-herb-conversion",
+        "note": "Single conversion table, not dish-aware."
+      }
+    ],
+    "satellite": {
+      "name": "Yeast Packet Converter",
+      "what": "Convert ounces or grams of yeast to packets or teaspoons and halve eggs correctly.",
+      "why_shared": "One-off questions that spark search traffic.",
+      "handoff": "Links to RecipeFixer for full recipes."
+    },
+    "marketing": {
+      "where": [
+        "Baking forums (The Fresh Loaf, etc.)",
+        "Facebook baking groups",
+        "Cooking blogs",
+        "Pinterest",
+        "Show HN"
+      ],
+      "target": "Home bakers and cooks adapting recipes",
+      "funnel": "Search 'how to halve a cake recipe' -> tool.",
+      "cold_outreach": "Offer recipe bloggers a free scaling widget.",
+      "post_ideas": [
+        "How to halve a cake recipe without ruining it",
+        "0.09 oz of yeast is how many packets?",
+        "Fresh to dried herbs: when the ratio breaks"
+      ]
+    },
+    "capital_usd": 12,
+    "capital_note": "Domain only.",
+    "uses_paid_api": false,
+    "paid_api_note": null,
+    "confidence": "low",
+    "notes": "Many scalers exist; the differentiator is non-linear rules, which a motivated vibe coder could partly copy. Substitution data needs expert curation. Signals are low-engagement (141-2,223 views)."
+  },
+  {
+    "id": "seA-016",
+    "name": "GadgetRecipes",
+    "idea": "Find recipes by the kitchen equipment you own rather than by ingredient.",
+    "description": "A community-tagged index of recipe links by equipment (meat grinder, ice cream maker, pasta extruder, bread machine), filterable and linked out to the original source so no recipe text is copied. The moat is the community-curated tag set; search engines return product pages and low-quality content for 'recipes using X'.",
+    "niche": "Food & Cooking",
+    "niche2": null,
+    "is_feature": false,
+    "feature_for": null,
+    "web_delivery": "Next.js on Vercel; Supabase tables for recipe links, equipment tags, votes; no image hosting.",
+    "why_hard_to_copy": "Community-curated equipment tagging of links (a small-network effect), not machine-generated; but a thin moat until it has contributors.",
+    "signals": [
+      {
+        "platform": "stackexchange",
+        "url": "https://cooking.stackexchange.com/questions/135468/how-would-i-go-about-looking-for-recipes-using-a-specific-piece-of-equipment-rat",
+        "date": "2025-12-02",
+        "summary": "Asker buys single-purpose gadgets reluctantly and cannot find any site that filters recipes by equipment, while web searches return slop and shopping pages.",
+        "engagement": "question score 4, 371 views, 3 answers"
+      }
+    ],
+    "competitors_seen": [
+      {
+        "name": "Instant Pot Eats air fryer recipes",
+        "url": "https://instantpoteats.com/airfryer/recipes/",
+        "note": "Single-appliance blog collections; web search found no multi-appliance filter."
+      }
+    ],
+    "satellite": null,
+    "marketing": {
+      "where": [
+        "Cooking Stack Exchange",
+        "Appliance owner Facebook groups",
+        "Kitchen gadget forums",
+        "Product Hunt",
+        "Show HN"
+      ],
+      "target": "Owners of specialty kitchen equipment",
+      "funnel": "Search 'recipes for <gadget>' -> equipment page.",
+      "cold_outreach": "Invite appliance-owner group moderators to seed tags.",
+      "post_ideas": [
+        "What can you make with a meat grinder besides sausage?",
+        "Bread machine: 20 recipes beyond loaves",
+        "Share your best recipe for an ice cream maker"
+      ]
+    },
+    "capital_usd": 12,
+    "capital_note": "Domain only.",
+    "uses_paid_api": false,
+    "paid_api_note": null,
+    "confidence": "low",
+    "notes": "Single signal (371 views, 4 score). Included only because the stated gap (no equipment filter) was confirmed by search; a vibe coder could build the shell quickly and the moat is community, so treat as speculative."
+  },
+  {
+    "id": "seA-017",
+    "name": "DateCodeDecoder",
+    "idea": "Decode lot and date codes printed on food packages by brand.",
+    "description": "User enters a brand and the stamped code and gets the likely production or expiry date, using a crowd-curated table of per-manufacturer formats (Julian dates, plant codes, month letters) plus links to shelf-life guidance. The moat is the crowd-built format library, which does not exist in one place; manufacturers publish only fragments.",
+    "niche": "Food & Cooking",
+    "niche2": null,
+    "is_feature": false,
+    "feature_for": null,
+    "web_delivery": "Next.js on Vercel; format rules (pattern, example, source) in Supabase; decoder runs in the browser.",
+    "why_hard_to_copy": "Community- and expert-curated library of brand-specific code formats; each entry needs real packages as evidence.",
+    "signals": [
+      {
+        "platform": "stackexchange",
+        "url": "https://cooking.stackexchange.com/questions/135333/how-to-intereperet-this-expiration-date-code-a164-24164-2-z1",
+        "date": "2025-10-31",
+        "summary": "Shopper tries to interpret a code like A164 24164/2 Z1 on a box of sesame snaps bought price-reduced in Ontario.",
+        "engagement": "question score 5, 266 views, 1 answers"
+      }
+    ],
+    "competitors_seen": [
+      {
+        "name": "Hormel: code dates decoded",
+        "url": "https://hormelfoods.com/inspired/story/code-dates-decoded",
+        "note": "One manufacturer's explanation; web search found no universal decoder."
+      }
+    ],
+    "satellite": null,
+    "marketing": {
+      "where": [
+        "Cooking Stack Exchange",
+        "Food safety and grocery-shopping Facebook groups",
+        "Consumer forums",
+        "Product Hunt"
+      ],
+      "target": "Shoppers checking reduced items and old pantry goods",
+      "funnel": "Search '<brand> date code meaning' -> brand page.",
+      "cold_outreach": "Ask consumer-advice writers to contribute formats.",
+      "post_ideas": [
+        "How to read the date code on <brand> products",
+        "Julian date codes explained with 10 examples",
+        "Reduced-price shelf: is it actually expired?"
+      ]
+    },
+    "capital_usd": 12,
+    "capital_note": "Domain only.",
+    "uses_paid_api": false,
+    "paid_api_note": null,
+    "confidence": "low",
+    "notes": "One signal with little engagement (266 views, 5 score). Dataset-driven moat, but demand evidence is the weakest in my set; included as an honest low-confidence idea."
+  },
+  {
+    "id": "seA-018",
+    "name": "BikeFit",
+    "idea": "A bike-parts compatibility checker for standards, sizes and capacities.",
+    "description": "User enters frame and drivetrain details and a target part; the tool checks bottom-bracket shell width and standard, cassette versus rear-derailleur capacity, chain length, tyre and rim width limits, and inch-versus-ETRTO tube sizes, and explains why. The moat is a curated cross-brand standards dataset with correctness-critical rules; manufacturers publish only their own parts.",
+    "niche": "Hobbies & Crafts",
+    "niche2": "Health & Fitness",
+    "is_feature": false,
+    "feature_for": null,
+    "web_delivery": "Next.js on Vercel; component standards and rule tables in Supabase; checks client-side.",
+    "why_hard_to_copy": "Cross-brand standards dataset (BB shells, freehub splines, RD capacity, ETRTO) plus formula logic for chain length and clearance; needs cycling expertise.",
+    "signals": [
+      {
+        "platform": "stackexchange",
+        "url": "https://bicycles.stackexchange.com/questions/100390/manufacturer-installed-tire-width-exceeds-maximum-tire-width-specified-by-the-ma",
+        "date": "2026-06-11",
+        "summary": "Asker notes a manufacturer ships a bike with tyres wider than the frame's own maximum tyre size.",
+        "engagement": "question score 4, 680 views, 2 answers"
+      },
+      {
+        "platform": "stackexchange",
+        "url": "https://bicycles.stackexchange.com/questions/99999/42t-cassettes-and-rd-capacity",
+        "date": "2026-02-06",
+        "summary": "Heavier rider wants a 42-tooth cassette on a 2007 road bike and asks about rear-derailleur capacity.",
+        "engagement": "question score 4, 586 views, 4 answers"
+      },
+      {
+        "platform": "stackexchange",
+        "url": "https://bicycles.stackexchange.com/questions/100249/68mm-bottom-bracket-in-a-73mm-shell",
+        "date": "2026-05-03",
+        "summary": "Asker asks whether a 68 mm threadless bottom bracket can be installed in a 73 mm shell with damaged threads.",
+        "engagement": "question score 4, 695 views, 2 answers"
+      },
+      {
+        "platform": "stackexchange",
+        "url": "https://bicycles.stackexchange.com/questions/100052/correct-new-chain-sizing",
+        "date": "2026-02-28",
+        "summary": "Rider disputes correct new chain length after the derailleur sat higher with the new chain.",
+        "engagement": "question score 8, 813 views, 2 answers"
+      },
+      {
+        "platform": "stackexchange",
+        "url": "https://bicycles.stackexchange.com/questions/99942/inches-and-centimeters-on-inner-tube-sizing",
+        "date": "2026-01-19",
+        "summary": "Buyer got the wrong inner tubes because the tyre was labeled 650 mm and the box said 27.5 inches.",
+        "engagement": "question score 8, 1019 views, 5 answers"
+      },
+      {
+        "platform": "stackexchange",
+        "url": "https://bicycles.stackexchange.com/questions/100491/shimano-deore-xt-9-speed-rear-derailleur-replacement-with-modern-alternative",
+        "date": "2026-07-10",
+        "summary": "Owner of a 16-year-old mountain bike asks what modern derailleur, shifter and cable set can replace a 9-speed Deore XT.",
+        "engagement": "question score 3, 749 views, 3 answers"
+      },
+      {
+        "platform": "stackexchange",
+        "url": "https://bicycles.stackexchange.com/questions/100080/tire-pressure-calculator-and-hybrids",
+        "date": "2026-03-12",
+        "summary": "Rider asks which category a hybrid bike belongs to in a tyre-pressure calculator that offers only road, gravel and mountain.",
+        "engagement": "question score 8, 527 views, 4 answers"
+      }
+    ],
+    "competitors_seen": [
+      {
+        "name": "Shimano compatibility portal",
+        "url": "https://productinfo.shimano.com/en/compatibility",
+        "note": "Brand-only compatibility."
+      },
+      {
+        "name": "Wolf Tooth parts finder",
+        "url": "https://bikerumor.com/wolf-tooth-launches-the-parts-finder/",
+        "note": "Shows only its own parts by bike model."
+      },
+      {
+        "name": "Competitive Cyclist compatibility hub",
+        "url": "https://www.competitivecyclist.com/bulletin/bike-compatibility-standards-hub-bb-freehub-axles-rotors-tire-rim-rules",
+        "note": "Static explainer content."
+      }
+    ],
+    "satellite": {
+      "name": "Tube and Tyre Size Converter",
+      "what": "Convert inch, French and ETRTO sizes and show matching tube ranges.",
+      "why_shared": "Frequent source of wrong purchases.",
+      "handoff": "Links to full BikeFit checks."
+    },
+    "marketing": {
+      "where": [
+        "Bicycles Stack Exchange",
+        "Bike forums (MTBR, Bike Forums)",
+        "Facebook bike repair groups",
+        "Bike co-ops",
+        "Show HN"
+      ],
+      "target": "Home mechanics, bike co-op volunteers, used-bike restorers",
+      "funnel": "Search 'will a 42t cassette fit my derailleur' -> tool.",
+      "cold_outreach": "Offer bike co-ops a free printable compatibility card.",
+      "post_ideas": [
+        "Will this cassette work with my rear derailleur? A 2-minute check",
+        "68 vs 73 mm bottom bracket shells explained",
+        "650B vs 27.5 vs 584: tyre size decoder"
+      ]
+    },
+    "capital_usd": 12,
+    "capital_note": "Domain only.",
+    "uses_paid_api": false,
+    "paid_api_note": null,
+    "confidence": "medium",
+    "notes": "Seven independent questions with moderate views (527-1,019). Mechanics data (BB standards, cassette limits) is mostly public but scattered. Not in my assigned niche list exactly, so niche chosen as Hobbies & Crafts."
+  },
+  {
+    "id": "seA-019",
+    "name": "OldRecordDecoder",
+    "idea": "A searchable glossary and symbol guide for decoding old genealogy records: abbreviations, column codes, old scripts and register marks.",
+    "description": "Users look up a record type and place (for example a UK 1939 Register annotation, a US church record index volume code, a Latin or French parish baptism entry, or Kurrent handwriting) and get a decoder with examples and links to sources. The moat is an expert-curated, cross-referenced glossary tied to record collections, built from genealogists' knowledge rather than generic dictionaries.",
+    "niche": "Genealogy & History",
+    "niche2": null,
+    "is_feature": false,
+    "feature_for": null,
+    "web_delivery": "Next.js on Vercel; glossary entries, example images (small, linked) and sources in Supabase.",
+    "why_hard_to_copy": "Expert-curated cross-collection glossary and example library; general OCR or AI transcription is unreliable for these scripts, so a reference people trust is the product.",
+    "signals": [
+      {
+        "platform": "stackexchange",
+        "url": "https://genealogy.stackexchange.com/questions/20770/understanding-notations-on-a-1939-register-entry",
+        "date": "2026-03-13",
+        "summary": "Researcher cannot interpret strike-throughs and annotations on a 1939 Register entry.",
+        "engagement": "question score 4, 548 views, 2 answers"
+      },
+      {
+        "platform": "stackexchange",
+        "url": "https://genealogy.stackexchange.com/questions/20789/what-does-w-mean-in-the-column-indicating-which-volume-the-record-can-be-found",
+        "date": "2026-07-12",
+        "summary": "Researcher asks what 'W' means in the volume column of an indexed Connecticut church record abstract.",
+        "engagement": "question score 2, 51 views, 1 answers"
+      },
+      {
+        "platform": "stackexchange",
+        "url": "https://genealogy.stackexchange.com/questions/20773/translating-quebec-parish-baptismal-record",
+        "date": "2026-03-23",
+        "summary": "Researcher asks for online services to transcribe and translate an 1827 Quebec parish baptism record.",
+        "engagement": "question score 1, 53 views, 1 answers"
+      },
+      {
+        "platform": "stackexchange",
+        "url": "https://genealogy.stackexchange.com/questions/20779/fathers-current-former-occupation-in-kurrentschrift",
+        "date": "2026-05-06",
+        "summary": "Researcher cannot read a father's occupation in a 1869 Kurrent-script Latvian baptism record.",
+        "engagement": "question score 2, 81 views, 1 answers"
+      },
+      {
+        "platform": "stackexchange",
+        "url": "https://genealogy.stackexchange.com/questions/20742/transcription-of-letter-written-in-kurrenschrift",
+        "date": "2025-11-18",
+        "summary": "Researcher asks for help transcribing a 4-page letter written in Kurrent in 1848.",
+        "engagement": "question score 1, 51 views, 0 answers"
+      },
+      {
+        "platform": "stackexchange",
+        "url": "https://genealogy.stackexchange.com/questions/20748/what-is-the-name-in-this-signature-from-1877",
+        "date": "2025-11-24",
+        "summary": "Researcher cannot read an 1877 signature and asks for resources to search old signatures.",
+        "engagement": "question score 1, 97 views, 2 answers"
+      }
+    ],
+    "competitors_seen": [
+      {
+        "name": "Transkribus Old German scripts",
+        "url": "https://www.transkribus.org/old-german-scripts",
+        "note": "AI transcription service; marketed for Kurrent and Sütterlin, not a glossary."
+      },
+      {
+        "name": "BYU German handwriting symbols and abbreviations",
+        "url": "https://script.byu.edu/german-handwriting/tools/symbols-and-abbreviations",
+        "note": "Good German chart; narrow scope."
+      },
+      {
+        "name": "Polish Origins German records vocabulary",
+        "url": "https://polishorigins.com/?p=1259",
+        "note": "Static vocabulary list."
+      }
+    ],
+    "satellite": {
+      "name": "1939 Register Marks Lookup",
+      "what": "Look up common annotations and strike-through meanings on the 1939 Register.",
+      "why_shared": "Specific, recurring question for UK family historians.",
+      "handoff": "Links into the full OldRecordDecoder glossary."
+    },
+    "marketing": {
+      "where": [
+        "Genealogy Stack Exchange",
+        "Genealogy societies and mailing lists",
+        "FamilySearch Community",
+        "Facebook genealogy groups",
+        "Show HN"
+      ],
+      "target": "Family historians working with pre-1900 records",
+      "funnel": "Search '<record type> abbreviations' -> glossary page.",
+      "cold_outreach": "Offer genealogy societies a link for newsletters.",
+      "post_ideas": [
+        "What the pencil marks on your 1939 Register entry mean",
+        "Latin words in Quebec baptism records",
+        "Common Kurrent letters that look alike"
+      ]
+    },
+    "capital_usd": 12,
+    "capital_note": "Domain only.",
+    "uses_paid_api": false,
+    "paid_api_note": null,
+    "confidence": "low",
+    "notes": "Genealogy site volume is tiny (20 questions in the window) and views per question are 51-548, so demand evidence is modest. Moat depends on expert contributors; existing resources are fragmented, which is the gap."
+  },
+  {
+    "id": "seA-020",
+    "name": "NightTransfer",
+    "idea": "A guide to getting to and from airports and between airports when trains and buses have stopped.",
+    "description": "For major airports and city pairs, the page lists last and first services, night buses, taxi or fixed-price options, accessible routes with luggage, and whether you can stay in the airport overnight. The moat is a curated and dated dataset of off-hours alternatives, which general map apps handle poorly and that changes seasonally.",
+    "niche": "Travel",
+    "niche2": null,
+    "is_feature": false,
+    "feature_for": null,
+    "web_delivery": "Next.js on Vercel; Supabase tables of airport, mode, last/first service, source URL and verified_at.",
+    "why_hard_to_copy": "Hand-checked off-hours service data for airports and inter-airport transfers; maps and trip planners return nothing useful after midnight.",
+    "signals": [
+      {
+        "platform": "stackexchange",
+        "url": "https://travel.stackexchange.com/questions/203938/osaka-kansai-airport-to-osaka-itami-airport-transfer-after-8pm",
+        "date": "2026-06-20",
+        "summary": "Traveller asks how to transfer from Osaka Kansai to Osaka Itami airport after 8 PM.",
+        "engagement": "question score 3, 1055 views, 2 answers"
+      },
+      {
+        "platform": "stackexchange",
+        "url": "https://travel.stackexchange.com/questions/201526/late-night-transfer-from-sha-to-pvg-airport-single-ticket",
+        "date": "2025-10-30",
+        "summary": "Traveller asks about a late-night Shanghai SHA to PVG transfer on a single ticket.",
+        "engagement": "question score 8, 1379 views, 3 answers"
+      },
+      {
+        "platform": "stackexchange",
+        "url": "https://travel.stackexchange.com/questions/203880/early-morning-pre-6-am-accessible-route-from-caumartin-to-gare-du-nord-with-lu",
+        "date": "2026-06-14",
+        "summary": "Traveller needs an accessible early-morning route with luggage from Caumartin to Gare du Nord before 6 AM.",
+        "engagement": "question score 8, 1339 views, 1 answers"
+      },
+      {
+        "platform": "stackexchange",
+        "url": "https://travel.stackexchange.com/questions/201709/is-there-any-way-to-get-from-manchester-airport-to-carlisle-via-public-transport",
+        "date": "2025-11-26",
+        "summary": "Traveller landing at Manchester at 19:30 on a Saturday finds no train to Carlisle after 19:29 and only a 00:45 coach, and asks whether any other option exists.",
+        "engagement": "question score 3, 426 views, 3 answers"
+      },
+      {
+        "platform": "stackexchange",
+        "url": "https://travel.stackexchange.com/questions/203484/late-arrival-flight-can-i-stay-in-the-japanese-airport-until-after-midnight-in",
+        "date": "2026-03-21",
+        "summary": "Traveller on a late arrival asks whether they can stay in a Japanese airport until after midnight.",
+        "engagement": "question score 2, 390 views, 1 answers"
+      }
+    ],
+    "competitors_seen": [
+      {
+        "name": "Airport Transfer Portal late-night airport guides",
+        "url": "https://www.airporttransferportal.com/en/airport-guides/bhx/late-night",
+        "note": "Commercial lead-gen guide per airport, taxi-focused."
+      },
+      {
+        "name": "Tokyo Cheapo Haneda late-night transfer guide",
+        "url": "https://tokyocheapo.com/travel/haneda-to-tokyo-late-night-transfer/",
+        "note": "One-city guide."
+      }
+    ],
+    "satellite": null,
+    "marketing": {
+      "where": [
+        "FlyerTalk forums",
+        "TripAdvisor destination forums",
+        "Travel Stack Exchange (answer questions, link only where site rules allow)",
+        "Facebook expat and digital-nomad groups",
+        "Show HN",
+        "Product Hunt"
+      ],
+      "target": "Travellers on late-arrival or early-departure itineraries",
+      "funnel": "Search 'airport to city after midnight <airport>' -> airport page.",
+      "cold_outreach": "Pitch city transit blogs and airport-hotel blogs.",
+      "post_ideas": [
+        "Last trains from Heathrow, Gatwick and Stansted by line",
+        "Between airports after 8 PM: Osaka, Shanghai, London",
+        "Can you sleep in the terminal? Rules by airport"
+      ]
+    },
+    "capital_usd": 12,
+    "capital_note": "Domain only.",
+    "uses_paid_api": false,
+    "paid_api_note": null,
+    "confidence": "low",
+    "notes": "Five different askers; views 390-1,379. Commercial competition for the taxi-intent keywords. Overlaps with AirportRules and could be one product."
+  }
+]

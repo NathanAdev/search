@@ -1,0 +1,95 @@
+[
+  {
+    "id": "apA-001",
+    "name": "Recipe Box Anywhere",
+    "idea": "A free-to-start web recipe box that works on every device and household member for one account, with one-click import of Paprika, Crouton and Recipe Keeper exports.",
+    "description": "Recipe-manager buyers keep getting burned by per-device purchases (pay again for Android, Windows, a spouse's phone) and by paywalls that cap or lock saved recipes. This is a browser/PWA recipe box with household sharing and read-only share links for non-users, plus drag-and-drop importers that read the proprietary export files of the big native apps entirely client-side. The moat is the file-format importers (Paprika archive, Crouton, Recipe Keeper, plain text/Google Doc paste) and a robust ingredient/step parser, not the CRUD.",
+    "niche": "Food & Cooking",
+    "niche2": null,
+    "is_feature": false,
+    "feature_for": null,
+    "web_delivery": "Next.js PWA on Vercel hobby; Supabase auth + Postgres with row-level security for household sharing; importers and recipe-scraping parser run in the browser or in a small serverless function reading schema.org Recipe JSON-LD.",
+    "why_hard_to_copy": "Correct importers for several proprietary export formats plus a tolerant ingredient and step parser (fractions, units, section headings, messy blog markup) take real iteration; a weekend CRUD clone would not read Paprika/Crouton archives or survive messy sources.",
+    "signals": [
+      {
+        "platform": "appstore",
+        "url": "https://apps.apple.com/us/app/recipe-keeper/id974683711",
+        "date": "2026-09-14",
+        "summary": "Reviewers on Recipe Keeper say the paid account still shows the free tier on a laptop because sync needs a separate purchase per platform (title: \"You have to pay for the app separately on each device\"). I read about 15 reviews of 1-3 stars since Oct 2025 with the same per-device or no-family-sharing complaint, e.g. 2026-10-15, 2026-09-29, 2026-09-16, 2026-07-27, 2026-06-26, 2026-05-23.",
+        "engagement": "about 15 of ~56 recent 1-3 star reviews (250 read) repeat this"
+      },
+      {
+        "platform": "appstore",
+        "url": "https://apps.apple.com/us/app/paprika-recipe-manager-3/id1303222868",
+        "date": "2026-03-15",
+        "summary": "A Paprika user dropped it for a free notes app because the computer version costs another $30 and notes sync to the web for free; others complain of repurchasing for macOS (2026-08-30) and of lost recipes with no support reply (2026-03-27, 2025-12-23).",
+        "engagement": "about 6 of 60 recent 1-3 star reviews (250 read)"
+      },
+      {
+        "platform": "appstore",
+        "url": "https://apps.apple.com/us/app/pepper-recipe-organizer/id1583947369",
+        "date": "2026-10-06",
+        "summary": "Pepper users say recipes become inaccessible if the roughly $40/year plan lapses (\"It Costs You\"), and one calls sharing recipes too expensive (2026-04-03).",
+        "engagement": "3-4 of 45 recent 1-3 star reviews"
+      },
+      {
+        "platform": "appstore",
+        "url": "https://apps.apple.com/us/app/crouton-recipe-manager/id1461650987",
+        "date": "2026-08-08",
+        "summary": "Crouton's free tier caps users at 5 recipes before a $20-30 upgrade (\"Only 5 recipes\"); others say features bought earlier moved behind a monthly fee and there is no bulk import (2026-01-12).",
+        "engagement": "about 6 of 19 recent 1-3 star reviews"
+      }
+    ],
+    "competitors_seen": [
+      {
+        "name": "Mealie",
+        "url": "https://mealie.io",
+        "note": "Free, open source, self-hosted only; needs a server to run"
+      },
+      {
+        "name": "Tandoor Recipes",
+        "url": "https://tandoor.dev",
+        "note": "Free, open source, self-hosted Django app; no hosted free tier"
+      },
+      {
+        "name": "Paprika",
+        "url": "https://www.paprikaapp.com",
+        "note": "One-time purchase per platform; no web app"
+      },
+      {
+        "name": "Recipe Keeper",
+        "url": "https://recipekeeperonline.com",
+        "note": "Pay per platform for sync; no household sharing across stores"
+      }
+    ],
+    "satellite": {
+      "name": "Recipe file converter",
+      "what": "Drop a Paprika, Crouton or Recipe Keeper export and get clean Markdown, JSON or printable PDF locally in the browser.",
+      "why_shared": "People stuck on a dying or paywalled app want an exit and will share a free tool that frees their recipes.",
+      "handoff": "After conversion, a button imports the same file into Recipe Box Anywhere."
+    },
+    "marketing": {
+      "where": [
+        "Hacker News Show HN",
+        "Product Hunt",
+        "Lemmy c/selfhosted and c/cooking",
+        "Mac Power Users and other app-switcher forums",
+        "cooking Facebook groups for Paprika users"
+      ],
+      "target": "Home cooks who bought Paprika, Recipe Keeper or Crouton and now use a mix of iPhone, Android and Windows, plus couples sharing one recipe collection",
+      "funnel": "Free converter page -> import into the box -> share link to spouse -> household invite",
+      "cold_outreach": "Reply in forum threads asking for a cross-platform recipe app with the converter link as the answer",
+      "post_ideas": [
+        "I got tired of paying for the same recipe app four times, so I built a free one",
+        "Export your Paprika recipes to Markdown in your browser, nothing uploaded",
+        "Why your recipe app should not lock your recipes behind a subscription"
+      ]
+    },
+    "capital_usd": 12,
+    "capital_note": "Domain only; Supabase and Vercel free tiers",
+    "uses_paid_api": false,
+    "paid_api_note": null,
+    "confidence": "medium",
+    "notes": "Crowded space; moat rests on importers and parser quality and on free hosted sharing. Social-video caption import (Instagram/TikTok) is another recurring gap on Paprika (about 8 reviews, e.g. 2026-10-13, 2026-01-12) but Meta blocks scraping and newer apps (ReciMe, Recipy, Qwikdish) already cover it, so it is a stretch goal, not the core."
+  }
+]

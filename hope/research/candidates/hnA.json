@@ -1,0 +1,1197 @@
+[
+ {
+  "id": "hnA-001",
+  "name": "Takeout Doctor",
+  "idea": "Browser tool that checks, repairs and organizes huge Google Photos / iCloud export zips locally before you move to Immich or a NAS.",
+  "description": "You pick the downloaded Takeout zip parts and an output folder. It verifies every part is present and not corrupt, pairs photos with their JSON sidecars (including truncated and renamed files), restores capture dates and GPS, rebuilds albums and removes the duplicate copies Takeout makes. Nothing is uploaded. Hard to copy because of multi-GB zip streaming in the browser and the long tail of Takeout naming and metadata edge cases.",
+  "niche": "Photo & Video",
+  "niche2": "Data & Documents",
+  "is_feature": false,
+  "feature_for": null,
+  "web_delivery": "Static web app on Vercel using File System Access API (Chromium) to read zip parts with Blob.slice and write the organized output to a chosen folder; no server, no uploads; Supabase only for optional anonymous bug reports.",
+  "why_hard_to_copy": "Correctness-critical handling of multi-GB zips, sidecar matching rules (truncated names, -edited suffixes, duplicate album copies, Live Photos) and in-browser EXIF/XMP writing; a weekend prompt-built version breaks on real exports.",
+  "signals": [
+   {
+    "platform": "hn",
+    "url": "https://news.ycombinator.com/item?id=49540150",
+    "date": "2026-09-02",
+    "summary": "Commenter warns that Google Takeout archives of a few hundred GB can contain corrupted files, so you may need two takeouts, and the hard part is verifying nothing is missing.",
+    "engagement": "comment in the Immich/Google Photos thread; points not shown by API"
+   },
+   {
+    "platform": "hn",
+    "url": "https://news.ycombinator.com/item?id=48767576",
+    "date": "2026-07-02",
+    "summary": "User trying to import about 14 huge Takeout chunks into Immich found the browser downloads corrupted and cannot use wget because of Google session cookies; asks for the best way to handle it.",
+    "engagement": "comment in Immich 3.0 thread; points not shown"
+   },
+   {
+    "platform": "hn",
+    "url": "https://news.ycombinator.com/item?id=48771565",
+    "date": "2026-07-03",
+    "summary": "Says importing from Google Photos or iCloud into Immich is hard and depends on immich-go, which they call buggy and close to abandoned; about 9k of their photos ended up broken.",
+    "engagement": "comment in Immich 3.0 thread"
+   },
+   {
+    "platform": "hn",
+    "url": "https://news.ycombinator.com/item?id=50218490",
+    "date": "2026-10-24",
+    "summary": "Warns not to treat Takeout as a byte-perfect backup of Google Photos: GPS metadata may be stripped depending on device and country, and captured-at times can change.",
+    "engagement": "comment in thread about Google using Gmail/Photos data for ads (387 pts story)"
+   },
+   {
+    "platform": "hn",
+    "url": "https://news.ycombinator.com/item?id=46536951",
+    "date": "2026-01-08",
+    "summary": "Says iCloud takeout is just zip parts with no structure and wants a tool that extracts images with albums preserved; nothing exists for PC users.",
+    "engagement": "comment in Darwin-photos thread"
+   },
+   {
+    "platform": "hn",
+    "url": "https://news.ycombinator.com/item?id=49793103",
+    "date": "2026-09-21",
+    "summary": "Calls getting photos out of Google annoying; the closest to sane they found is exporting Takeout to Google Drive and pulling it down with rclone.",
+    "engagement": "comment in Noodle Gallery (Immich fork) thread"
+   },
+   {
+    "platform": "hn",
+    "url": "https://news.ycombinator.com/item?id=48773227",
+    "date": "2026-07-03",
+    "summary": "Notes Takeout separates images from their metadata and that Google randomly changes file names, which breaks importers.",
+    "engagement": "comment in Immich 3.0 thread"
+   }
+  ],
+  "competitors_seen": [
+   {
+    "name": "GooglePhotosTakeoutHelper Neo",
+    "url": "https://github.com/Xentraxx/GooglePhotosTakeoutHelper_Neo",
+    "note": "Free open-source tool; restores timestamps and GPS from sidecars; needs install and command line comfort."
+   },
+   {
+    "name": "google-photo-meta-fixer",
+    "url": "https://pypi.org/project/google-photo-meta-fixer/",
+    "note": "Python CLI for Takeout folders; no verification of zip parts, no GUI."
+   },
+   {
+    "name": "EXIF Metadata photo merger and organiser (Chrome extension)",
+    "url": "https://chromewebstore.google.com/detail/cchhnocflgfioicpcefcbbfbpgohgdkn",
+    "note": "Extension bundling zip extraction, pair matching and EXIF merge locally; extension not a web app, Google only."
+   },
+   {
+    "name": "Metadata Fixer (vendor guide on Takeout via Drive + rclone)",
+    "url": "https://metadatafixer.com",
+    "note": "Vendor linked on HN for Takeout download workaround; product details not verified."
+   },
+   {
+    "name": "Ashampoo Meta Fusion",
+    "url": "https://www.ashampoo.com/en-us/meta-fusion",
+    "note": "Paid desktop app that merges JSON data into photos."
+   }
+  ],
+  "satellite": {
+   "name": "Takeout Part Checker",
+   "what": "Free page: drop all downloaded Takeout zip parts and it checks the numbering is complete and every zip entry passes its CRC, then lists which parts to re-download.",
+   "why_shared": "People post 'my Takeout is corrupted' in self-hosting and Immich threads; a checker link is the obvious answer to paste.",
+   "handoff": "Result page ends with 'Parts OK. Now fix dates, GPS and albums with Takeout Doctor'."
+  },
+  "marketing": {
+   "where": [
+    "Immich GitHub Discussions and Discord",
+    "Lemmy c/selfhosted and c/privacy",
+    "Hacker News Show HN",
+    "Google Photos Help Community threads",
+    "AlternativeTo listing"
+   ],
+   "target": "People leaving Google Photos or iCloud for Immich, Synology, a NAS or local folders.",
+   "funnel": "Free part checker -> full organizer (free for small exports, one-time unlock for large ones).",
+   "cold_outreach": "Reply with the checker link in threads where someone reports corrupted or missing Takeout parts.",
+   "post_ideas": [
+    "Your Google Takeout may be missing files: check it in your browser, nothing uploaded",
+    "Why Takeout photos lose dates and GPS and how to restore them",
+    "Moving from iCloud Photos with albums intact: what the export really contains"
+   ]
+  },
+  "capital_usd": 12,
+  "capital_note": "Domain name only",
+  "uses_paid_api": false,
+  "paid_api_note": null,
+  "confidence": "medium",
+  "notes": "Chromium-only for folder write-out; Safari/Firefox would need zip download fallback that hits memory limits. A Chrome extension and several CLIs already exist, so the web-app angle (zero install, verification first) is the differentiator. Takeout format can change without notice."
+ },
+ {
+  "id": "hnA-002",
+  "name": "ENEX Exit",
+  "idea": "Convert an Evernote export (.enex) to clean Markdown, Obsidian, Joplin or Apple Notes folders entirely in the browser.",
+  "description": "Drop one or many multi-GB ENEX files. It streams them, keeps notebooks, tags, dates, attachments, tables, checklists and evernote:// links, and outputs a zip or a folder in the layout of the target app. Aimed at people leaving Evernote after repeated price rises under Bending Spoons. Moat is fidelity of ENML-to-Markdown conversion and large-file streaming, not the UI.",
+  "niche": "Data & Documents",
+  "niche2": "Productivity & Planning",
+  "is_feature": false,
+  "feature_for": null,
+  "web_delivery": "Static web app on Vercel; ENEX parsed with streaming XML in a Web Worker; output via File System Access API or a streamed zip; no uploads, no server.",
+  "why_hard_to_copy": "Converting ENML (HTML-like with embedded resources referenced by hash, nested tables, checkboxes, in-note links) to Markdown faithfully across target apps is full of edge cases, and doing it on multi-GB files in memory-limited browsers needs streaming design.",
+  "signals": [
+   {
+    "platform": "hn",
+    "url": "https://news.ycombinator.com/item?id=50066021",
+    "date": "2026-10-13",
+    "summary": "Switched from Evernote to Joplin after an email said their annual plan would rise from $149 to $249; had to find a backup script to dump a decade of notebooks.",
+    "engagement": "comment in Airtable-layoffs thread (45 pts, 24 comments)"
+   },
+   {
+    "platform": "hn",
+    "url": "https://news.ycombinator.com/item?id=47263757",
+    "date": "2026-03-05",
+    "summary": "Moved to Obsidian after Evernote raised subscription prices beyond what they could justify.",
+    "engagement": "comment in 'Good software knows when to stop' thread"
+   },
+   {
+    "platform": "hn",
+    "url": "https://news.ycombinator.com/item?id=45757968",
+    "date": "2025-10-30",
+    "summary": "Asks whether Evernote even has an option to export, in the thread about AOL being sold to Bending Spoons.",
+    "engagement": "comment; points not shown"
+   }
+  ],
+  "competitors_seen": [
+   {
+    "name": "evernote2md",
+    "url": "https://docsearch.algolia.com/mcp/docs/repo/wormi4ok/evernote2md",
+    "note": "Free CLI (binary/Homebrew/Docker); keeps attachments and tags; command-line only."
+   },
+   {
+    "name": "enex2md",
+    "url": "https://pypi.org/project/enex2md",
+    "note": "Python CLI to GitHub-flavored Markdown."
+   },
+   {
+    "name": "ever2simple",
+    "url": "https://pypi.org/project/ever2simple",
+    "note": "Python CLI to json/csv/txt; Markdown is a side effect."
+   },
+   {
+    "name": "convert.guru ENEX converter",
+    "url": "https://convert.guru/de/enex-konverter",
+    "note": "Upload-based online converter; its own page warns generic converters often fail on ENEX."
+   },
+   {
+    "name": "BitRecover Evernote to Markdown",
+    "url": "https://appsource.microsoft.com/en-us/product/saas/bitrecover.evernote-to-markdown",
+    "note": "Paid commercial tool, trial version."
+   }
+  ],
+  "satellite": {
+   "name": "ENEX Inspector",
+   "what": "Free page that opens an .enex file locally and shows note count, attachment sizes, tables and unsupported content before you convert.",
+   "why_shared": "Evernote forum and Joplin/Obsidian users ask 'will my notes survive the move?'",
+   "handoff": "Inspector report has a 'Convert these notes' button into ENEX Exit."
+  },
+  "marketing": {
+   "where": [
+    "Joplin forum",
+    "Obsidian forum and Discord",
+    "Hacker News threads on Bending Spoons acquisitions",
+    "Lemmy c/selfhosted",
+    "AlternativeTo (Evernote alternatives page)"
+   ],
+   "target": "Long-time Evernote users with big archives who are leaving over price.",
+   "funnel": "Free converter for up to N notes -> one-time unlock for full archives.",
+   "cold_outreach": "Answer 'how do I export Evernote' questions with a link and a fidelity comparison.",
+   "post_ideas": [
+    "I moved 14,000 Evernote notes to Markdown without uploading anything",
+    "What gets lost when you export Evernote, tested on 5 converters",
+    "Evernote price went up again: a no-upload exit path"
+   ]
+  },
+  "capital_usd": 12,
+  "capital_note": "Domain name only",
+  "uses_paid_api": false,
+  "paid_api_note": null,
+  "confidence": "low",
+  "notes": "Free CLIs already do the conversion, so the real gap is a no-install, no-upload, GUI path for non-technical people; the demand signal is price anger, not an explicit request for a web converter. Evernote may also change export formats."
+ },
+ {
+  "id": "hnA-003",
+  "name": "Base Exit",
+  "idea": "Check how hard it is to leave Airtable and import an Airtable export into Supabase tables with real relations.",
+  "description": "Upload (locally) the CSV export of an Airtable base. The tool detects linked records, select fields and attachments, scores the migration complexity, and generates a Supabase/Postgres schema plus import script. Aimed at small teams, clubs and shops hit by the Bending Spoons takeover and layoffs. Moat is the field-type mapping rules, not the UI.",
+  "niche": "Data & Documents",
+  "niche2": "Dev Tools",
+  "is_feature": false,
+  "feature_for": null,
+  "web_delivery": "Static web app on Vercel parsing CSVs client-side; outputs SQL and a Supabase import script; optional one-click import with the user's own Supabase project keys kept in the browser.",
+  "why_hard_to_copy": "Mapping Airtable field semantics (linked records, rollups, lookups, multi-select, formulas) to relational tables with correct foreign keys is domain-specific; low moat otherwise, other migration tools exist.",
+  "signals": [
+   {
+    "platform": "hn",
+    "url": "https://news.ycombinator.com/item?id=50062076",
+    "date": "2026-10-12",
+    "summary": "Airtable laid off a large part of its team after the Bending Spoons purchase; commenters predict price hikes and ask for non-Google alternatives (replies: NocoDB, Google Sheets, others).",
+    "engagement": "45 points, 24 comments"
+   },
+   {
+    "platform": "hn",
+    "url": "https://news.ycombinator.com/item?id=49669672",
+    "date": "2026-09-12",
+    "summary": "A Show HN builder turns Airtable exports into real Postgres schemas with foreign keys instead of flat CSVs, showing the migration need is being worked on.",
+    "engagement": "1 point (title and date seen via API)"
+   },
+   {
+    "platform": "hn",
+    "url": "https://news.ycombinator.com/item?id=50029201",
+    "date": "2026-10-10",
+    "summary": "A post offers a 'complexity score' for migrating an Airtable base off Airtable, another sign people are planning exits.",
+    "engagement": "2 points (title and date seen via API)"
+   }
+  ],
+  "competitors_seen": [
+   {
+    "name": "Grist",
+    "url": "https://www.getgrist.com/airtable-alternative-self-hosted/",
+    "note": "Open-source Airtable-like with its own migration tool (per its HN employee comments)."
+   },
+   {
+    "name": "Baserow",
+    "url": "https://baserow.io",
+    "note": "Open-source no-code database positioned as an Airtable alternative (from HN hiring post)."
+   }
+  ],
+  "satellite": {
+   "name": "Airtable Complexity Score",
+   "what": "Free page that scores a local CSV export for migration difficulty (links, attachments, formula fields).",
+   "why_shared": "Teams share scores when debating whether to leave Airtable.",
+   "handoff": "Score page offers the generated Supabase schema."
+  },
+  "marketing": {
+   "where": [
+    "Hacker News Airtable threads",
+    "Supabase Discord and GitHub Discussions",
+    "Indie Hackers",
+    "AlternativeTo (Airtable alternatives)"
+   ],
+   "target": "Small teams and nonprofits with Airtable bases who want a cheap Postgres home.",
+   "funnel": "Free score -> free schema generator -> hosted migration help.",
+   "cold_outreach": "Comment on 'leaving Airtable' threads with the score tool.",
+   "post_ideas": [
+    "How complex is your Airtable base to migrate? Score it in your browser",
+    "Airtable linked records to Postgres foreign keys, explained",
+    "Leaving Airtable for Supabase free tier"
+   ]
+  },
+  "capital_usd": 12,
+  "capital_note": "Domain name only",
+  "uses_paid_api": false,
+  "paid_api_note": null,
+  "confidence": "low",
+  "notes": "Demand evidence is thin (one real thread plus two supply-side posts) and Grist/Baserow already ship importers. Treat as a feature/satellite for a bigger Supabase product rather than a standalone business."
+ },
+ {
+  "id": "hnA-004",
+  "name": "Mesh Pair",
+  "idea": "Design complete 3D-printable gear trains in the browser, including the mating gear, and export STL, STEP and DXF.",
+  "description": "You choose module, tooth counts, pressure angle and a printer-tolerance preset; it builds matched gears with correct center distance, backlash and tooth-profile corrections, shows them meshing, and exports STL, STEP and DXF. Covers spur, helical/herringbone, rack and planetary sets. Hard to copy because of the gear math and in-browser STEP export.",
+  "niche": "Science & Maker",
+  "niche2": "Hobbies & Crafts",
+  "is_feature": false,
+  "feature_for": null,
+  "web_delivery": "Static app on Vercel; geometry in JS/WASM (three.js preview, OpenCascade WASM for STEP); designs saved as URL parameters, optional saved designs in Supabase.",
+  "why_hard_to_copy": "Involute geometry with profile shift, undercut avoidance, contact ratio and FDM backlash tuning is correctness-critical; STEP export from the browser needs a CAD kernel in WASM.",
+  "signals": [
+   {
+    "platform": "hn",
+    "url": "https://news.ycombinator.com/item?id=46531331",
+    "date": "2026-01-07",
+    "summary": "On a browser gear generator for 3D printing, a commenter says it should output the matching gear, because a gear with wide gaps needs a partner with teeth that fill them.",
+    "engagement": "comment in a 53-point, 13-comment Show HN"
+   },
+   {
+    "platform": "hn",
+    "url": "https://news.ycombinator.com/item?id=46531576",
+    "date": "2026-01-07",
+    "summary": "Asks for STEP export so the gear can be imported into CAD and customized, for example with a hub.",
+    "engagement": "comment in same thread"
+   },
+   {
+    "platform": "hn",
+    "url": "https://news.ycombinator.com/item?id=46533643",
+    "date": "2026-01-07",
+    "summary": "Suggests at least 2D DXF export because STL and 3MF are not compatible with most CAD software.",
+    "engagement": "comment in same thread"
+   }
+  ],
+  "competitors_seen": [
+   {
+    "name": "MakerWorld Parametric Gear Generator",
+    "url": "https://makerworld.com/models/3001647",
+    "note": "Browser OpenSCAD customizer with true involute teeth; stacks gears; export formats unclear."
+   },
+   {
+    "name": "geargen",
+    "url": "https://pypi.org/project/geargen/",
+    "note": "CLI that writes STEP for spur, helical, internal, bevel; only the tooth part, no GUI."
+   },
+   {
+    "name": "MatterHackers Gear Creator",
+    "url": "https://www.matterhackers.com/store/l/gear-creator/sk/MENZNGL4",
+    "note": "Needs paid MatterControl Pro."
+   },
+   {
+    "name": "Hessmer involute spur gear builder / museum copy",
+    "url": "https://live.museum.manchester.ac.uk/library/gear-template.html",
+    "note": "Browser-based but DXF only."
+   }
+  ],
+  "satellite": {
+   "name": "Gear Ratio and Center Distance Calculator",
+   "what": "Single-page calculator: module, teeth, ratio, center distance, with a warning when two gears will not mesh.",
+   "why_shared": "Posted in maker forums when people ask 'what spacing do these gears need?'",
+   "handoff": "Calculator offers 'Generate printable pair'."
+  },
+  "marketing": {
+   "where": [
+    "Printables and MakerWorld model descriptions",
+    "Hackaday.io",
+    "Lemmy c/3dprinting",
+    "Prusa and Bambu community forums",
+    "Hacker News Show HN"
+   ],
+   "target": "Hobby 3D printer owners, robotics students, clock and automata makers.",
+   "funnel": "Free calculator -> free STL generator -> saved designs and STEP export unlock.",
+   "cold_outreach": "Reply to gear-related questions on maker forums with a prebuilt shareable design link.",
+   "post_ideas": [
+    "Generate a matching gear pair that actually fits, with printer tolerance built in",
+    "Why your printed gears bind: backlash and profile shift explained",
+    "Export STEP gears from a browser tab"
+   ]
+  },
+  "capital_usd": 12,
+  "capital_note": "Domain name only",
+  "uses_paid_api": false,
+  "paid_api_note": null,
+  "confidence": "medium",
+  "notes": "Signals are three comments in one thread (single independent source). Free OpenSCAD customizers are strong competitors; the opening is mating-pair design plus STEP/DXF export. OpenCascade WASM bundle is large but fits Vercel hobby static hosting."
+ },
+ {
+  "id": "hnA-005",
+  "name": "Many Sentences",
+  "idea": "A spaced-repetition vocabulary trainer that shows a different real example sentence, with audio, every time you review a word.",
+  "description": "Each word card draws from a pool of real sentences (for example from the Tatoeba corpus under its CC license) matched by lemma and sorted by difficulty, read aloud by the browser's text-to-speech or native recordings where licensed. Reviews are scheduled with FSRS. Aimed at learners who say fixed example sentences get memorized instead of the word. Moat is the curated word-to-sentence index per language.",
+  "niche": "Languages",
+  "niche2": "Education & Study",
+  "is_feature": false,
+  "feature_for": null,
+  "web_delivery": "PWA on Vercel with offline review (IndexedDB); per-language sentence packs shipped as compressed static files; progress sync via Supabase free tier.",
+  "why_hard_to_copy": "The value is a curated, licence-clean word-to-sentence index with lemma matching and difficulty grading per language (Japanese and Chinese need tokenization), which is data work, not UI.",
+  "signals": [
+   {
+    "platform": "hn",
+    "url": "https://news.ycombinator.com/item?id=48864021",
+    "date": "2026-07-10",
+    "summary": "Wishes for an audio-first flashcard app that changes the example sentences each time; uses Anki for Japanese vocabulary N5 to N3, can read N3 text but cannot follow even N4 spoken Japanese.",
+    "engagement": "comment in 'A love letter to flashcards' (206 points, 116 comments)"
+   },
+   {
+    "platform": "hn",
+    "url": "https://news.ycombinator.com/item?id=48864663",
+    "date": "2026-07-10",
+    "summary": "Says drilling words or a fixed sentence works poorly and wrote their own program that generates a new sentence at every review, using Anki only as the scheduler; found it fun and effective.",
+    "engagement": "comment in same thread"
+   },
+   {
+    "platform": "hn",
+    "url": "https://news.ycombinator.com/item?id=48671886",
+    "date": "2026-06-25",
+    "summary": "Show HN for turning native-language audio into flashcards with shadowing practice drew interest, showing demand for audio-based cards.",
+    "engagement": "92 points, 37 comments"
+   }
+  ],
+  "competitors_seen": [
+   {
+    "name": "tatoeba-to-anki",
+    "url": "https://github.com/Vuizur/tatoeba-to-anki",
+    "note": "Creates static Anki decks from Tatoeba pairs with audio; one fixed sentence per card."
+   },
+   {
+    "name": "ankipy-language-examples",
+    "url": "https://github.com/igordsmelo/ankipy-language-examples",
+    "note": "Adds example sentences to Anki cards from Tatoeba; also fixed per card."
+   },
+   {
+    "name": "AudioStudy audio flashcards",
+    "url": "https://apps.apple.com/hn/app/audiostudy-audio-flashcards/id1610593210",
+    "note": "Mobile audio flashcards app; not a rotating-sentence web trainer."
+   },
+   {
+    "name": "Loudwalk",
+    "url": "https://loudwalk.com/?from=hn",
+    "note": "Reviews your Anki decks out loud on walks (Show HN 2026-10-23)."
+   }
+  ],
+  "satellite": {
+   "name": "Sentence Finder",
+   "what": "Free lookup: type a word and see graded real sentences with audio for that language.",
+   "why_shared": "Learners paste sentence links in forums and study groups.",
+   "handoff": "'Add this word to my review queue'."
+  },
+  "marketing": {
+   "where": [
+    "Language learning Discords",
+    "Hacker News Show HN",
+    "Lemmy language-learning communities",
+    "Anki forums (forums.ankiweb.net)",
+    "ProductHunt"
+   ],
+   "target": "Self-taught learners of Japanese, Spanish, French and similar using Anki or Duolingo.",
+   "funnel": "Free sentence finder -> free trainer for one language -> more languages.",
+   "cold_outreach": "Answer 'how do I stop memorizing the sentence instead of the word' threads.",
+   "post_ideas": [
+    "Stop memorizing the example sentence: one word, many real sentences",
+    "Audio-first vocabulary review, no AI, free",
+    "How I graded 200k Tatoeba sentences by difficulty"
+   ]
+  },
+  "capital_usd": 12,
+  "capital_note": "Domain name only",
+  "uses_paid_api": false,
+  "paid_api_note": null,
+  "confidence": "low",
+  "notes": "Core works without AI. Demand comes from two commenters in one thread plus a related Show HN. FSRS has open-source implementations so scheduling is easy; the moat is only the data pipeline. Tatoeba audio coverage is patchy, so TTS quality is a risk."
+ },
+ {
+  "id": "hnA-006",
+  "name": "Wall Planner Maker",
+  "idea": "Print a yearly or monthly wall planner on A4/A3 with your country's public holidays, school terms and personal events.",
+  "description": "Choose region, year, week start and layout (year-at-a-glance by week, monthly, term planner), import a personal ICS file or type events, then download a vector PDF. Region data covers public holidays, school terms and religious dates (Easter, Hijri, Hebrew, lunar). Moat is the curated regional holiday and school-term dataset and the layouts, not the PDF generation.",
+  "niche": "Productivity & Planning",
+  "niche2": "Parenting & Family",
+  "is_feature": false,
+  "feature_for": null,
+  "web_delivery": "Static web app on Vercel generating PDFs client-side (pdf-lib); region datasets as static JSON; saved layouts optionally in Supabase.",
+  "why_hard_to_copy": "Curating accurate school-term and holiday data by region, handling movable and lunar dates and getting print layouts right is slow data work; the PDF layout alone is easy to copy, so the moat is honest-but-moderate.",
+  "signals": [
+   {
+    "platform": "hn",
+    "url": "https://news.ycombinator.com/item?id=46146333",
+    "date": "2025-12-04",
+    "summary": "Wanted a simple printable monthly calendar that fills an A4 or A3 page, could not find one they liked, and an LLM-generated script gave comically bad results.",
+    "engagement": "comment in a 94-point Show HN on a printable monthly planner"
+   },
+   {
+    "platform": "hn",
+    "url": "https://news.ycombinator.com/item?id=46793658",
+    "date": "2026-01-28",
+    "summary": "Says an HN-linked yearly calendar lacked an easy way to add public holidays and personal calendars.",
+    "engagement": "comment in 'I found the perfect yearly calendar' (106 points, 43 comments)"
+   },
+   {
+    "platform": "hn",
+    "url": "https://news.ycombinator.com/item?id=46793149",
+    "date": "2026-01-28",
+    "summary": "Prints an A3 yearly planner every year to see weekends and gaps at a glance and has never found the same concept elsewhere.",
+    "engagement": "comment in same thread"
+   },
+   {
+    "platform": "hn",
+    "url": "https://news.ycombinator.com/item?id=46408613",
+    "date": "2025-12-28",
+    "summary": "A one-page printable year calendar went viral on HN; commenters asked for per-month prints, spreading across several pages because the boxes are too small to write in, and weekday-aligned layouts.",
+    "engagement": "1108 points, 133 comments"
+   },
+   {
+    "platform": "hn",
+    "url": "https://news.ycombinator.com/item?id=46408883",
+    "date": "2025-12-28",
+    "summary": "Wants the printable year calendar spread across multiple pages (1 to 12 months per page) because it is hard to write in small boxes.",
+    "engagement": "comment in the 1108-point thread"
+   }
+  ],
+  "competitors_seen": [
+   {
+    "name": "Neatnik one-page calendar",
+    "url": "https://neatnik.net/calendar/",
+    "note": "Free open-source one-page printable year calendar (viral on HN); fixed layouts, no holidays or school terms, no multi-page months."
+   },
+   {
+    "name": "Tim van de Vall calendar generators",
+    "url": "https://calendars.timvandevall.com/yearly-calendar-generator",
+    "note": "Free; US/UK/CA/AU holidays only, no A3 option listed, no personal events."
+   },
+   {
+    "name": "SLANZA annual wall planner",
+    "url": "https://slanza.org.nz/slanza-annual-wall-planner.html",
+    "note": "Fixed New Zealand A3/A4 template with school terms, not a generator."
+   },
+   {
+    "name": "TeachStarter term wall planner",
+    "url": "https://teachstarter.com/au/teaching-resource/classroom-term-wall-planner",
+    "note": "Editable Word template for Australian teachers."
+   },
+   {
+    "name": "Print-ready calendar PDFs (ChatGPT app)",
+    "url": "https://chatgpt.com/plugins/plugin_asdk_app_6ac0d938c97881919ca41bb7837c74be",
+    "note": "Generates A4/A3 PDFs with holidays for 200+ countries and events; lives inside ChatGPT."
+   }
+  ],
+  "satellite": {
+   "name": "Term Dates ICS Feed",
+   "what": "Free subscribable calendar feeds of school terms and public holidays per region.",
+   "why_shared": "Parent groups and school pages link to term-date feeds.",
+   "handoff": "Feed page links to 'print this as a wall planner'."
+  },
+  "marketing": {
+   "where": [
+    "Parent Facebook groups and school newsletters",
+    "Teacher communities (TES forums, teacher Facebook groups)",
+    "Pinterest planner boards",
+    "Hacker News Show HN",
+    "Home-education forums"
+   ],
+   "target": "Parents, home-educators, teachers and anyone who plans on paper.",
+   "funnel": "Free planner PDF -> premium layouts and saved regions.",
+   "cold_outreach": "Offer a ready A3 term planner for a school's region to teacher and PTA communities.",
+   "post_ideas": [
+    "Free A3 school-year wall planner with your state's term dates",
+    "Year-at-a-glance by week: why it beats a monthly calendar",
+    "Import your ICS file and print it"
+   ]
+  },
+  "capital_usd": 12,
+  "capital_note": "Domain name only",
+  "uses_paid_api": false,
+  "paid_api_note": null,
+  "confidence": "medium",
+  "notes": "Many printable-calendar sites exist, so only the combined holiday + school-term + ICS import in a generator is an opening. Holiday and school-term data must be refreshed yearly; sourcing licences for school-term data varies by country."
+ },
+ {
+  "id": "hnA-007",
+  "name": "Canvas Snippet Kit",
+  "idea": "Accessible, Canvas-safe HTML components (accordions, tabs, callouts, study cards) that teachers paste into the LMS page editor.",
+  "description": "A web tool with templates that survive the Canvas HTML sanitizer, using native details/summary and plain semantic HTML instead of stripped scripts. Teachers fill a form, preview with Canvas-like styling and copy the code. Moat is tested knowledge of what each LMS keeps or strips plus accessibility checks.",
+  "niche": "Education & Study",
+  "niche2": "Accessibility",
+  "is_feature": false,
+  "feature_for": null,
+  "web_delivery": "Static web app on Vercel; templates as JSON; live preview in an iframe; copy-to-clipboard output; no accounts.",
+  "why_hard_to_copy": "Value is an up-to-date, tested map of what Canvas, Moodle and others sanitize plus accessible patterns; low technical moat, mostly maintenance knowledge.",
+  "signals": [
+   {
+    "platform": "hn",
+    "url": "https://news.ycombinator.com/item?id=49690383",
+    "date": "2026-09-14",
+    "summary": "A teacher who uses Canvas heavily and is a hobby programmer writes small tools to generate HTML snippets (striped tables, FAQs, flashcard-like study cards, interactive stories) to paste into Canvas pages.",
+    "engagement": "comment in Ask HN: What are you working on? (September 2026)"
+   }
+  ],
+  "competitors_seen": [
+   {
+    "name": "Canvas Community accordion/tab code threads",
+    "url": "https://community.canvaslms.com/t5/Developers-Group/Accordion-code/m-p/196592",
+    "note": "DIY jQuery snippets; users report need for HTML skill and deprecation risk."
+   },
+   {
+    "name": "Canvas Ideas: tabs and accordions in the RCE toolbar",
+    "url": "https://community.canvaslms.com/t5/Canvas-Ideas/tabs-and-accordions-in-the-RCE-toolbar/idi-p/633008",
+    "note": "Open feature request; notes HTML-pasted tabs are not always accessible."
+   }
+  ],
+  "satellite": {
+   "name": "Canvas HTML Sanitizer Check",
+   "what": "Paste HTML and see which tags, styles and scripts Canvas would strip.",
+   "why_shared": "Instructional designers share it in LMS groups.",
+   "handoff": "'Fix with a safe component'."
+  },
+  "marketing": {
+   "where": [
+    "Canvas Community forums",
+    "Instructional design Slack/Discord groups",
+    "Higher-ed LinkedIn groups",
+    "Moodle forums",
+    "Hacker News Show HN"
+   ],
+   "target": "Teachers and instructional designers who hand-edit LMS pages.",
+   "funnel": "Free snippet library -> custom branded theme pack.",
+   "cold_outreach": "Reply to Canvas Community 'accordion not working' threads.",
+   "post_ideas": [
+    "Canvas accordions without JavaScript",
+    "What Canvas strips from your HTML",
+    "Accessible tabs for LMS pages"
+   ]
+  },
+  "capital_usd": 12,
+  "capital_note": "Domain name only",
+  "uses_paid_api": false,
+  "paid_api_note": null,
+  "confidence": "low",
+  "notes": "Only one HN signal; support comes from Canvas Community threads I did not date-check. LMS vendors could ship native blocks. Likely easy to copy once public."
+ },
+ {
+  "id": "hnA-008",
+  "name": "Mail Vault Viewer",
+  "idea": "Open, search and convert old mailbox archives (mbox, EML folders, PST) locally in the browser without importing them into a mail client.",
+  "description": "Drop a big mbox, a folder of .eml files or an Outlook PST and get a searchable threaded view with attachments, plus export to a stable format (EML + index, PDF per thread). Aimed at people archiving decades of mail or reviewing exported evidence. Moat is streaming huge mailboxes client-side, MIME and charset edge cases, and PST parsing.",
+  "niche": "Data & Documents",
+  "niche2": "Seniors & Caregiving",
+  "is_feature": false,
+  "feature_for": null,
+  "web_delivery": "Static web app on Vercel; Web Worker streaming parser with a SQLite-wasm/IndexedDB search index; nothing uploaded.",
+  "why_hard_to_copy": "Robust parsing of multi-GB mbox and PST files with broken MIME, odd charsets and nested attachments in memory-limited browsers is hard; but an mbox web viewer already exists, so the PST/EML-folder breadth is the differentiator.",
+  "signals": [
+   {
+    "platform": "hn",
+    "url": "https://news.ycombinator.com/item?id=49489306",
+    "date": "2026-08-29",
+    "summary": "Wants to archive 25 years of email in a searchable form that won't go obsolete and is importable later, asking for the best tools.",
+    "engagement": "5 points, 10 comments (Ask HN)"
+   },
+   {
+    "platform": "hn",
+    "url": "https://news.ycombinator.com/item?id=49989335",
+    "date": "2026-10-07",
+    "summary": "Lists viewing email stored as files, mboxes or maildirs as an unsolved task, citing emails kept as evidence in a shared drive.",
+    "engagement": "comment in Penguin Mail thread"
+   },
+   {
+    "platform": "hn",
+    "url": "https://news.ycombinator.com/item?id=49041437",
+    "date": "2026-07-24",
+    "summary": "A builder shipped a web app that loads a Gmail Takeout .mbox into a Gmail-like UI after noticing the backup just sat unused, which confirms the need for a viewer.",
+    "engagement": "Show HN, points not shown by API"
+   }
+  ],
+  "competitors_seen": [
+   {
+    "name": "Mboxreader",
+    "url": "https://news.ycombinator.com/item?id=49041437",
+    "note": "Show HN web app that loads .mbox into a Gmail-like UI with search; mbox only per its post."
+   },
+   {
+    "name": "Thunderbird",
+    "url": "https://www.thunderbird.net",
+    "note": "Free desktop client; archives must be imported, awkward for read-only browsing."
+   }
+  ],
+  "satellite": null,
+  "marketing": {
+   "where": [
+    "Hacker News Show HN",
+    "Lemmy c/selfhosted",
+    "Digital archivist communities (ePADD, Mailbagit users)",
+    "Genealogy and family-history forums"
+   ],
+   "target": "People holding old mailboxes, family archivists, small-firm admins with exported mail.",
+   "funnel": "Free viewer for files up to a size cap -> unlock for big archives and exports.",
+   "cold_outreach": "Answer 'how do I read an mbox file' questions.",
+   "post_ideas": [
+    "Open a 10 GB mbox in a browser tab without uploading",
+    "Archive 25 years of email in formats that will not die",
+    "Read PST files without Outlook"
+   ]
+  },
+  "capital_usd": 12,
+  "capital_note": "Domain name only",
+  "uses_paid_api": false,
+  "paid_api_note": null,
+  "confidence": "low",
+  "notes": "An mbox-in-browser competitor already exists, so only PST/EML-folder breadth and big-file performance would distinguish it. PST parsing in JS libraries is less mature."
+ },
+ {
+  "id": "hnA-009",
+  "name": "Signature Shop",
+  "idea": "Turn any PDF into print-ready signatures or booklets for hobby bookbinding and zines, with creep, duplex flip and fold guides.",
+  "description": "Upload a PDF locally, pick paper size, signature size (folio, quarto, octavo or saddle-stitch), paper thickness and your printer's duplex behavior; it imposes the pages, applies creep, adds fold marks, sewing-hole marks and a test page, and gives a vector PDF to print on a home printer. Aimed at hobby bookbinders, zine makers and people printing public-domain books. Moat is the imposition and creep math plus per-printer duplex quirks.",
+  "niche": "Hobbies & Crafts",
+  "niche2": "Writing & Publishing",
+  "is_feature": false,
+  "feature_for": null,
+  "web_delivery": "Static web app on Vercel using pdf-lib in the browser; no uploads; settings saved in localStorage or Supabase for account holders.",
+  "why_hard_to_copy": "Correct imposition for multi-section sewn bindings, creep compensation by paper caliper, duplex flip modes and cut/fold marks is niche domain logic that a generic prompt gets wrong; but one free browser imposition tool already exists, so this is a hobby-focused refinement.",
+  "signals": [
+   {
+    "platform": "hn",
+    "url": "https://news.ycombinator.com/item?id=46947447",
+    "date": "2026-02-09",
+    "summary": "On a site offering printable classic books for hobby bookbinders, a commenter says page imposition is essentially required for stitched binding and the page-size dropdown lacks units.",
+    "engagement": "comment in a 85-point, 32-comment Show HN"
+   },
+   {
+    "platform": "hn",
+    "url": "https://news.ycombinator.com/item?id=46948077",
+    "date": "2026-02-09",
+    "summary": "Another commenter recommends doing imposition with LaTeX pdfpages and says that is how they have done all their imposition, showing there is no simple tool for home printers.",
+    "engagement": "comment in same thread"
+   },
+   {
+    "platform": "hn",
+    "url": "https://news.ycombinator.com/item?id=46944365",
+    "date": "2026-02-09",
+    "summary": "The Show HN itself (free printable classic books for hobby bookbinders) drew many commenters interested in starting bookbinding.",
+    "engagement": "85 points, 32 comments"
+   }
+  ],
+  "competitors_seen": [
+   {
+    "name": "WaveSpeed PDF Imposition",
+    "url": "https://wavespeed.ai/free-tools/pdf-imposition",
+    "note": "Free browser tool; booklets, signatures, n-up and creep; generic, not hobby-oriented (page header carries an unrelated banner)."
+   },
+   {
+    "name": "pdfimpose",
+    "url": "https://pdfimpose.readthedocs.io/en/latest/lib/saddle/",
+    "note": "Python library/CLI for saddle-stitch and other schemas; scripting only."
+   },
+   {
+    "name": "callas pdfToolbox Imposition",
+    "url": "https://www0.enfocus.com/en/appstore/product/callas-pdftoolbox-imposition",
+    "note": "Free download but desktop and no longer actively maintained per Enfocus."
+   }
+  ],
+  "satellite": {
+   "name": "Booklet Page Order Calculator",
+   "what": "Enter page count and get the printing order and blank pages needed for booklets or signatures.",
+   "why_shared": "Bookbinding and zine communities share page-order helpers.",
+   "handoff": "Calculator offers 'Impose my PDF'."
+  },
+  "marketing": {
+   "where": [
+    "Bookbinding YouTube channel comment sections",
+    "Zine-making communities and Discords",
+    "Lemmy c/bookbinding style communities",
+    "Hacker News Show HN",
+    "Etsy seller forums for handmade journals"
+   ],
+   "target": "Hobby bookbinders, zine makers, people printing public-domain books at home.",
+   "funnel": "Free calculator -> free imposer for small page counts -> saved printer profiles.",
+   "cold_outreach": "Offer printer-profile test sheets to bookbinding channel creators.",
+   "post_ideas": [
+    "Print and bind a 300-page book at home: imposition explained",
+    "Creep calculator for sewn signatures",
+    "Duplex flip settings that ruin a signature, and how to test yours"
+   ]
+  },
+  "capital_usd": 12,
+  "capital_note": "Domain name only",
+  "uses_paid_api": false,
+  "paid_api_note": null,
+  "confidence": "low",
+  "notes": "Small audience; demand shown by two comments in one thread. Existing free tools cover the basic booklet case."
+ },
+ {
+  "id": "hnA-010",
+  "name": "Local Cull",
+  "idea": "Cull and rate thousands of RAW photos straight from a card in the browser, writing Lightroom-compatible XMP sidecars, with no upload.",
+  "description": "Open a folder of RAW files with the File System Access API; the app reads each camera's embedded JPEG preview, lets you flag, rate and reject with keyboard shortcuts at full speed, compares burst frames side by side, and writes XMP sidecars so Lightroom, Capture One or darktable see the choices. Aimed at photographers on Windows or Chromebooks who cannot use Mac-only culling tools. Moat is multi-format RAW preview extraction and sidecar compatibility.",
+  "niche": "Photo & Video",
+  "niche2": null,
+  "is_feature": false,
+  "feature_for": null,
+  "web_delivery": "Static web app on Vercel; Chromium File System Access API for read/write; Web Workers decode previews; no server and no upload; optional Supabase for settings.",
+  "why_hard_to_copy": "Needs parsers for embedded previews across CR2/CR3/NEF/ARW/RAF/ORF/RW2/DNG containers and XMP rules that Lightroom honors; speed with 3,000+ files in browser memory is non-trivial.",
+  "signals": [
+   {
+    "platform": "hn",
+    "url": "https://news.ycombinator.com/item?id=48996422",
+    "date": "2026-07-21",
+    "summary": "On a Mac-only open-source Bridge alternative for RAW photos, a commenter insists it must be released for Windows because Windows has more installs than Apple platforms combined.",
+    "engagement": "comment in a 74-point, 25-comment Show HN"
+   },
+   {
+    "platform": "hn",
+    "url": "https://news.ycombinator.com/item?id=48998659",
+    "date": "2026-07-21",
+    "summary": "The author explains they chose local-first because uploading RAWs to a server and browsing them online seems inefficient and they do not want to hold people's files.",
+    "engagement": "comment in same thread"
+   },
+   {
+    "platform": "hn",
+    "url": "https://news.ycombinator.com/item?id=49019374",
+    "date": "2026-07-23",
+    "summary": "Suggests extracting the embedded or sidecar full-res JPEG and editing it non-destructively, then applying choices to the offline RAW copy, as a workable approach for online culling.",
+    "engagement": "comment in same thread"
+   }
+  ],
+  "competitors_seen": [
+   {
+    "name": "Imagin Raw",
+    "url": "https://alternativeto.net/software/imagin-raw/about/",
+    "note": "Free macOS app writing ratings to XMP sidecars; Mac only."
+   },
+   {
+    "name": "QuickRawPicker",
+    "url": "https://github.com/RawLabo/QuickRawPicker",
+    "note": "Free open-source desktop picker for Windows/Linux/macOS; install required."
+   },
+   {
+    "name": "PixRater",
+    "url": "https://aitoolly.com/ai-news/article/2026-10-11-pixrater-debuts-on-product-hunt-local-photo-culling-tool-integrates-private-ai-and-model-context-pro",
+    "note": "New offline local culling tool; desktop."
+   },
+   {
+    "name": "photopipe.app",
+    "url": "https://photopipe.app",
+    "note": "Paid cloud-based culling (named by its author in the HN thread); requires upload."
+   }
+  ],
+  "satellite": {
+   "name": "RAW Preview Viewer",
+   "what": "Drag a RAW file and see its embedded preview and EXIF locally, plus a check of which camera formats are supported.",
+   "why_shared": "Photo forum users ask whether their camera's files will open.",
+   "handoff": "'Cull a whole folder'."
+  },
+  "marketing": {
+   "where": [
+    "Photography forums (DPReview, FM forums, Fred Miranda)",
+    "Wedding and event photographer Facebook groups",
+    "Hacker News Show HN",
+    "Lemmy c/photography",
+    "Product Hunt"
+   ],
+   "target": "Event and wedding photographers and enthusiasts shooting RAW on Windows or Chromebook.",
+   "funnel": "Free cull of up to N images per session -> unlock unlimited and burst comparison.",
+   "cold_outreach": "Offer to cull a shoot for forum members as a demo and ask for feedback.",
+   "post_ideas": [
+    "Cull a 3,000-photo wedding in your browser, nothing leaves your PC",
+    "Rate RAW files and keep your Lightroom ratings: how XMP sidecars work",
+    "A Bridge alternative for Windows that needs no install"
+   ]
+  },
+  "capital_usd": 12,
+  "capital_note": "Domain name only",
+  "uses_paid_api": false,
+  "paid_api_note": null,
+  "confidence": "low",
+  "notes": "Demand is inferred from a Windows-version request plus a paid cloud competitor existing; not an explicit request for a browser tool. Chromium-only API. Camera RAW container formats change with new models."
+ },
+ {
+  "id": "hnA-011",
+  "name": "Bench AI-Free",
+  "idea": "A browser Python classroom where the teacher watches students' code live, AI is absent, and no student accounts or installs are needed.",
+  "description": "Teachers create a class with a join code; students code in a Pyodide-based editor that runs entirely in the browser (no server execution), and the teacher sees all editors in a live grid, can broadcast starter code, freeze submissions and restore snapshots. No AI assistant exists to turn off. Moat is the real-time sync and classroom workflow rather than the editor.",
+  "niche": "Education & Study",
+  "niche2": "Dev Tools",
+  "is_feature": false,
+  "feature_for": null,
+  "web_delivery": "Vercel-hosted app; Python runs via Pyodide in the browser; classroom state and live code sync through Supabase Realtime on the free plan; students join with class codes, no emails.",
+  "why_hard_to_copy": "Real-time multi-editor sync with teacher control, offline-safe snapshots and sandboxed in-browser execution is non-trivial; but PyTogether and others already cover part of this.",
+  "signals": [
+   {
+    "platform": "hn",
+    "url": "https://news.ycombinator.com/item?id=46154068",
+    "date": "2025-12-04",
+    "summary": "A former TA who taught with Replit says the product was ruined by AI vibe-coding integrations over the past year and was glad to find a browser alternative.",
+    "engagement": "comment in a 91-point, 23-comment Show HN (PyTogether)"
+   },
+   {
+    "platform": "hn",
+    "url": "https://news.ycombinator.com/item?id=46156520",
+    "date": "2025-12-05",
+    "summary": "An instructor says Replit's AI read the assignment and did students' homework, with no way to turn it off per support, so they moved off Replit.",
+    "engagement": "comment in same thread"
+   },
+   {
+    "platform": "hn",
+    "url": "https://news.ycombinator.com/item?id=46154692",
+    "date": "2025-12-04",
+    "summary": "Says a browser-based, minimalist interface is extremely helpful for education.",
+    "engagement": "comment in same thread"
+   }
+  ],
+  "competitors_seen": [
+   {
+    "name": "PyTogether",
+    "url": "https://news.ycombinator.com/item?id=46150447",
+    "note": "Open-source real-time Python IDE for teachers and learners (Show HN, anti-AI stance)."
+   },
+   {
+    "name": "CSUK:Coder+",
+    "url": "https://teacher.csuk.io/product/csukcoder-membership",
+    "note": "Paid browser platform with live teacher view; AI-off status not stated."
+   },
+   {
+    "name": "Replit forum thread: disable AI for class",
+    "url": "https://replit.discourse.group/t/teacher-using-replit-in-public-school-need-to-disable-ai-for-entire-class-and-bring-back-blank-projects/11926",
+    "note": "Teacher asks how to disable AI class-wide; shows the unmet need (unverified user post)."
+   },
+   {
+    "name": "Code.org AI settings",
+    "url": "https://support.code.org/hc/en-us/articles/42550900593677-AI-Settings-Managing-Student-Access-to-AI-Tools",
+    "note": "Teacher control of AI per section, but platform is AI-oriented."
+   }
+  ],
+  "satellite": {
+   "name": "Python Playground (shareable)",
+   "what": "Free in-browser Python editor with shareable run links and no AI.",
+   "why_shared": "Teachers drop links into slides and LMS pages.",
+   "handoff": "'Make this a live class'."
+  },
+  "marketing": {
+   "where": [
+    "Hacker News Show HN",
+    "Computer science teacher communities (CSTA)",
+    "Teacher Discords and Mastodon",
+    "Python education mailing lists",
+    "Product Hunt"
+   ],
+   "target": "High-school and college intro programming teachers who cannot control AI in existing tools.",
+   "funnel": "Free single-class use -> paid for multiple sections and snapshot history.",
+   "cold_outreach": "Email CS teachers who posted about disabling AI in Replit/others.",
+   "post_ideas": [
+    "A Python classroom with no AI button to turn off",
+    "Watch every student's code live without walking the room",
+    "Pyodide in school Chromebooks: what works"
+   ]
+  },
+  "capital_usd": 12,
+  "capital_note": "Domain name only",
+  "uses_paid_api": false,
+  "paid_api_note": null,
+  "confidence": "low",
+  "notes": "Three comments in one thread and a Replit forum complaint; PyTogether is a free open-source competitor, so differentiation must come from classroom management. School network filters may block Supabase realtime websockets."
+ },
+ {
+  "id": "hnA-012",
+  "name": "Deck Room",
+  "idea": "A web spaced-repetition system that opens Anki decks, runs on locked-down school networks and gives teachers class accounts.",
+  "description": "Import .apkg decks (note types, cloze, images, audio) into a browser app with FSRS scheduling, offline review and sync. Teachers create a class, push decks to students who join by code, and see who is reviewing. It exists because Anki's ownership moved to AnkiHub and teachers say a full-featured web client would solve deployment on restricted networks. Moat is faithful Anki import and card rendering plus classroom features.",
+  "niche": "Education & Study",
+  "niche2": "Languages",
+  "is_feature": false,
+  "feature_for": null,
+  "web_delivery": "PWA on Vercel; .apkg parsed client-side (zip + SQLite via sql.js, media kept in IndexedDB); progress and class membership sync through Supabase free tier.",
+  "why_hard_to_copy": "Faithful import of Anki's package formats (SQLite, newer protobuf/zstd variants), note-type templates, cloze and media is a long tail of edge cases; adding multi-user class management and FSRS on top is more work than a weekend vibe-coded flashcard app.",
+  "signals": [
+   {
+    "platform": "hn",
+    "url": "https://news.ycombinator.com/item?id=46873833",
+    "date": "2026-02-03",
+    "summary": "A language teacher with peer-reviewed SRS research says deploying Anki on locked-down school networks is difficult, a full-featured web client would change that, and they started their own multi-user web SRS.",
+    "engagement": "comment in 'Anki ownership transferred to AnkiHub' thread"
+   },
+   {
+    "platform": "hn",
+    "url": "https://news.ycombinator.com/item?id=46867816",
+    "date": "2026-02-03",
+    "summary": "Fears AnkiHub will paywall syncing and shared decks and says a community fork with a hosted sync server and an alternative deck hub is paramount, plus preserving existing shared decks.",
+    "engagement": "comment in same thread"
+   },
+   {
+    "platform": "hn",
+    "url": "https://news.ycombinator.com/item?id=46863401",
+    "date": "2026-02-02",
+    "summary": "Suggests starting a FOSS alternative to Anki, with a core library and multiple independent clients instead of fragile Python parts.",
+    "engagement": "comment in same thread"
+   }
+  ],
+  "competitors_seen": [
+   {
+    "name": "Anki / AnkiWeb",
+    "url": "https://en.wikipedia.org/wiki/Anki",
+    "note": "Open-source desktop app with web review via AnkiWeb; no classroom accounts."
+   },
+   {
+    "name": "awesome-fsrs list of FSRS apps",
+    "url": "https://github.com/open-spaced-repetition/awesome-fsrs",
+    "note": "Directory of FSRS implementations; shows many native apps."
+   },
+   {
+    "name": "Native FSRS apps such as Avorio and Discito (Anki alternatives list)",
+    "url": "https://alternativeto.net/software/anki/?p=3",
+    "note": "Import .apkg with FSRS but are macOS/iOS apps, not web and without classroom accounts (per search summaries)."
+   },
+   {
+    "name": "Best Anki alternatives roundup",
+    "url": "https://studycardsai.com/best-anki-alternatives",
+    "note": "Lists web options such as Savant (proprietary web, imports Anki decks)."
+   }
+  ],
+  "satellite": {
+   "name": "Anki Deck Viewer",
+   "what": "Free page that opens an .apkg locally and shows cards, note types and media without installing Anki.",
+   "why_shared": "Teachers and students pass decks around and want a quick preview.",
+   "handoff": "'Study this deck with spaced repetition in your class'."
+  },
+  "marketing": {
+   "where": [
+    "Anki forums (forums.ankiweb.net)",
+    "Language-teacher and med-school communities",
+    "Hacker News Show HN",
+    "Lemmy language-learning communities",
+    "Teacher Discord and Mastodon"
+   ],
+   "target": "Teachers and self-learners who rely on Anki decks but cannot install apps (school Chromebooks, managed devices).",
+   "funnel": "Free deck viewer -> free personal web SRS -> class accounts for teachers.",
+   "cold_outreach": "Reach teachers who publish SRS-in-class write-ups with a pilot class.",
+   "post_ideas": [
+    "Study your Anki decks on a school Chromebook with no install",
+    "Class accounts for spaced repetition, no emails collected",
+    "What AnkiHub taking over Anki means for classroom use"
+   ]
+  },
+  "capital_usd": 12,
+  "capital_note": "Domain name only",
+  "uses_paid_api": false,
+  "paid_api_note": null,
+  "confidence": "medium",
+  "notes": "Signals come from one thread but three independent commenters. Supabase free storage (1 GB) limits hosted media, so keep media client-side or cap deck sizes. Anki's package format can change. Teacher's own libreSRS project is a possible competitor."
+ },
+ {
+  "id": "hnA-013",
+  "name": "Ruby Reader",
+  "idea": "Add furigana to a Japanese EPUB or text in the browser, hide the readings you already know, and export a Kindle-friendly file.",
+  "description": "Drop a Japanese EPUB; a client-side tokenizer and dictionary add ruby readings, you set your JLPT level or paste a known-word list so only unknown kanji get furigana, and it exports an EPUB with ruby that renders on e-readers or a fallback layout where ruby is not supported. Aimed at Japanese learners reading real books on Kindle or Kobo.",
+  "niche": "Languages",
+  "niche2": "Writing & Publishing",
+  "is_feature": false,
+  "feature_for": null,
+  "web_delivery": "Static web app on Vercel; kuromoji-style tokenizer and dictionary loaded client-side; EPUB unzipped, modified and re-zipped in the browser; nothing uploaded.",
+  "why_hard_to_copy": "Correct reading selection in context (names, counters, rendaku), per-device ruby quirks on Kindle/Kobo and EPUB repackaging fidelity are fiddly; but open-source CLIs already do the base conversion.",
+  "signals": [
+   {
+    "platform": "hn",
+    "url": "https://news.ycombinator.com/item?id=50134711",
+    "date": "2026-10-17",
+    "summary": "Says getting custom Japanese ebooks to display furigana with ruby tags on a Kindle is a giant nightmare and is excited to try the Furifont approach.",
+    "engagement": "comment in Furifont thread"
+   },
+   {
+    "platform": "hn",
+    "url": "https://news.ycombinator.com/item?id=50133125",
+    "date": "2026-10-17",
+    "summary": "Points out a furigana font could be set as the system Japanese font to get furigana everywhere, even where ruby tags are not supported.",
+    "engagement": "comment in same thread"
+   },
+   {
+    "platform": "hn",
+    "url": "https://news.ycombinator.com/item?id=50139887",
+    "date": "2026-10-18",
+    "summary": "Discussion of how accurate automatic furigana is; one commenter calls an 80% accurate tool better than nothing but notes better alternatives exist.",
+    "engagement": "comment in same thread"
+   }
+  ],
+  "competitors_seen": [
+   {
+    "name": "furigana4epub",
+    "url": "https://pypi.org/project/furigana4epub/1.0.1/",
+    "note": "Python CLI using MeCab/UniDic to add or remove furigana in EPUBs; no GUI, no JLPT filter noted."
+   },
+   {
+    "name": "Furiganalyse",
+    "url": "https://awesome.ecosyste.ms/projects/github.com%2Fitsupera%2Ffuriganalyse",
+    "note": "Open-source project for annotating Japanese ebooks with furigana; Kindle output and JLPT filtering not confirmed."
+   },
+   {
+    "name": "Shiritai (Firefox add-on)",
+    "url": "https://addons.mozilla.org/addon/shiritai-furigana-reader/",
+    "note": "Web-page furigana with JLPT-level hiding; not for EPUB files."
+   },
+   {
+    "name": "Obsidian Furigana Generator",
+    "url": "https://www.obsidianstats.com/plugins/furigana-generator",
+    "note": "Skips kanji for known JLPT levels but only inside notes."
+   }
+  ],
+  "satellite": {
+   "name": "Furigana Paste",
+   "what": "Free page: paste Japanese text, get ruby readings with a JLPT-level filter.",
+   "why_shared": "Learners share annotated passages.",
+   "handoff": "'Do this for a whole book'."
+  },
+  "marketing": {
+   "where": [
+    "Japanese-learning Discords and forums",
+    "Hacker News Show HN",
+    "Lemmy language-learning communities",
+    "MobileRead forums (e-reader users)",
+    "Anki forum Japanese threads"
+   ],
+   "target": "Japanese learners reading native ebooks on Kindle, Kobo or tablets.",
+   "funnel": "Free paste tool -> free EPUB conversion for short books -> unlock for long novels.",
+   "cold_outreach": "Answer 'how do I get furigana on my Kindle' questions.",
+   "post_ideas": [
+    "Furigana only for the kanji you do not know yet",
+    "Why furigana breaks on Kindle and how to fix an EPUB",
+    "Convert a Japanese novel to learner mode in your browser"
+   ]
+  },
+  "capital_usd": 12,
+  "capital_note": "Domain name only",
+  "uses_paid_api": false,
+  "paid_api_note": null,
+  "confidence": "low",
+  "notes": "Demand evidence is one thread of comments. Existing CLI tools do the heavy part; the opening is no-install, JLPT filtering and device testing. Dictionary data licenses (JMdict/UniDic) must be respected."
+ },
+ {
+  "id": "hnA-014",
+  "name": "Font Stand-In",
+  "idea": "Find open-licensed look-alikes for a commercial font (with full CJK coverage) when a font license suddenly becomes unaffordable.",
+  "description": "Pick a font you are replacing; the tool ranks open-licensed fonts by visual similarity (weight, width, x-height, stroke contrast) and script coverage, shows each license with a link to the license file, and previews your own text. Built for game and app makers hit by font license price hikes. Moat is a hand-curated, license-checked dataset of open CJK and Latin fonts with measured metrics.",
+  "niche": "Dev Tools",
+  "niche2": "Creators & Streamers",
+  "is_feature": false,
+  "feature_for": null,
+  "web_delivery": "Static site on Vercel; font metrics and licence records as JSON; client-side preview using web fonts; Supabase optional for user submissions.",
+  "why_hard_to_copy": "Needs a curated, verified dataset of open font licenses and glyph coverage (CJK variants are messy) plus similarity metrics; a prompt-built version would lack trustworthy data. Must not be presented as legal advice.",
+  "signals": [
+   {
+    "platform": "hn",
+    "url": "https://news.ycombinator.com/item?id=46130475",
+    "date": "2025-12-03",
+    "summary": "Explains that when a game is designed around a typeface that suddenly becomes unaffordable, you must hunt for an alternative that still fits the aesthetic and UI.",
+    "engagement": "comment in a thread on Japanese game devs facing a font license increase from $380 to $20k (337 points, 202 comments)"
+   },
+   {
+    "platform": "hn",
+    "url": "https://news.ycombinator.com/item?id=46130654",
+    "date": "2025-12-03",
+    "summary": "Says a neutral font like Noto Sans is not what game developers want because atmosphere needs distinctive fonts.",
+    "engagement": "comment in same thread"
+   },
+   {
+    "platform": "hn",
+    "url": "https://news.ycombinator.com/item?id=46130981",
+    "date": "2025-12-03",
+    "summary": "Asks whether open-source fonts are good enough for Japanese given Han unification and regional glyph differences.",
+    "engagement": "comment in same thread"
+   }
+  ],
+  "competitors_seen": [
+   {
+    "name": "Wikipedia list of CJK fonts",
+    "url": "https://en.wikipedia.org/wiki/List_of_CJK_fonts",
+    "note": "Manual list separating free/open-source from personal-use and paid fonts; no similarity search."
+   },
+   {
+    "name": "IBM Plex Sans JP coverage article",
+    "url": "https://gigazine.net/gsc_news/en/20210726-ibm-plex-sans-jp",
+    "note": "Example of an OFL-licensed Japanese font announced for commercial use; found by manual search."
+   }
+  ],
+  "satellite": {
+   "name": "Font License Quick Check",
+   "what": "Paste a font name and see its license family and a link to the license file (not legal advice).",
+   "why_shared": "Studio chat groups share it when someone asks 'can we use this font commercially?'",
+   "handoff": "'Find a look-alike'."
+  },
+  "marketing": {
+   "where": [
+    "Game dev Discords and Mastodon",
+    "Hacker News Show HN",
+    "itch.io devlogs",
+    "Typography communities",
+    "Lemmy gamedev communities"
+   ],
+   "target": "Indie game and app developers who ship text in CJK languages and need license certainty.",
+   "funnel": "Free license check -> free look-alike finder -> saved shortlists.",
+   "cold_outreach": "Reply to font-license price-hike news with a shortlist tool for affected studios.",
+   "post_ideas": [
+    "Open-license replacements for popular Japanese UI fonts",
+    "How to check a CJK font's glyph coverage before shipping",
+    "Font license changed overnight: a survival checklist"
+   ]
+  },
+  "capital_usd": 12,
+  "capital_note": "Domain name only",
+  "uses_paid_api": false,
+  "paid_api_note": null,
+  "confidence": "low",
+  "notes": "Only one thread; hard-to-copy part is a data curation effort that is large. Legal risk if users treat results as license advice, so keep to linking primary license files. Skews to game developers, a niche."
+ }
+]

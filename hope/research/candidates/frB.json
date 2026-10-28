@@ -1,0 +1,73 @@
+[
+  {
+    "id": "frB-001",
+    "name": "PackStation",
+    "idea": "Tablet-friendly packing screen that turns any order export into pick lists, per-customer pack checklists and box labels for farms, CSAs and food hubs.",
+    "description": "Hub operators and small farms import an order CSV from whatever shop tool they use, then get an interactive packing screen: filter by storage type (frozen, chilled, dry), customer, producer and pick-up versus delivery, tick items off as packed, and print labels. No payments are handled. Hard part is the per-platform CSV importers and an offline-first sync so it keeps working in a warehouse with bad wifi.",
+    "niche": "Local Business & Small Shops",
+    "niche2": "Food & Cooking",
+    "is_feature": false,
+    "feature_for": null,
+    "web_delivery": "PWA with IndexedDB offline storage and Supabase sync; CSV parsing and label printing done client-side on Vercel hobby.",
+    "why_hard_to_copy": "Needs offline-first sync plus a library of messy export formats from several farm and food-hub platforms; generic CRUD clones will not cover those.",
+    "signals": [
+      {"platform": "forum", "url": "https://community.openfoodnetwork.org/t/digital-packing-warehouse-interface-scoping-feedback-wanted/3970", "date": "2026-06-11", "summary": "A hub operator moving from another platform relies on a digital warehouse packing workflow; the thread asks for a tablet packing screen with filters by storage type, customer, producer and packed status to replace static packing reports.", "engagement": "63 views, 1 post (scoping post)"},
+      {"platform": "forum", "url": "https://community.openfoodnetwork.org/t/timed-shop-and-merging-orders/3957", "date": "2026-05-19", "summary": "Wholesale flower hubs say shopping is so brisk when the store opens that buyers miss out; hub managers are burdened by manually entering pre-orders made outside the platform.", "engagement": "70 views, 2 posts"}
+    ],
+    "competitors_seen": [
+      {"name": "Barn2Door", "url": "https://www.barn2door.com/blog/time-saving-secret-weapon-one-click-pick-and-pack-lists", "note": "paid CSA/farm platform with pick lists, pack lists and labels"},
+      {"name": "Open Food Network", "url": "https://community.openfoodnetwork.org/", "note": "open source food-hub platform; packing reports are static today"}
+    ],
+    "satellite": {"name": "Free CSA label sheet maker", "what": "Paste a list of members and boxes, get printable label sheets (Avery sizes) in the browser.", "why_shared": "Every farm that runs a CSA or box scheme needs labels each week.", "handoff": "Link from the label sheet to PackStation for the full packing workflow."},
+    "marketing": {
+      "where": ["Open Food Network community forum", "CSA and market-gardener Facebook groups and forums", "Farmers market association newsletters"],
+      "target": "Small food hub and CSA operators who pack weekly boxes",
+      "funnel": "Free label maker -> import orders -> packing screen",
+      "cold_outreach": "Message hub managers who posted about manual packing, offer a free setup for their CSV format.",
+      "post_ideas": ["How we cut Saturday packing time with a tablet checklist", "Free printable CSA box labels", "Pack by storage zone: a simple method for small hubs"]
+    },
+    "capital_usd": 12,
+    "capital_note": "domain only",
+    "uses_paid_api": false,
+    "paid_api_note": null,
+    "confidence": "low",
+    "notes": "Only two dated forum signals, both from one community (Open Food Network), and one of them is a vendor-side scoping post, not an end-user complaint. Niche is small; validate with hub operators before building."
+  },
+  {
+    "id": "frB-002",
+    "name": "GedFix",
+    "idea": "Client-side GEDCOM checker and upgrader that reads messy 5.5.1 exports and produces clean GEDCOM 7 without uploading the family tree anywhere.",
+    "description": "Genealogists paste or drop a .ged file and get a report of structural problems, a plain-language fix list, and a converted GEDCOM 7 file, all inside the browser so private family data never leaves the device. Targets exports from Family Tree Maker, RootsMagic, Ancestry and others, which each bend the standard differently. Hard to copy because correctness depends on many vendor quirks and the GEDCOM 7 spec.",
+    "niche": "Genealogy & History",
+    "niche2": null,
+    "is_feature": false,
+    "feature_for": null,
+    "web_delivery": "Static web app with a parser running in a Web Worker; Supabase only for optional saved fix-profiles.",
+    "why_hard_to_copy": "Vendor-specific export quirks and GEDCOM 7 edge cases (extensions, EXID, GEDZIP) must be handled correctly entirely client-side.",
+    "signals": [
+      {"platform": "github", "url": "https://github.com/ShammyLevva/FTAnalyzer/issues/347", "date": "2026-01-04", "summary": "A user cannot get a Family Tree Maker GEDCOM export to load in FTAnalyzer; the same error appears for full and partial exports and a reinstall did not help.", "engagement": "15 comments, 1 reaction"},
+      {"platform": "github", "url": "https://github.com/michelesalvador/FamilyGem/issues/191", "date": "2026-03-26", "summary": "Request for GEDCOM 7 support in the FamilyGem tree app.", "engagement": "4 comments, 1 reaction"},
+      {"platform": "github", "url": "https://github.com/fisharebest/webtrees/issues/5521", "date": "2026-10-07", "summary": "Request to add first-class GEDCOM 7 EXID support in webtrees.", "engagement": "0 comments, 1 reaction"},
+      {"platform": "github", "url": "https://github.com/lifelines/lifelines/issues/498", "date": "2026-03-16", "summary": "A GEDCOM 5.5.1 compliant file cannot be imported because of a same-sex couple record.", "engagement": "1 comment, 1 reaction"}
+    ],
+    "competitors_seen": [
+      {"name": "GEDminer GEDCOM validator", "url": "https://gedminer.com/free-gedcom-validator", "note": "free browser-based validator; claims file stays on device"},
+      {"name": "GED-inline", "url": "https://github.com/nigel-parker/gedinline", "note": "validates 5.5, 5.5.1 and 7.0 but GEDZIP and extensions only partly supported"},
+      {"name": "gedcom.io converter list", "url": "https://gedcom.io/tools/", "note": "web converter 5.5.1 to 7.0 and command-line converters"}
+    ],
+    "satellite": {"name": "Free GEDCOM privacy scrubber", "what": "Browser tool that strips living people and notes from a GEDCOM before sharing.", "why_shared": "Genealogists constantly share trees with cousins and websites.", "handoff": "Offer the full fixer/upgrader after the scrub."},
+    "marketing": {
+      "where": ["RootsChat", "Gramps Discourse", "WikiTree G2G", "Genealogy Facebook groups"],
+      "target": "Hobby genealogists switching tree software",
+      "funnel": "Free validator report -> one-click fix -> GEDCOM 7 download",
+      "cold_outreach": "Reply to people posting import errors with a link that diagnoses the exact file.",
+      "post_ideas": ["Why your GEDCOM will not import and how to fix it", "GEDCOM 7 in plain English", "Move your tree between programs without losing sources"]
+    },
+    "capital_usd": 12,
+    "capital_note": "domain only",
+    "uses_paid_api": false,
+    "paid_api_note": null,
+    "confidence": "low",
+    "notes": "Signals are scattered GitHub issues in different tools, not direct requests for a standalone fixer. Several free validators/converters already exist, so the moat is quality of vendor-quirk handling, not a new category."
+  }
+]

@@ -1,0 +1,1105 @@
+[
+  {
+    "id": "rev-001",
+    "name": "Gigbinder",
+    "idea": "Offline-first web app for gigging bands: charts, setlists, transposition and band sync that does not break on every update.",
+    "description": "Musicians keep PDF charts and ChordPro/lyric sheets in one place, build setlists, transpose with correct enharmonic spelling and capo hints, and run a full-screen stage mode that turns pages with a Bluetooth foot pedal (pedals send plain key presses, which browsers receive). Charts stay in the device (IndexedDB); only setlist order, keys and notes sync through Supabase so the whole band sees the same list. Hard to copy because of the chart-format importers (ChordPro, OnSong-style text, PDF), music-theory-correct transposition, and offline-first sync with conflict handling.",
+    "niche": "Music & Audio",
+    "niche2": null,
+    "is_feature": false,
+    "feature_for": null,
+    "web_delivery": "PWA on Vercel; PDFs and text charts cached in IndexedDB via service worker; Supabase stores only small setlist and band-membership rows.",
+    "why_hard_to_copy": "Offline-first sync with conflict handling plus music-theory-correct transposition and several chart-format parsers; a CRUD setlist list is easy but a trustworthy stage tool is not.",
+    "signals": [
+      {
+        "platform": "appstore",
+        "url": "https://apps.apple.com/us/app/onsong-2026/id1330350343",
+        "date": "2026-10-17",
+        "summary": "A long-time OnSong user says every update breaks something and they have already had to rebuild their song database this year; switching is painful because of the years invested.",
+        "engagement": "2 of 3 recent low-star reviews read mention update breakage or declining quality; app has 5,672 ratings"
+      },
+      {
+        "platform": "appstore",
+        "url": "https://apps.apple.com/us/app/onsong-2026/id1330350343",
+        "date": "2026-09-06",
+        "summary": "A group of about 30 band members who once required everyone to buy the app now just point people to a competitor because it gets worse after each update.",
+        "engagement": "same OnSong review set as above"
+      },
+      {
+        "platform": "appstore",
+        "url": "https://apps.apple.com/us/app/forscore/id363738376",
+        "date": "2026-10-21",
+        "summary": "A forScore user says sync problems are costing them money, that support appears to be gone, and that it is time to find an alternative.",
+        "engagement": "4 of 4 recent low-star reviews read cite update bugs or sync problems; app has 43,444 ratings"
+      },
+      {
+        "platform": "appstore",
+        "url": "https://apps.apple.com/us/app/setlist-helper/id939098002",
+        "date": "2026-08-20",
+        "summary": "Songs and setlists built up over a year disappeared; the app does not sync between devices and a stopped update wiped the data.",
+        "engagement": "4 of 4 recent low-star reviews read mention data loss or crashes after updates"
+      },
+      {
+        "platform": "appstore",
+        "url": "https://apps.apple.com/us/app/songsheet-pro-setlist-helper/id581094194",
+        "date": "2026-04-07",
+        "summary": "A user calls the pricing ($2 a week, $40 a year or $130 one-time) greedy for what they see as a simple setlist app.",
+        "engagement": "1 of 3 recent low-star reviews read; 2,719 ratings"
+      },
+      {
+        "platform": "appstore",
+        "url": "https://apps.apple.com/us/app/planning-center-music-stand/id368561278",
+        "date": "2026-02-28",
+        "summary": "Church musicians say a recent update to the chart annotation tools removed the pen options and lost their earlier edits; another reviewer says the eraser and thick pen are gone and they can no longer white-out sections of a chart to add custom notes or tab.",
+        "engagement": "4 of 4 recent low-star reviews read (Dec 2025 to May 2026) are about annotation tools removed or edits not saving; 325 ratings (3.52)"
+      }
+    ],
+    "competitors_seen": [
+      {
+        "name": "OnSong",
+        "url": "https://apps.apple.com/us/app/onsong-2026/id1330350343",
+        "note": "iOS/Mac only, paid; reviewers report regressions with each update"
+      },
+      {
+        "name": "forScore",
+        "url": "https://apps.apple.com/us/app/forscore/id363738376",
+        "note": "iOS only, PDF-centric; sync complaints"
+      },
+      {
+        "name": "Setlyst",
+        "url": "https://alternativeto.net/software/setlyst/",
+        "note": "PWA, freemium with subscription; band sync unclear"
+      },
+      {
+        "name": "Bandfix",
+        "url": "https://apps.apple.com/app/bandfix/id6499341499",
+        "note": "offline mode and web access with sync; native-first"
+      },
+      {
+        "name": "Planning Center Music Stand",
+        "url": "https://apps.apple.com/us/app/planning-center-music-stand/id368561278",
+        "note": "worship-team chart viewer with annotations; rated 3.52 and criticised for removing pen and eraser tools"
+      }
+    ],
+    "satellite": {
+      "name": "Chord Transposer and Capo Finder",
+      "what": "Free single-page tool: paste lyrics with chords, get any key, capo suggestions, printable one-page chart.",
+      "why_shared": "Every musician needs a quick transposition and it ranks for long-tail searches.",
+      "handoff": "A 'save to my binder' button imports the chart into Gigbinder."
+    },
+    "marketing": {
+      "where": [
+        "TalkBass and Gearspace forums",
+        "church worship-team and cover-band Facebook groups",
+        "Product Hunt and Show HN",
+        "Planning Center community"
+      ],
+      "target": "Gigging cover, wedding and worship bands who share charts across several devices",
+      "funnel": "Free transposer page, then free binder for one band, then paid band-size tier later",
+      "cold_outreach": "DM band leaders who posted about lost setlists or an app update that broke their charts, offering a free import from their old app.",
+      "post_ideas": [
+        "I lost a year of setlists to an app update, so I built an offline-first binder",
+        "How a Bluetooth page-turner pedal works in a plain web page",
+        "Transposing without spelling disasters: why F# vs Gb matters on a chart"
+      ]
+    },
+    "capital_usd": 12,
+    "capital_note": "Domain name only; Supabase free and Vercel hobby cover the rest.",
+    "uses_paid_api": false,
+    "paid_api_note": null,
+    "confidence": "medium",
+    "notes": "Strong repeated pattern across four apps in the last 3 months, but all signals are App Store reviews, so no engagement counts beyond review text. Real risk: musicians on iPads want native performance; Safari PWA storage eviction must be handled (ask for persistent storage, offer export). Competitor Setlyst already is a PWA."
+  },
+  {
+    "id": "rev-002",
+    "name": "Parenting Plan Calendar",
+    "idea": "Free custody-schedule engine that turns a parenting-plan pattern plus holiday rules into one shared calendar and ICS feed.",
+    "description": "Parents choose a base rotation (alternating weeks, 2-2-3, 5-2-2-5, custom) and then add holiday and school-break rules the way plans are actually written (even/odd years, first/second half of winter break, Friday-to-Monday weekends). The engine resolves rule precedence and outputs a color-coded year view, a printable PDF and a read-only ICS link for each parent's phone. Hard to copy because the value is the correctness of the rules engine and its holiday and school-calendar definitions, not the calendar UI.",
+    "niche": "Parenting & Family",
+    "niche2": null,
+    "is_feature": false,
+    "feature_for": null,
+    "web_delivery": "Next.js on Vercel; rules engine is pure TypeScript run in the browser; the schedule is saved as one Supabase row and served as an ICS route handler.",
+    "why_hard_to_copy": "Rule-precedence and holiday date algebra (odd/even years, split breaks, make-up days) is correctness-critical logic with many edge cases, plus a curated library of holiday and school-break definitions.",
+    "signals": [
+      {
+        "platform": "trustpilot",
+        "url": "https://www.trustpilot.com/review/app.talkingparents.com",
+        "date": "2026-09-26",
+        "summary": "A parent whose court ordered TalkingParents says the free tier they used for years was removed in June 2026, the hardship fee waiver is unobtainable, and they cannot afford the subscription.",
+        "engagement": "1 review, plus a second low-star review in Sep 2026 about being pushed to a more expensive plan"
+      },
+      {
+        "platform": "trustpilot",
+        "url": "https://www.trustpilot.com/review/app.talkingparents.com",
+        "date": "2026-09-23",
+        "summary": "Another reviewer says signup silently defaults to the $16 enhanced plan instead of the basic $7 one and the app is unusable without paying.",
+        "engagement": "2 of the 2 newest low-star reviews read"
+      },
+      {
+        "platform": "appstore",
+        "url": "https://apps.apple.com/us/app/cozi-family-organizer/id407108860",
+        "date": "2026-08-20",
+        "summary": "A Cozi user asks for a biweekly repeating option, which is the basic building block of alternating-week custody schedules.",
+        "engagement": "1 of 5 recent low-star reviews read; app has 401,731 ratings"
+      },
+      {
+        "platform": "appstore",
+        "url": "https://apps.apple.com/us/app/cozi-family-organizer/id407108860",
+        "date": "2026-08-25",
+        "summary": "A reviewer says even the $30 per year tier leaves most features locked and importing an existing calendar needs the $80 per year plan.",
+        "engagement": "same Cozi review set"
+      },
+      {
+        "platform": "appstore",
+        "url": "https://apps.apple.com/us/app/ourfamilywizard-co-parent-app/id497405393",
+        "date": "2026-10-22",
+        "summary": "A reviewer warns that the advertised 5 GB storage on the cheapest plan comes with undisclosed restrictions, calling the pricing misleading.",
+        "engagement": "1 of 3 recent low-star reviews read; 56,373 ratings"
+      }
+    ],
+    "competitors_seen": [
+      {
+        "name": "OurFamilyWizard Custody Schedule Builder",
+        "url": "https://support.ourfamilywizard.com/hc/en-us/articles/46395338847885-How-do-I-use-Custody-Schedule-Builder",
+        "note": "template-based, no freeform schedule creation, part of a paid subscription"
+      },
+      {
+        "name": "Custody X Change",
+        "url": "https://custodyxchange.com/examples/schedules/50-50/2-2-3.php",
+        "note": "paid desktop-style tool with sample schedules; holiday rules and ICS export not confirmed"
+      },
+      {
+        "name": "2houses",
+        "url": "https://apps.apple.com/us/app/2houses-better-co-parenting/id632536949",
+        "note": "paid app, 3.98 rating, reviewers cite expense and slow support"
+      },
+      {
+        "name": "Cozi",
+        "url": "https://apps.apple.com/us/app/cozi-family-organizer/id407108860",
+        "note": "general family calendar, no custody rule engine"
+      }
+    ],
+    "satellite": {
+      "name": "Custody Schedule Pattern Previewer",
+      "what": "Free page: pick 2-2-3 or alternating weeks and see the whole year printed, with a basic holiday overlay.",
+      "why_shared": "Parents and mediators search for these patterns constantly and share printouts.",
+      "handoff": "Button to open the pattern in the full Parenting Plan Calendar with holiday rules and ICS link."
+    },
+    "marketing": {
+      "where": [
+        "Facebook co-parenting and single-parent groups",
+        "family mediators' and parenting-coordinator newsletters",
+        "Pinterest custody schedule boards",
+        "SEO pages for each named schedule pattern"
+      ],
+      "target": "Divorced or separated parents and mediators who need a clear year-long schedule",
+      "funnel": "Free pattern page to saved shared schedule to optional paid add-ons for multiple children or school-district calendars",
+      "cold_outreach": "Email family mediators with a free branded schedule printout to attach to parenting plans.",
+      "post_ideas": [
+        "A year view of 2-2-3 vs 5-2-2-5 so you can see who has which holiday",
+        "How odd/even-year holiday rules actually resolve when they collide",
+        "Free ICS feed so both parents see the same exchange times"
+      ]
+    },
+    "capital_usd": 12,
+    "capital_note": "Domain name only.",
+    "uses_paid_api": false,
+    "paid_api_note": null,
+    "confidence": "medium",
+    "notes": "The TalkingParents complaint is about a court-mandated messaging product, which this idea does not replace (courts name the platform); the opening is the schedule piece and free tooling for parents who are not court-bound. Keep it a calendar, not legal advice; legal services are a banned niche so add a clear disclaimer and no document drafting. Pricing change dates for AppClose and TalkingParents in some comparison pages could not be verified, so only the Trustpilot reviews are used."
+  },
+  {
+    "id": "rev-003",
+    "name": "StitchTrack",
+    "idea": "Browser-based tracker that reads a cross-stitch or knitting chart PDF and lets you tap off stitches and rows, offline.",
+    "description": "Stitchers upload a born-digital pattern PDF; the app extracts the chart grid, symbols and thread legend in the browser, lets you mark completed stitches, highlight one thread colour, and count rows, saving progress locally and syncing to Supabase. It is aimed at people who buy PDF patterns from Etsy and pattern shops and are tired of subscription trackers and lost libraries. Hard to copy because reliable PDF chart parsing across pattern-maker layouts (symbol detection, legends, backstitch) is fiddly and needs a library of tested layouts.",
+    "niche": "Hobbies & Crafts",
+    "niche2": null,
+    "is_feature": false,
+    "feature_for": null,
+    "web_delivery": "PWA on Vercel; pdf.js parses the PDF in the browser; chart image and progress live in IndexedDB, only small progress rows sync via Supabase.",
+    "why_hard_to_copy": "Client-side extraction of symbol grids and legends from PDFs produced by many different pattern tools, plus thread-brand (DMC/Anchor) mapping, which needs a tested corpus of real patterns.",
+    "signals": [
+      {
+        "platform": "appstore",
+        "url": "https://apps.apple.com/us/app/cross-stitch-saga/id1440279996",
+        "date": "2026-01-23",
+        "summary": "A buyer says Etsy sellers almost always ship PDF or SVG patterns, but the paid app needs other file types and converting is impractical, so it was a waste of money.",
+        "engagement": "1 of 1 recent low-star review read; only 58 ratings"
+      },
+      {
+        "platform": "appstore",
+        "url": "https://apps.apple.com/us/app/knitcompanion-knitting-more/id1058142783",
+        "date": "2026-07-23",
+        "summary": "A lifetime-license buyer says the app changed so that the version they paid for is no longer offered, losing chart tools they relied on.",
+        "engagement": "2 of 4 recent low-star reviews read cite lost licences or patterns that would not migrate; 6,902 ratings"
+      },
+      {
+        "platform": "appstore",
+        "url": "https://apps.apple.com/us/app/knitcompanion-knitting-more/id1058142783",
+        "date": "2026-07-01",
+        "summary": "A user cannot move their patterns from the older version of the app to the newer one and has no Ravelry account to fall back on.",
+        "engagement": "same knitCompanion review set"
+      },
+      {
+        "platform": "appstore",
+        "url": "https://apps.apple.com/us/app/stitch-fiddle-pattern-maker/id6759521479",
+        "date": "2026-08-05",
+        "summary": "Reviewer says almost every action in Stitch Fiddle opens a premium paywall, including an undo that used to be free.",
+        "engagement": "3 of 3 recent low-star reviews read mention paywalled basics; 33 ratings"
+      }
+    ],
+    "competitors_seen": [
+      {
+        "name": "Pattern Keeper",
+        "url": "https://apkpure.com/pattern-keeper/app.patternkeeper.android/amp",
+        "note": "Android only, reads PDF charts; beta quality, no backstitch or fractional stitches per listing"
+      },
+      {
+        "name": "Purl: Pattern Tracker",
+        "url": "https://apps.apple.com/app/id6780495568",
+        "note": "iOS/iPad, scans PDF patterns, free with in-app purchases"
+      },
+      {
+        "name": "StitchGrid",
+        "url": "https://mwm.ai/apps/stitchgrid-pattern-tracker/6789885520",
+        "note": "iPhone app first released July 2026 for born-digital PDFs"
+      },
+      {
+        "name": "ClickStitch",
+        "url": "https://clickstitch.app",
+        "note": "hobbyist web app in development, supports only a few patterns"
+      }
+    ],
+    "satellite": {
+      "name": "Pattern PDF Checker",
+      "what": "Free page that tells a stitcher whether a purchased PDF will import cleanly and shows the extracted thread list.",
+      "why_shared": "Pattern sellers can point buyers at it to prove their PDFs are tracker-friendly.",
+      "handoff": "One click to open the checked pattern in StitchTrack."
+    },
+    "marketing": {
+      "where": [
+        "Cross-stitch and knitting Facebook groups",
+        "Etsy pattern sellers (partner offer)",
+        "Ravelry forums are login-gated so use a link in public blogs",
+        "Pinterest stitching boards"
+      ],
+      "target": "Cross-stitchers and knitters who buy PDF patterns and want a free cross-platform tracker",
+      "funnel": "Free PDF checker, then free tracker for one active project, then paid for unlimited projects",
+      "cold_outreach": "Offer Etsy pattern designers a compatibility report for their PDF layout in exchange for a link.",
+      "post_ideas": [
+        "Which Etsy cross-stitch PDFs work with trackers and which do not",
+        "Track a 40,000-stitch chart on any device, no app store",
+        "Why my chart PDF failed to import: a checklist for pattern designers"
+      ]
+    },
+    "capital_usd": 12,
+    "capital_note": "Domain name only.",
+    "uses_paid_api": false,
+    "paid_api_note": null,
+    "confidence": "medium",
+    "notes": "The market clearly exists (several iOS trackers launched in 2026) so this is a cross-platform web take, not an empty field; the signals are about paywalls, lost licences and PDF import, not an explicit request for a web version. Knitting charts are harder to parse than cross-stitch, so start with cross-stitch. Heavy PDFs must stay client-side to fit free storage."
+  },
+  {
+    "id": "rev-004",
+    "name": "LeagueSlate",
+    "idea": "Ad-free team and league schedule hub with a constraint-based schedule generator and per-team calendar feeds.",
+    "description": "League coordinators enter teams, fields, time slots, blackout dates and rest rules; the generator builds a balanced round-robin or pool-play schedule, and parents subscribe to their team's ICS feed with live field changes. No ads, no mandatory app, just a link and email/ICS updates. Hard to copy because the constraint scheduler (home/away balance, field limits, coach conflicts) and low-disruption rescheduling after rainouts are real algorithmic work.",
+    "niche": "Sports & Teams",
+    "niche2": null,
+    "is_feature": false,
+    "feature_for": null,
+    "web_delivery": "Next.js on Vercel; scheduler runs in the browser; league data in Supabase; ICS per team via a route handler; Supabase Realtime for live field changes.",
+    "why_hard_to_copy": "Constraint scheduling with fields, slots, blackouts and rest rules, and minimal-change rescheduling, is an optimization problem rather than CRUD; several free generators exist but none is combined with an ad-free team hub.",
+    "signals": [
+      {
+        "platform": "appstore",
+        "url": "https://apps.apple.com/us/app/teamsnap/id393048976",
+        "date": "2026-10-21",
+        "summary": "A parent says full-screen banner ads and accidental-click traps make checking a last-minute field change from the car feel genuinely hazardous.",
+        "engagement": "8 of 8 recent low-star reviews read (Oct 13-23) complain about ads or paywalled basics; app has 60,228 ratings"
+      },
+      {
+        "platform": "appstore",
+        "url": "https://apps.apple.com/us/app/teamsnap/id393048976",
+        "date": "2026-10-19",
+        "summary": "A user says the ads are now so plentiful the app is hard to use and wonders why it is not simply paid-only.",
+        "engagement": "same TeamSnap review set"
+      },
+      {
+        "platform": "trustpilot",
+        "url": "https://www.trustpilot.com/review/teamsnap.com",
+        "date": "2026-10-04",
+        "summary": "Reviewer dislikes being forced onto a smartphone 24/7 to follow a team and says people without a smartphone are left in the dark.",
+        "engagement": "1 of 3 recent low-star reviews read"
+      },
+      {
+        "platform": "appstore",
+        "url": "https://apps.apple.com/us/app/copa-f%C3%A1cil-tournament-maker/id1444543396",
+        "date": "2026-07-28",
+        "summary": "A tournament organiser says a new update stops scores from being recorded and is delaying their events.",
+        "engagement": "2 of 2 recent low-star reviews read report breakage; 4,946 ratings"
+      }
+    ],
+    "competitors_seen": [
+      {
+        "name": "Jersey Watch schedule generator",
+        "url": "https://www.jerseywatch.com/tools/sports-schedule-generator",
+        "note": "free round-robin generator with blackout dates and calendar sync"
+      },
+      {
+        "name": "LeagueLobster",
+        "url": "https://leaguelobster.com",
+        "note": "free generator capped at 25 teams or 50 games, field-level constraints limited"
+      },
+      {
+        "name": "Slo-Pitch Central schedule generator",
+        "url": "https://slopitchcentral.com/schedule-generator",
+        "note": "handles diamonds and rest days, ad supported"
+      },
+      {
+        "name": "TeamSnap",
+        "url": "https://apps.apple.com/us/app/teamsnap/id393048976",
+        "note": "incumbent team app, ad-heavy in free tier per reviews"
+      }
+    ],
+    "satellite": {
+      "name": "Round-Robin Schedule Maker",
+      "what": "Free no-signup page that builds a printable round-robin with byes for any number of teams.",
+      "why_shared": "Coaches and rec-league volunteers pass it around by link and it ranks for generic searches.",
+      "handoff": "Export button to continue in LeagueSlate with fields, slots and ICS feeds."
+    },
+    "marketing": {
+      "where": [
+        "Youth league and rec-league organiser Facebook groups",
+        "local parks-and-recreation department newsletters",
+        "pickleball, adult kickball and softball league forums",
+        "Show HN and Product Hunt"
+      ],
+      "target": "Volunteer coordinators of youth and adult rec leagues with 6 to 40 teams",
+      "funnel": "Free schedule maker, then free league hub up to a team limit, then paid for multiple divisions and sponsors-free branding",
+      "cold_outreach": "Email small-town parks departments with a free pre-built season schedule for their league.",
+      "post_ideas": [
+        "Build a fair 10-team schedule with 3 fields and 2 blackout weekends in 30 seconds",
+        "Rainout rescheduling that moves the fewest games",
+        "Why your league app should not need a smartphone"
+      ]
+    },
+    "capital_usd": 12,
+    "capital_note": "Domain name only.",
+    "uses_paid_api": false,
+    "paid_api_note": null,
+    "confidence": "medium",
+    "notes": "Ad complaints are the strongest, freshest signal (eight low-star reviews in ten days) but are a monetisation gripe, so the moat is the scheduler, and free generators already exist; a differentiated version needs real constraint handling and rescheduling. TeamSnap also handles payments; this idea deliberately skips fees and payments (banned niche)."
+  },
+  {
+    "id": "rev-005",
+    "name": "PubOpen",
+    "idea": "Open and convert old Microsoft Publisher .pub files to PDF, SVG or editable text entirely in the browser.",
+    "description": "Microsoft Publisher stopped being part of Microsoft 365 on 1 October 2026, so offices, schools and clubs are left with years of .pub newsletters, flyers and labels they can no longer edit. This tool parses the legacy .pub container in the browser (nothing is uploaded) and exports a PDF, page images and the extracted text and fonts for rebuilding in Word or Canva. Hard to copy because .pub is an obscure reverse-engineered binary format and good fidelity needs a WebAssembly build of an existing parser plus lots of real-world test files.",
+    "niche": "Data & Documents",
+    "niche2": null,
+    "is_feature": false,
+    "feature_for": null,
+    "web_delivery": "Static site on Vercel; the parser (libmspub compiled to WebAssembly) runs fully client-side, so there is no server cost and no file upload.",
+    "why_hard_to_copy": "Parsing a proprietary legacy binary format client-side with decent layout fidelity; the work is porting a C++ library to WASM and tuning it against a corpus of real .pub files.",
+    "signals": [
+      {
+        "platform": "web",
+        "url": "https://www.mun.ca/cio/news-articles/microsoft-publisher-end-of-life-in-october-2026-preparing-your-files-and-choosing-alternatives.php",
+        "date": "2026-09-11",
+        "summary": "A university IT notice tells staff Microsoft 365 users can no longer open or edit .pub files after 1 October 2026 and advises converting to PDF or rebuilding in Word or PowerPoint; the page was updated again on 23 October 2026.",
+        "engagement": "unknown (institutional notice)"
+      },
+      {
+        "platform": "web",
+        "url": "https://lazyadmin.nl/office-365/microsoft-publisher-retires-october-1-do-this-final-file-check/",
+        "date": "2026-09-30",
+        "summary": "An IT admin blog (last updated that day) says the vendor's bulk-conversion scripts need a licensed local Publisher, and that there is no direct Publisher-to-PowerPoint export, so editable conversion is manual.",
+        "engagement": "unknown"
+      }
+    ],
+    "competitors_seen": [
+      {
+        "name": "LibreOffice Draw",
+        "url": "https://techradar.com/pro/missing-microsoft-publisher-libreoffice-is-here-to-save-the-day",
+        "note": "free desktop install that can open .pub using a reverse-engineered import; fidelity varies, needs install"
+      },
+      {
+        "name": "Microsoft PowerShell bulk converter",
+        "url": "https://lazyadmin.nl/office-365/microsoft-publisher-retires-october-1-do-this-final-file-check/",
+        "note": "only works with a licensed local copy of Publisher"
+      }
+    ],
+    "satellite": {
+      "name": "Is My .pub Safe to Open?",
+      "what": "Free page that shows page count, embedded fonts and linked images of a .pub without uploading it.",
+      "why_shared": "IT admins use it to inventory files before the deadline.",
+      "handoff": "Link to the full converter for PDF and text export."
+    },
+    "marketing": {
+      "where": [
+        "IT-admin communities and school district tech forums",
+        "Microsoft 365 admin blogs and newsletters",
+        "church office and nonprofit admin Facebook groups",
+        "Hacker News Show HN"
+      ],
+      "target": "Small offices, schools, churches and clubs with legacy Publisher files and no Publisher licence",
+      "funnel": "Free client-side converter, then paid batch folder conversion for IT admins",
+      "cold_outreach": "Pitch IT help-desk pages (like the university notices) to add a no-upload converter link to their Publisher retirement guides.",
+      "post_ideas": [
+        "Convert .pub files without Publisher or uploading them anywhere",
+        "What you lose when you export a Publisher newsletter to PDF",
+        "Inventory every .pub on your drive before the deadline"
+      ]
+    },
+    "capital_usd": 12,
+    "capital_note": "Domain name only; WASM bundle fits Vercel static hosting.",
+    "uses_paid_api": false,
+    "paid_api_note": null,
+    "confidence": "low",
+    "notes": "Demand evidence is institutional notices, not end users complaining; I did not find a user thread. Build risk is high: porting libmspub to WASM and getting acceptable fidelity may take weeks, and LibreOffice already opens .pub on desktop. Date on the second source is the page's own 'last updated' stamp."
+  },
+  {
+    "id": "rev-006",
+    "name": "BracketForge",
+    "idea": "Free, no-paywall tournament engine with Swiss, double-elimination and group-to-playoff formats and live spectator pages.",
+    "description": "Organisers of community game nights, school clubs and local esports events create a bracket without hitting a paywall, using correct Swiss pairing with tiebreaks, double elimination with grand-final reset, seeding byes and multi-stage formats. Players join by link with no account and results update live on a spectator screen. Hard to copy because pairing and tiebreak rules are correctness-critical and the live-sync layer must be reliable at venue Wi-Fi quality.",
+    "niche": "Gaming Communities",
+    "niche2": "Sports & Teams",
+    "is_feature": false,
+    "feature_for": null,
+    "web_delivery": "Next.js on Vercel; pairing engine in TypeScript; results and live standings through Supabase Realtime; public read-only spectator URL.",
+    "why_hard_to_copy": "Swiss pairing with Buchholz-style tiebreaks, bye handling, double-elimination reset logic and re-seeding after dropouts are rules-engine problems with many edge cases, and live results need dependable realtime sync.",
+    "signals": [
+      {
+        "platform": "appstore",
+        "url": "https://apps.apple.com/us/app/bracket-builder/id1669378849",
+        "date": "2026-08-03",
+        "summary": "A reviewer says everything in Bracket Builder is locked behind a paywall.",
+        "engagement": "3 of 3 recent low-star reviews read mention paywall or forced payment; 2,745 ratings"
+      },
+      {
+        "platform": "appstore",
+        "url": "https://apps.apple.com/us/app/bracket-builder/id1669378849",
+        "date": "2026-07-13",
+        "summary": "A user set up a whole bracket and was then asked for a payment of about 20 dollars before they could save it.",
+        "engagement": "same Bracket Builder review set"
+      },
+      {
+        "platform": "appstore",
+        "url": "https://apps.apple.com/us/app/bracket-app/id1604693963",
+        "date": "2026-08-15",
+        "summary": "Another bracket app lets you type in all players and only then shows a paywall; an earlier review also reports a pairing bug where a rematch repeats the same placement.",
+        "engagement": "2 of 2 recent low-star reviews read; 166 ratings"
+      },
+      {
+        "platform": "appstore",
+        "url": "https://apps.apple.com/us/app/copa-f%C3%A1cil-tournament-maker/id1444543396",
+        "date": "2026-05-27",
+        "summary": "A tournament maker app is described as constantly erroring out when recording results.",
+        "engagement": "2 of 2 recent low-star reviews read; 4,946 ratings"
+      },
+      {
+        "platform": "web",
+        "url": "https://alternativeto.net/news/2025/11/guilded-to-shut-down-on-december-19-2025-as-focus-shifts-to-roblox-communities/",
+        "date": "2025-11-07",
+        "summary": "Guilded, which many gaming clans used for events and tournaments, was announced to close on 19 December 2025, with the vendor pointing users to Discord or TeamSpeak.",
+        "engagement": "1 comment on the news post"
+      }
+    ],
+    "competitors_seen": [
+      {
+        "name": "Challonge",
+        "url": "https://alternativeto.net/software/challonge/?p=2",
+        "note": "listed as freemium on AlternativeTo; free tier limits not verified"
+      },
+      {
+        "name": "VERXUS",
+        "url": "https://alternativeto.net/software/verxus--fixture-studio",
+        "note": "free; supports league, groups, Swiss, playoffs, single and double elimination"
+      },
+      {
+        "name": "Score7",
+        "url": "https://alternativeto.net/software/verxus--fixture-studio",
+        "note": "no-signup sharing option listed on the same AlternativeTo page"
+      },
+      {
+        "name": "DART-TV",
+        "url": "https://alternativeto.net/software/dart-tv",
+        "note": "built by a developer reacting to paid-only bracket tools"
+      }
+    ],
+    "satellite": {
+      "name": "Swiss Pairings Calculator",
+      "what": "Free page: enter players and results, get next-round Swiss pairings and standings with tiebreaks.",
+      "why_shared": "Board game, card game and chess clubs share the link for weekly events.",
+      "handoff": "Convert the event into a full BracketForge tournament with spectator page."
+    },
+    "marketing": {
+      "where": [
+        "board-game and trading-card-game store Discords",
+        "local esports and school club organiser groups",
+        "BoardGameGeek forums",
+        "itch.io and game-jam communities"
+      ],
+      "target": "Volunteer organisers of weekly game nights and small local tournaments",
+      "funnel": "Free pairings page to free tournament creation to paid for branded venue displays",
+      "cold_outreach": "Message local game-store owners with a free tournament page for their next event.",
+      "post_ideas": [
+        "Swiss pairing explained with a worked example and the rematch bug most apps have",
+        "Run a 32-player double-elimination from your phone with no account",
+        "Why free bracket apps hit a paywall after you type in all the names"
+      ]
+    },
+    "capital_usd": 12,
+    "capital_note": "Domain name only.",
+    "uses_paid_api": false,
+    "paid_api_note": null,
+    "confidence": "low",
+    "notes": "Paywall pattern is clear but free competitors (VERXUS, Challonge free tier) exist, so differentiation is correctness plus a no-account spectator mode. Guilded signal is context only (shutdown, not a tournament complaint); the AlternativeTo news page does not itself name tournaments. No payments or prize pools to stay outside banned niches."
+  },
+  {
+    "id": "rev-007",
+    "name": "TripPaste",
+    "idea": "Paste or drop travel confirmations and get a clean itinerary with a calendar feed, without needing an email-sync service.",
+    "description": "Travellers paste confirmation emails, upload .eml files or PDFs, and the app extracts flights, hotels, trains and car rentals using hand-built per-supplier parsers, then builds a day-by-day itinerary, time-zone-correct ICS feed and shareable page. It targets people frustrated that email auto-import in the big itinerary apps stopped working or duplicates calendar entries. Hard to copy because accurate extraction from many airline, hotel and rail confirmation formats is a maintained library of parsers and edge cases such as time zones and multi-leg trips.",
+    "niche": "Travel",
+    "niche2": null,
+    "is_feature": false,
+    "feature_for": null,
+    "web_delivery": "Next.js on Vercel; parsing runs in the browser (pdf.js for PDFs, text rules for emails); itineraries stored in Supabase with a public share link and ICS route.",
+    "why_hard_to_copy": "A growing, tested library of supplier-specific confirmation parsers with correct time-zone and multi-leg handling, which generic LLM-free code cannot guess.",
+    "signals": [
+      {
+        "platform": "appstore",
+        "url": "https://apps.apple.com/us/app/tripit-travel-planner/id311035142",
+        "date": "2026-10-23",
+        "summary": "A longtime user says TripIt used to scan email and fill in transport plans seamlessly but no longer does at all.",
+        "engagement": "3 of 4 recent low-star reviews read say email import or syncing is broken or unreliable; 312,524 ratings"
+      },
+      {
+        "platform": "appstore",
+        "url": "https://apps.apple.com/us/app/tripit-travel-planner/id311035142",
+        "date": "2026-09-18",
+        "summary": "A 20-year user says on 29 August 2026 TripIt cut off all third-party sync including Flighty and Tripsy, leaving only an unreliable manual calendar feed (single claim, not confirmed elsewhere).",
+        "engagement": "1 review, uncorroborated"
+      },
+      {
+        "platform": "appstore",
+        "url": "https://apps.apple.com/us/app/wanderlog-travel-planner/id1476732439",
+        "date": "2026-10-18",
+        "summary": "A Wanderlog user says it imports itineraries poorly and misreads confirmations, repeatedly prompting for a restaurant reservation that already has a confirmation number.",
+        "engagement": "2 of 4 recent low-star reviews read cite import or sync problems; 36,096 ratings"
+      },
+      {
+        "platform": "appstore",
+        "url": "https://apps.apple.com/us/app/wanderlog-travel-planner/id1476732439",
+        "date": "2026-10-12",
+        "summary": "Another reviewer says email sync is incomplete and creates duplicate entries in Google Calendar.",
+        "engagement": "same Wanderlog review set"
+      },
+      {
+        "platform": "trustpilot",
+        "url": "https://www.trustpilot.com/review/wanderlog.com",
+        "date": "2026-08-09",
+        "summary": "A traveller says the app forces a free trial they did not want and that logging into a browser version just to see a holiday itinerary is pointless.",
+        "engagement": "1 of 4 newest low-star reviews read mentions the forced trial"
+      }
+    ],
+    "competitors_seen": [
+      {
+        "name": "TripIt",
+        "url": "https://apps.apple.com/us/app/tripit-travel-planner/id311035142",
+        "note": "incumbent with Pro tier; reviewers report email import failing"
+      },
+      {
+        "name": "Wanderlog",
+        "url": "https://apps.apple.com/us/app/wanderlog-travel-planner/id1476732439",
+        "note": "free plus Pro; import and calendar duplicates reported"
+      },
+      {
+        "name": "Tripsy",
+        "url": "https://tripsy.helpscoutdocs.com/article/65-how-to-import-trips-and-activities-data-from-tripit",
+        "note": "iOS itinerary app with manual TripIt import"
+      },
+      {
+        "name": "Flighty",
+        "url": "https://www.going.com/guides/tripit-review",
+        "note": "flight tracking app that can link to TripIt per Going guide"
+      }
+    ],
+    "satellite": {
+      "name": "Itinerary to Calendar",
+      "what": "Free page: paste one confirmation and download an .ics file with correct time zones.",
+      "why_shared": "People forward the result to travel companions.",
+      "handoff": "Save to a trip page to combine several confirmations."
+    },
+    "marketing": {
+      "where": [
+        "FlyerTalk and travel-hacking forums",
+        "digital nomad and family-travel Facebook groups",
+        "Product Hunt",
+        "points-and-miles blogs"
+      ],
+      "target": "Frequent leisure and business travellers who dislike paid itinerary subscriptions",
+      "funnel": "Free paste-to-ICS page, then free trip pages, then paid for shared group trips and offline PDF packs",
+      "cold_outreach": "Ask travel bloggers to test it with their messiest multi-leg confirmations.",
+      "post_ideas": [
+        "Why your itinerary app puts a flight at the wrong time zone",
+        "Paste a booking email, get a calendar feed: no inbox access needed",
+        "Which airline emails parse cleanly and which break everything"
+      ]
+    },
+    "capital_usd": 12,
+    "capital_note": "Domain name only.",
+    "uses_paid_api": false,
+    "paid_api_note": null,
+    "confidence": "low",
+    "notes": "Signals are App Store reviews on two apps plus one Trustpilot review, medium count but not yet independent web-based requests. Without inbound email processing the product is paste/upload only, which is less magical than TripIt; the uncorroborated 'TripIt cut third-party sync' claim is flagged. Parser upkeep is a long tail."
+  },
+  {
+    "id": "rev-008",
+    "name": "SowRight",
+    "idea": "Garden planner that gets planting dates right: local frost dates, crop-specific rules and succession planting, with no subscription.",
+    "description": "Gardeners enter a location and bed layout; the planner uses frost-date normals and a hand-checked crop rules table (days to maturity, soil-temperature limits, direct sow vs transplant, succession intervals) to generate a dated sow, transplant and harvest calendar that updates as crops are harvested. It is for home vegetable growers who have caught consumer garden apps giving wrong advice or locking basics behind subscriptions. Hard to copy because the value is an expert-verified, region-aware crop dataset and scheduling logic, not the UI.",
+    "niche": "Gardening & Outdoors",
+    "niche2": null,
+    "is_feature": false,
+    "feature_for": null,
+    "web_delivery": "Next.js PWA on Vercel; crop rules and frost-date data are static JSON (public NOAA-style normals); user beds and plantings in Supabase.",
+    "why_hard_to_copy": "A curated and verified crop-rules dataset by climate and frost date plus succession and harvest-date logic; generic AI-generated advice is the exact failure reviewers describe.",
+    "signals": [
+      {
+        "platform": "appstore",
+        "url": "https://apps.apple.com/us/app/growit-garden-planner/id6443580320",
+        "date": "2026-03-31",
+        "summary": "An advanced gardener who wanted something better than a spreadsheet says the app is full of misinformation, for example advising that cucurbits can be started indoors without caveats.",
+        "engagement": "3 of 3 recent low-star reviews read cite wrong advice, paywalls or missing basic features; 14,181 ratings"
+      },
+      {
+        "platform": "appstore",
+        "url": "https://apps.apple.com/us/app/growit-garden-planner/id6443580320",
+        "date": "2026-03-14",
+        "summary": "Another user cannot delete or mark as harvested a crop, so the app still gives advice on cabbage they grew last fall.",
+        "engagement": "same GrowIt review set"
+      },
+      {
+        "platform": "appstore",
+        "url": "https://apps.apple.com/us/app/seed-to-spoon-garden-planner/id1312538762",
+        "date": "2026-04-16",
+        "summary": "A second-year Seed to Spoon user wants an easy way to find where a specific vegetable was planted and its status, saying the app needs more features to manage a garden.",
+        "engagement": "2 of 2 recent low-star reviews read; 9,292 ratings"
+      },
+      {
+        "platform": "appstore",
+        "url": "https://apps.apple.com/us/app/seed-to-spoon-garden-planner/id1312538762",
+        "date": "2026-09-30",
+        "summary": "A reviewer objects to the price being raised and says even about $50 is too much for the planner.",
+        "engagement": "same Seed to Spoon review set"
+      },
+      {
+        "platform": "appstore",
+        "url": "https://apps.apple.com/us/app/planter-garden-planner/id1542642210",
+        "date": "2026-05-30",
+        "summary": "A new user bought a yearly premium plan by accident, could not log in, and says there was no customer service.",
+        "engagement": "1 of 1 recent low-star review read; 2,350 ratings"
+      }
+    ],
+    "competitors_seen": [
+      {
+        "name": "Seed to Spoon",
+        "url": "https://apps.apple.com/us/app/seed-to-spoon-garden-planner/id1312538762",
+        "note": "paid subscription app, 4.78 rating; price complaints"
+      },
+      {
+        "name": "Planter",
+        "url": "https://apps.apple.com/us/app/planter-garden-planner/id1542642210",
+        "note": "free iOS app with in-app purchases, planting calendar and square-foot grid"
+      },
+      {
+        "name": "GrowIt",
+        "url": "https://apps.apple.com/us/app/growit-garden-planner/id6443580320",
+        "note": "paywalled, accused of wrong planting advice"
+      },
+      {
+        "name": "NParks Sowing and Harvest Planner",
+        "url": "https://gardeningsg.nparks.gov.sg/digital-tools/sowing-planner",
+        "note": "free regional web tool for Singapore, shows a government-grade web planner is possible"
+      }
+    ],
+    "satellite": {
+      "name": "Last-Frost Date and Sow Calendar",
+      "what": "Free page: enter ZIP/postcode and get frost dates plus a one-page sow calendar for common crops.",
+      "why_shared": "Gardening groups share it every spring and it ranks for frost-date searches.",
+      "handoff": "Open the calendar in SowRight to add beds and succession plantings."
+    },
+    "marketing": {
+      "where": [
+        "Extension master-gardener newsletters and local garden club groups",
+        "Houzz and other gardening forums",
+        "regional Facebook gardening groups by zone",
+        "seed company newsletters"
+      ],
+      "target": "Home vegetable gardeners in cool-season climates with short frost windows",
+      "funnel": "Free frost-date page, then free planner for one bed set, then paid for multiple gardens and printable plans",
+      "cold_outreach": "Offer master gardener programs a free zone-specific planting calendar printout.",
+      "post_ideas": [
+        "Why your garden app told you to start squash indoors too early",
+        "Succession planting dates for lettuce by last-frost date",
+        "Free frost-date lookup with a sow calendar"
+      ]
+    },
+    "capital_usd": 12,
+    "capital_note": "Domain name only; frost data comes from a public dataset.",
+    "uses_paid_api": false,
+    "paid_api_note": null,
+    "confidence": "medium",
+    "notes": "Planting-rule accuracy is only as good as the dataset; building and verifying it for even 60 crops across climates is real expert work and the biggest cost (time, not cash). Free web calendars exist in some regions (e.g., Singapore NParks), so differentiation is accuracy plus succession and bed tracking."
+  },
+  {
+    "id": "rev-009",
+    "name": "Lingua Reader",
+    "idea": "Browser reader for language learners: click any word for a dictionary entry, track known words, no forced AI and no per-month wall.",
+    "description": "Learners paste or import articles, EPUBs and subtitle files, and the app splits them into words (including Japanese, Chinese and Thai with browser-native segmentation), colours each word by how well you know it, and shows an offline dictionary entry on click. Known-word counts, lemma handling and an Anki-ready export are built in, and a text's vocabulary coverage is shown before you start reading. It targets people leaving LingQ-style paid readers over mandatory AI features and instability. Hard to copy because tokenisation, lemmatisation across inflections and the bundled open dictionaries (Wiktionary, JMdict, CC-CEDICT) are language-by-language data and NLP work.",
+    "niche": "Languages",
+    "niche2": "Education & Study",
+    "is_feature": false,
+    "feature_for": null,
+    "web_delivery": "Next.js PWA on Vercel; dictionaries and segmentation data shipped as per-language packs cached in IndexedDB; word-status rows synced through Supabase.",
+    "why_hard_to_copy": "Per-language segmentation, lemmatisation and dictionary pipelines (CJK, Thai, inflected European languages) plus accurate known-word tracking across word forms; a flashcard clone is easy, this is not.",
+    "signals": [
+      {
+        "platform": "appstore",
+        "url": "https://apps.apple.com/us/app/lingq-learn-languages/id379385811",
+        "date": "2026-09-27",
+        "summary": "A long-time LingQ user would give five stars but objects to a new AI language coach that messages them unprompted and to words being translated by AI instead of plain dictionary lookup; wants an option to turn all AI off.",
+        "engagement": "3 of 3 recent low-star reviews read describe a LingQ gap (mandatory AI, instability, desktop features missing); 10,396 ratings"
+      },
+      {
+        "platform": "appstore",
+        "url": "https://apps.apple.com/us/app/lingq-learn-languages/id379385811",
+        "date": "2026-10-04",
+        "summary": "The daily goal sometimes fails because of server issues, and importing podcasts is hard so content is narrower than advertised.",
+        "engagement": "same LingQ review set"
+      },
+      {
+        "platform": "appstore",
+        "url": "https://apps.apple.com/us/app/lingq-learn-languages/id379385811",
+        "date": "2026-08-23",
+        "summary": "A six-year user says longstanding problems are never fixed and that on mobile you cannot highlight more than a few words at once as you can on desktop, which matters for dense sentences.",
+        "engagement": "same LingQ review set"
+      },
+      {
+        "platform": "appstore",
+        "url": "https://apps.apple.com/us/app/memrise-language-learning-app/id635966718",
+        "date": "2026-09-17",
+        "summary": "A Memrise user says almost every lesson sits behind the Pro paywall and that the pro tier price makes the free version pointless.",
+        "engagement": "3 of 4 recent low-star Memrise reviews read cite paywalls or AI-generated content; 217,490 ratings"
+      }
+    ],
+    "competitors_seen": [
+      {
+        "name": "Lute",
+        "url": "https://selfhostyourself.com/alternative-to/lingq",
+        "note": "open-source self-hosted reader (Python/Flask), local install, some languages need external tools like MeCab"
+      },
+      {
+        "name": "LWT (Learning with Texts)",
+        "url": "https://selfhostyourself.com/alternative-to/lingq",
+        "note": "older self-hosted web app, similar idea, listed on the same page"
+      },
+      {
+        "name": "Readlang",
+        "url": "https://alternativeto.net/software/readlang",
+        "note": "browser-based reader with freemium limits"
+      },
+      {
+        "name": "LingQ",
+        "url": "https://apps.apple.com/us/app/lingq-learn-languages/id379385811",
+        "note": "incumbent subscription reader; reviewers complain about AI features, instability, mobile limitations"
+      }
+    ],
+    "satellite": {
+      "name": "Text Vocabulary Coverage Checker",
+      "what": "Free page: paste any article and see how many of its words fall in the top 1,000/3,000/5,000 for the language, with an unknown-word list.",
+      "why_shared": "Language-learning communities love comparing text difficulty, and teachers share it.",
+      "handoff": "Button opens the text in Lingua Reader with the unknown words highlighted."
+    },
+    "marketing": {
+      "where": [
+        "language-learning forums such as HTLAL and learner Discords",
+        "Japanese, Chinese and Korean study communities",
+        "Anki forum shares",
+        "Product Hunt and Show HN"
+      ],
+      "target": "Intermediate learners who read native texts and want free tooling with no AI",
+      "funnel": "Free coverage checker, then free reader with 3 languages, then paid for large libraries, audio sync and cloud backup",
+      "cold_outreach": "Message polyglot YouTubers and bloggers who review LingQ with a free account and a language pack they care about.",
+      "post_ideas": [
+        "Read your first novel in Japanese with a free offline dictionary, no AI",
+        "How many words do you actually need to read this article? A coverage checker",
+        "Leaving LingQ: what I wish a reader app did differently"
+      ]
+    },
+    "capital_usd": 12,
+    "capital_note": "Domain name only; dictionary data is open-licensed and ships as static files.",
+    "uses_paid_api": false,
+    "paid_api_note": null,
+    "confidence": "medium",
+    "notes": "Three independent LingQ reviews describe different gaps within two months, but no review explicitly asks for a web tool; Lute and LWT already serve self-hosters, so the angle is a hosted, no-install, no-AI reader. Data licensing needs checking (Wiktionary CC BY-SA, JMdict EDRDG licence). Each added language is real linguistic work."
+  },
+  {
+    "id": "rev-010",
+    "name": "Field Checklist",
+    "idea": "Offline-first birding checklist logger that never loses unsubmitted lists and exports eBird-ready CSV.",
+    "description": "Birders log species counts, location, time and protocol in the field with no signal, using an offline taxonomy of species names and codes; lists stay on the device and sync when online, and a validated CSV in eBird's import layout is generated so nothing is retyped. Birders can start a list for any place, not just near their GPS fix, and edit past lists in bulk. Hard to copy because of the offline taxonomy handling, protocol and date/location validation rules that eBird's importer enforces, and loss-proof offline-first storage.",
+    "niche": "Gardening & Outdoors",
+    "niche2": "Science & Maker",
+    "is_feature": false,
+    "feature_for": null,
+    "web_delivery": "PWA on Vercel with a service worker and IndexedDB; taxonomy as a static JSON pack; optional Supabase sync; CSV generated in the browser for eBird's web import tool.",
+    "why_hard_to_copy": "Offline-first storage that cannot lose lists, plus a maintained taxonomy and importer-validation rule set; the eBird CSV format has strict requirements (one date, one location, a protocol per list).",
+    "signals": [
+      {
+        "platform": "appstore",
+        "url": "https://apps.apple.com/us/app/ebird/id988799279",
+        "date": "2026-08-15",
+        "summary": "A birder says the app tries to auto-update with no signal, blocks list making while updating, and after a glitch they lost more than 100 unsubmitted lists.",
+        "engagement": "3 of 3 recent low-star reviews read cite data loss, logouts or limits on where you can start a list; 825 ratings (3.84)"
+      },
+      {
+        "platform": "appstore",
+        "url": "https://apps.apple.com/us/app/ebird/id988799279",
+        "date": "2026-07-05",
+        "summary": "A user wants to start a checklist from anywhere in the country instead of only within a small radius of their position, and wants species sorted by recent sightings at the location.",
+        "engagement": "same eBird review set"
+      },
+      {
+        "platform": "appstore",
+        "url": "https://apps.apple.com/us/app/merlin-bird-id-by-cornell-lab/id773457673",
+        "date": "2026-09-24",
+        "summary": "After an update a Merlin user could not log in and lost their saved list; another says the app now loses saved birds after a failed sign-in.",
+        "engagement": "2 of 4 recent low-star Merlin reviews read mention lost saved birds; 113,877 ratings"
+      }
+    ],
+    "competitors_seen": [
+      {
+        "name": "eBird (official app)",
+        "url": "https://apps.apple.com/us/app/ebird/id988799279",
+        "note": "free, authoritative, but reviewers report lost offline lists and location limits"
+      },
+      {
+        "name": "Birda",
+        "url": "https://support.birda.org/en/articles/6300550-exporting-from-ebird",
+        "note": "can import an eBird export; native app with social features"
+      },
+      {
+        "name": "Birdathon",
+        "url": "https://apps.apple.com/app/id1211977440",
+        "note": "iOS app that exports to eBird; offline behaviour not confirmed"
+      },
+      {
+        "name": "eBird bulk import rules",
+        "url": "https://support.ebird.org/support/solutions/articles/48000907878",
+        "note": "CSV import needs one date and one location per list; eBird discourages bulk upload as main entry route"
+      }
+    ],
+    "satellite": {
+      "name": "eBird CSV Checker",
+      "what": "Free page that validates a CSV against eBird's import rules and flags errors before upload.",
+      "why_shared": "Birding groups share it after failed imports.",
+      "handoff": "Offer to log new lists directly in Field Checklist so the CSV is right the first time."
+    },
+    "marketing": {
+      "where": [
+        "BirdForum and local Audubon chapter newsletters",
+        "regional birding mailing lists and Facebook groups",
+        "big-year and Christmas Bird Count organisers",
+        "Product Hunt"
+      ],
+      "target": "Birders who bird in places without reception (backcountry, islands, boats)",
+      "funnel": "Free CSV checker to free offline logger to optional sync and backup",
+      "cold_outreach": "Email Christmas Bird Count compilers offering a ready-to-upload CSV workflow for volunteers without data service.",
+      "post_ideas": [
+        "I lost 100 unsubmitted checklists: how I log birds with no signal now",
+        "Why eBird rejects your CSV and how to fix it before uploading",
+        "Start a checklist anywhere: logging yesterday's birds from your couch"
+      ]
+    },
+    "capital_usd": 12,
+    "capital_note": "Domain name only; eBird API key is free but optional.",
+    "uses_paid_api": false,
+    "paid_api_note": null,
+    "confidence": "low",
+    "notes": "Only a handful of recent low-star reviews, and the incumbent app is free and loved by most users (high rating), so the opening is narrow: offline loss-proofing and custom location. iOS Safari PWA storage can be evicted so export and sync must be prominent. eBird says bulk upload should not be the main entry method; check terms before promoting this route."
+  },
+  {
+    "id": "rev-011",
+    "name": "AAC Board Hub",
+    "idea": "Free web AAC board editor with backup, sharing and ready-made therapist-built page sets so a family never loses years of setup.",
+    "description": "Parents and speech therapists build symbol-and-word boards for non-speaking children or adults, speak them with the browser's built-in speech, and keep them backed up in the cloud so a broken tablet does not wipe years of customisation. Boards can be shared as links or copied from a library of page sets that follow common core-word layouts. Hard to copy because the value is the board import/export plumbing and vetted vocabulary page sets, not the grid UI.",
+    "niche": "Accessibility",
+    "niche2": null,
+    "is_feature": false,
+    "feature_for": null,
+    "web_delivery": "PWA on Vercel using the Web Speech API for voice and IndexedDB for offline boards; board JSON and shared links in Supabase; symbols limited to openly licensed sets.",
+    "why_hard_to_copy": "Importing and exporting boards between AAC systems and curating vetted core-vocabulary page sets takes speech-language-pathology knowledge; the UI alone is a weekend project.",
+    "signals": [
+      {
+        "platform": "appstore",
+        "url": "https://apps.apple.com/us/app/proloquo2go-aac/id308368164",
+        "date": "2026-04-07",
+        "summary": "A parent spent years perfecting their son's setup in Proloquo2Go; when his iPad broke, the iCloud restore would not work and everything has to be rebuilt from scratch.",
+        "engagement": "1 of 2 recent low-star reviews read; 12,235 ratings"
+      },
+      {
+        "platform": "appstore",
+        "url": "https://apps.apple.com/us/app/touchchat-discover/id427022529",
+        "date": "2025-11-18",
+        "summary": "A reviewer calls the AAC developers greedy because there is no reason this kind of software should cost around $300.",
+        "engagement": "2 of 2 recent low-star TouchChat Discover reviews read; the other (2026-10-17) reports a login screen that does not submit"
+      },
+      {
+        "platform": "appstore",
+        "url": "https://apps.apple.com/us/app/proloquo/id1521978238",
+        "date": "2026-05-06",
+        "summary": "A user is angry that a communication app that should be free is yet another subscription fee.",
+        "engagement": "2 of 3 recent low-star Proloquo reviews read are about subscription cost; 148 ratings"
+      },
+      {
+        "platform": "appstore",
+        "url": "https://apps.apple.com/us/app/touchchat-hd-aac-w-wordpower/id412351574",
+        "date": "2025-12-08",
+        "summary": "A TouchChat HD user says customising pages is laborious and every update brings new glitches.",
+        "engagement": "2 of 2 recent low-star reviews read mention bugs after updates"
+      }
+    ],
+    "competitors_seen": [
+      {
+        "name": "Cboard",
+        "url": "https://alternativeto.net/software/cboard",
+        "note": "free open-source AAC web app that already exists"
+      },
+      {
+        "name": "Vocable AAC",
+        "url": "https://alternativeto.net/software/proloquo2go/",
+        "note": "free iOS app listed as the top free Proloquo2Go alternative"
+      },
+      {
+        "name": "Proloquo2Go",
+        "url": "https://apps.apple.com/us/app/proloquo2go-aac/id308368164",
+        "note": "market leader; paid, iOS only"
+      },
+      {
+        "name": "TouchChat",
+        "url": "https://apps.apple.com/us/app/touchchat-hd-aac-w-wordpower/id412351574",
+        "note": "paid, iOS only, about $300 per reviewers"
+      }
+    ],
+    "satellite": null,
+    "marketing": {
+      "where": [
+        "speech-language pathologist and special-education teacher groups",
+        "AAC parent Facebook groups",
+        "disability-focused conferences and newsletters",
+        "Product Hunt"
+      ],
+      "target": "Families and SLPs who cannot afford or cannot restore expensive AAC apps",
+      "funnel": "Free boards and backup for individuals, then paid for clinics managing many clients",
+      "cold_outreach": "Offer SLP bloggers free page sets built to their preferred core-word framework.",
+      "post_ideas": [
+        "How to back up your child's AAC setup before the tablet breaks",
+        "A free core-word starter board you can copy and edit",
+        "What AAC apps cost in 2026 and what you can do for free"
+      ]
+    },
+    "capital_usd": 12,
+    "capital_note": "Domain name only.",
+    "uses_paid_api": false,
+    "paid_api_note": null,
+    "confidence": "low",
+    "notes": "Cboard is already a free open-source web AAC app, so this is only worth doing as a better-curated, backed-up alternative or as contributions to Cboard; the strength of the signal is cost and lost-setup stories, not a missing web product. High-stakes users: needs reliability and an SLP advisor. Symbol licensing (e.g., commercial symbol sets) must be avoided."
+  },
+  {
+    "id": "rev-012",
+    "name": "Course Rescue",
+    "idea": "Import a Canvas/Common Cartridge or QTI export and turn it into a free, hosted mini-course with auto-graded quizzes.",
+    "description": "Independent teachers, tutors and homeschool co-ops lost free tools in 2026: Canvas Free-for-Teacher shut down after a final export window in July, Padlet retired its teaching tools, and GitHub Classroom closed. This app imports a .imscc or QTI export in the browser, rebuilds modules, pages and quizzes, and hosts them with a student login-free code link, auto-grading and CSV grade export. Hard to copy because Common Cartridge and QTI exports vary by tool version and quiz question types (numeric tolerance, matching, multi-answer) must be graded correctly.",
+    "niche": "Education & Study",
+    "niche2": null,
+    "is_feature": false,
+    "feature_for": null,
+    "web_delivery": "Next.js on Vercel; the export is parsed client-side with a zip library; course JSON in Supabase; grading in Supabase Edge Functions; media kept as links to limit storage.",
+    "why_hard_to_copy": "Parsing .imscc and QTI variants and reproducing Canvas quiz-question scoring semantics is format-specific, correctness-critical work.",
+    "signals": [
+      {
+        "platform": "web",
+        "url": "https://kb.wisc.edu/biochem/news.php?id=14229",
+        "date": "2026-07-20",
+        "summary": "A university notice says Instructure is reopening its Free-for-Teacher service only for a final window on 27-28 July so users can log in, view courses and export materials.",
+        "engagement": "unknown (institutional notice)"
+      },
+      {
+        "platform": "web",
+        "url": "https://padlet.help/l/en/article/10z0dbkbka-padlet-ta",
+        "date": "2026-06-30",
+        "summary": "Padlet's help page says its non-game teaching tools shut down on 30 June 2026, documents made with them can no longer be accessed or recovered, and no export is described.",
+        "engagement": "unknown (vendor help page, updated 2026-10-21)"
+      },
+      {
+        "platform": "github",
+        "url": "https://github.blog/changelog/2026-08-27-github-classroom-deprecated",
+        "date": "2026-08-27",
+        "summary": "GitHub deprecated Classroom as of 28 August 2026; assignment names, tests defined outside repositories and LTI rosters will be permanently deleted, with unnamed 'selected partner solutions' as the replacement.",
+        "engagement": "unknown (changelog post)"
+      }
+    ],
+    "competitors_seen": [
+      {
+        "name": "Google Classroom",
+        "url": "https://pressbooks.pub/everydayid/chapter/creating-courses-in-google-classroom/",
+        "note": "free; named as the replacement by an instructional-design author after Canvas Free-for-Teacher closed"
+      },
+      {
+        "name": "Classroom 50",
+        "url": "https://bruceelgort.com/2026/07/20/github-classroom-is-gone-heres-the-free-tool-that-replaces-it/",
+        "note": "free open-source replacement for GitHub Classroom aimed at coding courses"
+      },
+      {
+        "name": "Codio",
+        "url": "https://www.codio.com/after-github-classroom",
+        "note": "GitHub's named commercial partner; free tiers for GitHub Education users"
+      }
+    ],
+    "satellite": {
+      "name": "Quiz File Converter",
+      "what": "Free page that converts a QTI/Canvas quiz export into a printable quiz or a CSV question bank.",
+      "why_shared": "Teachers pass around converters when a platform closes.",
+      "handoff": "Option to publish the converted quiz as an auto-graded online quiz in Course Rescue."
+    },
+    "marketing": {
+      "where": [
+        "instructional-design and educator communities",
+        "homeschool co-op forums",
+        "tutoring and test-prep groups on Facebook",
+        "university teaching-and-learning center newsletters"
+      ],
+      "target": "Independent teachers, tutors and instructional designers who relied on Canvas Free-for-Teacher",
+      "funnel": "Free converter, then free hosted course for a small class, then paid for larger rosters and branded domains",
+      "cold_outreach": "Email people who published guides on Canvas Free-for-Teacher with a free import of their sample courses.",
+      "post_ideas": [
+        "I exported my Canvas Free-for-Teacher course, now what?",
+        "Turn a Canvas quiz export into a shareable auto-graded quiz",
+        "Which free LMS keeps your quiz banks portable"
+      ]
+    },
+    "capital_usd": 12,
+    "capital_note": "Domain name only.",
+    "uses_paid_api": false,
+    "paid_api_note": null,
+    "confidence": "low",
+    "notes": "Shutdown evidence is real but all institutional; I did not find a user thread. One secondary source says Instructure promised a replacement, and one headline suggested access might have been restored after a breach, so the market may be smaller than it looks. Student data handling (accounts, FERPA/COPPA) is a real compliance burden; keep students anonymous with code links."
+  }
+]
