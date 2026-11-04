@@ -1,0 +1,27 @@
+// A scripted two-pitch session, used by the "Run demo" button and by the tests.
+// Each step is something the pitcher says; "pause" means they stop and let the crowd talk.
+export const DEMO = [
+  { say: "Hi everyone. My game is called Haunted Hotel Tycoon. It's a tycoon where you run a hotel for ghosts." },
+  { say: 'You build rooms, hire ghost staff, and earn ecto coins from guests that you spend on upgrades.' },
+  { pause: true },
+  { say: "Unlike every other tycoon, the guests are other real players' ghosts, and they leave reviews that change your rating." },
+  { pause: true },
+  { say: 'Players come back for a daily login chest, a streak bonus, and a weekly haunted event with limited rooms.' },
+  { pause: true },
+  { say: 'In the first 30 seconds you spawn right in your lobby, a ghost guest arrives instantly and you check them in, no tutorial wall.' },
+  { pause: true },
+  { say: 'Monetization is a 2x coins game pass for 199 robux, a VIP lobby pass for 99 robux, and cosmetic room themes.' },
+  { pause: true },
+  { say: 'About 2 percent of players will pay, mostly for the game pass, and Premium players count too.' },
+  { pause: true },
+  { say: "I'm building it solo in six weeks, starting with one floor as the first version, and I'll cut the restaurant." },
+  { pause: true },
+  { say: 'Every coin and purchase is validated on the server, so exploiters cannot dupe currency, and remotes are rate limited.' },
+  { pause: true },
+  { say: 'Yes, let us do that twist.' },
+  { pause: true },
+  { say: "That's my pitch." },
+  { pause: true },
+  { say: 'Okay, my next idea is a racing game called Lava Kart where the track is built by the players who lost the last race.' },
+  { pause: true },
+];

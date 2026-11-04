@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pitcher</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header class="top">
+  <div class="brand"><span class="logo" aria-hidden="true"></span>Pitcher</div>
+  <nav class="tabs" role="tablist" aria-label="Views">
+    <button role="tab" id="nav-dashboard" aria-controls="view-dashboard" aria-selected="false">Dashboard</button>
+    <button role="tab" id="nav-pitch" aria-controls="view-pitch" aria-selected="true">Pitch mode</button>
+  </nav>
+  <span class="pill" id="aiPill" title="Who is thinking for the crowd">AI: …</span>
+  <button class="ghost" id="openSettings" aria-haspopup="dialog">Settings</button>
+</header>
+
+<main>
+  <section id="view-dashboard" class="view" hidden>
+    <div class="dash-head">
+      <h1>Your agents</h1>
+      <span class="pill" id="feedSource"></span>
+    </div>
+    <div class="agents" id="agents"></div>
+    <div class="dash-grid">
+      <section class="panel">
+        <h2>What's next</h2>
+        <ol class="next" id="nextList"></ol>
+      </section>
+      <section class="panel">
+        <h2>Recent pitches</h2>
+        <ul class="recent" id="recentList"></ul>
+      </section>
+    </div>
+    <p class="hint">The feed is a JSON endpoint: <code>POST /api/agents</code> with <code>{"agents":[{"id","name","status","task","detail","progress"}],"next":[{"id","title","owner","priority"}]}</code>. Until something posts, sample agents are shown.</p>
+  </section>
+
+  <section id="view-pitch" class="view">
+    <div class="stage-col">
+      <div class="stage-wrap">
+        <canvas id="stage" width="1920" height="1080" aria-label="Theatre stage with the crowd of claudes"></canvas>
+        <div class="cams" role="group" aria-label="Camera angle">
+          <button data-cam="first" aria-pressed="true">1 · You</button>
+          <button data-cam="side" aria-pressed="false">2 · Side</button>
+          <button data-cam="back" aria-pressed="false">3 · Back</button>
+        </div>
+        <div class="chips" id="chips"></div>
+      </div>
+      <div class="controls">
+        <button class="primary" id="micBtn">Start pitch</button>
+        <span class="status" id="micStatus">Mic off</span>
+        <span class="spacer"></span>
+        <button id="demoBtn">Run demo pitch</button>
+        <button id="endBtn" disabled>End pitch &amp; write up</button>
+        <button class="ghost" id="newBtn">New session</button>
+      </div>
+      <div class="transcript">
+        <p class="interim" id="interim" aria-live="polite"></p>
+        <form id="typeForm" autocomplete="off">
+          <input id="typeInput" placeholder="Or type what you'd say, then Enter (works without a mic)" aria-label="Type what you would say">
+          <button type="submit">Say it</button>
+        </form>
+      </div>
+    </div>
+    <aside class="side-col">
+      <div class="side-tabs" role="tablist" aria-label="Panels">
+        <button role="tab" data-panel="chat" aria-selected="true">Chatroom</button>
+        <button role="tab" data-panel="board" aria-selected="false">Pitches <span id="pitchCount" class="count">0</span></button>
+        <button role="tab" data-panel="doc" aria-selected="false">Understanding</button>
+      </div>
+      <div class="panel-body" id="panel-chat"><ol class="chat" id="chat" aria-live="polite"></ol></div>
+      <div class="panel-body" id="panel-board" hidden></div>
+      <div class="panel-body" id="panel-doc" hidden></div>
+    </aside>
+  </section>
+</main>
+
+<dialog id="settings">
+  <form method="dialog" class="settings">
+    <h2>Settings</h2>
+    <label class="row"><input type="checkbox" id="setVoices"> Spoken voices <small>The mic pauses while a claude talks.</small></label>
+    <label class="row"><input type="checkbox" id="setHeadphones"> I'm wearing headphones <small>Keep the mic on while they talk.</small></label>
+    <label class="row"><input type="checkbox" id="setInterrupt"> Mid-pitch interruptions</label>
+    <label class="row"><input type="checkbox" id="setChatter"> Crowd chatter while you talk</label>
+    <label class="row col">Crowd brain
+      <select id="setProvider">
+        <option value="auto">Automatic (Claude Code CLI if the local server is running)</option>
+        <option value="cli">Claude Code CLI via local server</option>
+        <option value="mock">Scripted crowd (offline, instant)</option>
+      </select>
+    </label>
+    <p class="hint">Keys: <kbd>1</kbd> <kbd>2</kbd> <kbd>3</kbd> switch camera, <kbd>M</kbd> mic on/off.</p>
+    <div class="right"><button value="close" class="primary">Done</button></div>
+  </form>
+</dialog>
+<script type="module" src="js/main.js"></script>
+</body>
+</html>
