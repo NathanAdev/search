@@ -57,6 +57,7 @@ Real-AI settings (environment variables):
 | `PITCHER_MODEL` | `haiku` | Model alias passed as `--model`; empty uses the CLI default |
 | `PITCHER_CLAUDE_ARGS` | `[]` | Extra CLI arguments as a JSON array, e.g. `["--max-turns","1"]` |
 | `PITCHER_TIMEOUT_MS` | `90000` | Per-call timeout |
+| `PITCHER_AI` | (unset) | `off` serves the app and dashboard with the scripted crowd only, for machines without Claude Code |
 | `PORT` / `HOST` | `8787` / `127.0.0.1` | The server only listens on localhost, because it starts processes |
 
 ## Dashboard

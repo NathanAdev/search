@@ -346,7 +346,7 @@ function saveRecent() {
 (async () => {
   try {
     const r = await fetch('/api/health', { cache: 'no-store' });
-    if (r.ok) { const h = await r.json(); serverUp = !!h.ok; serverModel = h.ai?.model || ''; }
+    if (r.ok) { const h = await r.json(); serverUp = !!h.ok && !!h.ai; serverModel = h.ai?.model || ''; }
   } catch { serverUp = false; }
   engine.setProvider(chooseProvider());
   showView(location.hash === '#dashboard' ? 'dashboard' : 'pitch');

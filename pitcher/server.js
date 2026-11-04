@@ -14,7 +14,7 @@ const TYPES = { '.html': 'text/html; charset=utf-8', '.js': 'text/javascript; ch
 const MAX_BODY = 512 * 1024;
 const MAX_CLI = 2;
 
-export function createApp({ feedFile = join(ROOT, 'data', 'agents.json'), cli = cliConfig(), run = runClaude } = {}) {
+export function createApp({ feedFile = join(ROOT, 'data', 'agents.json'), cli = cliConfig(), run = runClaude, aiOff = process.env.PITCHER_AI === 'off' } = {}) {
   const feed = createFeed(feedFile);
   let running = 0;
   const waiting = [];
@@ -37,7 +37,8 @@ export function createApp({ feedFile = join(ROOT, 'data', 'agents.json'), cli = 
   });
 
   async function api(req, res, path) {
-    if (path === '/api/health' && req.method === 'GET') return send(res, 200, { ok: true, ai: { kind: 'claude-cli', bin: cli.bin, model: cli.model || '(cli default)' } });
+    if (path === '/api/health' && req.method === 'GET') return send(res, 200, { ok: true, ai: aiOff ? null : { kind: 'claude-cli', bin: cli.bin, model: cli.model || '(cli default)' } });
+    if (aiOff && path.startsWith('/api/ai/')) return send(res, 503, { error: 'real AI is switched off (PITCHER_AI=off)' });
     if (path === '/api/agents' && req.method === 'GET') return send(res, 200, feed.get());
     if (path === '/api/agents' && req.method === 'POST') return send(res, 200, feed.post(await readJson(req)));
     if (path === '/api/ai/beat' && req.method === 'POST') {
@@ -81,5 +82,6 @@ export function createApp({ feedFile = join(ROOT, 'data', 'agents.json'), cli = 
 if (process.argv[1] && resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
   const port = +(process.env.PORT || 8787);
   const host = process.env.HOST || '127.0.0.1';
-  createApp().listen(port, host, () => console.log(`Pitcher on http://${host}:${port}  (AI: claude CLI "${cliConfig().bin}", model ${cliConfig().model || 'default'})`));
+  const off = process.env.PITCHER_AI === 'off';
+  createApp().listen(port, host, () => console.log(`Pitcher on http://${host}:${port}  (AI: ${off ? 'off, scripted crowd only' : `claude CLI "${cliConfig().bin}", model ${cliConfig().model || 'default'}`})`));
 }

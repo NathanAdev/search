@@ -76,3 +76,12 @@ test('CLI failures become clear errors', async () => {
   assert.match((await res.json()).error, /not found/);
   missing.close();
 });
+
+test('PITCHER_AI=off: health reports no AI and AI routes refuse', async () => {
+  const off = createApp({ feedFile: null, aiOff: true });
+  await new Promise((r) => off.listen(0, '127.0.0.1', r));
+  const b = `http://127.0.0.1:${off.address().port}`;
+  assert.equal((await (await fetch(`${b}/api/health`)).json()).ai, null);
+  assert.equal((await fetch(`${b}/api/ai/beat`, { method: 'POST', body: '{}' })).status, 503);
+  off.close();
+});
