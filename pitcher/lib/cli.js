@@ -2,7 +2,7 @@
 // Uses the login already on this machine; no API key. Configure with environment variables:
 //   PITCHER_CLAUDE_BIN    path to the claude executable (default "claude")
 //   PITCHER_CLAUDE_PREFIX JSON array of arguments placed before -p (used by tests to run a fake CLI)
-//   PITCHER_MODEL         model alias passed with --model (default "haiku"; empty to use the CLI default)
+//   PITCHER_MODEL         model alias passed with --model (default "sonnet"; empty to use the CLI default)
 //   PITCHER_CLAUDE_ARGS   JSON array of extra arguments, e.g. ["--max-turns","1"]
 //   PITCHER_TIMEOUT_MS    per-call timeout (default 90000)
 import { spawn } from 'node:child_process';
@@ -16,7 +16,7 @@ export function cliConfig(env = process.env) {
   return {
     bin: env.PITCHER_CLAUDE_BIN || 'claude',
     prefix: parseArr(env.PITCHER_CLAUDE_PREFIX),
-    model: env.PITCHER_MODEL ?? 'haiku',
+    model: env.PITCHER_MODEL ?? 'sonnet',
     extra: parseArr(env.PITCHER_CLAUDE_ARGS),
     timeoutMs: +(env.PITCHER_TIMEOUT_MS || 90000),
   };
@@ -26,16 +26,27 @@ export function cliConfig(env = process.env) {
 const workDir = join(tmpdir(), 'pitcher-cli');
 mkdirSync(workDir, { recursive: true });
 
+// On Windows an npm-installed Claude Code is a .cmd shim, which Node can only start through the shell.
+// Only fixed flags and the configured model alias go on that command line; the prompt itself goes through stdin.
+const SAFE_ARG = /^[\w.:=/@-]+$/;
 export function runClaude(prompt, cfg = cliConfig()) {
+  return runOnce(prompt, cfg, cfg.bin, false).catch((err) => {
+    if (process.platform === 'win32' && err.code === 'ENOENT' && !/\.\w+$/.test(cfg.bin)) return runOnce(prompt, cfg, `${cfg.bin}.cmd`, true);
+    throw err;
+  });
+}
+
+function runOnce(prompt, cfg, bin, shell) {
   const args = [...cfg.prefix, '-p', '--output-format', 'json', ...(cfg.model ? ['--model', cfg.model] : []), ...cfg.extra];
+  if (shell && !args.every((a) => SAFE_ARG.test(a))) return Promise.reject(new Error('refusing to pass unusual arguments through the shell'));
   return new Promise((resolve, reject) => {
-    const child = spawn(cfg.bin, args, { cwd: workDir, stdio: ['pipe', 'pipe', 'pipe'], shell: false });
+    const child = spawn(bin, args, { cwd: workDir, stdio: ['pipe', 'pipe', 'pipe'], shell, windowsHide: true });
     let out = '';
     let err = '';
     const timer = setTimeout(() => { child.kill('SIGKILL'); reject(new Error(`claude CLI timed out after ${cfg.timeoutMs} ms`)); }, cfg.timeoutMs);
     child.stdout.on('data', (d) => { out += d; });
     child.stderr.on('data', (d) => { err += d; });
-    child.on('error', (e) => { clearTimeout(timer); reject(new Error(e.code === 'ENOENT' ? `claude CLI not found (${cfg.bin}); install Claude Code or set PITCHER_CLAUDE_BIN` : e.message)); });
+    child.on('error', (e) => { clearTimeout(timer); reject(Object.assign(new Error(e.code === 'ENOENT' ? `claude CLI not found (${cfg.bin}); install Claude Code or set PITCHER_CLAUDE_BIN` : e.message), { code: e.code })); });
     child.on('close', (code) => {
       clearTimeout(timer);
       if (code !== 0) return reject(new Error(`claude CLI exited ${code}: ${(err || out).trim().slice(0, 300)}`));

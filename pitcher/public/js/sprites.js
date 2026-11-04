@@ -126,6 +126,11 @@ export function drawMascot(ctx, left, top, s, o) {
   } else if (acc === 'glasses' && view !== 'back') {
     const g = '#3b3944';
     if (view === 'side') { px(9, 4, g); px(12, 4, g); } else { px(4, 4, g); px(7, 4, g); px(8, 4, g); px(11, 4, g); }
+  } else if (acc === 'expert') {
+    const capC = '#1f1b26';
+    for (let x = 2; x <= 13; x++) px(x, -1, capC);
+    for (let x = 5; x <= 10; x++) px(x, 0, capC);
+    px(12, 0, '#ffd166'); px(12, 1, '#ffd166'); px(12, 2, '#ffd166');
   } else if (acc === 'beanie') {
     for (let x = 4; x <= 11; x++) { px(x, 0, '#6e7bd9'); px(x, 1, '#6e7bd9'); }
     px(7, -1, '#f4f1ea'); px(8, -1, '#f4f1ea');

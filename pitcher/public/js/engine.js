@@ -1,6 +1,9 @@
 // The pitch engine: hears what you say, keeps every pitch and its questions, asks the provider what the crowd says next.
 import { classify, isAffirmation, isEndCue, isRejection } from './detector.js';
 import { autoTitle, changedFields, emptySpec, extractSpec, mergeSpec, reviseSpec, titleFrom } from './extract.js';
+import { CATEGORIES, detectCategories, expertId } from './categories.js';
+import { getPersona } from './personas.js';
+import { hintFor } from './provider-mock.js';
 import { chatter, heckle } from './reflex.js';
 import { scoreMonetization } from './scoring.js';
 import { buildUnderstanding } from './understanding.js';
@@ -11,7 +14,7 @@ const nid = (p) => `${p}${++seqId}`;
 
 export function createEngine({ provider, fallback, settings = {}, clock = () => Date.now(), onEvent = () => {} }) {
   const cfg = { interruptions: true, chatter: true, chatterEveryMs: 12000, nagAfterMs: 20000, ...settings };
-  const state = { status: 'idle', pitches: [], activeId: null, chat: [], providerName: provider.name, providerError: null };
+  const state = { status: 'idle', startedAt: null, pitches: [], activeId: null, chat: [], transcript: [], focusId: null, providerName: provider.name, providerError: null };
   const reflex = {};
   // Heckles can land before the first pitch exists; their keywords carry over so nobody repeats them.
   const prePitch = { spec: emptySpec(), heckled: [] };
@@ -29,7 +32,7 @@ export function createEngine({ provider, fallback, settings = {}, clock = () => 
   const addChat = (m) => { const msg = { id: nid('m'), t: clock(), pitchId: state.activeId, ...m }; state.chat.push(msg); emit({ type: 'chat', msg }); return msg; };
 
   function snapshot(p) {
-    return { id: p.id, n: p.n, title: p.title, spec: p.spec, fullText: p.fullText, utterances: p.utterances.length, utterancesText: p.utterances.slice(0, 3).map((u) => u.text),
+    return { id: p.id, n: p.n, title: p.title, category: p.category || null, spec: p.spec, fullText: p.fullText, utterances: p.utterances.length, utterancesText: p.utterances.slice(0, 3).map((u) => u.text),
       questions: p.questions.map(({ id, seq, by, topic, text, status, answer }) => ({ id, seq, by, topic, text, status, answer })),
       versions: p.versions.map(({ v, note }) => ({ v, note })), proposal: p.proposal, proposed: p.proposed, adopted: p.adopted, praisedHook: p.praisedHook };
   }
@@ -49,6 +52,7 @@ export function createEngine({ provider, fallback, settings = {}, clock = () => 
     const p = { id: nid('p'), n: state.pitches.length + 1, title: named || autoTitle(text, spec.genres), titleSource: named ? 'spoken' : 'auto', startedAt: clock(),
       utterances: [], fullText: '', spec, versions: [{ v: 1, at: clock(), note: 'First version', spec }], questions: [], proposal: null, proposed: false, adopted: [], praisedHook: false,
       heckled: state.pitches.length ? [] : [...prePitch.heckled] };
+    recompute(p);
     state.pitches.push(p);
     state.activeId = p.id;
     emit({ type: 'pitch', pitch: p, reason: 'new' });
@@ -79,8 +83,9 @@ export function createEngine({ provider, fallback, settings = {}, clock = () => 
       q.via = r.via || 'answer';
       q.answeredAt = clock();
     }
+    if (state.focusId && !p.questions.some((q) => q.id === state.focusId && q.status === 'open')) state.focusId = null;
     if (req.answering && req.kind === 'utterance') {
-      const target = [...p.questions].filter((q) => q.status === 'open').sort((a, b) => b.seq - a.seq)[0];
+      const target = p.questions.find((q) => q.id === req.focusId && q.status === 'open') || [...p.questions].filter((q) => q.status === 'open').sort((a, b) => b.seq - a.seq)[0];
       if (target && !(resp.resolved || []).some((r) => r.id === target.id)) target.attempts = (target.attempts || 0) + 1;
     }
     for (const q of resp.questions || []) {
@@ -101,13 +106,26 @@ export function createEngine({ provider, fallback, settings = {}, clock = () => 
     return !!last && clock() - last.askedAt < 90000;
   }
 
-  async function handleFinal(text, { typed = false } = {}) {
+  // "Vex, ..." or "to Mint's question" picks which open question you are answering.
+  function focusFromWords(p, text) {
+    if (!p) return;
+    const head = text.slice(0, 60).toLowerCase();
+    const open = p.questions.filter((q) => q.status === 'open');
+    for (const q of [...open].sort((a, b) => b.seq - a.seq)) {
+      const name = getPersona(q.by)?.name?.toLowerCase();
+      if (name && new RegExp(`(?:^|\\b(?:to|for|answering|answer|about)\\s+)${name}\\b|^\\s*${name}\\b`).test(head)) { state.focusId = q.id; return; }
+    }
+  }
+
+  async function handleFinal(text, { typed = false, source = typed ? 'typed' : 'voice' } = {}) {
     text = String(text).trim();
     if (!text) return;
     speechSeq++;
     lastSpeechAt = clock();
     addChat({ who: 'you', kind: 'say', text });
     let p = active();
+    focusFromWords(p, text);
+    state.transcript.push({ t: clock(), text, source, pitchId: p?.id || null, focusId: state.focusId });
     if (p && p.proposal && isAffirmation(text)) {
       const twist = p.proposal.text;
       p.adopted.push(twist);
@@ -128,7 +146,8 @@ export function createEngine({ provider, fallback, settings = {}, clock = () => 
     }
     // "answering" means this is the first thing said since the newest open question was asked.
     const newestOpen = p ? [...p.questions].filter((q) => q.status === 'open').sort((a, b) => b.seq - a.seq)[0] : null;
-    const answering = !!newestOpen && newestOpen.askedAt >= (p.lastUserAt ?? 0);
+    const focused = p && p.questions.some((q) => q.id === state.focusId && q.status === 'open');
+    const answering = focused || (!!newestOpen && newestOpen.askedAt >= (p.lastUserAt ?? 0));
     const decision = classify(text, { active: p && { genres: p.spec.genres, tokens: new Set(tokens(p.fullText)), segments: p.utterances.length }, awaitingAnswer: p ? awaitingAnswer(p) : false });
     if (decision.action === 'ignore') return;
     let kind = 'utterance';
@@ -140,6 +159,8 @@ export function createEngine({ provider, fallback, settings = {}, clock = () => 
       }
       p = newPitch(text);
       kind = 'new-pitch';
+      state.focusId = null;
+      state.transcript[state.transcript.length - 1].pitchId = p.id;
     } else if (decision.action === 'revise') {
       const before = p.spec;
       p.spec = reviseSpec(p.spec, text);
@@ -157,8 +178,15 @@ export function createEngine({ provider, fallback, settings = {}, clock = () => 
     p.lastUserAt = clock();
     p.fullText = `${p.fullText} ${text}`.trim();
     if (p.titleSource === 'auto' && p.utterances.length <= 3) p.title = titleFrom(p.fullText) || autoTitle(p.fullText, p.spec.genres);
+    let categoryNew = null;
+    const cats = detectCategories(p.fullText);
+    if (cats[0] && (!p.category || (kind === 'revision' && detectCategories(text)[0] && detectCategories(text)[0] !== p.category))) {
+      p.category = kind === 'revision' ? detectCategories(text)[0] : cats[0];
+      categoryNew = p.category;
+      emit({ type: 'expert', pitch: p, category: p.category });
+    }
     recompute(p);
-    await runBeat(p, { kind, text, typed, answering: answering && kind === 'utterance', leftOpen });
+    await runBeat(p, { kind, text, typed, answering: answering && kind === 'utterance', leftOpen, categoryNew, focusId: state.focusId });
     if (typed || decision.end || isEndCue(text)) {
       silenceBeatSeq = speechSeq;
       if (kind === 'utterance' && !typed) await runBeat(p, { kind: 'silence', silentFor: 0 });
@@ -194,7 +222,18 @@ export function createEngine({ provider, fallback, settings = {}, clock = () => 
 
   return {
     state,
-    start() { state.status = 'live'; changed(); },
+    start() { state.status = 'live'; state.startedAt = state.startedAt || clock(); changed(); },
+    // You pick which open question your next words answer (or null to let the crowd decide).
+    focus(id) { state.focusId = id; changed(); },
+    defer(id) { const q = active()?.questions.find((x) => x.id === id); if (q) { q.deferred = true; if (state.focusId === id) state.focusId = null; changed(); } },
+    hint(id) {
+      const p = state.pitches.find((x) => x.questions.some((q) => q.id === id));
+      const q = p?.questions.find((x) => x.id === id);
+      const text = q && hintFor(q.topic, p.spec.genres[0] || 'game');
+      if (text) emit({ type: 'lines', lines: [{ who: 'hype', text, kind: 'say', to: 'you' }], pitchId: p.id });
+    },
+    categoryOf: (p) => (p?.category ? CATEGORIES[p.category] : null),
+    expertOf: (p) => (p?.category ? expertId(p.category) : null),
     hearFinal: (text, opts) => queue(() => handleFinal(text, opts)),
     pause: (silentFor) => queue(() => handlePause(silentFor)),
     end: () => queue(handleEnd),

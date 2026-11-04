@@ -50,7 +50,9 @@ export function sentences(text) {
 }
 
 export const clamp = (n, lo, hi) => Math.max(lo, Math.min(hi, n));
-export const titleCase = (s) => String(s).replace(/\s+/g, ' ').trim().replace(/\b([a-z])([a-z']*)/gi, (_, a, b) => a.toUpperCase() + b.toLowerCase());
+const SMALL = new Set(['a', 'an', 'the', 'of', 'to', 'in', 'on', 'and', 'or', 'for', 'at', 'by']);
+export const titleCase = (s) => String(s).replace(/\s+/g, ' ').trim().split(' ')
+  .map((w, i) => (i > 0 && SMALL.has(w.toLowerCase()) ? w.toLowerCase() : w.replace(/^([a-z])([a-z']*)/i, (_, a, b) => a.toUpperCase() + b.toLowerCase()))).join(' ');
 export const uniq = (arr) => [...new Set(arr)];
 export const pick = (rng, arr) => arr[Math.floor(rng() * arr.length) % arr.length];
 

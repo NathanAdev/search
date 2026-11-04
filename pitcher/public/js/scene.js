@@ -1,6 +1,7 @@
 // The live theatre: a small 3D world projected onto a 2D canvas, so one scene renders from three camera angles.
 // World units: x to the right of the stage, y up, z from the stage (negative) out into the audience (positive).
-import { PERSONAS, YOU } from './personas.js';
+import { isExpert } from './categories.js';
+import { PERSONAS, YOU, getPersona } from './personas.js';
 import { SPRITE_H, SPRITE_W, drawMascot } from './sprites.js';
 import { mulberry32 } from './util.js';
 
@@ -18,6 +19,8 @@ const rowZ = (r) => 2.6 + r * 1.75;
 const rowY = (r) => r * 0.34;
 const colX = (c) => (c - (COLS - 1) / 2) * 1.12 + (c >= COLS / 2 ? 0.35 : -0.35);
 const MAIN_SEATS = { critic: [0, 1], monetizer: [0, 2], hype: [0, 3], wrestler: [0, 4] };
+const EXPERT_SEAT = [0, 5];
+const CONFETTI = ['#ffcf6b', '#e5484d', '#43b87c', '#4c8df6', '#f2b53a', '#ff6fa8', '#b49cf0'];
 const CROWD_COLORS = ['#b49cf0', '#8fd3c7', '#f3a683', '#9fb4d9', '#f5a3c7', '#c9b38f', '#a7d389', '#e8c56b', '#88b8e8', '#d6a6e0'];
 const ACCESSORY = { critic: 'critic', monetizer: 'monetizer', hype: 'hype', wrestler: 'wrestler' };
 
@@ -43,12 +46,16 @@ export function createScene(canvas, { seed = 11 } = {}) {
     actors.push({ id, main: true, color: PERSONAS[id].color, x: colX(c), z: rowZ(r), y: rowY(r) + 0.42, face: -1, mood: 'neutral', talking: 0, anim: 'idle', animUntil: 0, look: 0, phase: rng() * 6, accessory: ACCESSORY[id] });
   }
   for (let r = 0; r < ROWS; r++) for (let c = 0; c < COLS; c++) {
-    if (r === 0 && c >= 1 && c <= 4) continue;
+    if (r === 0 && c >= 1 && c <= 5) continue;
     if (rng() < 0.28) continue;
     const a = rng();
     actors.push({ id: `crowd-${r}-${c}`, main: false, color: CROWD_COLORS[Math.floor(rng() * CROWD_COLORS.length)], x: colX(c), z: rowZ(r), y: rowY(r) + 0.42, face: -1,
       mood: 'neutral', talking: 0, anim: 'idle', animUntil: 0, look: 0, phase: rng() * 6, accessory: a < 0.15 ? 'glasses' : a < 0.27 ? 'beanie' : null });
   }
+  const expert = { id: 'expert', main: true, hidden: true, color: '#9db0c4', x: colX(EXPERT_SEAT[1]), z: rowZ(EXPERT_SEAT[0]), y: rowY(EXPERT_SEAT[0]) + 0.42, face: -1, mood: 'neutral', talking: 0, anim: 'idle', animUntil: 0, look: 0, phase: 1.3, accessory: 'expert', personaId: null };
+  actors.push(expert);
+  let energy = 0.2;
+  const particles = [];
   const you = { id: 'you', color: YOU.color, x: 0, z: -1.5, y: 0.6, face: 1, mood: 'neutral', talking: 0, anim: 'idle', animUntil: 0, look: 0, phase: 0, mic: true };
   const seats = [];
   for (let r = 0; r < ROWS; r++) for (let c = 0; c < COLS; c++) seats.push({ x: colX(c), z: rowZ(r), y: rowY(r) });
@@ -131,6 +138,7 @@ export function createScene(canvas, { seed = 11 } = {}) {
     if (a.id === 'monetizer') { mouth = a.mood === 'happy' ? 'smile' : a.mood === 'sad' ? 'frown' : 'neutral'; eyes = a.mood === 'happy' ? 'happy' : 'neutral'; }
     if (a.id === 'hype') { eyes = 'happy'; mouth = 'smile'; }
     if (a.id === 'wrestler') { eyes = 'angry'; mouth = 'smile'; }
+    if (a.id === 'expert') { eyes = a.mood === 'happy' ? 'happy' : 'neutral'; mouth = a.mood === 'annoyed' ? 'frown' : 'smile'; }
     if (!a.main && a.id !== 'you') { mouth = a.mood === 'happy' ? 'smile' : 'neutral'; }
     if (anim === 'clap' || anim === 'cheer') { arms = Math.floor(t / 180) % 2 ? 'up' : 'down'; if (!a.main) { eyes = 'happy'; mouth = 'smile'; } }
     if (anim === 'gasp') { eyes = 'surprised'; mouth = 'open'; }
@@ -142,7 +150,8 @@ export function createScene(canvas, { seed = 11 } = {}) {
   }
 
   function drawActor(a, t, seated = true) {
-    const bob = Math.sin(t / 420 + a.phase) * 0.015 + (a.animUntil > t && (a.anim === 'cheer' || a.anim === 'clap') ? Math.abs(Math.sin(t / 150)) * 0.05 : 0);
+    if (a.hidden) return null;
+    const bob = Math.sin(t / (420 - energy * 180) + a.phase) * (0.012 + energy * 0.03) + (a.animUntil > t && (a.anim === 'cheer' || a.anim === 'clap') ? Math.abs(Math.sin(t / 150)) * 0.05 : 0);
     const heightW = 0.95;
     const base = project({ x: a.x, y: a.y + bob, z: a.z });
     const topP = project({ x: a.x, y: a.y + bob + heightW, z: a.z });
@@ -152,7 +161,7 @@ export function createScene(canvas, { seed = 11 } = {}) {
     const { view, flip } = viewFor(a);
     const ex = expression(a, t);
     const lean = a.lean && a.talking > t ? a.lean * s * 0.8 : 0;
-    drawMascot(ctx, base.x - (SPRITE_W * s) / 2 + lean, base.y - hpx, s, { color: a.color, view, flip, ...ex, look: a.look, accessory: a.accessory, blush: a.id === 'hype', legs: !seated, mic: a.mic, pencil: Math.floor(t / 200) % 3 });
+    drawMascot(ctx, base.x - (SPRITE_W * s) / 2 + lean, base.y - hpx, s, { color: a.color, view, flip, ...ex, look: a.look, accessory: a.accessory, accent: a.accent, blush: a.id === 'hype', legs: !seated, mic: a.mic, pencil: Math.floor(t / 200) % 3 });
     return { x: base.x, y: base.y - hpx - (a.accessory === 'monetizer' ? 4 * s : 0), s, view };
   }
 
@@ -243,20 +252,29 @@ export function createScene(canvas, { seed = 11 } = {}) {
     if (cur) lines.push(cur);
     return lines.length > 4 ? [...lines.slice(0, 3), `${lines[3].slice(0, 28)}…`] : lines;
   }
+  let placed = [];
   function drawBubble(anchor, b, color, t) {
     const age = t - b.at;
     const alpha = Math.min(1, age / 160, (b.until - t) / 300);
     if (alpha <= 0) return;
     ctx.save();
     ctx.globalAlpha = alpha;
-    ctx.font = b.kind === 'chat' ? '600 12px system-ui, sans-serif' : '600 14px system-ui, sans-serif';
+    ctx.font = b.kind === 'chat' ? '600 12px system-ui, sans-serif' : b.kind === 'crowd' ? '600 12px system-ui, sans-serif' : '600 14px system-ui, sans-serif';
     const text = b.kind === 'chat' ? '…' : b.text;
-    const lines = wrap(text, 230);
-    const lh = b.kind === 'chat' ? 14 : 17;
+    const lines = wrap(text, b.kind === 'crowd' ? 170 : 230);
+    const lh = b.kind === 'chat' || b.kind === 'crowd' ? 14 : 17;
     const w = Math.max(...lines.map((l) => ctx.measureText(l).width)) + 18;
     const h = lines.length * lh + 12;
     const x = Math.max(6, Math.min(W - w - 6, anchor.x - w / 2));
-    const y = Math.max(6, anchor.y - h - 12 - (b.lift || 0));
+    let y = Math.max(6, anchor.y - h - 12);
+    // Stack bubbles that would overlap, newest on top, so several speakers stay readable.
+    for (let guard = 0; guard < 6; guard++) {
+      const hit = placed.find((r) => x < r.x + r.w + 4 && x + w + 4 > r.x && y < r.y + r.h + 4 && y + h + 13 > r.y);
+      if (!hit) break;
+      y = hit.y - h - 14;
+    }
+    if (y < 4) y = 4;
+    placed.push({ x, y, w, h });
     ctx.fillStyle = b.kind === 'heckle' ? '#fff3f3' : '#fbf8f1';
     ctx.strokeStyle = color;
     ctx.lineWidth = 2.5;
@@ -271,8 +289,29 @@ export function createScene(canvas, { seed = 11 } = {}) {
     lines.forEach((l, i) => ctx.fillText(l, x + 9, y + 6 + i * lh));
     ctx.restore();
   }
+  function drawSweep(t) {
+    ctx.save();
+    ctx.globalCompositeOperation = 'lighter';
+    for (const [i, col] of [[0, 'rgba(255,120,190,0.10)'], [1, 'rgba(120,170,255,0.10)']]) {
+      const ang = Math.sin(t / 900 + i * 2.1) * 0.5;
+      const sx = i ? W * 0.9 : W * 0.1;
+      ctx.fillStyle = col;
+      ctx.beginPath(); ctx.moveTo(sx, -10);
+      ctx.lineTo(sx + Math.sin(ang - 0.12) * H * 1.3, H); ctx.lineTo(sx + Math.sin(ang + 0.12) * H * 1.3, H); ctx.closePath(); ctx.fill();
+    }
+    ctx.restore();
+  }
+  function drawConfetti() {
+    for (let i = particles.length - 1; i >= 0; i--) {
+      const p = particles[i];
+      p.x += p.vx; p.y += p.vy; p.vy += 0.06; p.vx *= 0.99; p.r += p.vr; p.life--;
+      if (p.life <= 0 || p.y > H + 20) { particles.splice(i, 1); continue; }
+      ctx.save(); ctx.translate(p.x, p.y); ctx.rotate(p.r); ctx.fillStyle = p.c; ctx.fillRect(-4, -2.5, 8, 5); ctx.restore();
+    }
+  }
   function drawTag(anchor, a) {
-    const p = PERSONAS[a.id];
+    const p = a.id === 'expert' ? getPersona(a.personaId) : PERSONAS[a.id];
+    if (!p) return;
     ctx.save();
     ctx.font = '700 11px system-ui, sans-serif';
     const w = ctx.measureText(p.name).width + 10;
@@ -283,6 +322,7 @@ export function createScene(canvas, { seed = 11 } = {}) {
     ctx.textAlign = 'center';
     ctx.textBaseline = 'middle';
     ctx.fillText(p.name, anchor.x, anchor.y - 10.5);
+    if (a.id === 'expert') { ctx.font = '600 9px system-ui, sans-serif'; ctx.fillStyle = p.color; ctx.fillText('EXPERT', anchor.x, anchor.y - 25); }
     ctx.restore();
   }
 
@@ -335,19 +375,24 @@ export function createScene(canvas, { seed = 11 } = {}) {
     for (const a of actors) ents.push({ d: depthOf({ x: a.x, y: a.y + 0.45, z: a.z }), draw: () => { const r = drawActor(a, t, true); if (r) anchors.set(a.id, r); } });
     if (camKey !== 'first' || transition) ents.push({ d: depthOf({ x: you.x, y: you.y + 0.5, z: you.z }), draw: () => { const r = drawActor(you, t, false); if (r) anchors.set('you', r); } });
     ents.sort((a, b) => b.d - a.d).forEach((e) => e.draw());
-    for (const a of actors) if (a.main && anchors.has(a.id) && !bubbles.has(a.id)) drawTag(anchors.get(a.id), a);
+    if (energy > 0.55) drawSweep(t);
+    drawConfetti();
+    for (const a of actors) if (a.main && !a.hidden && anchors.has(a.id) && !bubbles.has(a.id) && !bubbles.has(a.personaId)) drawTag(anchors.get(a.id), a);
     if (camKey === 'first' && !transition) drawFirstPersonHud(t);
     let lift = 0;
+    placed = [];
     for (const [id, b] of [...bubbles.entries()].sort((x, y) => x[1].at - y[1].at)) {
       if (b.until < t) { bubbles.delete(id); continue; }
-      const anchor = anchors.get(id) || (id === 'you' ? { x: W / 2, y: H - 160 } : null);
+      const actorId = isExpert(id) ? 'expert' : id;
+      const anchor = anchors.get(actorId) || (id === 'you' ? { x: W / 2, y: H - 160 } : null);
       if (!anchor) continue;
-      drawBubble(anchor, { ...b, lift }, id === 'you' ? YOU.color : PERSONAS[id]?.color || '#ccc', t);
+      const crowdActor = actors.find((a) => a.id === id && !a.main);
+      drawBubble(anchor, { ...b, lift, text: crowdActor?.name && b.kind === 'crowd' ? `${crowdActor.name}: ${b.text}` : b.text }, id === 'you' ? YOU.color : getPersona(id)?.color || crowdActor?.color || '#ccc', t);
       lift = 0;
     }
   }
 
-  const find = (id) => (id === 'you' ? you : actors.find((a) => a.id === id));
+  const find = (id) => (id === 'you' ? you : isExpert(id) ? expert : actors.find((a) => a.id === id));
   const now = () => performance.now();
   return {
     W, H, actors, you,
@@ -371,6 +416,22 @@ export function createScene(canvas, { seed = 11 } = {}) {
     crowd(anim, share = 0.6, ms = 1600) { for (const a of actors) if (!a.main && rng() < share) { a.anim = anim; a.animUntil = now() + ms * (0.7 + rng() * 0.6); if (anim === 'cheer') a.mood = 'happy'; } },
     setYouTalking(on) { youTalking = on; you.talking = on ? now() + 400 : 0; },
     setWriting(on) { writing = on; },
+    // The category expert takes the expert seat (null empties it).
+    setExpert(personaId) {
+      const p = personaId && getPersona(personaId);
+      if (!p) { expert.hidden = true; expert.personaId = null; return; }
+      const fresh = expert.personaId !== personaId;
+      Object.assign(expert, { hidden: false, personaId, color: p.color });
+      if (fresh) { expert.anim = 'cheer'; expert.animUntil = performance.now() + 1600; }
+    },
+    nameCrowd(names) {
+      const crowdActors = actors.filter((a) => !a.main);
+      names.forEach((n, i) => { const a = crowdActors[(i * 7 + 3) % crowdActors.length]; if (a && !a.name) a.name = n; });
+      return actors.filter((a) => a.name).map((a) => ({ id: a.id, name: a.name }));
+    },
+    confetti(n = 150) { for (let i = 0; i < n; i++) particles.push({ x: Math.random() * W, y: -20 - Math.random() * H * 0.4, vx: (Math.random() - 0.5) * 3, vy: Math.random() * 2 + 1, r: Math.random() * 6, vr: (Math.random() - 0.5) * 0.3, c: CONFETTI[i % CONFETTI.length], life: 260 + Math.random() * 120 }); },
+    setEnergy(v) { energy = Math.max(0, Math.min(1, v)); },
+    get energy() { return energy; },
     frame,
     start() { const loop = (t) => { frame(t); raf = requestAnimationFrame(loop); }; raf = requestAnimationFrame(loop); },
     stop() { cancelAnimationFrame(raf); },

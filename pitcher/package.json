@@ -1,13 +1,16 @@
 {
   "name": "pitcher",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Pitch a Roblox game by voice to a crowd of four opinionated Claude mascots.",
   "type": "module",
   "private": true,
   "scripts": {
     "start": "node server.js",
+    "setup": "node scripts/fetch-vendor.mjs",
     "test": "node --test test/unit/*.test.js",
-    "test:e2e": "node test/e2e.js"
+    "test:e2e": "node test/e2e.js",
+    "package": "node scripts/package.mjs",
+    "icons": "node scripts/make-icons.mjs"
   },
   "engines": {
     "node": ">=20"

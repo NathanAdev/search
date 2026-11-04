@@ -1,8 +1,11 @@
 // What the crowd understood: one document per pitch, each claude writing their own part, plus a shared summary.
+import { CATEGORIES, expertId } from './categories.js';
+import { getPersona } from './personas.js';
 import { GENRES, MECHANISMS, RETENTION } from './roblox.js';
 import { revenueSketch, scoreMonetization } from './scoring.js';
 import { hits, joinList } from './util.js';
 
+const EXPERT_TOPIC = (t) => String(t).replace(/^[a-z]+_/, '').replace(/_/g, ' ');
 const TOPIC = { saturation: 'the twist', loop: 'the core loop', retention: 'retention', onboarding: 'the first 30 seconds', scope: 'scope', exploits: 'exploiters',
   social: 'empty servers', safety: 'safety', monetize: 'monetization', price: 'prices', payers: 'who pays', fairness: 'pay-to-win', fun: 'the fun moment', heart: 'the heart of the game' };
 const clip = (s, n = 160) => (s.length > n ? s.slice(0, n - 1).trimEnd() + '…' : s);
@@ -39,7 +42,7 @@ export function buildUnderstanding(pitch) {
     critic: criticAsked.length === 0
       ? 'I never got to my questions, so I am still against it.'
       : criticOpen.length
-        ? `What I understood: a ${facts.genre.toLowerCase()} pitch, and the loop as I heard it is "${facts.loop}" I am still negative: ${joinList(criticOpen.map((q) => TOPIC[q.topic]))} ${criticOpen.length > 1 ? 'are' : 'is'} unanswered. Answer those or change the pitch.`
+        ? `What I understood: a ${facts.genre.toLowerCase()} pitch, and the loop as I heard it is "${facts.loop}" I am still negative: ${joinList(criticOpen.map((q) => TOPIC[q.topic] || EXPERT_TOPIC(q.topic)))} ${criticOpen.length > 1 ? 'are' : 'is'} unanswered. Answer those or change the pitch.`
         : `What I understood: a ${facts.genre.toLowerCase()} pitch, and the loop as I heard it is "${facts.loop}" All ${criticAsked.length} of my questions were answered, so, grudgingly, I am convinced.`,
     monetizer: `It makes money through ${facts.money.toLowerCase()}. Score ${money.score}/100, verdict ${money.verdict}. ${spec.monetization.prices.length ? revenueSketch(spec).text : 'Without prices I cannot size it; give me Robux numbers.'}`,
     hype: `The strongest thing here is ${facts.hook === 'no twist named yet' ? 'the core idea' : `the hook: "${facts.hook}"`}. ${levers.length ? `Players come back for ${facts.retention}.` : 'Add a reason to come back and it gets much better.'}`,
@@ -48,12 +51,22 @@ export function buildUnderstanding(pitch) {
       : pitch.proposal ? `I offered "${pitch.proposal.text}" and it was not taken. Fine, but pick one heart for the game.` : 'Nobody let me wrestle it. Pick one heart and cut the rest.',
   };
 
+  const cat = pitch.category && CATEGORIES[pitch.category];
+  if (cat) {
+    const ex = expertId(pitch.category);
+    const exQs = pitch.questions.filter((q) => q.by === ex);
+    const exOpen = exQs.filter((q) => q.status === 'open');
+    const verbs = cat.conventions.slice(0, 3).join(', ');
+    perPersona[ex] = exQs.length
+      ? `As a ${cat.label} game it has to nail ${verbs}. ${exOpen.length ? `Still open for me: ${joinList(exOpen.map((q) => EXPERT_TOPIC(q.topic)))}.` : 'Everything I asked about the format was answered.'} Watch out for ${cat.pitfalls[0]}.`
+      : `As a ${cat.label} game it has to nail ${verbs}. The classic trap is ${cat.pitfalls[0]}.`;
+  }
   const sections = [
-    { id: 'game', title: 'The game', items: [`Genre: ${facts.genre}`, `Core loop: ${facts.loop}`, `Hook: ${facts.hook}`, `Players: ${facts.audience}`, `Session: ${facts.session}`, `Retention: ${facts.retention}`] },
+    { id: 'game', title: 'The game', items: [...(cat ? [`Category: ${cat.label} (expert: ${cat.expert.name})`] : []), `Genre: ${facts.genre}`, `Core loop: ${facts.loop}`, `Hook: ${facts.hook}`, `Players: ${facts.audience}`, `Session: ${facts.session}`, `Retention: ${facts.retention}`] },
     { id: 'money', title: 'Money', items: [`Mechanisms: ${facts.money}`, `Prices: ${spec.monetization.prices.length ? spec.monetization.prices.map((p) => `${p} R$`).join(', ') : 'none given'}`, `Verdict: ${money.verdict} (${money.score}/100)`, ...money.reasons.map((r) => `${r.d > 0 ? '+' : ''}${r.d} ${r.text}`)] },
-    { id: 'qa', title: 'Questions', items: pitch.questions.map((q) => `${q.status === 'answered' ? 'Answered' : 'Open'} (${q.by}): ${q.text}${q.answer ? ` Answer: "${clip(q.answer, 140)}"` : ''}`) },
+    { id: 'qa', title: 'Questions', items: pitch.questions.map((q) => `${q.status === 'answered' ? 'Answered' : 'Open'} (${getPersona(q.by)?.name || q.by}): ${q.text}${q.answer ? ` Answer: "${clip(q.answer, 140)}"` : ''}`) },
     { id: 'changes', title: 'How the pitch changed', items: pitch.versions.length > 1 ? pitch.versions.slice(1).map((v) => `v${v.v}: ${clip(v.note, 140)}`) : ['No changes during the pitch.'] },
-    { id: 'next', title: "What's next", items: [...open.map((q) => `Answer ${q.by === 'critic' ? 'Vex' : q.by === 'monetizer' ? 'Mint' : q.by === 'hype' ? 'Sunny' : 'Brawl'} on ${TOPIC[q.topic]}`), ...money.reasons.filter((r) => r.d < 0).map((r) => `Fix: ${r.text}`)].slice(0, 8) },
+    { id: 'next', title: "What's next", items: [...open.map((q) => `Answer ${getPersona(q.by)?.name || q.by} on ${TOPIC[q.topic] || EXPERT_TOPIC(q.topic)}`), ...money.reasons.filter((r) => r.d < 0).map((r) => `Fix: ${r.text}`)].slice(0, 8) },
   ];
   if (!sections[2].items.length) sections[2].items.push('No questions were asked.');
   if (!sections[4].items.length) sections[4].items.push('Build a prototype of the core loop.');
@@ -61,6 +74,6 @@ export function buildUnderstanding(pitch) {
   const shared = `${pitch.title} is a ${facts.genre.toLowerCase()} pitch. ${facts.loop === 'not described yet' ? 'The core loop is still unclear.' : `Core loop: "${facts.loop}"`} ${mechs.length ? `It makes money through ${facts.money.toLowerCase()}.` : 'No way to make Robux was named yet.'} The Critic is ${criticOpen.length || !criticAsked.length ? 'still negative' : 'convinced'} and the Monetizer says ${money.verdict}.`;
   const md = [`# ${pitch.title}: what the crowd understood`, '', shared, '',
     ...sections.flatMap((s) => [`## ${s.title}`, ...s.items.map((i) => `- ${i}`), '']),
-    '## In their own words', `- **Vex (Critic):** ${perPersona.critic}`, `- **Mint (Monetizer):** ${perPersona.monetizer}`, `- **Sunny (Hype):** ${perPersona.hype}`, `- **Brawl (Wrestler):** ${perPersona.wrestler}`, ''].join('\n');
+    '## In their own words', ...Object.entries(perPersona).map(([id, t]) => `- **${getPersona(id)?.name} (${getPersona(id)?.role}):** ${t}`), ''].join('\n');
   return { title: pitch.title, shared, sections, perPersona, verdict: { critic: criticOpen.length || !criticAsked.length ? 'negative' : 'convinced', monetizer: money.verdict, score: money.score }, markdown: md };
 }

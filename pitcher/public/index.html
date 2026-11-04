@@ -3,98 +3,158 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#120f17">
 <title>Pitcher</title>
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icons/icon-192.png">
 <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 <header class="top">
-  <div class="brand"><span class="logo" aria-hidden="true"></span>Pitcher</div>
+  <div class="brand"><img src="icons/icon-192.png" alt="" class="logo">Pitcher</div>
   <nav class="tabs" role="tablist" aria-label="Views">
-    <button role="tab" id="nav-dashboard" aria-controls="view-dashboard" aria-selected="false">Dashboard</button>
-    <button role="tab" id="nav-pitch" aria-controls="view-pitch" aria-selected="true">Pitch mode</button>
+    <button role="tab" id="nav-dashboard" aria-selected="false">Dashboard</button>
+    <button role="tab" id="nav-pitch" aria-selected="true">Pitch</button>
+    <button role="tab" id="nav-ideas" aria-selected="false">Ideas <span class="count">100</span></button>
   </nav>
-  <span class="pill" id="aiPill" title="Who is thinking for the crowd">AI: …</span>
+  <div class="pills">
+    <span class="pill" id="aiPill" title="Who is thinking for the crowd">AI: …</span>
+    <span class="pill" id="sttPill" title="Speech recognition engine">Mic: …</span>
+    <span class="pill" id="ttsPill" title="Crowd voice engine">Voices: …</span>
+  </div>
+  <div class="menu">
+    <button id="exportBtn" aria-haspopup="menu" aria-expanded="false">Export</button>
+    <div class="menu-list" id="exportMenu" role="menu" hidden>
+      <button role="menuitem" data-export="md">Markdown: transcript, Q&amp;A, write-up</button>
+      <button role="menuitem" data-export="html">Printable page (.html)</button>
+      <button role="menuitem" data-export="json">Data (.json)</button>
+      <button role="menuitem" data-export="copy">Copy Markdown</button>
+    </div>
+  </div>
   <button class="ghost" id="openSettings" aria-haspopup="dialog">Settings</button>
 </header>
 
 <main>
+  <!-- ======================= DASHBOARD ======================= -->
   <section id="view-dashboard" class="view" hidden>
-    <div class="dash-head">
-      <h1>Your agents</h1>
-      <span class="pill" id="feedSource"></span>
-    </div>
+    <div class="dash-head"><h1>Your agents</h1><span class="pill" id="feedSource"></span></div>
     <div class="agents" id="agents"></div>
     <div class="dash-grid">
-      <section class="panel">
-        <h2>What's next</h2>
-        <ol class="next" id="nextList"></ol>
-      </section>
-      <section class="panel">
-        <h2>Recent pitches</h2>
-        <ul class="recent" id="recentList"></ul>
-      </section>
+      <section class="panel"><h2>What's next</h2><ol class="next" id="nextList"></ol></section>
+      <section class="panel"><h2>Saved sessions</h2><ul class="sessions" id="recentList"></ul></section>
     </div>
-    <p class="hint">The feed is a JSON endpoint: <code>POST /api/agents</code> with <code>{"agents":[{"id","name","status","task","detail","progress"}],"next":[{"id","title","owner","priority"}]}</code>. Until something posts, sample agents are shown.</p>
+    <p class="hint">Feed agents in with <code>POST /api/agents</code>; see the README. Every pitch session is saved automatically with its full transcript.</p>
   </section>
 
+  <!-- ======================= PITCH ======================= -->
   <section id="view-pitch" class="view">
     <div class="stage-col">
       <div class="stage-wrap">
         <canvas id="stage" width="1920" height="1080" aria-label="Theatre stage with the crowd of claudes"></canvas>
         <div class="cams" role="group" aria-label="Camera angle">
-          <button data-cam="first" aria-pressed="true">1 · You</button>
-          <button data-cam="side" aria-pressed="false">2 · Side</button>
-          <button data-cam="back" aria-pressed="false">3 · Back</button>
+          <button data-cam="first" aria-pressed="true"><kbd>1</kbd> You</button>
+          <button data-cam="side" aria-pressed="false"><kbd>2</kbd> Side</button>
+          <button data-cam="back" aria-pressed="false"><kbd>3</kbd> Back</button>
         </div>
         <div class="chips" id="chips"></div>
+        <div class="energy" aria-label="Crowd energy"><span>Crowd</span><div class="bar"><i id="energyBar"></i></div></div>
+        <div class="focus-pill" id="focusPill" hidden></div>
+        <div class="loading" id="loading" hidden><div class="spinner"></div><p id="loadingText">Loading…</p></div>
       </div>
+
       <div class="controls">
-        <button class="primary" id="micBtn">Start pitch</button>
+        <button class="primary mic" id="micBtn"><span class="dot"></span><span id="micLabel">Start pitch</span></button>
+        <div class="level" aria-hidden="true"><i id="micLevel"></i></div>
         <span class="status" id="micStatus">Mic off</span>
         <span class="spacer"></span>
         <button id="demoBtn">Run demo pitch</button>
         <button id="endBtn" disabled>End pitch &amp; write up</button>
         <button class="ghost" id="newBtn">New session</button>
       </div>
+
+      <section class="tray" aria-label="Questions for you">
+        <div class="tray-head"><h2>Questions for you</h2><span class="hint" id="trayHint">Pick one to answer, or just keep talking.</span></div>
+        <div class="qcards" id="qcards"></div>
+      </section>
+
       <div class="transcript">
         <p class="interim" id="interim" aria-live="polite"></p>
+        <div class="starters" id="starters"></div>
         <form id="typeForm" autocomplete="off">
-          <input id="typeInput" placeholder="Or type what you'd say, then Enter (works without a mic)" aria-label="Type what you would say">
+          <input id="typeInput" placeholder="Or type what you'd say, then Enter" aria-label="Type what you would say">
           <button type="submit">Say it</button>
         </form>
       </div>
     </div>
+
     <aside class="side-col">
       <div class="side-tabs" role="tablist" aria-label="Panels">
-        <button role="tab" data-panel="chat" aria-selected="true">Chatroom</button>
+        <button role="tab" data-panel="chat" aria-selected="true">Chat</button>
         <button role="tab" data-panel="board" aria-selected="false">Pitches <span id="pitchCount" class="count">0</span></button>
-        <button role="tab" data-panel="doc" aria-selected="false">Understanding</button>
+        <button role="tab" data-panel="doc" aria-selected="false">Write-up</button>
+        <button role="tab" data-panel="transcript" aria-selected="false">Transcript</button>
       </div>
       <div class="panel-body" id="panel-chat"><ol class="chat" id="chat" aria-live="polite"></ol></div>
       <div class="panel-body" id="panel-board" hidden></div>
       <div class="panel-body" id="panel-doc" hidden></div>
+      <div class="panel-body" id="panel-transcript" hidden><ol class="tlist" id="tlist"></ol></div>
     </aside>
+  </section>
+
+  <!-- ======================= IDEAS ======================= -->
+  <section id="view-ideas" class="view" hidden>
+    <div class="dash-head"><h1>100 ideas to pitch</h1><input id="ideaSearch" class="search" placeholder="Search ideas" aria-label="Search ideas"></div>
+    <div class="catchips" id="catChips"></div>
+    <div class="ideas" id="ideaGrid"></div>
   </section>
 </main>
 
 <dialog id="settings">
   <form method="dialog" class="settings">
     <h2>Settings</h2>
-    <label class="row"><input type="checkbox" id="setVoices"> Spoken voices <small>The mic pauses while a claude talks.</small></label>
-    <label class="row"><input type="checkbox" id="setHeadphones"> I'm wearing headphones <small>Keep the mic on while they talk.</small></label>
-    <label class="row"><input type="checkbox" id="setInterrupt"> Mid-pitch interruptions</label>
-    <label class="row"><input type="checkbox" id="setChatter"> Crowd chatter while you talk</label>
-    <label class="row col">Crowd brain
-      <select id="setProvider">
-        <option value="auto">Automatic (Claude Code CLI if the local server is running)</option>
-        <option value="cli">Claude Code CLI via local server</option>
-        <option value="mock">Scripted crowd (offline, instant)</option>
-      </select>
-    </label>
-    <p class="hint">Keys: <kbd>1</kbd> <kbd>2</kbd> <kbd>3</kbd> switch camera, <kbd>M</kbd> mic on/off.</p>
+    <fieldset>
+      <legend>Speech</legend>
+      <label class="row col">Speech recognition
+        <select id="setStt">
+          <option value="whisper">Whisper, on this computer (open source, private)</option>
+          <option value="browser">Browser built-in (Chrome / Edge, sends audio to the browser maker)</option>
+        </select>
+      </label>
+      <label class="row col">Crowd voices
+        <select id="setTts">
+          <option value="kokoro">Kokoro, on this computer (open source, natural)</option>
+          <option value="browser">Browser voices (instant, robotic)</option>
+          <option value="off">Off (text only)</option>
+        </select>
+      </label>
+      <label class="row col">Memory
+        <select id="setMemory">
+          <option value="normal">Normal: Whisper base, about 1 GB for the whole tab</option>
+          <option value="low">Low: Whisper tiny, about 600 MB</option>
+        </select>
+      </label>
+      <label class="row"><input type="checkbox" id="setHeadphones"> I'm wearing headphones <small>Keep the mic on while the crowd talks.</small></label>
+    </fieldset>
+    <fieldset>
+      <legend>Crowd</legend>
+      <label class="row"><input type="checkbox" id="setSfx"> Crowd sounds (cheers, gasps, applause)</label>
+      <label class="row"><input type="checkbox" id="setInterrupt"> Mid-pitch interruptions</label>
+      <label class="row"><input type="checkbox" id="setChatter"> Crowd chatter while you talk</label>
+      <label class="row"><input type="checkbox" id="setCrowdLines"> Background crowd lines (Gus, Bea, Lil Tim…)</label>
+      <label class="row col">Crowd brain
+        <select id="setProvider">
+          <option value="auto">Automatic (Claude Code CLI if the local server has it)</option>
+          <option value="cli">Claude Code CLI via local server</option>
+          <option value="mock">Scripted crowd (offline, instant)</option>
+        </select>
+      </label>
+    </fieldset>
+    <p class="hint">Keys: <kbd>1</kbd> <kbd>2</kbd> <kbd>3</kbd> camera · <kbd>M</kbd> mic · <kbd>Q</kbd> answer next question · <kbd>Esc</kbd> stop choosing.</p>
     <div class="right"><button value="close" class="primary">Done</button></div>
   </form>
 </dialog>
+
+<dialog id="viewer"><div class="viewer"><div class="viewer-head"><h2 id="viewerTitle">Session</h2><button id="viewerClose" class="ghost">Close</button></div><div id="viewerBody"></div></div></dialog>
 <script type="module" src="js/main.js"></script>
 </body>
 </html>

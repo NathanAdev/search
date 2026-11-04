@@ -1,4 +1,5 @@
 // Scripted crowd: decides what the four claudes say, ask and accept. Same contract as the real-AI provider.
+import { CATEGORIES, expertId, expertQuestionKeywords, isExpert } from './categories.js';
 import { GENRES, MECHANISMS, TOPICS } from './roblox.js';
 import { revenueSketch, scoreMonetization } from './scoring.js';
 import { buildUnderstanding } from './understanding.js';
@@ -9,7 +10,7 @@ const SOLO_GENRES = ['roleplay', 'party', 'fighting', 'shooter', 'sports'];
 
 export function evaluateAnswer(topic, text) {
   const words = wordCount(text);
-  const list = topic === 'heart' ? HEART : TOPICS[topic] || [];
+  const list = topic === 'heart' ? HEART : TOPICS[topic] || expertQuestionKeywords(topic)?.keywords || [];
   const kw = hits(text, list);
   const nums = /\d/.test(text);
   const ok = words >= 6 && (kw.length >= 2 || (kw.length >= 1 && (nums || words >= 14)));
@@ -18,7 +19,10 @@ export function evaluateAnswer(topic, text) {
 
 const TOPIC_LABEL = { saturation: 'the twist', loop: 'the core loop', retention: 'retention', onboarding: 'the first 30 seconds', scope: 'scope', exploits: 'exploiters',
   social: 'empty servers', safety: 'safety', monetize: 'monetization', price: 'prices', payers: 'who pays', fairness: 'pay-to-win', fun: 'the fun moment', heart: 'the heart of the game' };
-export const topicLabel = (t) => TOPIC_LABEL[t] || t;
+const EXPERT_LABEL = { steal_verb: 'the new steal verb', steal_defense: 'protecting new players', steal_ladder: 'the rarity ladder', plus_stat: 'what the +1 stat unlocks', plus_length: 'game length', plus_idle: 'AFK winners',
+  grow_wait: 'the wait', grow_events: 'events and mutations', td_meta: 'the meta', td_odds: 'summon odds', obby_replay: 'replay', tycoon_end: 'the finished base', horror_replay: 'run two', horror_fair: 'readable deaths',
+  survival_roles: 'roles', fight_newbie: 'new players', rp_spark: 'story sparks', dress_vote: 'vote trolls', pets_trade: 'trade scams', deduce_clues: 'clues', escape_routes: 'escape routes', party_variety: 'round variety', find_hints: 'hints' };
+export const topicLabel = (t) => TOPIC_LABEL[t] || EXPERT_LABEL[t] || String(t).replace(/_/g, ' ');
 
 const genreOf = (spec) => (spec.genres[0] ? GENRES[spec.genres[0]] : null);
 const genreLabel = (spec) => (genreOf(spec) ? genreOf(spec).label.split(' /')[0].toLowerCase() : 'game');
@@ -93,8 +97,22 @@ const T = {
   criticAfterConvinced: ["Don't get used to it."],
   mintAnswered: ['Now we\'re talking. {mechs}. I can work with that.', 'Okay, that is a real plan for Robux.'],
   wrestlerAdopt: ['Ha! Now it\'s a game nobody else has.', 'See? Wrestled into shape.'],
+  expertOk: ['Now THAT is how the best ones in this format do it.', "Good. That's the bit most of these get wrong.", 'Okay, that holds up. Next.'],
   wrestlerReject: ['Fine, keep yours. Then make it sharper.', 'Your call. Mine was better.'],
 };
+
+export function hintFor(topic, genre = 'game') {
+  if (HINTS[topic]) return HINTS[topic].replace('{genre}', genre);
+  const ex = expertQuestionKeywords(topic);
+  if (ex?.hint) return `Psst! ${ex.hint}`;
+  if (topic === 'monetize') return 'Name one game pass and one developer product. Mint just wants something concrete.';
+  if (topic === 'price') return 'Give Mint actual Robux numbers, like 99 for VIP and 199 for 2x.';
+  if (topic === 'payers') return "Guess a percentage, like 'about 2 percent buy something, mostly the 2x pass'.";
+  if (topic === 'fairness') return 'Say paid stuff is cosmetic or capped, and everything strong is earnable.';
+  if (topic === 'fun') return 'Describe one moment, like a clip: what happens, and what do they yell?';
+  if (topic === 'heart') return "Pick one verb and say 'the game is about X, I'm cutting Y'.";
+  return null;
+}
 
 export function createMockProvider({ seed = 7 } = {}) {
   const rng = mulberry32(seed);
@@ -113,19 +131,28 @@ export function createMockProvider({ seed = 7 } = {}) {
   function nextQuestion(p, spec, resolvedIds, kind) {
     const asked = new Set(p.questions.map((q) => `${q.by}:${q.topic}`));
     const openNow = p.questions.filter((q) => q.status === 'open' && !resolvedIds.has(q.id));
-    if (openNow.length >= 2) return null;
+    // At most two open questions from the main cast; the expert may add a third.
+    if (openNow.length >= 3) return null;
+    const mainFull = openNow.filter((q) => !isExpert(q.by)).length >= 2;
     const covered = (topic) => evaluateAnswer(topic, p.fullText).ok;
     const by = (who) => openNow.some((q) => q.by === who);
     const count = (who) => p.questions.filter((q) => q.by === who).length;
-    if (!by('critic') && count('critic') < 5) {
+    if (!mainFull && !by('critic') && count('critic') < 5) {
       const g = criticGaps(spec).find((x) => !asked.has(`critic:${x.topic}`) && !covered(x.topic));
       if (g) return { by: 'critic', ...g };
     }
-    if (!by('monetizer') && count('monetizer') < 3 && (p.utterances >= 2 || kind === 'end' || spec.words > 60)) {
+    if (!mainFull && !by('monetizer') && count('monetizer') < 3 && (p.utterances >= 2 || kind === 'end' || spec.words > 60)) {
       const skipIfSaid = (topic) => (topic === 'price' || topic === 'payers') && covered(topic);
       const g = monetizerGaps(spec).find((x) => !asked.has(`monetizer:${x.topic}`) && !skipIfSaid(x.topic));
       if (g) return { by: 'monetizer', ...g };
     }
+    const cat = p.category && CATEGORIES[p.category];
+    const ex = cat && expertId(p.category);
+    if (cat && !by(ex) && count(ex) < 2 && count('critic') >= 1) {
+      const g = cat.questions.find((x) => !asked.has(`${ex}:${x.topic}`) && !covered(x.topic));
+      if (g) return { by: ex, topic: g.topic, text: g.text };
+    }
+    if (mainFull) return null;
     if (!by('wrestler') && !asked.has('wrestler:heart') && spec.loop.length >= 3 && p.utterances >= 3) {
       const verbs = [...new Set(spec.loop.flatMap((s) => hits(s, ['collect', 'fight', 'build', 'trade', 'race', 'explore', 'survive', 'hatch', 'craft', 'escape', 'defend'])))].slice(0, 4);
       if (verbs.length >= 3) return { by: 'wrestler', topic: 'heart', text: `You said ${joinList(verbs)}. That's too many hearts. Which one IS the game, and what do you cut?` };
@@ -152,6 +179,11 @@ export function createMockProvider({ seed = 7 } = {}) {
       if (req.leftOpen) chat('critic', `We're moving on? I still had ${req.leftOpen.count} question${req.leftOpen.count > 1 ? 's' : ''} on ${req.leftOpen.title}.`);
     }
 
+    if (req.categoryNew && CATEGORIES[req.categoryNew]) {
+      const c = CATEGORIES[req.categoryNew];
+      say(expertId(req.categoryNew), `A ${c.label} game? That's my format. I'm ${c.expert.name}, and I'll be checking the bits that make or break these.`, { emotion: 'happy' });
+      chat('critic', 'Great, an expert. Someone else to be disappointed with me.', expertId(req.categoryNew));
+    }
     if (kind === 'adopt' && req.adopted) {
       say('wrestler', pickT('wrestlerAdopt', ctx));
       chat('hype', pickT('hypeAtWrestler', ctx), 'wrestler');
@@ -164,7 +196,8 @@ export function createMockProvider({ seed = 7 } = {}) {
         const ev = evaluateAnswer(q.topic, req.text);
         if (ev.ok) out.resolved.push({ id: q.id, status: 'answered', via: kind === 'utterance' ? 'answer' : 'change', why: `mentioned ${ev.hits.slice(0, 3).join(', ')}` });
       }
-      const pushed = !out.resolved.length && req.answering && kind === 'utterance' ? [...open].sort((a, b) => b.seq - a.seq)[0] : null;
+      const focus = open.find((q) => q.id === req.focusId);
+      const pushed = !out.resolved.length && req.answering && kind === 'utterance' ? focus || [...open].sort((a, b) => b.seq - a.seq)[0] : null;
       const resolved = new Set(out.resolved.map((r) => r.id));
       const criticResolved = open.filter((q) => q.by === 'critic' && resolved.has(q.id));
       const criticLeft = open.filter((q) => q.by === 'critic' && !resolved.has(q.id));
@@ -186,10 +219,13 @@ export function createMockProvider({ seed = 7 } = {}) {
         say('monetizer', pickT('mintAnswered', { mechs: joinList(spec.monetization.mechanisms.map((m) => MECHANISMS[m].label)) || 'A plan' }));
         if (spec.monetization.prices.length) chat('monetizer', revenueSketch(spec).text);
       }
+      for (const q of open.filter((x) => isExpert(x.by))) if (resolved.has(q.id)) say(q.by, pickT('expertOk', ctx));
       for (const q of open.filter((x) => x.by === 'hype' || x.by === 'wrestler')) if (resolved.has(q.id)) say(q.by, q.by === 'hype' ? 'YES. That is the trailer right there.' : 'Good. Now cut the rest and build that.');
       if (pushed) {
-        say(pushed.by, PUSHBACK[pushed.topic].replace('{genre}', ctx.genre), { emotion: 'annoyed' });
-        if (pushed.by === 'critic' && HINTS[pushed.topic]) say('hype', HINTS[pushed.topic].replace('{genre}', ctx.genre), { to: 'you' });
+        const exq = expertQuestionKeywords(pushed.topic);
+        say(pushed.by, (PUSHBACK[pushed.topic] || exq?.pushback || 'Not quite. Try again, more concrete.').replace('{genre}', ctx.genre), { emotion: 'annoyed' });
+        const hint = hintFor(pushed.topic, ctx.genre);
+        if ((pushed.by === 'critic' || isExpert(pushed.by)) && hint) say('hype', hint, { to: 'you' });
       }
       if (kind === 'revision' && criticLeft.length && !criticResolved.length) say('critic', pickT('criticRevision', { ...ctx, topic: topicLabel(criticLeft[0].topic) }));
       if (kind === 'revision' && spec.hook.length && !p.praisedHook) { say('hype', pickT('hypeHook', ctx)); out.praisedHook = true; }
